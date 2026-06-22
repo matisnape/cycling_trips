@@ -1,12 +1,12 @@
-/* Drobiazgi wspólne dla wszystkich stron. */
+/* Small bits shared across all pages. */
 (function () {
-  // rok w stopce
+  // year in the footer
   var y = document.querySelector("[data-year]");
   if (y) y.textContent = new Date().getFullYear();
 
-  // Podgląd na żywo: tylko lokalnie (localhost). Co 1,5 s sprawdza znacznik
-  // wersji; gdy build.py --watch przebuduje stronę, przeglądarka sama się odświeży.
-  // Na GitHub Pages (host *.github.io) ten kod się nie uruchamia.
+  // Live preview: local only (localhost). Every 1.5s it checks the version
+  // marker; when build.py --watch rebuilds the site, the browser refreshes itself.
+  // On GitHub Pages (host *.github.io) this code does not run.
   var host = location.hostname;
   if (host === "localhost" || host === "127.0.0.1") {
     var last = null;

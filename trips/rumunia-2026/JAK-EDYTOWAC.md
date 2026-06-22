@@ -1,86 +1,87 @@
-# Jak edytować stronę w Obsidianie (z podglądem na żywo)
+# How to edit the site in Obsidian (with live preview)
 
-Edytujesz **jeden plik** — `tresc.md` — w Obsidianie. Skrypt pilnuje go w tle i po
-każdym zapisie automatycznie przebudowuje całą stronę, a podgląd w przeglądarce
-**odświeża się sam**. Nie dotykasz HTML‑i ręcznie.
+You edit **one file** — `tresc.md` — in Obsidian. The script watches it in the
+background and, after every save, automatically rebuilds the whole site, and the
+preview in the browser **refreshes itself**. You don't touch the HTML by hand.
 
-## Co jest w tym folderze
+## What's in this folder
 ```
-tresc.md                  ← TO EDYTUJESZ (Twoja notatka w markdownie)
-build.py                  ← skrypt, który robi z tego stronę
-buduj-windows.bat         ← dwuklik na Windowsie (tryb na żywo)
-buduj-mac-linux.command   ← dwuklik na Macu/Linuksie (tryb na żywo)
-JAK-EDYTOWAC.md           ← ten plik
-strona/                   ← WYNIK: gotowa strona (to wrzucasz na GitHub Pages)
-   ├─ index.html, dzien-1…9.html, zrodla.html  (generowane — nie ruszaj)
-   ├─ assets/   (style + mapa — nie ruszaj, chyba że chcesz zmienić wygląd)
-   ├─ README.md (instrukcja publikacji)
+tresc.md                  ← YOU EDIT THIS (your markdown note)
+build.py                  ← the script that turns it into a site
+buduj-windows.bat         ← double-click on Windows (live mode)
+buduj-mac-linux.command   ← double-click on Mac/Linux (live mode)
+JAK-EDYTOWAC.md           ← this file
+strona/                   ← OUTPUT: the finished site (this is what goes to GitHub Pages)
+   ├─ index.html, dzien-1…9.html, zrodla.html  (generated — don't touch)
+   ├─ assets/   (styles + map — don't touch, unless you want to change the look)
+   ├─ README.md (publishing guide)
    └─ .nojekyll
 ```
 
-## Raz, na początek
-Potrzebujesz **Pythona 3** (`python --version` w terminalu to sprawdzi; jeśli go nie
-ma — https://www.python.org/downloads/, na Windowsie zaznacz „Add Python to PATH").
-Bibliotekę `markdown` skrypt dograje sam przy pierwszym uruchomieniu.
+## Once, at the start
+You need **Python 3** (`python --version` in a terminal checks it; if it's missing —
+https://www.python.org/downloads/, on Windows check "Add Python to PATH").
+The `markdown` library is installed by the script itself on first run.
 
-## Podłączenie do Obsidiana — wybierz jeden sposób
+## Connecting to Obsidian — pick one way
 
-**A) Najprościej — otwórz ten folder jako sejf.**
-W Obsidianie: *Open another vault → Open folder as vault* i wskaż ten folder.
-`tresc.md` pojawi się jako notatka, którą edytujesz normalnie w Obsidianie.
+**A) Simplest — open this folder as a vault.**
+In Obsidian: *Open another vault → Open folder as vault* and point to this folder.
+`tresc.md` shows up as a note you edit normally in Obsidian.
 
-**B) Trzymasz notatkę w swoim głównym sejfie.**
-Otwórz `build.py` w Notatniku, znajdź na górze linijkę `SRC_OVERRIDE = ""` i wpisz
-pełną ścieżkę do swojej notatki, np.:
+**B) You keep the note in your main vault.**
+Open `build.py` in a text editor, find the line `SRC_OVERRIDE = ""` near the top and
+enter the full path to your note, e.g.:
 ```
-SRC_OVERRIDE = r"C:\Users\Anks\Obsidian\Mój sejf\Longinada 2026.md"
+SRC_OVERRIDE = r"C:\Users\Anks\Obsidian\My vault\Longinada 2026.md"
 ```
-(na Macu bez `r` i ze zwykłymi ukośnikami `/`). Zapisz `build.py`.
+(on Mac without `r` and with regular slashes `/`). Save `build.py`.
 
-## Praca z podglądem na żywo
-1. Uruchom tryb na żywo:
-   - **Windows:** dwuklik `buduj-windows.bat`
-   - **Mac:** dwuklik `buduj-mac-linux.command` (gdyby system blokował: prawy
-     klik → Otwórz → Otwórz)
-   - **albo z terminala** w tym folderze: `python build.py --watch`
-2. Otworzy się przeglądarka z podglądem (`http://localhost:8000`). **Zostaw to okno
-   uruchomione.**
-3. Edytuj `tresc.md` w Obsidianie i zapisuj (Ctrl/Cmd+S). Po chwili strona w
-   przeglądarce odświeży się sama.
-4. Gdy skończysz: w oknie skryptu naciśnij `Ctrl+C`.
-5. Publikacja: jeśli korzystasz z auto‑publikacji przez GitHub Actions (patrz
-   `README.md`), wystarczy wysłać zmiany do repo — strona zbuduje się i opublikuje
-   sama. Podgląd lokalny służy tylko do podejrzenia zmian u siebie, zanim je wyślesz.
+## Working with live preview
+1. Start live mode:
+   - **Windows:** double-click `buduj-windows.bat`
+   - **Mac:** double-click `buduj-mac-linux.command` (if the system blocks it: right-
+     click → Open → Open)
+   - **or from a terminal** in this folder: `python build.py --watch`
+2. A browser opens with the preview (`http://localhost:8000`). **Leave that window
+   running.**
+3. Edit `tresc.md` in Obsidian and save (Ctrl/Cmd+S). After a moment the site in the
+   browser refreshes itself.
+4. When done: press `Ctrl+C` in the script window.
+5. Publishing: if you use auto-publishing via GitHub Actions (see `README.md`),
+   it's enough to push the changes to the repo — the site builds and publishes
+   itself. The local preview is only for previewing changes on your machine before
+   you push them.
 
-> Bez podglądu, jednorazowe zbudowanie: `python build.py`.
+> Without the preview, a one-off build: `python build.py`.
 
-## Zasady pisania w tresc.md (żeby skrypt się nie pogubił)
-Skrypt rozpoznaje treść po nagłówkach — **zachowaj te nazwy i format**:
+## Rules for writing in tresc.md (so the script doesn't get lost)
+The script recognizes content by its headings — **keep these names and format**:
 
-- `# Klucz do wyjazdu — ...` → wstęp na stronie głównej.
-- `# Plan wyjazdu` → początek planu (kończy go linia `---`).
-- Każdy dzień zaczyna się od linii w formacie:
+- `# Klucz do wyjazdu — ...` → the intro on the home page.
+- `# Plan wyjazdu` → the start of the plan (a `---` line ends it).
+- Each day starts with a line in the format:
   ```
   ## Dzień 3: Poniedziałek, 29.06.2026, Odorheiu Secuiesc > Sighișoara (68km)
   ```
-  czyli `## Dzień <nr>: <dzień tygodnia>, <data>, <skąd> > <dokąd> (<km>km)`.
-  Strzałkę robi znak `>`. Liczba przed `km` trafia do podsumowań.
-- Punkty `-` zaraz pod nagłówkiem dnia → trafiają do boxu **„W skrócie"**.
-- Wszystko po `### Miejsca i historia` → główna treść dnia.
-- Podpunkty rób wcięciem (Tab lub 4 spacje). Pogrubienie `**tekst**`, kursywa `_tekst_`.
-- `# Źródła i dalsza lektura` → strona źródeł. Linki pisz jako
-  `- Etykieta: https://adres` — zrobi się z tego klikalny odnośnik.
-- Linki Obsidiana `[[Coś]]` zamieniają się na zwykły tekst (nie psują strony).
+  i.e. `## Dzień <no>: <weekday>, <date>, <from> > <to> (<km>km)`.
+  The arrow comes from the `>` character. The number before `km` goes into the summaries.
+- `-` bullets right under the day heading → go into the **"W skrócie"** box.
+- Everything after `### Miejsca i historia` → the day's main content.
+- Make sub-bullets with indentation (Tab or 4 spaces). Bold `**text**`, italics `_text_`.
+- `# Źródła i dalsza lektura` → the sources page. Write links as
+  `- Label: https://address` — it becomes a clickable link.
+- Obsidian links `[[Something]]` turn into plain text (they don't break the page).
 
-Jeśli zobaczysz komunikat „nie znalazłem sekcji…", to znaczy, że któryś z tych
-nagłówków zniknął lub się zmienił — przywróć go i zapisz. W trybie `--watch` skrypt
-po prostu spróbuje ponownie przy następnym zapisie.
+If you see the message "section not found…", it means one of these headings
+disappeared or changed — restore it and save. In `--watch` mode the script simply
+tries again on the next save.
 
-## Inne zmiany
-- **Nowy dzień:** wklej kolejny blok `## Dzień N: ...` w sekcji `# Plan wyjazdu`.
-- **Punkty na mapie:** `strona/assets/route-data.js` (czytelna lista `lat`/`lon`
-  + numer dnia; jest tam też linia trasy `route`). Edycja tego pliku też wywoła
-  odświeżenie w trybie na żywo.
-- **Kolory/wygląd:** `strona/assets/style.css` — zmienne kolorów na górze pliku.
-- **Zdjęcia:** wrzuć do `strona/assets/` i wstaw w notatce `![opis](assets/plik.jpg)`
-  (działa też obsidianowe `![[plik.jpg]]`).
+## Other changes
+- **A new day:** paste another `## Dzień N: ...` block into the `# Plan wyjazdu` section.
+- **Points on the map:** `strona/assets/route-data.js` (a readable list of `lat`/`lon`
+  + a day number; the route line `route` is in there too). Editing this file also
+  triggers a refresh in live mode.
+- **Colors/look:** `strona/assets/style.css` — color variables at the top of the file.
+- **Photos:** drop them into `strona/assets/` and insert in the note as
+  `![caption](assets/file.jpg)` (Obsidian's `![[file.jpg]]` works too).

@@ -1,5 +1,5 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-echo "Podgląd na żywo. Edytuj tresc.md w Obsidianie, zapisuj — strona odświeży się sama."
-echo "Zatrzymaj: Ctrl+C."
+echo "Live preview. Edit tresc.md in Obsidian and save — the site refreshes itself."
+echo "Stop: Ctrl+C."
 python3 build.py --watch || python build.py --watch

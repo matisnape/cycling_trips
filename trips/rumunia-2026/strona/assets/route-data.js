@@ -1,4 +1,4 @@
-// Dane trasy i punktów — generowane z KML „Cienie Austro-Węgier”.
+// Route and point data — generated from the "Cienie Austro-Węgier" KML.
 window.TRIP = {
  "route": [
   [

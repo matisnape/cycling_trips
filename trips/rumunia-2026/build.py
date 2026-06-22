@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
 """
-Buduje stronę „Cienie Austro-Węgier" z notatki markdown.
+Builds the "Cienie Austro-Węgier" site from a markdown note.
 
-Użycie:
-    python build.py            # zbuduj raz do folderu ./strona
-    python build.py --serve    # zbuduj i otwórz podgląd w przeglądarce
-    python build.py --watch    # PODGLĄD NA ŻYWO: po każdym zapisie w Obsidianie
-                               # strona przebudowuje się i odświeża sama
+Usage:
+    python build.py            # build once into the ./strona folder
+    python build.py --serve    # build and open a preview in the browser
+    python build.py --watch    # LIVE PREVIEW: on every save in Obsidian
+                               # the site rebuilds and refreshes itself
 
-Edytujesz tylko notatkę (domyślnie ./tresc.md). Pliki w strona/assets/ zostają.
+You only edit the note (./tresc.md by default). Files in strona/assets/ are left as-is.
 """
 import os, sys, re, subprocess, time, datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-# --- ŹRÓDŁO ---------------------------------------------------------------
-# Domyślnie skrypt czyta plik tresc.md leżący obok niego.
-# Jeśli wolisz trzymać notatkę w swoim sejfie Obsidiana, wklej tu pełną ścieżkę
-# do pliku .md (w cudzysłowach), np.:
+# --- SOURCE ---------------------------------------------------------------
+# By default the script reads the tresc.md file next to it.
+# If you prefer to keep the note in your Obsidian vault, paste the full path
+# to the .md file here (in quotes), e.g.:
 #   SRC_OVERRIDE = r"C:\Users\Anks\Obsidian\Sejf\Longinada 2026.md"
 #   SRC_OVERRIDE = "/Users/anks/Obsidian/Sejf/Longinada 2026.md"
 SRC_OVERRIDE = ""
@@ -26,11 +26,11 @@ SRC = SRC_OVERRIDE or os.path.join(HERE, "tresc.md")
 OUT = os.path.join(HERE, "strona")
 ASSETS = os.path.join(OUT, "assets")
 
-# --- biblioteka markdown: doinstaluj, jeśli brak ---
+# --- markdown library: install it if missing ---
 try:
     import markdown
 except ImportError:
-    print("Brakuje biblioteki 'markdown' — próbuję ją zainstalować...")
+    print("Missing 'markdown' library — trying to install it...")
     ok = False
     for args in (["-m", "pip", "install", "markdown"],
                  ["-m", "pip", "install", "--user", "markdown"]):
@@ -39,25 +39,25 @@ except ImportError:
         except Exception:
             continue
     if not ok:
-        sys.exit("Nie udało się zainstalować 'markdown'. Uruchom ręcznie: pip install markdown")
+        sys.exit("Could not install 'markdown'. Run manually: pip install markdown")
     import markdown
 
 
 def need(match, what):
     if not match:
-        raise SystemExit(f"BŁĄD: nie znalazłem w notatce sekcji: {what}.\n"
-                         "Sprawdź, czy nagłówki nie zostały usunięte/przemianowane (patrz JAK-EDYTOWAC.md).")
+        raise SystemExit(f"ERROR: section not found in the note: {what}.\n"
+                         "Check that the headings were not removed/renamed (see JAK-EDYTOWAC.md).")
     return match
 
 
 def build():
     if not os.path.exists(SRC):
-        raise SystemExit(f"BŁĄD: nie znajduję pliku źródłowego:\n  {SRC}")
+        raise SystemExit(f"ERROR: source file not found:\n  {SRC}")
     with open(SRC, encoding="utf-8") as f:
         raw = f.read()
 
     raw = re.sub(r"^---\n.*?\n---\n", "", raw, count=1, flags=re.DOTALL)  # frontmatter
-    # linki Obsidiana: ![[obraz]] -> obraz z assets; [[a|b]] -> b; [[a]] -> a
+    # Obsidian links: ![[image]] -> image from assets; [[a|b]] -> b; [[a]] -> a
     raw = re.sub(r"!\[\[([^\]]+?)\]\]", lambda m: f"![](assets/{m.group(1).strip()})", raw)
     raw = re.sub(r"\[\[[^\]|]+\|([^\]]+)\]\]", r"\1", raw)
     raw = re.sub(r"\[\[([^\]]+)\]\]", r"\1", raw)
@@ -100,12 +100,12 @@ def build():
     intro_block = re.sub(r"\s*→\s*$", "", intro_block, flags=re.MULTILINE)
     intro_html = md(intro_block)
 
-    plan = need(re.search(r"# Plan wyjazdu\n(.*?)\n---\n", raw, re.DOTALL), "# Plan wyjazdu (zakończony linią ---)").group(1)
+    plan = need(re.search(r"# Plan wyjazdu\n(.*?)\n---\n", raw, re.DOTALL), "# Plan wyjazdu (terminated with a --- line)").group(1)
     day_chunks = [c for c in re.split(r"(?=^## Dzień \d+:)", plan, flags=re.MULTILINE) if c.strip().startswith("## Dzień")]
     if not day_chunks:
-        raise SystemExit("BŁĄD: brak dni. Każdy dzień musi zaczynać się od '## Dzień N: ...'.")
+        raise SystemExit("ERROR: no days found. Each day must start with '## Dzień N: ...'.")
 
-    note_block = need(re.search(r"\n---\n\n(> \[!note\].*?)\n\n---\n", raw, re.DOTALL), "notka '> [!note] Skąd te notatki'").group(1)
+    note_block = need(re.search(r"\n---\n\n(> \[!note\].*?)\n\n---\n", raw, re.DOTALL), "note '> [!note] Skąd te notatki'").group(1)
     sources_block = need(re.search(r"# Źródła i dalsza lektura\n(.*)$", raw, re.DOTALL), "# Źródła i dalsza lektura").group(1)
 
     src_main, final_note = sources_block, ""
@@ -124,12 +124,12 @@ def build():
         km = m.group(4) if m else ""
         rest = ch.split("\n", 1)[1] if "\n" in ch else ""
         if "### Miejsca i historia" in rest:
-            logi_md, miejsca_md = rest.split("### Miejsca i historia", 1)
+            summary_md, places_md = rest.split("### Miejsca i historia", 1)
         else:
-            logi_md, miejsca_md = rest, ""
+            summary_md, places_md = rest, ""
         DAYS.append({"num": num, "weekday": weekday, "date": date, "route": route, "km": km,
-                     "logi_html": md(logi_md.strip()) if logi_md.strip() else "",
-                     "miejsca_html": md(miejsca_md.strip()) if miejsca_md.strip() else ""})
+                     "summary_html": md(summary_md.strip()) if summary_md.strip() else "",
+                     "places_html": md(places_md.strip()) if places_md.strip() else ""})
 
     TOTAL_KM = sum(int(d["km"]) for d in DAYS if d["km"])
     date_year = "2026"
@@ -237,8 +237,8 @@ def build():
                      if p else '<span class="prev disabled"></span>')
         next_html = (f'<a class="next" href="dzien-{n["num"]}.html"><span>Dzień {n["num"]} →</span>{n["route"]}</a>'
                      if n else '<span class="next disabled"></span>')
-        logi = f'<div class="logi"><p class="eyebrow">W skrócie</p>{d["logi_html"]}</div>' if d["logi_html"] else ""
-        miejsca = f'<div class="prose"><h2>Miejsca i historia</h2>{d["miejsca_html"]}</div>' if d["miejsca_html"] else ""
+        summary = f'<div class="logi"><p class="eyebrow">W skrócie</p>{d["summary_html"]}</div>' if d["summary_html"] else ""
+        places = f'<div class="prose"><h2>Miejsca i historia</h2>{d["places_html"]}</div>' if d["places_html"] else ""
         body = f'''
 <article class="wrap">
   <a class="back-plan" href="index.html">← Plan wyjazdu</a>
@@ -250,8 +250,8 @@ def build():
   <p class="map-cap">Mapa skupiona na punktach tego dnia (na tle całej trasy).</p>
 </section>
 <article class="wrap">
-  {logi}
-  {miejsca}
+  {summary}
+  {places}
   <nav class="daynav">{prev_html}{next_html}</nav>
 </article>
 '''
@@ -302,7 +302,7 @@ def serve_background():
         except OSError:
             port += 1
     if not httpd:
-        raise SystemExit("Nie udało się uruchomić podglądu (porty 8000–8009 zajęte).")
+        raise SystemExit("Could not start the preview (ports 8000-8009 are in use).")
     threading.Thread(target=httpd.serve_forever, daemon=True).start()
     return port
 
@@ -318,19 +318,19 @@ def main():
         print(e)
         if not (watch or serve):
             raise
-        print("Popraw notatkę i zapisz — spróbuję ponownie...\n")
+        print("Fix the note and save — I'll try again...\n")
     if stats:
-        print(f"✓ Zbudowano: {OUT}  (dni: {stats['days']}, km: {stats['km']}, dań: {stats['cuisine']})")
+        print(f"✓ Built: {OUT}  (days: {stats['days']}, km: {stats['km']}, dishes: {stats['cuisine']})")
 
     if not (serve or watch):
         return
 
     port = serve_background()
     url = f"http://localhost:{port}/index.html"
-    print(f"\nPodgląd na żywo: {url}")
+    print(f"\nLive preview: {url}")
     if watch:
-        print("Edytuj notatkę w Obsidianie i zapisuj (Ctrl/Cmd+S) — strona odświeży się sama.")
-    print("Zatrzymaj: Ctrl+C\n")
+        print("Edit the note in Obsidian and save (Ctrl/Cmd+S) — the site will refresh itself.")
+    print("Stop: Ctrl+C\n")
     try:
         import webbrowser; webbrowser.open(url)
     except Exception:
@@ -341,7 +341,7 @@ def main():
             while True:
                 time.sleep(1)
         except KeyboardInterrupt:
-            print("\nKoniec."); return
+            print("\nDone."); return
 
     last = None
     try:
@@ -352,13 +352,13 @@ def main():
                     stamp = datetime.datetime.now().strftime("%H:%M:%S")
                     try:
                         s = build()
-                        print(f"[{stamp}] ✓ przebudowano (dni: {s['days']}, km: {s['km']})")
+                        print(f"[{stamp}] ✓ rebuilt (days: {s['days']}, km: {s['km']})")
                     except SystemExit as e:
                         print(f"[{stamp}] {e}")
                 last = snap
             time.sleep(1)
     except KeyboardInterrupt:
-        print("\nKoniec.")
+        print("\nDone.")
 
 
 if __name__ == "__main__":

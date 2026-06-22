@@ -1,150 +1,150 @@
-# Strona wyprawy „Cienie Austro-Węgier" — instrukcja obsługi
+# "Cienie Austro-Węgier" trip site — user guide
 
-To repozytorium zamienia **jeden plik z notatkami** (`tresc.md`) w gotową stronę:
-stronę główną z mapą trasy, 9 podstron dni i stronę źródeł.
+This repository turns **a single notes file** (`tresc.md`) into a finished site:
+a home page with the route map, 9 day subpages, and a sources page.
 
-Masz dwa sposoby pracy i **oba korzystają z tego samego `tresc.md`** — możesz ich
-używać wymiennie:
+You have two ways to work and **both use the same `tresc.md`** — you can use them
+interchangeably:
 
-1. **Na komputerze** — podgląd na żywo (watch). Edytujesz w Obsidianie, strona
-   odświeża się od razu u Ciebie.
-2. **Z telefonu / przeglądarki** — edytujesz `tresc.md` na GitHubie, a GitHub sam
-   buduje i publikuje stronę (Actions).
-
----
-
-## Najważniejsze w 30 sekundach
-
-- **Edytujesz zawsze tylko `tresc.md`.** Reszta robi się sama.
-- **Na kompie:** otwórz Obsidiana → uruchom podgląd (dwuklik `buduj-windows.bat`
-  / `buduj-mac-linux.command`) → pisz i zapisuj → strona w przeglądarce odświeża się sama.
-- **Z telefonu:** w aplikacji GitHub otwórz `tresc.md`, popraw, „Commit". Po ~2 min
-  strona w sieci jest zaktualizowana.
-- **ZŁOTA ZASADA synchronizacji:** zanim zaczniesz pisać na kompie — **pobierz zmiany**
-  (pull). Gdy skończysz — **wyślij** (push). Jeśli używasz wtyczki Obsidian Git
-  (patrz niżej), robi to za Ciebie.
-
-Adres strony po publikacji: `https://<twoja-nazwa>.github.io/<repo>/`
-(wpisz tu swój, gdy już będzie, żeby mieć pod ręką).
+1. **On your computer** — live preview (watch). You edit in Obsidian and the site
+   refreshes instantly on your machine.
+2. **From a phone / browser** — you edit `tresc.md` on GitHub, and GitHub builds
+   and publishes the site itself (Actions).
 
 ---
 
-## 1. Konfiguracja — robisz RAZ
+## The essentials in 30 seconds
 
-Odhacz po kolei:
+- **You always edit only `tresc.md`.** The rest happens automatically.
+- **On the computer:** open Obsidian → start the preview (double-click `buduj-windows.bat`
+  / `buduj-mac-linux.command`) → write and save → the site in the browser refreshes itself.
+- **From a phone:** in the GitHub app open `tresc.md`, fix it, "Commit". After ~2 min
+  the live site is updated.
+- **THE GOLDEN RULE of syncing:** before you start writing on the computer — **pull
+  the changes**. When you're done — **push**. If you use the Obsidian Git plugin
+  (see below), it does this for you.
 
-- [ ] **Python 3** na komputerze. Sprawdź w terminalu: `python --version`
-      (lub `python3 --version`). Jak brak → https://www.python.org/downloads/
-      (na Windowsie przy instalacji zaznacz „Add Python to PATH").
-- [ ] **Repozytorium na GitHubie** (publiczne, np. `longinada-2026`) z całą zawartością
-      tego folderu — łącznie z ukrytym `.github/`. Najpewniej przez git lub GitHub
-      Desktop:
+Site address after publishing: `https://<your-name>.github.io/<repo>/`
+(write yours in here once it exists, to keep it handy).
+
+---
+
+## 1. Setup — you do this ONCE
+
+Tick them off one by one:
+
+- [ ] **Python 3** on your computer. Check in a terminal: `python --version`
+      (or `python3 --version`). If missing → https://www.python.org/downloads/
+      (on Windows, during install check "Add Python to PATH").
+- [ ] **A repository on GitHub** (public, e.g. `longinada-2026`) with the entire
+      contents of this folder — including the hidden `.github/`. Easiest via git or
+      GitHub Desktop:
       ```bash
-      cd <ten-folder>
-      git init && git add . && git commit -m "Strona wyprawy"
-      git branch -M main
+      cd <this-folder>
+      git init && git add . && git commit -m "Trip site"
+      git branch -M master
       git remote add origin https://github.com/<user>/longinada-2026.git
-      git push -u origin main
+      git push -u origin master
       ```
-- [ ] **Pages w trybie Actions:** w repo → **Settings → Pages → Build and deployment
-      → Source: „GitHub Actions"** (NIE „Deploy from a branch").
-- [ ] **Sprawdź pierwszą publikację:** zakładka **Actions** → workflow „Zbuduj i
-      opublikuj stronę" → po ✓ wejdź na adres strony.
-- [ ] **(zalecane) Obsidian Git** — żeby synchronizacja komputer↔telefon działała sama:
-      otwórz folder repo jako sejf w Obsidianie → Settings → Community plugins →
-      zainstaluj i włącz **Obsidian Git** → w jego ustawieniach włącz
-      „pull przy starcie" i automatyczny „commit‑and‑sync" co np. 10 minut.
+- [ ] **Pages in Actions mode:** in the repo → **Settings → Pages → Build and deployment
+      → Source: "GitHub Actions"** (NOT "Deploy from a branch").
+- [ ] **Check the first publish:** the **Actions** tab → the "Build and publish site"
+      workflow → after the ✓, open the site address.
+- [ ] **(recommended) Obsidian Git** — so computer↔phone syncing works by itself:
+      open the repo folder as a vault in Obsidian → Settings → Community plugins →
+      install and enable **Obsidian Git** → in its settings enable
+      "pull on startup" and automatic "commit-and-sync" every e.g. 10 minutes.
 
-Po tym etapie nie wracasz już do konfiguracji — pracujesz jak niżej.
+After this step you don't return to setup — you work as below.
 
 ---
 
-## 2. Codzienna praca
+## 2. Day-to-day work
 
-### A. Na komputerze (główny tryb — z podglądem na żywo)
-1. Otwórz Obsidiana na tym sejfie. (Obsidian Git pobierze ewentualne zmiany z telefonu.)
-2. Uruchom podgląd na żywo — **dwuklik**:
+### A. On the computer (main mode — with live preview)
+1. Open Obsidian on this vault. (Obsidian Git will pull any changes from the phone.)
+2. Start the live preview — **double-click**:
    - Windows: `buduj-windows.bat`
-   - Mac: `buduj-mac-linux.command` (gdyby blokował: prawy klik → Otwórz → Otwórz)
-   - albo w terminalu w tym folderze: `python build.py --watch`
-3. Otworzy się przeglądarka (`http://localhost:8000`). **Zostaw to okno otwarte.**
-4. Edytuj `tresc.md` w Obsidianie i zapisuj (Ctrl/Cmd+S) — podgląd odświeża się sam.
-5. Gdy skończysz: zamknij podgląd (`Ctrl+C` w oknie skryptu) i **wyślij zmiany**
-   (Obsidian Git zrobi commit‑and‑sync sam; albo ręcznie — patrz sekcja 3).
-   GitHub po pushu opublikuje nową wersję w sieci.
+   - Mac: `buduj-mac-linux.command` (if it gets blocked: right-click → Open → Open)
+   - or in a terminal in this folder: `python build.py --watch`
+3. A browser opens (`http://localhost:8000`). **Leave that window open.**
+4. Edit `tresc.md` in Obsidian and save (Ctrl/Cmd+S) — the preview refreshes itself.
+5. When done: close the preview (`Ctrl+C` in the script window) and **push the changes**
+   (Obsidian Git will commit-and-sync by itself; or manually — see section 3).
+   After the push, GitHub publishes the new version online.
 
-> Podgląd na żywo działa **tylko u Ciebie** i nie wymaga internetu poza mapą/fontami.
-> Wysłanie do GitHuba to osobny krok (push) — dopiero on aktualizuje stronę w sieci.
+> The live preview works **only on your machine** and needs no internet beyond the
+> map/fonts. Pushing to GitHub is a separate step (push) — only that updates the live site.
 
-### B. Z telefonu / dowolnej przeglądarki (przez GitHub)
-1. W aplikacji **GitHub** (lub na github.com) wejdź w repo → otwórz `tresc.md`.
-2. Ołówek (Edit) → popraw tekst → **Commit changes**.
-3. GitHub sam zbuduje i opublikuje stronę (zakładka Actions pokaże postęp; ~1–2 min).
-4. Następnym razem na komputerze: **pobierz te zmiany** (Obsidian Git zrobi to przy
-   starcie; albo `git pull`), żeby mieć je u siebie.
+### B. From a phone / any browser (via GitHub)
+1. In the **GitHub** app (or on github.com) open the repo → open `tresc.md`.
+2. Pencil (Edit) → fix the text → **Commit changes**.
+3. GitHub builds and publishes the site itself (the Actions tab shows progress; ~1-2 min).
+4. Next time on the computer: **pull those changes** (Obsidian Git does it on
+   startup; or `git pull`) so you have them locally.
 
 ---
 
-## 3. Synchronizacja — jak się nie pogubić
+## 3. Syncing — how not to get lost
 
-Komputer i GitHub to ten sam projekt w dwóch miejscach. Żeby się zgadzały:
+The computer and GitHub are the same project in two places. To keep them in sync:
 
-- **Zanim zaczniesz pisać na kompie:** pobierz najnowsze (`pull`).
-- **Gdy skończysz na kompie:** wyślij (`push`).
+- **Before you start writing on the computer:** pull the latest (`pull`).
+- **When you finish on the computer:** push (`push`).
 
-Z **Obsidian Git** dzieje się to automatycznie (pull przy starcie + cykliczny
-commit‑and‑sync). Bez wtyczki, ręcznie w terminalu w folderze repo:
+With **Obsidian Git** this happens automatically (pull on startup + periodic
+commit-and-sync). Without the plugin, manually in a terminal in the repo folder:
 ```bash
-git pull            # na początku pracy
-# ... edytujesz tresc.md ...
+git pull            # at the start of work
+# ... you edit tresc.md ...
 git add tresc.md
-git commit -m "Aktualizacja notatek"
-git push            # na końcu
+git commit -m "Update notes"
+git push            # at the end
 ```
 
-**Kiedy może być konflikt?** Tylko jeśli ten sam fragment `tresc.md` zmienisz
-równolegle i na telefonie, i na kompie bez wcześniejszego `pull`. Przy pracy w
-pojedynkę to rzadkość. Gdyby się zdarzył, git/Obsidian Git Cię o tym uprzedzi —
-wtedy najprościej zostawić jedną wersję tekstu i zapisać.
+**When can there be a conflict?** Only if you change the same fragment of `tresc.md`
+in parallel on both the phone and the computer without pulling first. Working solo,
+that's rare. If it happens, git/Obsidian Git will warn you — then the simplest fix is
+to keep one version of the text and save.
 
 ---
 
-## 4. Co jest czym (żebyś wiedziała, czego nie ruszać)
+## 4. What is what (so you know what not to touch)
 
-| Plik / folder | Do czego | Edytujesz? |
+| File / folder | What for | Do you edit it? |
 |---|---|---|
-| `tresc.md` | **Twoje notatki** — źródło całej strony | **TAK** |
-| `JAK-EDYTOWAC.md` | zasady pisania w `tresc.md` (nagłówki, format dnia, dodanie dnia) | do czytania |
-| `build.py` | generator strony (uruchamia go watch i Actions) | nie |
-| `.github/workflows/deploy.yml` | automat: buduje i publikuje po pushu | nie |
-| `strona/assets/route-data.js` | punkty i linia na mapie | tylko gdy chcesz zmienić mapę |
-| `strona/assets/style.css` | kolory i wygląd (zmienne na górze pliku) | tylko gdy chcesz zmienić wygląd |
-| `strona/*.html` | generowane automatycznie | **nie** (i tak są pomijane w gicie) |
-| `buduj-*.bat / .command` | uruchamiacze podglądu na żywo | nie |
+| `tresc.md` | **Your notes** — the source of the whole site | **YES** |
+| `JAK-EDYTOWAC.md` | rules for writing in `tresc.md` (headings, day format, adding a day) | for reading |
+| `build.py` | the site generator (run by watch and Actions) | no |
+| `.github/workflows/deploy.yml` | automation: builds and publishes after a push | no |
+| `strona/assets/route-data.js` | points and the line on the map | only if you want to change the map |
+| `strona/assets/style.css` | colors and look (variables at the top of the file) | only if you want to change the look |
+| `strona/*.html` | generated automatically | **no** (they're git-ignored anyway) |
+| `buduj-*.bat / .command` | live-preview launchers | no |
 
-Jak i co możesz pisać w `tresc.md` (jakie nagłówki muszą zostać, jak dodać kolejny
-dzień, format daty i kilometrów) — wszystko jest w **`JAK-EDYTOWAC.md`**.
-
----
-
-## 5. Gdy coś nie gra
-
-- **Podgląd na żywo się nie odświeża** → sprawdź, czy okno skryptu (`--watch`) wciąż
-  działa i czy w przeglądarce jest `http://localhost:8000` (nie otwarty plik z dysku).
-  Pomaga też ręczne odświeżenie (F5).
-- **„nie znalazłem sekcji…" przy budowaniu** → w `tresc.md` zniknął lub zmienił nazwę
-  któryś nagłówek (np. `# Plan wyjazdu`, `## Dzień N: ...`). Przywróć go i zapisz.
-  Lista wymaganych nagłówków jest w `JAK-EDYTOWAC.md`.
-- **`python` nie działa / „command not found"** → spróbuj `python3 build.py --watch`.
-  Jeśli dalej nic — Python nie jest zainstalowany (patrz sekcja 1).
-- **Na GitHubie workflow świeci się na czerwono** → wejdź w **Actions**, kliknij
-  nieudany przebieg; na dole zobaczysz komunikat błędu (zwykle ta sama sprawa co
-  „nie znalazłem sekcji" — literówka w nagłówku w `tresc.md`).
-- **Zmiany z telefonu nie widać na kompie** → zrób `git pull` (albo zrestartuj
-  Obsidiana z włączonym Obsidian Git).
-- **Strona w sieci się nie zmieniła** → sprawdź w Actions, czy publikacja przeszła na
-  ✓; bywa, że trzeba odświeżyć stronę z pominięciem cache (Ctrl/Cmd+Shift+R).
+How and what you can write in `tresc.md` (which headings must stay, how to add another
+day, the date and kilometer format) — it's all in **`JAK-EDYTOWAC.md`**.
 
 ---
 
-Miłej roboty — i miłej wyprawy.
+## 5. When something's off
+
+- **The live preview doesn't refresh** → check that the script window (`--watch`) is
+  still running and that the browser is at `http://localhost:8000` (not a file opened
+  from disk). A manual refresh (F5) also helps.
+- **"section not found…" during the build** → a heading disappeared or was renamed in
+  `tresc.md` (e.g. `# Plan wyjazdu`, `## Dzień N: ...`). Restore it and save.
+  The list of required headings is in `JAK-EDYTOWAC.md`.
+- **`python` doesn't work / "command not found"** → try `python3 build.py --watch`.
+  If still nothing — Python isn't installed (see section 1).
+- **The workflow shows red on GitHub** → go to **Actions**, click the failed run;
+  at the bottom you'll see the error message (usually the same thing as
+  "section not found" — a typo in a heading in `tresc.md`).
+- **Changes from the phone don't show on the computer** → run `git pull` (or restart
+  Obsidian with Obsidian Git enabled).
+- **The live site didn't change** → check in Actions that the publish reached the ✓;
+  sometimes you need to refresh the page bypassing the cache (Ctrl/Cmd+Shift+R).
+
+---
+
+Enjoy the work — and enjoy the trip.

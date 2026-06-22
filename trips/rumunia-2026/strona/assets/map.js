@@ -1,6 +1,6 @@
-/* Mapa trasy — Leaflet + kafelki CARTO Positron (czyste, jasne).
-   Czyta window.TRIP (z route-data.js) oraz opcjonalne window.MAP_DAY
-   (numer dnia na podstronie; brak = strona główna). */
+/* Route map — Leaflet + CARTO Positron tiles (clean, light).
+   Reads window.TRIP (from route-data.js) and optional window.MAP_DAY
+   (day number on a subpage; absent = home page). */
 (function () {
   if (typeof L === "undefined" || !window.TRIP) return;
   var el = document.getElementById("map");
@@ -17,12 +17,12 @@
     subdomains: "abcd", maxZoom: 19
   }).addTo(map);
 
-  // linia trasy
+  // route line
   var line = L.polyline(t.route, {
     color: "#2f6e78", weight: 3, opacity: 0.85, lineJoin: "round", lineCap: "round"
   }).addTo(map);
 
-  // punkty
+  // points
   var dayPoints = [];
   t.pois.forEach(function (p) {
     var current = DAY && p.day === DAY;
@@ -46,7 +46,7 @@
     if (current) dayPoints.push([p.lat, p.lon]);
   });
 
-  // kadrowanie
+  // framing
   if (DAY && dayPoints.length) {
     var b = L.latLngBounds(dayPoints).pad(0.6);
     map.fitBounds(b, { maxZoom: 11 });
@@ -54,7 +54,7 @@
     map.fitBounds(line.getBounds(), { padding: [24, 24] });
   }
 
-  // włącz scroll-zoom dopiero po kliknięciu (żeby nie łapać scrolla strony)
+  // enable scroll-zoom only after click (so it doesn't hijack page scrolling)
   map.on("focus", function () { map.scrollWheelZoom.enable(); });
   map.on("blur", function () { map.scrollWheelZoom.disable(); });
 })();
