@@ -1,10 +1,10 @@
 name: Zbuduj i opublikuj stronę
 
-# Uruchamia się przy każdym pushu do gałęzi main (np. po edycji tresc.md),
+# Uruchamia się przy każdym pushu do gałęzi master (np. po edycji tresc.md),
 # oraz ręcznie z zakładki Actions.
 on:
   push:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
 
 permissions:
