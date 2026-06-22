@@ -1,0 +1,52 @@
+name: Zbuduj i opublikuj stronę
+
+# Uruchamia się przy każdym pushu do gałęzi main (np. po edycji tresc.md),
+# oraz ręcznie z zakładki Actions.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Nie nakładaj na siebie kilku wdrożeń naraz.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobierz repozytorium
+        uses: actions/checkout@v4
+
+      - name: Ustaw Pythona
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Zainstaluj zależności
+        run: pip install markdown
+
+      - name: Zbuduj stronę z tresc.md
+        run: python build.py
+
+      - name: Przygotuj artefakt Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: strona
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Opublikuj na GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
