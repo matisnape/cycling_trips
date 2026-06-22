@@ -142,6 +142,7 @@ em { font-style: italic; }
 .day-row .body .d-title { font-family: var(--display); font-weight: 600; font-size: 1.08rem; letter-spacing: -0.01em; }
 .day-row .body .d-route { color: var(--muted); font-size: 0.96rem; }
 .day-row .body .d-where { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--river); }
+.day-row .body .d-where::after { content: "·"; margin: 0 0.55rem; color: var(--muted); }
 .day-row .km { font-family: var(--mono); font-size: 0.82rem; color: var(--muted); white-space: nowrap; }
 .day-row:hover .dot { background: var(--river); transform: scale(1.15); }
 .day-row:hover .d-title { color: var(--river-deep); }
