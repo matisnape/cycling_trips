@@ -139,10 +139,17 @@ def build():
     LCSS = '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>'
     LJS = '<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>'
 
+    # CookieScript consent banner. Enable "Google Consent Mode" in the CookieScript
+    # panel so it flips the consent flags below to 'granted' on accept.
+    COOKIE = '<script type="text/javascript" charset="UTF-8" src="//cdn.cookie-script.com/s/7a0d26610c95771b586f4240b7d230a4.js"></script>'
+
     # Google Analytics 4 — dedicated data stream for this site.
+    # Consent Mode v2: storage denied by default until the user accepts.
     GA_ID = "G-VEVEF241PW"
     GA = (f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>'
           '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
+          "gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',"
+          "ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});"
           f"gtag('js',new Date());gtag('config','{GA_ID}');</script>")
 
     def page(title, desc, body, with_map=False, active="", map_day=None):
@@ -167,6 +174,7 @@ def build():
 <link rel="stylesheet" href="{FONTS}"/>
 <link rel="stylesheet" href="assets/style.css"/>
 {head_extra}
+{COOKIE}
 {GA}
 </head>
 <body>
