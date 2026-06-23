@@ -139,6 +139,12 @@ def build():
     LCSS = '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>'
     LJS = '<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>'
 
+    # Google Analytics 4 — dedicated data stream for this site.
+    GA_ID = "G-VEVEF241PW"
+    GA = (f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>'
+          '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
+          f"gtag('js',new Date());gtag('config','{GA_ID}');</script>")
+
     def page(title, desc, body, with_map=False, active="", map_day=None):
         head_extra = LCSS if with_map else ""
         nav = ('<nav>'
@@ -161,6 +167,7 @@ def build():
 <link rel="stylesheet" href="{FONTS}"/>
 <link rel="stylesheet" href="assets/style.css"/>
 {head_extra}
+{GA}
 </head>
 <body>
 <a class="skip" href="#main">Przejdź do treści</a>
