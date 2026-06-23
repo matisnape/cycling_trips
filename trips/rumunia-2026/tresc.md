@@ -220,6 +220,10 @@ Notatki poniżej są tak ułożone, żeby na każdym postoju dało się szybko p
 # Praktyczne informacje
 
 ## Słowniczek rumuński
+- https://pl.bab.la/zwroty/podroze/ogolne/polski-rumunski
+- https://mbc.cyfrowemazowsze.pl/Content/88000/00097079_-_Slowniczek-polsko-rumunski_sygn-sygn-Podr-Cim-2234.pdf
+- https://skrivanek.pl/wp-content/uploads/2019/03/s%C5%82ownik-polsko-rumu%C5%84ski.pdf
+
 - Cześć (nieform.): Salut
 - Dzień dobry: Bună ziua
 - Dziękuję: Mulțumesc
