@@ -187,6 +187,65 @@ Notatki poniżej są tak ułożone, żeby na każdym postoju dało się szybko p
 
 ---
 
+# Kulinaria i pamiątki
+
+## Czego spróbować
+- Mămăligă — kukurydziana mamałyga, podawana ze skwarkami, serem owczym i śmietaną.
+- Ciorbă — kwaśna zupa (np. ciorbă de burtă — flaczki), zakwaszana borșem.
+- Sarmale — gołąbki w liściach kapusty lub winogron.
+- Tochitură — duszone mięso z mămăligą i jajkiem sadzonym.
+- Balmoș — pasterska potrawa z mąki kukurydzianej i sera.
+- Țuică / pălincă — śliwowica, mocny aperitif.
+- Mici - kiełbaski z mielonego mięsa
+
+## Pamiątki
+- Ceramika seklerska z Corund (charakterystyczne wzory).
+- Wełniane wyroby i hafty z węgierskich wsi Seklerszczyzny.
+- Wino z regionu Târnave (białe) i okolic Aradu.
+- Țuică / pălincă od lokalnych wytwórców.
+
+---
+
+# Ciekawostki
+- Dracula naprawdę urodził się w Sighișoarze (dom Casa Vlad Dracul), a nie na zamku Bran.
+- „Więzienie małżeńskie” w Biertan: pary przed rozwodem zamykano na ~2 tygodnie z jednym łóżkiem i jedną łyżką — w 300 lat tylko jeden rozwód.
+- Wieża Trębaczy w Mediaș to druga najbardziej pochylona wieża w Europie po Pizie.
+- Gen. Józef Bem (Polak!) dowodził Węgrami w bitwie pod Segesvárem 1849 — zginął tam wieszcz Sándor Petőfi.
+- Segedyn po powodzi 1879 odbudowano od zera; ulice nazwano po miastach, które pomogły: Londyńska, Paryska, Wiedeńska.
+- Twierdza w Deva ma jedyną w Rumunii kolejkę linowo-terenową na zamek.
+- Do 1989 roku wytyczaniem i utrzymaniem szlaków turystycznych zajmowały się związki zawodowe
+
+---
+
+# Praktyczne informacje
+
+## Słowniczek rumuński
+- Cześć (nieform.): Salut
+- Dzień dobry: Bună ziua
+- Dziękuję: Mulțumesc
+- Proszę / nie ma za co: Cu plăcere
+- Tak / Nie: Da / Nu
+- Ile to kosztuje?: Cât costă?
+- Woda: Apă
+- Piwo: Bere
+- Gdzie jest…?: Unde este…?
+- Pomocy!: Ajutor!
+
+## Przydatne linki
+- Centrul Național de Coordonare Velo (trasy rowerowe): https://centrulnationaldecoordonarevelo.ro/?locale=en
+- CFR Călători (pociągi): https://www.cfrcalatori.ro/en/
+- Visit Transylvania: https://visittransilvania.ro/travel-guide-romania
+- https://visittransilvania.ro/travel-guide-romania
+- http://transilvaniatours.ro/Attractions_Transylvania_tours.asp
+- https://web.archive.org/web/20160826230708/http://www.rotravel.com/Practical-Information/The-Country/
+
+## Dobrze wiedzieć
+- Waluta: lej rumuński (RON). Na Węgrzech (dzień 9): forint (HUF).
+- W sklepach i muzeach karta działa powszechnie; gotówka przydaje się na wsi.
+- Nie piją za bardzo herbaty - czarna herbara to ceai negru. Zwykłe ceai to herbata ziołowa/owocowa
+
+---
+
 # Źródła i dalsza lektura
 Linki, na których oparte są powyższe notatki — i gdzie można doczytać więcej. Pogrupowane wg miejsc.
 

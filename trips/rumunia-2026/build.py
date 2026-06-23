@@ -108,6 +108,22 @@ def build():
     note_block = need(re.search(r"\n---\n\n(> \[!note\].*?)\n\n---\n", raw, re.DOTALL), "note '> [!note] Skąd te notatki'").group(1)
     sources_block = need(re.search(r"# Źródła i dalsza lektura\n(.*)$", raw, re.DOTALL), "# Źródła i dalsza lektura").group(1)
 
+    # Extra free-form pages. To add one: append a row here AND a matching "# <heading>"
+    # section in tresc.md (place it before "# Źródła"). Lines like "- Nazwa: https://…"
+    # become links. An empty/missing section → no page and no nav link, no error.
+    # ponytail: data-driven so a new category is one line here + one section in the note.
+    EXTRA_SPEC = [
+        # slug,         nav label,     md heading,                page title,                eyebrow
+        ("praktyczne",  "Praktyczne",  "# Praktyczne informacje", "Praktyczne informacje",   "W terenie"),
+        ("kulinaria",   "Kulinaria",   "# Kulinaria i pamiątki",  "Kulinaria i pamiątki",    "Co zjeść, co przywieźć"),
+        ("ciekawostki", "Ciekawostki", "# Ciekawostki",           "Ciekawostki",             "Drobiazgi po drodze"),
+    ]
+    EXTRA = []
+    for slug, label, heading, title, eyebrow in EXTRA_SPEC:
+        m = re.search(rf"\n{re.escape(heading)}\n(.*?)(?=\n# |\Z)", raw, re.DOTALL)
+        html = md(linkify_sources(ensure_list_blanks(m.group(1).strip()))) if m and m.group(1).strip() else ""
+        EXTRA.append({"slug": slug, "label": label, "title": title, "eyebrow": eyebrow, "html": html})
+
     src_main, final_note = sources_block, ""
     mfn = re.search(r"\n(>\s?Uwaga:.*)$", sources_block, re.DOTALL)
     if mfn:
@@ -154,9 +170,14 @@ def build():
 
     def page(title, desc, body, with_map=False, active="", map_day=None):
         head_extra = LCSS if with_map else ""
+        extra_links = "".join(
+            f'<a href="{p["slug"]}.html"{" aria-current=page" if active==p["slug"] else ""}>{p["label"]}</a>'
+            for p in EXTRA if p["html"])
         nav = ('<nav>'
                f'<a href="index.html"{" aria-current=page" if active=="trasa" else ""}>Trasa</a>'
+               + extra_links +
                f'<a href="zrodla.html"{" aria-current=page" if active=="zrodla" else ""}>Źródła</a></nav>')
+        foot_extra = "".join(f'<a href="{p["slug"]}.html">{p["label"]}</a>' for p in EXTRA if p["html"])
         scripts = '<script src="assets/site.js" defer></script>'
         if with_map:
             scripts = (LJS + '<script src="assets/route-data.js"></script>'
@@ -192,7 +213,7 @@ def build():
   <div class="wrap-w">
     <p>Notatki z wyprawy rowerowej w dół Maruszy · Longinada {date_year}</p>
     <div class="links">
-      <a href="index.html">Trasa</a><a href="zrodla.html">Źródła</a>
+      <a href="index.html">Trasa</a>{foot_extra}<a href="zrodla.html">Źródła</a>
       <a href="{gmaps}" rel="noopener" target="_blank">Mapa Google</a>
       <a href="{mapycom}" rel="noopener" target="_blank">mapy.com</a>
     </div>
@@ -289,6 +310,22 @@ def build():
         f.write(page("Źródła i dalsza lektura — Cienie Austro-Węgier",
                      "Źródła, na których oparte są notatki z wyprawy, pogrupowane wg miejsc.",
                      sources_body, with_map=False, active="zrodla"))
+
+    for p in EXTRA:
+        if not p["html"]:
+            continue
+        body = f'''
+<article class="wrap prose">
+  <a class="back-plan" href="index.html">← Plan wyjazdu</a>
+  <p class="eyebrow">{p["eyebrow"]}</p>
+  <h1>{p["title"]}</h1>
+  {p["html"]}
+</article>
+'''
+        with open(os.path.join(OUT, f'{p["slug"]}.html'), "w", encoding="utf-8") as f:
+            f.write(page(f'{p["title"]} — Cienie Austro-Węgier',
+                         f'{p["title"]} — notatki z wyprawy „Cienie Austro-Węgier”.',
+                         body, with_map=False, active=p["slug"]))
 
     os.makedirs(ASSETS, exist_ok=True)
     with open(os.path.join(ASSETS, "_buildid.txt"), "w", encoding="utf-8") as f:
