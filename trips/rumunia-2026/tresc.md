@@ -220,9 +220,9 @@ Notatki poniżej są tak ułożone, żeby na każdym postoju dało się szybko p
 # Praktyczne informacje
 
 ## Słowniczek rumuński
-- https://pl.bab.la/zwroty/podroze/ogolne/polski-rumunski
-- https://mbc.cyfrowemazowsze.pl/Content/88000/00097079_-_Slowniczek-polsko-rumunski_sygn-sygn-Podr-Cim-2234.pdf
-- https://skrivanek.pl/wp-content/uploads/2019/03/s%C5%82ownik-polsko-rumu%C5%84ski.pdf
+- Babla Zwroty Podrózne: https://pl.bab.la/zwroty/podroze/ogolne/polski-rumunski
+- Słowniczek z 1938: https://mbc.cyfrowemazowsze.pl/Content/88000/00097079_-_Slowniczek-polsko-rumunski_sygn-sygn-Podr-Cim-2234.pdf
+- Rozmówki Polsko-Rumuńskie: https://skrivanek.pl/wp-content/uploads/2019/03/s%C5%82ownik-polsko-rumu%C5%84ski.pdf
 
 - Cześć (nieform.): Salut
 - Dzień dobry: Bună ziua
@@ -239,9 +239,8 @@ Notatki poniżej są tak ułożone, żeby na każdym postoju dało się szybko p
 - Centrul Național de Coordonare Velo (trasy rowerowe): https://centrulnationaldecoordonarevelo.ro/?locale=en
 - CFR Călători (pociągi): https://www.cfrcalatori.ro/en/
 - Visit Transylvania: https://visittransilvania.ro/travel-guide-romania
-- https://visittransilvania.ro/travel-guide-romania
-- http://transilvaniatours.ro/Attractions_Transylvania_tours.asp
-- https://web.archive.org/web/20160826230708/http://www.rotravel.com/Practical-Information/The-Country/
+- Transilvania Tours Attractions: http://transilvaniatours.ro/Attractions_Transylvania_tours.asp
+- RoTravel: https://web.archive.org/web/20160826230708/http://www.rotravel.com/Practical-Information/The-Country/
 
 ## Dobrze wiedzieć
 - Waluta: lej rumuński (RON). Na Węgrzech (dzień 9): forint (HUF).
