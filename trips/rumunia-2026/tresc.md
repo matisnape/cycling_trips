@@ -241,6 +241,8 @@ Notatki poniżej są tak ułożone, żeby na każdym postoju dało się szybko p
 - Visit Transylvania: https://visittransilvania.ro/travel-guide-romania
 - Transilvania Tours Attractions: http://transilvaniatours.ro/Attractions_Transylvania_tours.asp
 - RoTravel: https://web.archive.org/web/20160826230708/http://www.rotravel.com/Practical-Information/The-Country/
+- Romanian MOnasteries: https://www.romanianmonasteries.org/
+- InYourPocket: https://www.inyourpocket.com/romania
 
 ## Dobrze wiedzieć
 - Waluta: lej rumuński (RON). Na Węgrzech (dzień 9): forint (HUF).
