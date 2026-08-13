@@ -172,7 +172,7 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 ## Granice
 - **Čakor (dzień 3)** nie jest zwykłym przejściem granicznym — droga zamknięta dla samochodów, przechodzą tam rowerzyści i piesi. Zezwolenie mamy.
 - **Przejścia czynne 24/7 na naszej trasie:** Cijevna Zatrijebačka – Grabom (dzień 1), Baškim – Grnčar (dzień 2), Morinë (dzień 6), Hani i Hotit / Božaj (dzień 10).
-- **Kosowo a Serbia:** wjazd do Kosowa nie od strony Serbii jest przez Serbię traktowany jako nielegalne przekroczenie jej granicy, a kosowskie stemple mogą utrudnić późniejszy wjazd do Serbii. Dopóki nie jedziemy do Serbii — bez znaczenia.
+- **Do Serbii pokazuj dowód, nie paszport.** Polak wjeżdża do Serbii na sam dowód osobisty (90 dni w ciągu 180). Serbia nie uznaje niepodległości Kosowa, więc kosowski stempel w paszporcie może skończyć się odmową wjazdu — zwłaszcza jeśli jedzie się wprost z Kosowa. Kosowo polski dowód też akceptuje.
 - **Monastery pod ochroną KFOR** (Patriarchat w Peć, Visoki Dečani): paszport zostaje na wartowni, więc miej go przy sobie, nie w torbie na dnie.
 
 ## Waluta i pieniądze
@@ -188,7 +188,7 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 - Zasięg w dolinach (Valbona, Theth, Vermosh) jest dziurawy — mapy offline obowiązkowo.
 
 ## W terenie
-- **Woda.** Prokletije są suche — to nie retoryka legend, a fakt geologiczny (wapień, woda ucieka pod ziemię). Na grzbietach i przełęczach źródeł nie ma; napełniaj w wioskach.
+- **Woda.** Prokletije są suche — wapień, woda ucieka pod ziemię. Na podjazdach i przełęczach nie ma gdzie dolać, więc nabieraj w każdej wiosce, którą mijasz, nawet przy półpełnym bidonie.
 - **Sezon.** Čakor i Qafa e Thorës są zimą zamknięte. Sierpień jest OK, ale licz się z burzami po południu — na przełęcze wychodź rano.
 - **Nawierzchnia.** Asfalt: dolina Cem, Vermosh–Gusinje, Rugova–Peja, Theth–Bogë–Koplik. Szuter i zmęczony asfalt: Plav → Čakor. Z buta: Qafa e Valbonës.
 - **Numer alarmowy:** 112 (Albania, Czarnogóra, Kosowo).
@@ -247,7 +247,7 @@ Trzy wersje legendy — alb. **Bjeshkët e Nemuna**, serb. **Prokletije**:
 - **Serbska:** żołnierze wpadają w zasadzkę górskich wojowników — i wojowniczek (**burrneshat**); ocaleni opisują rejon jako przerażający i nieprzyjazny, „Prokletije".
 - **Czarnogórska (wiły):** wiła przeklina góry, gdy ktoś ją podgląda przy świętym jeziorze. W innej wersji trzech braci ginie w walce o miłość wiły, a ich matka woła „Prokleti-jo!".
 
-Wspólny mianownik wszystkich wersji to **realny brak wody** — pasmo jest suche mimo bujnej roślinności. Ta sama cecha, która ma znaczenie praktyczne przy planowaniu bidonów.
+Wspólny mianownik wszystkich wersji to **realny brak wody** — pasmo jest suche mimo bujnej roślinności. Stąd praktyczna zasada: woda z każdej mijanej wioski.
 
 ## Reszta
 - Pasmo zawiera **14 najwyższych szczytów Gór Dynarskich**, w tym najwyższe punkty Czarnogóry i Kosowa. Najwyższy w ogóle: **Maja e Jezercës, 2694 m** (Albania).
