@@ -1,0 +1,9 @@
+# Wygenerowane przez build.py — NIE trzymamy ich w repo.
+# Lokalnie (watch) tworzą się na bieżąco; na GitHubie buduje je Actions.
+strona/*.html
+strona/assets/_buildid.txt
+
+# Śmieci systemowe / Pythona
+__pycache__/
+*.pyc
+.DS_Store
