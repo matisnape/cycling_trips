@@ -183,11 +183,16 @@ def build():
         extra_links = "".join(
             f'<a href="{p["slug"]}.html"{" aria-current=page" if active==p["slug"] else ""}>{p["label"]}</a>'
             for p in EXTRA if p["html"])
-        nav = ('<nav>'
+        # ponytail: hamburger is a CSS-only checkbox toggle — no JS, works offline too.
+        # The "📱 Telefon" switch lives in the nav on desktop and in .viewbar (top-left,
+        # same spot as in mobile.html) on phones, so it is never hidden behind the menu.
+        nav = ('<input type="checkbox" id="menu-toggle" class="menu-toggle"/>'
+               '<label class="burger" for="menu-toggle">☰<span class="skip">Menu</span></label>'
+               '<nav>'
                f'<a href="index.html"{" aria-current=page" if active=="trasa" else ""}>Trasa</a>'
                + extra_links +
                f'<a href="zrodla.html"{" aria-current=page" if active=="zrodla" else ""}>Źródła</a>'
-               '<a href="mobile.html">📱 Telefon</a></nav>')
+               '<a class="navphone" href="mobile.html">📱 Telefon</a></nav>')
         foot_extra = "".join(f'<a href="{p["slug"]}.html">{p["label"]}</a>' for p in EXTRA if p["html"])
         scripts = '<script src="assets/site.js" defer></script>'
         if with_map:
@@ -213,6 +218,7 @@ def build():
 <body>
 <a class="skip" href="#main">Przejdź do treści</a>
 <header class="site-head">
+  <div class="wrap-w viewbar"><a href="mobile.html">📱 Wersja na telefon</a></div>
   <div class="wrap-w bar">
     <a class="brand" href="index.html"><span class="glyph">△</span>Góry Przeklęte</a>
     {nav}
@@ -428,7 +434,8 @@ td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}
 footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--mut);font-size:.85rem}
 .switch{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0 0;font-size:.85rem;color:var(--mut)}
 .switch span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
-.switch a{margin-left:auto;font-weight:600;text-decoration:none}
+/* Switch link first and left-aligned — same corner as the .viewbar link in the full version. */
+.switch a{font-weight:600;text-decoration:none;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
 """
     blocks = []
     for d in days:
@@ -464,7 +471,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 <style>{css}</style>
 </head>
 <body>
-<nav class="switch"><span>Wersja na telefon</span><a href="index.html?full=1">Wersja pełna z mapą →</a></nav>
+<nav class="switch"><a href="index.html?full=1">🗺 Wersja pełna z mapą</a></nav>
 <h1>Góry Przeklęte</h1>
 <p class="sub">Czarnogóra · Kosowo · Albania — 14–23.08.2026</p>
 <ul class="facts">

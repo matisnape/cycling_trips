@@ -84,12 +84,18 @@ em { font-style: italic; }
 }
 .brand:hover { color: var(--river); }
 .brand .glyph { color: var(--river); font-size: 1rem; }
-.site-head nav { display: flex; gap: 1.1rem; }
+.site-head nav { display: flex; gap: 1.1rem; flex-wrap: wrap; }
 .site-head nav a {
   font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.04em;
   text-transform: uppercase; color: var(--muted); text-decoration: none;
 }
 .site-head nav a:hover { color: var(--river); }
+/* hamburger + top-left version switch: both hidden until the mobile breakpoint.
+   The checkbox stays in the tab order (visually hidden, not display:none) so the
+   menu opens with the keyboard too; the <label> gives it the name "Menu". */
+.menu-toggle { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.burger { display: none; }
+.viewbar { display: none; }
 
 /* ----- hero (home page) ----- */
 .hero { padding-top: 3.4rem; padding-bottom: 1.6rem; }
@@ -203,13 +209,36 @@ em { font-style: italic; }
 .skip:focus { left: 1rem; top: 0.6rem; position: fixed; z-index: 100; background: var(--ink); color: var(--paper); padding: 0.5rem 0.9rem; border-radius: 4px; }
 
 /* ----- responsiveness ----- */
+/* Header: the inline nav does not fit a phone, so below 700px it collapses into a
+   hamburger (pure CSS — the hidden checkbox before it holds the open/closed state),
+   and the switch to the phone version moves to a strip at the top left, exactly
+   where mobile.html keeps its own switch link. */
+@media (max-width: 700px) {
+  .viewbar { display: block; padding-block: 0.45rem; border-bottom: 1px solid var(--line); }
+  .viewbar a {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--river); text-decoration: none;
+  }
+  .burger {
+    display: block; cursor: pointer; font-size: 1.25rem; line-height: 1;
+    padding: 0.35rem 0.1rem 0.35rem 0.6rem; color: var(--ink); margin-left: auto;
+  }
+  .site-head nav {
+    display: none; position: absolute; left: 0; right: 0; top: 100%;
+    flex-direction: column; gap: 0; padding: 0.3rem 0 0.6rem;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+  }
+  .menu-toggle:checked ~ nav { display: flex; }
+  .menu-toggle:focus-visible + .burger { outline: 2px solid var(--river); border-radius: 4px; }
+  .site-head nav a { padding: 0.7rem 1.2rem; font-size: 0.85rem; }
+  .navphone { display: none; }  /* .viewbar already carries this link */
+}
 @media (max-width: 560px) {
   body { font-size: 1rem; }
   .hero h1 { font-size: clamp(2rem, 11vw, 3rem); }
   #map { height: 60vh; }
   .day-row { grid-template-columns: 2rem 1fr; }
   .day-row .km { grid-column: 2; padding-top: 0.2rem; }
-  .site-head nav { gap: 0.8rem; }
 }
 
 /* (Deliberately no "reveal" animation: page content is always visible,
