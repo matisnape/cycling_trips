@@ -196,62 +196,93 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 - **Fauna.** ⚠️ **Żmija nosoroga (Vipera ammodytes)** — najbardziej jadowity wąż Europy. Zasięg to prawie cały Półwysep Bałkański, **Albania, Kosowo i Czarnogóra włącznie**, do **2000 m n.p.m.**; siedlisko to suche, skaliste zbocza z rzadką roślinnością, czyli dokładnie nasz teren. Na szlakach wokół Theth ostrzegają wprost. Nie wsadzaj rąk w kamienie, nie łaź po rumoszu w klapkach. Skorpiony i pająki (karakurt, tarantula) — rzadsze.
 
 ## Słowniczek albański (z wymową)
-Wymowa uproszczona pod polskie ucho — nie IPA, tylko żeby dało się to wypowiedzieć na postoju. Kilka liter, które inaczej czyta się niż piszą: **ë** = niewyraźne „y" (prawie nieme na końcu słowa), **j** = polskie j, **c** = c, **ç** = cz, **q** = miękkie między ć a ki, **gj** = dź, **x** = dz, **xh** = dż, **ll** = twarde, gardłowe ł, **rr** = mocno rolowane r, **sh** = sz, **zh** = ż, **th** = bezdźwięczne jak angielskie „think", **dh** = dźwięczne jak angielskie „this".
+Wymowa uproszczona pod polskie ucho — nie IPA, tylko żeby dało się to wypowiedzieć na postoju. Kilka liter, które inaczej czyta się niż piszą:
+- **ë** — niewyraźne „y" (prawie nieme na końcu słowa)
+- **j** — polskie j
+- **c** — c
+- **ç** — cz
+- **q** — miękkie, między ć a ki
+- **gj** — dź
+- **x** — dz
+- **xh** — dż
+- **ll** — twarde, gardłowe ł
+- **rr** — mocno rolowane r
+- **sh** — sz
+- **zh** — ż
+- **th** — bezdźwięczne, jak angielskie „think"
+- **dh** — dźwięczne, jak angielskie „this"
 
 **Podstawy (najbardziej przydatne):**
-- Cześć (nieformalnie): Tung *(tung)*
-- Dzień dobry / Witaj (formalnie): Tungjatjeta *(tundziatjeta)*
-- Dzień dobry (rano): Mirëmëngjes *(mirymyndżes)*
-- Dzień dobry (w ciągu dnia): Mirëdita *(mirydita)*
-- Dobry wieczór: Mirëmbrëma *(mirymbryma)*
-- Do widzenia: Mirupafshim *(mirupafszim)*
-- Dziękuję: Faleminderit *(faleminderit)*
-- Dziękuję bardzo: Shumë faleminderit *(szumy faleminderit)*
-- Proszę: Ju lutem *(ju lutem)*
-- Przepraszam: Më falni *(my falni)*
-- Tak / Nie: Po / Jo *(po / jo)*
-- Nie rozumiem: Nuk kuptoj *(nuk kuptoj)*
-- Czy mówi Pan/Pani po angielsku?: Flisni anglisht? *(flisni angliszt)*
-- Polska: Poloni *(poloni)*
-- Jestem z Polski: Jam nga Polonia *(jam nga polonia)*
+
+| Słowo | Wymowa | Tłumaczenie |
+|---|---|---|
+| Tung | tung | Cześć (nieformalnie) |
+| Tungjatjeta | tundziatjeta | Dzień dobry / Witaj (formalnie) |
+| Mirëmëngjes | mirymyndżes | Dzień dobry (rano) |
+| Mirëdita | mirydita | Dzień dobry (w ciągu dnia) |
+| Mirëmbrëma | mirymbryma | Dobry wieczór |
+| Mirupafshim | mirupafszim | Do widzenia |
+| Faleminderit | faleminderit | Dziękuję |
+| Shumë faleminderit | szumy faleminderit | Dziękuję bardzo |
+| Ju lutem | ju lutem | Proszę |
+| Më falni | my falni | Przepraszam |
+| Po / Jo | po / jo | Tak / Nie |
+| Nuk kuptoj | nuk kuptoj | Nie rozumiem |
+| Flisni anglisht? | flisni angliszt | Czy mówi Pan/Pani po angielsku? |
+| Poloni | poloni | Polska |
+| Jam nga Polonia | jam nga polonia | Jestem z Polski |
 
 **Praktyczne pytania i w drodze:**
-- Ile to kosztuje?: Sa kushton? *(sa kusztonn)*
-- Gdzie jest…?: Ku është…? *(ku yszty)*
-- Jak daleko jest…?: Sa larg është…? *(sa larg yszty)*
-- W prawo / W lewo / Prosto: Djathtas / Majtas / Drejt *(dziathtas / majtas / drejt)*
-- Uwaga!: Kujdes! *(kujdes)*
-- Pomocy!: Ndihmë! *(ndihmy)*
-- Nagły wypadek: Urgjencë *(urdżency)*
-- Szpital: Spital *(spital)*
+
+| Słowo | Wymowa | Tłumaczenie |
+|---|---|---|
+| Sa kushton? | sa kusztonn | Ile to kosztuje? |
+| Ku është…? | ku yszty | Gdzie jest…? |
+| Sa larg është…? | sa larg yszty | Jak daleko jest…? |
+| Djathtas | dziathtas | W prawo |
+| Majtas | majtas | W lewo |
+| Drejt | drejt | Prosto |
+| Kujdes! | kujdes | Uwaga! |
+| Ndihmë! | ndihmy | Pomocy! |
+| Urgjencë | urdżency | Nagły wypadek |
+| Spital | spital | Szpital |
 
 **Jedzenie i picie:**
-- Woda: Ujë *(ujy)*
-- Kawa: Kafe *(kafe)*
-- Piwo: Birrë *(birry)*
-- Chleb: Bukë *(buky)*
-- Rachunek proszę: Faturën, ju lutem *(faturyn, ju lutem)*
-- Smacznego: Të bëftë mirë *(ty byfty miry)*
-- Zupa: Supë *(supy)*
+
+| Słowo | Wymowa | Tłumaczenie |
+|---|---|---|
+| Ujë | ujy | Woda |
+| Kafe | kafe | Kawa |
+| Birrë | birry | Piwo |
+| Bukë | buky | Chleb |
+| Supë | supy | Zupa |
+| Faturën, ju lutem | faturyn, ju lutem | Rachunek proszę |
+| Të bëftë mirë | ty byfty miry | Smacznego |
 
 **W mieście:**
-- Apteka: Farmaci *(farmatsi)*
-- Piekarnia: Furrë buke *(furry buke)*
-- Cukiernia: Ëmbëltore *(ymbyltore)*
-- Toaleta: Tualet *(tualet)*
-- Łazienka: Banjo *(banjo)*
+
+| Słowo | Wymowa | Tłumaczenie |
+|---|---|---|
+| Farmaci | farmatsi | Apteka |
+| Furrë buke | furry buke | Piekarnia |
+| Ëmbëltore | ymbyltore | Cukiernia |
+| Tualet | tualet | Toaleta |
+| Banjo | banjo | Łazienka |
 
 **Liczby 1–10:**
-- 1 — një *(njy)*
-- 2 — dy *(dy)*
-- 3 — tre *(tre)*
-- 4 — katër *(katyr)*
-- 5 — pesë *(pesy)*
-- 6 — gjashtë *(dziaszty)*
-- 7 — shtatë *(sztaty)*
-- 8 — tetë *(tety)*
-- 9 — nëntë *(nynty)*
-- 10 — dhjetë *(dzjety)*
+
+| Słowo | Wymowa | Tłumaczenie |
+|---|---|---|
+| Një | njy | 1 |
+| Dy | dy | 2 |
+| Tre | tre | 3 |
+| Katër | katyr | 4 |
+| Pesë | pesy | 5 |
+| Gjashtë | dziaszty | 6 |
+| Shtatë | sztaty | 7 |
+| Tetë | tety | 8 |
+| Nëntë | nynty | 9 |
+| Dhjetë | dzjety | 10 |
 
 ## Mapy papierowe (do kupienia)
 - Prokletije / Vermoshi / Theth (Huber): https://mapy.net.pl/mapa-skladana-prokletije-vermoshi-theth-huber/12557
