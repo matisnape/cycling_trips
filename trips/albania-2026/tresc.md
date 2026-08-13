@@ -53,17 +53,17 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 
 ### Miejsca i historia
 - **Lepushë i Vermosh.** Najbardziej północne wioski Albanii, w dolinie rzeki Vermosh. Vermosh przez dekady był końcem świata: strefa przygraniczna, do której obcy nie mieli wstępu. Dziś to pierwszy etap oficjalnej trasy **Trans Dinarica** (Gusinje–Tamarë, 38 km, 100 % asfaltu).
-- **Gusinje.** Miasteczko u wylotu dwóch dolin: **Grbaja** i **Ropojana**. Baza wypadowa w czarnogórskie Prokletije — jeśli będzie dzień luzu (albo czekanie na zezwolenie na Čakor), stąd wychodzi pętla **Volušnica–Popadija–Talijanka**: 10 km, +1000 m, wstęp do parku 2–3 EUR, biwak dozwolony.
+- **Gusinje.** Miasteczko u wylotu dwóch dolin: **Grbaja** i **Ropojana**. Baza wypadowa w czarnogórskie Prokletije — jeśli wyjdzie wolne pół dnia, stąd wychodzi pętla **Volušnica–Popadija–Talijanka**: 10 km, +1000 m, wstęp do parku 2–3 EUR, biwak dozwolony.
 - **Maja e Jezercës (2694 m).** Najwyższy szczyt całych Gór Dynarskich stoi po albańskiej stronie, ale wchodzi się na niego z czarnogórskiego **Vusanje** doliną Ropojana. Drogowskaz podaje 15 h; realnie ok. 9,5–10 h w jedną stronę. Jedyna woda na szlaku: **Zastan Ropojanski, 1300 m**.
 
 ## Dzień 3: Niedziela, 16.08.2026, Gusinje > Rugova (42km)
 - +1050 m i najwyższy punkt całej trasy: **przełęcz Čakor, 1840 m**
-- ⚠️ **Čakor NIE jest oficjalnym przejściem granicznym** — rowerem tylko z zezwoleniem. Odbiór w Plavie (policja graniczna, pon.–pt., ok. 7 EUR wg relacji rowerzystów). Jeśli wypada weekend — trzeba mieć papier z góry albo przełożyć dzień
+- Čakor nie jest zwykłym przejściem granicznym: droga jest zamknięta dla samochodów, jeżdżą tu prawie wyłącznie rowerzyści (zezwolenie mamy)
 - Nawierzchnia: od Plavu szuter i zmęczony asfalt, od granicy w dół (Rugova) asfalt w dobrym stanie
 
 ### Miejsca i historia
-- **Plav i jezioro Plavskie.** Największe jezioro tej części Czarnogóry, u stóp Prokletije. Miasteczko ma silną tożsamość muzułmańską (Boszniacy, Albańczycy) — meczety i osmański rodowód. To tutaj mieści się komenda policji granicznej wydająca zezwolenia na „zieloną granicę".
-- **Przełęcz Čakor (1849 m wg map, 1840 m na naszym śladzie).** Droga została zbudowana ok. 100 lat temu i przez dekady była główną trasą Plav–Peć. Dziś zamknięta dla samochodów i nieobsługiwana jako przejście graniczne — jeżdżą tu prawie wyłącznie rowerzyści. Formalnie potrzebne zezwolenie: chodzi o to, żeby policja miała zarejestrowane wjazdy i wyjazdy, i żebyś nie miała problemu przy wyjeździe z regionu.
+- **Plav i jezioro Plavskie.** Największe jezioro tej części Czarnogóry, u stóp Prokletije. Miasteczko ma silną tożsamość muzułmańską (Boszniacy, Albańczycy) — meczety i osmański rodowód.
+- **Przełęcz Čakor (1849 m wg map, 1840 m na naszym śladzie).** Droga została zbudowana ok. 100 lat temu i przez dekady była główną trasą Plav–Peć. Dziś zamknięta dla samochodów i nieobsługiwana jako zwykłe przejście graniczne — jeżdżą tu prawie wyłącznie rowerzyści.
 - **Kanion Rugova.** 22 km wąwozu od granicy do Peji, ściany do ok. 1000 m. Kosowo promuje go jako bałkańską stolicę **via ferrat**; w górnej części wioska **Kuqishtë** i katuny (letnie pasterskie osady).
 
 ## Dzień 4: Poniedziałek, 17.08.2026, Rugova > Gjakova (80km)
@@ -162,22 +162,18 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 ---
 
 > [!note] Skąd te notatki
-> Kilometraż, przewyższenia i przełęcze są **policzone ze śladu** `albania.gpx` (24 506 punktów, haversine + profil wysokości), a nazwy miejscowości pochodzą z reverse-geocodingu tego śladu (OSM/Nominatim) co 12 km. Punkty z pliku KML sprawdziłem pod kątem odległości od trasy — **cała pętla kosowska (Prisztina, Gadime, Prizren, Gazimestan) leży 14–68 km od śladu rowerowego**, dlatego jest dniem busowym, a nie etapem. Podział na dni to **propozycja z arytmetyki** (11 naturalnych odcinków wciśnięte w 10 dni przez połączenie dwóch par), nie ustalony plan Longina.
-> **Do potwierdzenia przed wyjazdem:** zezwolenie na przejście przez Čakor (tryb i godziny w Plavie), godziny monasterów w święta prawosławne, stan drogi na Čakorze po deszczach, czy dzień z Čakorem wypada w dzień roboczy.
+> Kilometraż, przewyższenia i przełęcze są **policzone ze śladu** `albania.gpx` (24 506 punktów, haversine + profil wysokości), a nazwy miejscowości pochodzą z reverse-geocodingu tego śladu (OSM/Nominatim) co 12 km. Punkty z pliku KML sprawdziłem pod kątem odległości od trasy — **cała pętla kosowska (Prisztina, Gadime, Prizren, Gazimestan) leży 14–68 km od śladu rowerowego**, dlatego jest dniem busowym, a nie etapem. Kilometraż każdego dnia policzony z tego samego śladu.
+> **Do potwierdzenia przed wyjazdem:** godziny monasterów w święta prawosławne, stan drogi na Čakorze po deszczach.
 > **Niepewne (⚠️ w tekście):** dokładna wysokość Qafa e Thorës (1680 / 1691 / 1775 m w różnych źródłach), istnienie muzeum Gërvalla i kulli Krasniqi w Gjakovie, rok pełnego asfaltu do Theth (2021 czy 2022).
 
 ---
 
 # Praktyczne informacje
 
-## Granice — najważniejsza rzecz na tej trasie
-- **Čakor (dzień 3) NIE jest oficjalnym przejściem granicznym.** Droga jest zamknięta dla samochodów, a rowerzyści i piesi przekraczają tam granicę **tylko z zezwoleniem na „zieloną granicę"**.
-    - Wersja szybka (relacje rowerzystów, ⚠️ niepotwierdzona oficjalnie): zezwolenie **tego samego dnia**, regionalna komenda **policji granicznej w Plavie**, **7 EUR**, **pon.–pt.**
-    - Wersja oficjalna (agencja Zbulo): **4–5 dni roboczych**, wniosek do 8 tygodni wcześniej, **5 EUR/os. + 6 EUR wniosek + 3 EUR/os.** opłat czarnogórskich. Tego samego dnia **nie da się**.
-    - Objazdy, jeśli nie wyjdzie: oficjalne przejście **Kula (Rožaje) – Peja** albo **Qafa e Bogiqes** (Deçan–Plav). Oba znacznie dłuższe.
+## Granice
+- **Čakor (dzień 3)** nie jest zwykłym przejściem granicznym — droga zamknięta dla samochodów, przechodzą tam rowerzyści i piesi. Zezwolenie mamy.
 - **Przejścia czynne 24/7 na naszej trasie:** Cijevna Zatrijebačka – Grabom (dzień 1), Baškim – Grnčar (dzień 2), Morinë (dzień 6), Hani i Hotit / Božaj (dzień 10).
 - **Kosowo a Serbia:** wjazd do Kosowa nie od strony Serbii jest przez Serbię traktowany jako nielegalne przekroczenie jej granicy, a kosowskie stemple mogą utrudnić późniejszy wjazd do Serbii. Dopóki nie jedziemy do Serbii — bez znaczenia.
-- **Bus po Kosowie:** Kosowo **nie działa w systemie OC / Zielonej Karty** — auto wjeżdżające tam potrzebuje osobnego ubezpieczenia granicznego. Do sprawdzenia z przewoźnikiem.
 - **Monastery pod ochroną KFOR** (Patriarchat w Peć, Visoki Dečani): paszport zostaje na wartowni, więc miej go przy sobie, nie w torbie na dnie.
 
 ## Waluta i pieniądze
@@ -198,7 +194,7 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 - **Nawierzchnia.** Asfalt: dolina Cem, Vermosh–Gusinje, Rugova–Peja, Theth–Bogë–Koplik. Szuter i zmęczony asfalt: Plav → Čakor. Hike-a-bike: Qafa e Valbonës.
 - **Numer alarmowy:** 112 (Albania, Czarnogóra, Kosowo).
 - **Bunkry i miny.** Bunkry Hoxhy stoją wszędzie i są bezpieczne. Pola minowe to relikt granicy kosowskiej — oznakowane i w zaniku, ale poza szlakami przy granicach nie chodzimy.
-- **Fauna.** ⚠️ **Żmija nosoroga (Vipera ammodytes)** — najbardziej jadowity wąż Europy, żyje w tych górach; na szlakach wokół Theth ostrzegają wprost. Nie wsadzaj rąk w kamienie, nie łaź po rumoszu w klapkach. Skorpiony i pająki (karakurt, tarantula) — rzadsze.
+- **Fauna.** ⚠️ **Żmija nosoroga (Vipera ammodytes)** — najbardziej jadowity wąż Europy. Zasięg to prawie cały Półwysep Bałkański, **Albania, Kosowo i Czarnogóra włącznie**, do **2000 m n.p.m.**; siedlisko to suche, skaliste zbocza z rzadką roślinnością, czyli dokładnie nasz teren. Na szlakach wokół Theth ostrzegają wprost. Nie wsadzaj rąk w kamienie, nie łaź po rumoszu w klapkach. Skorpiony i pająki (karakurt, tarantula) — rzadsze.
 
 ## Kilka słów po albańsku
 - Dzień dobry: Mirëdita
@@ -280,9 +276,7 @@ Linki, na których oparte są te notatki, pogrupowane wg tematu.
 - Kanion Rugova — droga Peja–Kuqishtë: https://www.dangerousroads.org/eastern-europe/kosovo/128-rugova-gorge-road-kosovo.html
 - Wyprawa SOLO tam, gdzie kończy się asfalt (Czarnogóra i Albania): https://www.youtube.com/watch?v=bxoXC4sNzG0
 
-## Granice i zezwolenia
-- Zbulo — zezwolenia na zielone granice (Peaks of the Balkans / Via Dinarica): https://zbulo.org/border-crossing-permits-peaks-of-the-balkans-via-dinarica/
-- TripAdvisor — Peje to Plav przez Čakor (relacje o zezwoleniu w Plavie): https://www.tripadvisor.com/ShowTopic-g635648-i11070-k15242538-Peje_to_Plav_Cakor_pass-Montenegro.html
+## Granice
 - Przejścia graniczne Albanii 2026: https://www.albania-spirit.com/guides/border-crossings-albania/
 
 ## Kosowo — praktyka
