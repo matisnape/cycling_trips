@@ -147,3 +147,29 @@ day, the date and kilometer format) — it's all in **`JAK-EDYTOWAC.md`**.
 ---
 
 Enjoy the work — and enjoy the trip.
+
+
+---
+
+## Edycja z telefonu (bez komputera)
+
+Dwie drogi, obie kończą się tym samym: push na `main` → Actions przebudowują stronę.
+
+**A. Agent (Claude Code w chmurze)** — claude.ai/code w Safari albo aplikacja Claude.
+Powiedz np. „dopisz do dnia 7 w tresc.md notatkę: …, zbuduj i wypchnij na main".
+Agent widzi `CLAUDE.md` w repo, więc zna kontrakt nagłówków i wie, że publikuje
+tylko push na `main` (nie PR). Wymaga podłączonego GitHuba — zrób to raz, z komputera:
+w Claude Code wpisz `/web-setup`.
+
+**B. Ręcznie na github.com** — otwórz `tresc.md` → ołówek → popraw → *Commit changes*
+(do `main`). Działa też z aplikacji GitHub. Po ~2 min strona jest odświeżona.
+
+### Zasady, żeby build nie padł
+- nie zmieniaj nazw nagłówków (`# Plan wyjazdu`, `## Dzień N: …`, `### Miejsca i historia`),
+- format dnia: `## Dzień 7: Czwartek, 20.08.2026, Bajram Curri > Theth (37km)`,
+- treść dopisuj **w** istniejących sekcjach, nie zakładaj nowych `#` przed `# Źródła`,
+- jak Actions zaświecą czerwono, na dole loga jest dokładna nazwa brakującej sekcji.
+
+### Po każdej zmianie
+Zapisany offline `mobile.html` się **nie** aktualizuje sam — pobierz go ponownie
+przyciskiem „Zapisz tę stronę offline".
