@@ -20,7 +20,7 @@ end: 2026-08-23
 - Peja - kosowskie piwo, nazwane od miasta na naszej trasie
 
 # Klucz do wyjazdu — „Góry Przeklęte"
-Trasa to **pętla wokół jednego pasma**: Prokletije, po albańsku **Bjeshkët e Nemuna**, po polsku Góry Przeklęte. Startujemy i kończymy w Podgoricy, a przez dziewięć dni okrążamy masyw z trzech stron — czarnogórskiej, kosowskiej i albańskiej — przekraczając go dwa razy: raz przez **przełęcz Čakor (1840 m)**, raz przez **Qafa e Valbonës (~1795 m)**, gdzie rower trzeba prowadzić.
+Trasa to **pętla wokół jednego pasma**: Prokletije, po albańsku **Bjeshkët e Nemuna**, po polsku Góry Przeklęte. Startujemy i kończymy w Podgoricy, a przez dziewięć dni okrążamy masyw z trzech stron — czarnogórskiej, kosowskiej i albańskiej — przekraczając go dwa razy: raz przez **przełęcz Čakor (1840 m)**, raz przez **Qafa e Valbonës (~1795 m)**, którą idziemy z buta.
 
 To pasmo, które przez większość XX wieku było praktycznie zamknięte: granica trzech państw, bunkry Hoxhy, brak dróg. Stąd zwarty zestaw rzeczy, których nie ma nigdzie indziej w Europie — i to jest właściwy klucz do tego wyjazdu:
 
@@ -109,7 +109,7 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 
 ## Dzień 7: Czwartek, 20.08.2026, Bajram Curri > Theth (37km)
 - +1788 m — najcięższy dzień wyjazdu, mimo tylko 37 km
-- ⚠️ **Qafa e Valbonës (~1795 m) to szlak pieszy** — 15–18 km, 6–8 h, rower się PROWADZI. Kamieniste zejście męczące dla kolan
+- **Qafa e Valbonës (~1795 m) to szlak pieszy** — 15–18 km, 6–8 h z buta. Kamieniste zejście męczące dla kolan
 - Start rano, woda z zapasem, na przełęczy nie ma nic
 
 ### Miejsca i historia
@@ -120,7 +120,7 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
     - **Kościół z 1892 r.** — przetrwał zakaz religii za Envera Hoxhy. Zwykle zamknięty, otwierany na msze; stoi pośrodku doliny, kilka minut od centrum, obok fotogeniczny cmentarz.
     - Wioska leży na **~700 m n.p.m.** (nasz ślad: 746 m), otoczona szczytami ponad 2000 m. Darmowy parking, restauracje, dużo noclegów. Droga z Szkodry: **50+ km, 1,5–2 h autem**, bardzo wąska, serpentyny — przed asfaltem z 2021 r. wymagała 4×4.
     - Ludność wg lokalnej tradycji wywodzi się od wspólnego przodka sprzed ~300–350 lat, osiedlonego tu dla zachowania katolicyzmu. Dziś kilkanaście–kilkadziesiąt rodzin całorocznie.
-    - **Park Narodowy Theth** od 1966 r.; wieś ma status chronionego ośrodka historycznego. Opis „zapomniana wioska" jest już nieaktualny — trafniej: **dawniej odizolowana, dziś w turystycznym odrodzeniu**.
+    - **Park Narodowy Theth** od 1966 r.; wieś ma status chronionego ośrodka historycznego.
 
 ## Dzień 8: Piątek, 21.08.2026, Theth > Bogë (41km)
 - +835 m, **Qafa e Thorës ~1680 m** — asfalt od 2021, jedna z najładniejszych dróg Albanii (SH20)
@@ -164,7 +164,6 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 > [!note] Skąd te notatki
 > Kilometraż, przewyższenia i przełęcze są **policzone ze śladu** `albania.gpx` (24 506 punktów, haversine + profil wysokości), a nazwy miejscowości pochodzą z reverse-geocodingu tego śladu (OSM/Nominatim) co 12 km. Punkty z pliku KML sprawdziłem pod kątem odległości od trasy — **cała pętla kosowska (Prisztina, Gadime, Prizren, Gazimestan) leży 14–68 km od śladu rowerowego**, dlatego jest dniem busowym, a nie etapem. Kilometraż każdego dnia policzony z tego samego śladu.
 > **Do potwierdzenia przed wyjazdem:** godziny monasterów w święta prawosławne, stan drogi na Čakorze po deszczach.
-> **Niepewne (⚠️ w tekście):** dokładna wysokość Qafa e Thorës (1680 / 1691 / 1775 m w różnych źródłach), istnienie muzeum Gërvalla i kulli Krasniqi w Gjakovie, rok pełnego asfaltu do Theth (2021 czy 2022).
 
 ---
 
@@ -191,7 +190,7 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 ## W terenie
 - **Woda.** Prokletije są suche — to nie retoryka legend, a fakt geologiczny (wapień, woda ucieka pod ziemię). Na grzbietach i przełęczach źródeł nie ma; napełniaj w wioskach.
 - **Sezon.** Čakor i Qafa e Thorës są zimą zamknięte. Sierpień jest OK, ale licz się z burzami po południu — na przełęcze wychodź rano.
-- **Nawierzchnia.** Asfalt: dolina Cem, Vermosh–Gusinje, Rugova–Peja, Theth–Bogë–Koplik. Szuter i zmęczony asfalt: Plav → Čakor. Hike-a-bike: Qafa e Valbonës.
+- **Nawierzchnia.** Asfalt: dolina Cem, Vermosh–Gusinje, Rugova–Peja, Theth–Bogë–Koplik. Szuter i zmęczony asfalt: Plav → Čakor. Z buta: Qafa e Valbonës.
 - **Numer alarmowy:** 112 (Albania, Czarnogóra, Kosowo).
 - **Bunkry i miny.** Bunkry Hoxhy stoją wszędzie i są bezpieczne. Pola minowe to relikt granicy kosowskiej — oznakowane i w zaniku, ale poza szlakami przy granicach nie chodzimy.
 - **Fauna.** ⚠️ **Żmija nosoroga (Vipera ammodytes)** — najbardziej jadowity wąż Europy. Zasięg to prawie cały Półwysep Bałkański, **Albania, Kosowo i Czarnogóra włącznie**, do **2000 m n.p.m.**; siedlisko to suche, skaliste zbocza z rzadką roślinnością, czyli dokładnie nasz teren. Na szlakach wokół Theth ostrzegają wprost. Nie wsadzaj rąk w kamienie, nie łaź po rumoszu w klapkach. Skorpiony i pająki (karakurt, tarantula) — rzadsze.
