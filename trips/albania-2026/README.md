@@ -24,8 +24,7 @@ interchangeably:
   the changes**. When you're done — **push**. If you use the Obsidian Git plugin
   (see below), it does this for you.
 
-Site address after publishing: `https://<your-name>.github.io/<repo>/`
-(write yours in here once it exists, to keep it handy).
+Site address: **https://matisnape.github.io/longinada-albania-2026/**
 
 ---
 
@@ -42,9 +41,9 @@ Tick them off one by one:
       ```bash
       cd <this-folder>
       git init && git add . && git commit -m "Trip site"
-      git branch -M master
+      git branch -M main
       git remote add origin https://github.com/<user>/longinada-albania-2026.git
-      git push -u origin master
+      git push -u origin main
       ```
 - [ ] **Pages in Actions mode:** in the repo → **Settings → Pages → Build and deployment
       → Source: "GitHub Actions"** (NOT "Deploy from a branch").
