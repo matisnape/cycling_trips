@@ -116,8 +116,9 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 - **Dolina Valbony.** Park Narodowy, dolina długości ok. 80 km, otoczona **Maja e Rosit (2524 m)** i **Maja e Jezercës (2694 m)**. „Normalny" dojazd turystyczny to prom po jeziorze **Koman** (my przyjeżdżamy z drugiej strony, więc bez promu). Noclegi to pensjonaty rodzinne (Gjin Thana, Kol Gjoni) i dzikie biwaki.
 - **Szlak Valbona → Theth.** Dawny **szlak mulasi** łączący plemienne regiony **Shala** (Theth) i **Nikaj** (Valbona) — istniał na długo przed turystyką. Dziś najpopularniejszy trekking Albanii i element sieci **Peaks of the Balkans**. Latem bez trudności technicznych; wiosną i przy śniegu groźny.
 - **Theth.** Izolacja była geograficzna: głęboka dolina, dekadami dostępna tylko szutrową drogą z 1936 r., **w pełni zasfaltowaną dopiero ~2021–2022**.
-    - **Kulla e ngujimit** (wieża odosobnienia) z poł. XIX w. — chowali się w niej mężczyźni wplątani w krwawą zemstę (**gjakmarrje**) wg Kanunu, do czasu pojednania. Wstęp **200 lek**; w środku drewniane schody, meble, fotografie.
-    - **Kościół z 1892 r.** — przetrwał zakaz religii za Envera Hoxhy. Zwykle zamknięty, otwierany na msze; obok fotogeniczny cmentarz.
+    - **Kulla e ngujimit** (wieża odosobnienia), znana też jako **Kulla e Nikollë Koçekut** albo Wieża Pojednania, z poł. XIX w. — chowali się w niej mężczyźni wplątani w krwawą zemstę (**gjakmarrje**) wg Kanunu, i rozstrzygano tam spory. W środku drewniane schody, meble, fotografie. Bilet: **200 lek** wg jednego źródła, **15 lek** wg drugiego — do sprawdzenia na miejscu.
+    - **Kościół z 1892 r.** — przetrwał zakaz religii za Envera Hoxhy. Zwykle zamknięty, otwierany na msze; stoi pośrodku doliny, kilka minut od centrum, obok fotogeniczny cmentarz.
+    - Wioska leży na **~700 m n.p.m.** (nasz ślad: 746 m), otoczona szczytami ponad 2000 m. Darmowy parking, restauracje, dużo noclegów. Droga z Szkodry: **50+ km, 1,5–2 h autem**, bardzo wąska, serpentyny — przed asfaltem z 2021 r. wymagała 4×4.
     - Ludność wg lokalnej tradycji wywodzi się od wspólnego przodka sprzed ~300–350 lat, osiedlonego tu dla zachowania katolicyzmu. Dziś kilkanaście–kilkadziesiąt rodzin całorocznie.
     - **Park Narodowy Theth** od 1966 r.; wieś ma status chronionego ośrodka historycznego. Opis „zapomniana wioska" jest już nieaktualny — trafniej: **dawniej odizolowana, dziś w turystycznym odrodzeniu**.
 
@@ -129,10 +130,10 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 - **Co warto w Theth przed odjazdem:**
     - **Wodospad Grunas** — 25 m, 30 min płaskim szlakiem wzdłuż rzeki. Przed 9:00 pusto.
     - **Kanion Grunas** — ściany ok. 50 m, najlepszy widok z drewnianego mostu przy drodze Theth–Nderlysaj.
-    - **Blue Eye (Syri i Kaltër)** — z wioski **Nderlysaj**, 45 min podejścia; woda lodowata. Cała dolina Lumi i Thethit: 5 km / 1,5 h w jedną stronę, latem jeździ minibus bez rozkładu.
+    - **Blue Eye (Syri i Kaltër)** — **pieszo z Theth ponad 2 h w jedną stronę** (ok. 10 km doliną). Skrót: dojechać do **Nderlysaj**, stamtąd 45 min podejścia. Woda lodowata, można się kąpać. Latem minibus Theth–Nderlysaj bez rozkładu.
     - Mniejsze: wodospad **Gjeçaj**, opuszczony młyn wodny (5 min od mostu wjazdowego), centrum informacji parku przy moście (godziny nieregularne).
     - Jedzenie: Restaurant Petriti (**fërgesë**), grill-bary przy rzece, **raki z dzikich owoców**.
-- **Qafa e Thorës.** Przełęcz ok. 1680 m (źródła podają 1680, 1691 albo 1775 m — rozjeżdżają się). Z Theth to 16,1 km i +938 m, średnio 5,8 %. Widoki w obie strony, a przy drodze **pomniki dwóch osób, które opisały te góry światu**:
+- **Qafa e Thorës (Przełęcz Thore).** Ok. 1680 m — źródła podają 1680, 1685, 1691 albo 1775 m; nasz ślad daje 1680 m. Z Theth to 16,1 km i +938 m, średnio 5,8 %. Widoki w obie strony, a przy drodze **pomniki dwóch osób, które opisały te góry światu**:
     - **Ferenc Nopcsa** — węgierski arystokrata i paleontolog, autor pierwszej mapy geologicznej północnej Albanii i etnograficznych opisów plemion.
     - **Edith Durham** — brytyjska antropolożka, autorka „High Albania" (1909), do dziś podstawowego źródła o Kanunie i życiu plemiennym.
 - **Bogë.** Wioska u wylotu doliny, dawniej ostatni punkt dojazdowy dla samochodów (przed asfaltem do Theth). Trans Dinarica liczy etap Bogë–Theth na 27 km i +760 m.
@@ -197,7 +198,7 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 - **Nawierzchnia.** Asfalt: dolina Cem, Vermosh–Gusinje, Rugova–Peja, Theth–Bogë–Koplik. Szuter i zmęczony asfalt: Plav → Čakor. Hike-a-bike: Qafa e Valbonës.
 - **Numer alarmowy:** 112 (Albania, Czarnogóra, Kosowo).
 - **Bunkry i miny.** Bunkry Hoxhy stoją wszędzie i są bezpieczne. Pola minowe to relikt granicy kosowskiej — oznakowane i w zaniku, ale poza szlakami przy granicach nie chodzimy.
-- **Fauna.** Skorpiony i pająki (karakurt, tarantula) — realnie rzadkie, ale patrz gdzie siadasz w kamieniach.
+- **Fauna.** ⚠️ **Żmija nosoroga (Vipera ammodytes)** — najbardziej jadowity wąż Europy, żyje w tych górach; na szlakach wokół Theth ostrzegają wprost. Nie wsadzaj rąk w kamienie, nie łaź po rumoszu w klapkach. Skorpiony i pająki (karakurt, tarantula) — rzadsze.
 
 ## Kilka słów po albańsku
 - Dzień dobry: Mirëdita
@@ -303,6 +304,7 @@ Linki, na których oparte są te notatki, pogrupowane wg tematu.
 - Dangerousroads — droga Shkodra–Theth: https://www.dangerousroads.org/eastern-europe/albania/2050-shkoder-theth-national-park-road.html
 - Atlas Obscura — wieża odosobnienia w Theth: https://www.atlasobscura.com/places/defense-tower-of-theth-albania
 - Wikipedia — albańska krwawa zemsta i Kanun: https://en.wikipedia.org/wiki/Albanian_blood_feud
+- Antek w podróży — Theth (nazwa wieży, żmija nosoroga, dojazd): https://antekwpodrozy.pl/36173-theth-i-gory-przeklete-albania-przewodnik-po-atrakcjach
 
 ## Kosowo — miejsca
 - Visoki Dečani — przewodnik odwiedzającego: https://www.takeyourbackpack.com/backpacking-in-kosovo/visit-visoki-decani-monastery/
@@ -315,4 +317,4 @@ Linki, na których oparte są te notatki, pogrupowane wg tematu.
 - Bracia Gërvalla: https://en.wikipedia.org/wiki/Jusuf_G%C3%ABrvalla
 - Kulla — wieże mieszkalne Bałkanów: https://en.wikipedia.org/wiki/Tower_houses_in_the_Balkans
 
-> Uwaga: linki działały 13.08.2026. Strona antekwpodrozy.pl o Theth zwraca 403 dla botów — otwórz ją ręcznie w przeglądarce. Profil Strava wymaga logowania, więc nie wchodzi do tych notatek.
+> Uwaga: linki działały 13.08.2026. Strona antekwpodrozy.pl zwraca 403 dla botów — czytana ręcznie w przeglądarce.
