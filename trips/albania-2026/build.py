@@ -10,7 +10,7 @@ Usage:
 
 You only edit the note (./tresc.md by default). Files in strona/assets/ are left as-is.
 """
-import os, sys, re, json, math, subprocess, time, datetime
+import os, sys, re, json, math, hashlib, subprocess, time, datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -178,6 +178,17 @@ def build():
               "location.replace('mobile.html'+location.hash);}"
               "}catch(e){}})();</script>")
 
+    def asset(name):
+        """assets/<name>?v=<hash>. GitHub Pages serves assets with max-age=600 and a
+        phone can hold them much longer — without this a CSS change (e.g. the mobile
+        hamburger) keeps losing to a cached style.css. Hash of the file, so the URL
+        only changes when the file does."""
+        try:
+            with open(os.path.join(ASSETS, name), "rb") as f:
+                return f'assets/{name}?v={hashlib.md5(f.read()).hexdigest()[:8]}'
+        except OSError:
+            return f'assets/{name}'
+
     def page(title, desc, body, with_map=False, active="", map_day=None, switch=False):
         head_extra = LCSS if with_map else ""
         extra_links = "".join(
@@ -194,11 +205,11 @@ def build():
                f'<a href="zrodla.html"{" aria-current=page" if active=="zrodla" else ""}>Źródła</a>'
                '<a class="navphone" href="mobile.html">📱 Telefon</a></nav>')
         foot_extra = "".join(f'<a href="{p["slug"]}.html">{p["label"]}</a>' for p in EXTRA if p["html"])
-        scripts = '<script src="assets/site.js" defer></script>'
+        scripts = f'<script src="{asset("site.js")}" defer></script>'
         if with_map:
-            scripts = (LJS + '<script src="assets/route-data.js"></script>'
+            scripts = (LJS + f'<script src="{asset("route-data.js")}"></script>'
                        + f'<script>window.MAP_DAY={map_day if map_day else "null"};</script>'
-                       + '<script src="assets/map.js" defer></script>' + scripts)
+                       + f'<script src="{asset("map.js")}" defer></script>' + scripts)
         return f'''<!doctype html>
 <html lang="pl">
 <head>
@@ -209,7 +220,7 @@ def build():
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="{FONTS}"/>
-<link rel="stylesheet" href="assets/style.css"/>
+<link rel="stylesheet" href="{asset("style.css")}"/>
 {head_extra}
 {SWITCH if switch else ""}
 {COOKIE}
