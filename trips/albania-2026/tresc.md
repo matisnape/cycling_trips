@@ -195,17 +195,63 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 - **Bunkry i miny.** Bunkry Hoxhy stoją wszędzie i są bezpieczne. Pola minowe to relikt granicy kosowskiej — oznakowane i w zaniku, ale poza szlakami przy granicach nie chodzimy.
 - **Fauna.** ⚠️ **Żmija nosoroga (Vipera ammodytes)** — najbardziej jadowity wąż Europy. Zasięg to prawie cały Półwysep Bałkański, **Albania, Kosowo i Czarnogóra włącznie**, do **2000 m n.p.m.**; siedlisko to suche, skaliste zbocza z rzadką roślinnością, czyli dokładnie nasz teren. Na szlakach wokół Theth ostrzegają wprost. Nie wsadzaj rąk w kamienie, nie łaź po rumoszu w klapkach. Skorpiony i pająki (karakurt, tarantula) — rzadsze.
 
-## Kilka słów po albańsku
-- Dzień dobry: Mirëdita
-- Cześć: Përshëndetje
-- Dziękuję: Faleminderit
-- Proszę: Të lutem
-- Tak / Nie: Po / Jo
-- Ile to kosztuje?: Sa kushton?
-- Woda: Ujë
-- Piwo: Birrë
-- Gdzie jest…?: Ku është…?
-- Pomocy!: Ndihmë!
+## Słowniczek albański (z wymową)
+Wymowa uproszczona pod polskie ucho — nie IPA, tylko żeby dało się to wypowiedzieć na postoju. Kilka liter, które inaczej czyta się niż piszą: **ë** = niewyraźne „y" (prawie nieme na końcu słowa), **j** = polskie j, **c** = c, **ç** = cz, **q** = miękkie między ć a ki, **gj** = dź, **x** = dz, **xh** = dż, **ll** = twarde, gardłowe ł, **rr** = mocno rolowane r, **sh** = sz, **zh** = ż, **th** = bezdźwięczne jak angielskie „think", **dh** = dźwięczne jak angielskie „this".
+
+**Podstawy (najbardziej przydatne):**
+- Cześć (nieformalnie): Tung *(tung)*
+- Dzień dobry / Witaj (formalnie): Tungjatjeta *(tundziatjeta)*
+- Dzień dobry (rano): Mirëmëngjes *(mirymyndżes)*
+- Dzień dobry (w ciągu dnia): Mirëdita *(mirydita)*
+- Dobry wieczór: Mirëmbrëma *(mirymbryma)*
+- Do widzenia: Mirupafshim *(mirupafszim)*
+- Dziękuję: Faleminderit *(faleminderit)*
+- Dziękuję bardzo: Shumë faleminderit *(szumy faleminderit)*
+- Proszę: Ju lutem *(ju lutem)*
+- Przepraszam: Më falni *(my falni)*
+- Tak / Nie: Po / Jo *(po / jo)*
+- Nie rozumiem: Nuk kuptoj *(nuk kuptoj)*
+- Czy mówi Pan/Pani po angielsku?: Flisni anglisht? *(flisni angliszt)*
+- Polska: Poloni *(poloni)*
+- Jestem z Polski: Jam nga Polonia *(jam nga polonia)*
+
+**Praktyczne pytania i w drodze:**
+- Ile to kosztuje?: Sa kushton? *(sa kusztonn)*
+- Gdzie jest…?: Ku është…? *(ku yszty)*
+- Jak daleko jest…?: Sa larg është…? *(sa larg yszty)*
+- W prawo / W lewo / Prosto: Djathtas / Majtas / Drejt *(dziathtas / majtas / drejt)*
+- Uwaga!: Kujdes! *(kujdes)*
+- Pomocy!: Ndihmë! *(ndihmy)*
+- Nagły wypadek: Urgjencë *(urdżency)*
+- Szpital: Spital *(spital)*
+
+**Jedzenie i picie:**
+- Woda: Ujë *(ujy)*
+- Kawa: Kafe *(kafe)*
+- Piwo: Birrë *(birry)*
+- Chleb: Bukë *(buky)*
+- Rachunek proszę: Faturën, ju lutem *(faturyn, ju lutem)*
+- Smacznego: Të bëftë mirë *(ty byfty miry)*
+- Zupa: Supë *(supy)*
+
+**W mieście:**
+- Apteka: Farmaci *(farmatsi)*
+- Piekarnia: Furrë buke *(furry buke)*
+- Cukiernia: Ëmbëltore *(ymbyltore)*
+- Toaleta: Tualet *(tualet)*
+- Łazienka: Banjo *(banjo)*
+
+**Liczby 1–10:**
+- 1 — një *(njy)*
+- 2 — dy *(dy)*
+- 3 — tre *(tre)*
+- 4 — katër *(katyr)*
+- 5 — pesë *(pesy)*
+- 6 — gjashtë *(dziaszty)*
+- 7 — shtatë *(sztaty)*
+- 8 — tetë *(tety)*
+- 9 — nëntë *(nynty)*
+- 10 — dhjetë *(dzjety)*
 
 ## Mapy papierowe (do kupienia)
 - Prokletije / Vermoshi / Theth (Huber): https://mapy.net.pl/mapa-skladana-prokletije-vermoshi-theth-huber/12557
