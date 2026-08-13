@@ -24,7 +24,7 @@ interchangeably:
   the changes**. When you're done — **push**. If you use the Obsidian Git plugin
   (see below), it does this for you.
 
-Site address: **https://matisnape.github.io/longinada-albania-2026/**
+Site address: **http://anks.pl/longinada-albania-2026/**
 
 ---
 
