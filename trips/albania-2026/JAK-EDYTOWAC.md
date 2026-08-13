@@ -98,3 +98,23 @@ tabeli punktów `POIS` wpisanej w samym skrypcie.
   `POIS` w `gen_route.py` i uruchom go ponownie.
 - Ręczne dłubanie w `route-data.js` też działa, ale zniknie przy kolejnym
   uruchomieniu skryptu.
+
+## Dwie wersje strony
+
+Build generuje **dwie** wersje z tego samego `tresc.md`:
+
+- `index.html` + `dzien-N.html` + podstrony — **wersja pełna**: interaktywna mapa
+  Leaflet, fonty Google, osobna strona na dzień.
+- `mobile.html` — **jedna strona, w pełni offline**: cały CSS i szkic trasy (SVG)
+  są w środku pliku, zero zapytań do sieci. Dni i sekcje jako zwijane `<details>`.
+
+**Przełączanie.** Na telefonie `index.html` sam przenosi na `mobile.html`
+(wykrywanie po urządzeniu: `pointer:coarse` albo ekran dotykowy + wąski ekran —
+wąskie okno na desktopie zostaje przy wersji pełnej). Link „Wersja pełna z mapą"
+na stronie mobilnej wchodzi na `index.html?full=1` i ten wybór jest pamiętany
+(`localStorage['gp-view']`). Ponowne wejście na `mobile.html` wraca do
+automatu. W nawigacji wersji pełnej jest link „📱 Telefon".
+
+**Zapis offline.** Przycisk „Zapisz tę stronę offline" to zwykły link
+`<a download>` do `mobile.html` — Safari na iPhonie zapisuje plik w Plikach,
+a otwarty z dysku wygląda identycznie (sprawdzone przy wyłączonej sieci).

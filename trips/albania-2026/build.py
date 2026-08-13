@@ -10,7 +10,7 @@ Usage:
 
 You only edit the note (./tresc.md by default). Files in strona/assets/ are left as-is.
 """
-import os, sys, re, subprocess, time, datetime
+import os, sys, re, json, math, subprocess, time, datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -162,7 +162,23 @@ def build():
     COOKIE = ""
     GA = ""
 
-    def page(title, desc, body, with_map=False, active="", map_day=None):
+    # Auto-switch: on a phone, index.html hands over to the single-page offline
+    # version. Never a trap — "?full=1" pins the full version and is remembered,
+    # and mobile.html links back. Inline + in <head> so it runs before first paint.
+    # Detection is device-based (coarse/touch pointer), not window width, so a
+    # narrow desktop window keeps the full site.
+    SWITCH = ("<script>(function(){try{"
+              "var K='gp-view';"
+              "if(/[?&]full=1/.test(location.search)){localStorage.setItem(K,'full');return;}"
+              "if(localStorage.getItem(K)==='full')return;"
+              "var m=window.matchMedia;"
+              "var coarse=m&&m('(pointer:coarse)').matches;"
+              "var narrow=m&&m('(max-width:700px)').matches;"
+              "if(coarse||(navigator.maxTouchPoints>0&&narrow)){"
+              "location.replace('mobile.html'+location.hash);}"
+              "}catch(e){}})();</script>")
+
+    def page(title, desc, body, with_map=False, active="", map_day=None, switch=False):
         head_extra = LCSS if with_map else ""
         extra_links = "".join(
             f'<a href="{p["slug"]}.html"{" aria-current=page" if active==p["slug"] else ""}>{p["label"]}</a>'
@@ -170,7 +186,8 @@ def build():
         nav = ('<nav>'
                f'<a href="index.html"{" aria-current=page" if active=="trasa" else ""}>Trasa</a>'
                + extra_links +
-               f'<a href="zrodla.html"{" aria-current=page" if active=="zrodla" else ""}>Źródła</a></nav>')
+               f'<a href="zrodla.html"{" aria-current=page" if active=="zrodla" else ""}>Źródła</a>'
+               '<a href="mobile.html">📱 Telefon</a></nav>')
         foot_extra = "".join(f'<a href="{p["slug"]}.html">{p["label"]}</a>' for p in EXTRA if p["html"])
         scripts = '<script src="assets/site.js" defer></script>'
         if with_map:
@@ -189,6 +206,7 @@ def build():
 <link rel="stylesheet" href="{FONTS}"/>
 <link rel="stylesheet" href="assets/style.css"/>
 {head_extra}
+{SWITCH if switch else ""}
 {COOKIE}
 {GA}
 </head>
@@ -259,7 +277,7 @@ def build():
     with open(os.path.join(OUT, "index.html"), "w", encoding="utf-8") as f:
         f.write(page("Góry Przeklęte — rowerem wokół Prokletije",
                      "Notatki z 10-dniowej wyprawy rowerowej wokół Gór Przeklętych (Czarnogóra, Kosowo, Albania): 480 km, historia i miejsca dzień po dniu, z interaktywną mapą trasy.",
-                     home, with_map=True, active="trasa"))
+                     home, with_map=True, active="trasa", switch=True))
 
     for i, d in enumerate(DAYS):
         p, n = (DAYS[i-1] if i > 0 else None), (DAYS[i+1] if i < len(DAYS)-1 else None)
@@ -321,11 +339,160 @@ def build():
                          f'{p["title"]} — notatki z wyprawy „Góry Przeklęte”.',
                          body, with_map=False, active=p["slug"]))
 
+    # --- mobile.html: ONE self-contained page, no external requests at all ------
+    # Everything (CSS, route sketch) is inline, so the saved file works offline on
+    # a phone. No fonts, no Leaflet, no tiles — the map is an inline SVG sketch.
+    # ponytail: the "download" button is a plain <a download> to this same file.
+    write_mobile(OUT, DAYS, EXTRA, TOTAL_KM, md, linkify_sources, ensure_list_blanks,
+                 sources_block, gmaps, mapycom)
+
     os.makedirs(ASSETS, exist_ok=True)
     with open(os.path.join(ASSETS, "_buildid.txt"), "w", encoding="utf-8") as f:
         f.write(str(time.time()))
 
     return {"days": len(DAYS), "km": TOTAL_KM, "cuisine": len([c for c in cuisine if c[0]])}
+
+
+def route_svg(width=680, height=440, pad=14):
+    """Inline SVG sketch of the route from strona/assets/route-data.js (no tiles)."""
+    path = os.path.join(ASSETS, "route-data.js")
+    if not os.path.exists(path):
+        return ""
+    with open(path, encoding="utf-8") as f:
+        raw = f.read()
+    try:
+        data = json.loads(raw[raw.index("{"):raw.rindex("}") + 1])
+    except Exception:
+        return ""
+    pts = [(float(la), float(lo)) for la, lo in data.get("route", [])]
+    if len(pts) < 2:
+        return ""
+    lats = [p[0] for p in pts]; lons = [p[1] for p in pts]
+    la0, la1, lo0, lo1 = min(lats), max(lats), min(lons), max(lons)
+    # crude mercator-ish correction so the shape isn't stretched at 42°N
+    kx = math.cos(math.radians((la0 + la1) / 2))
+    w, h = (lo1 - lo0) * kx, (la1 - la0)
+    scale = min((width - 2 * pad) / w, (height - 2 * pad) / h)
+    ox = (width - w * scale) / 2
+    oy = (height - h * scale) / 2
+
+    def xy(la, lo):
+        return (ox + (lo - lo0) * kx * scale, height - oy - (la - la0) * scale)
+
+    line = " ".join("%.1f,%.1f" % xy(la, lo) for la, lo in pts)
+    dots = "".join('<circle cx="%.1f" cy="%.1f" r="3.2"/>' % xy(p["lat"], p["lon"])
+                   for p in data.get("pois", []) if p.get("day") != 5)
+    return (f'<svg viewBox="0 0 {width} {height}" role="img" '
+            'aria-label="Szkic trasy — pętla wokół Gór Przeklętych">'
+            f'<polyline points="{line}" fill="none" stroke="currentColor" '
+            'stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'
+            f'<g class="poi">{dots}</g></svg>')
+
+
+def write_mobile(out, days, extra, total_km, md, linkify_sources, ensure_list_blanks,
+                 sources_block, gmaps, mapycom):
+    css = """
+:root{--bg:#fbfcfb;--fg:#1c211f;--mut:#5d6763;--acc:#2f6e78;--line:#dfe4e1;--card:#fff}
+@media (prefers-color-scheme:dark){
+ :root{--bg:#14181a;--fg:#e8ecea;--mut:#9daaa5;--acc:#7fc6cf;--line:#2b3235;--card:#1a1f21}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+ -webkit-text-size-adjust:100%;padding:0 16px 64px;max-width:44rem;margin:0 auto}
+h1{font-size:1.9rem;line-height:1.15;margin:24px 0 4px;letter-spacing:-.02em}
+h2{font-size:1.15rem;margin:32px 0 8px;padding-top:16px;border-top:1px solid var(--line)}
+h3{font-size:1rem;margin:18px 0 6px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+p,ul,ol{margin:8px 0}
+ul,ol{padding-left:1.2em}
+li{margin:5px 0}
+a{color:var(--acc);text-underline-offset:2px}
+.sub{color:var(--mut);margin:0 0 14px}
+.facts{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px;list-style:none;padding:0}
+.facts li{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:.85rem}
+.save{display:block;background:var(--acc);color:var(--bg);text-align:center;font-weight:600;
+ text-decoration:none;padding:14px;border-radius:12px;margin:18px 0 6px}
+.hint{color:var(--mut);font-size:.85rem;margin:0 0 8px}
+.map{color:var(--acc);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;margin:16px 0}
+.map svg{display:block;width:100%;height:auto}
+.map .poi{fill:currentColor;opacity:.75}
+details{border:1px solid var(--line);border-radius:12px;background:var(--card);margin:8px 0;overflow:hidden}
+summary{cursor:pointer;padding:13px 14px;font-weight:600;display:flex;gap:10px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary .n{color:var(--acc);font-variant-numeric:tabular-nums;font-size:.8rem;white-space:nowrap}
+summary .km{margin-left:auto;color:var(--mut);font-size:.82rem;white-space:nowrap}
+details>div{padding:0 14px 14px}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+blockquote{margin:12px 0;padding:10px 14px;border-left:3px solid var(--acc);background:var(--card);color:var(--mut);font-size:.92rem}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+table{width:100%;border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto}
+td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}
+footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--mut);font-size:.85rem}
+.switch{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0 0;font-size:.85rem;color:var(--mut)}
+.switch span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.switch a{margin-left:auto;font-weight:600;text-decoration:none}
+"""
+    blocks = []
+    for d in days:
+        body = (d["summary_html"] or "") + (d["places_html"] or "")
+        blocks.append(
+            f'<details id="dzien-{d["num"]}"><summary>'
+            f'<span class="n">D{d["num"]} · {d["date"]}</span>'
+            f'<span>{d["route"]}</span>'
+            f'<span class="km">{d["km"]} km</span></summary><div>{body}</div></details>')
+    for p in extra:
+        if p["html"]:
+            blocks.append(f'<details id="{p["slug"]}"><summary><span>{p["title"]}</span>'
+                          f'</summary><div>{p["html"]}</div></details>')
+    src = md(linkify_sources(ensure_list_blanks(re.sub(r"^>.*$", "", sources_block, flags=re.MULTILINE))))
+    blocks.append(f'<details id="zrodla"><summary><span>Źródła i linki</span></summary><div>{src}</div></details>')
+
+    # Opening this page (not via the "?full=1" link) means "phone version is what I
+    # want" — index.html reads the same key and hands over automatically next time.
+    # Kept out of the f-string below so the JS braces need no escaping.
+    remember = ("<script>(function(){try{"
+                "if(!/[?&]full=1/.test(location.search))"
+                "localStorage.setItem('gp-view','mobile');"
+                "}catch(e){}})();</script>")
+
+    html = f'''<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Góry Przeklęte — wersja offline</title>
+{remember}
+<meta name="description" content="Cała wyprawa na jednej stronie, bez internetu: plan dzień po dniu, praktyczne informacje, ciekawostki."/>
+<style>{css}</style>
+</head>
+<body>
+<nav class="switch"><span>Wersja na telefon</span><a href="index.html?full=1">Wersja pełna z mapą →</a></nav>
+<h1>Góry Przeklęte</h1>
+<p class="sub">Czarnogóra · Kosowo · Albania — 14–23.08.2026</p>
+<ul class="facts">
+  <li><b>{len(days)}</b> dni</li><li><b>{total_km}</b> km</li>
+  <li><b>+8394</b> m</li><li>Čakor 1840 m</li><li>Qafa e Valbonës 1795 m</li>
+</ul>
+
+<a class="save" href="mobile.html" download="gory-przeklete-offline.html">⬇︎ Zapisz tę stronę offline</a>
+<p class="hint"><b>iPhone:</b> dotknij przycisku → „Pobierz". Plik ląduje w <b>Plikach → Pobrane</b> i otwiera się w Safari bez internetu.
+Alternatywnie: <b>Udostępnij → Zapisz w Plikach</b>. Cała strona to jeden plik — zero zewnętrznych fontów, skryptów i kafelków mapy, więc offline wygląda tak samo.</p>
+
+<div class="map">{route_svg()}</div>
+<p class="hint">Szkic trasy ze śladu GPS (bez podkładu — działa offline). Kropki to punkty z planu; dzień busowy po Kosowie pominięty.
+Mapy online: <a href="{gmaps}">Google</a> · <a href="{mapycom}">mapy.com</a></p>
+
+<h2>Plan dzień po dniu</h2>
+{"".join(blocks[:len(days)])}
+
+<h2>Reszta</h2>
+{"".join(blocks[len(days):])}
+
+<footer>Longinada 2026 · <a href="index.html?full=1">wersja pełna z interaktywną mapą</a><br>
+Na telefonie strona główna sama przenosi tutaj. Otwarcie wersji pełnej jest pamiętane w tej przeglądarce; wejście na tę stronę wraca do wersji telefonowej.</footer>
+</body>
+</html>
+'''
+    with open(os.path.join(out, "mobile.html"), "w", encoding="utf-8") as f:
+        f.write(html)
 
 
 def snapshot():
