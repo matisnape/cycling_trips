@@ -22,14 +22,14 @@ end: 2026-08-23
 # Klucz do wyjazdu — „Góry Przeklęte"
 Trasa to **pętla wokół jednego pasma**: Prokletije, po albańsku **Bjeshkët e Nemuna**, po polsku Góry Przeklęte. Startujemy i kończymy w Podgoricy, a przez osiem dni okrążamy masyw z trzech stron — czarnogórskiej, kosowskiej i albańskiej — przekraczając go dwa razy: raz przez **przełęcz Čakor (1846 m)**, gdzie nocujemy, raz przez **Qafa e Valbonës (~1795 m)**, którą idziemy z buta.
 
-To pasmo, które przez większość XX wieku było praktycznie zamknięte: granica trzech państw, bunkry Hoxhy, brak dróg. Stąd zwarty zestaw rzeczy, których nie ma nigdzie indziej w Europie — i to jest właściwy klucz do tego wyjazdu:
+Przez większość XX wieku pasmo było trudno dostępne: granica trzech państw, bunkry Hoxhy, brak dróg. Charakterystyczne dla regionu są:
 
-- **prawo zwyczajowe Kanunu** (wieże odosobnienia, krwawa zemsta, „dziewice kanun") →
-- **kulla** — obronna wieża mieszkalna niziny Dukagjini →
-- **serbskie monastery pod ochroną KFOR** (Patriarchat w Peć, Visoki Dečani) →
-- **pamięć wojny 1998–99** (Gjakova, Fortesë, Gazimestan) →
-- **młode Kosowo** (NEWBORN, Prisztina) →
-- **turystyczne odrodzenie Theth i Valbony** po asfalcie z 2021 roku.
+- **Kanun** — prawo zwyczajowe: krwawa zemsta, wieże odosobnienia, „dziewice Kanunu".
+- **Kulla** — obronne wieże mieszkalne niziny Dukagjini.
+- **Serbskie monastery pod ochroną KFOR** — Patriarchat w Peći, Visoki Dečani.
+- **Wojna 1998–99** — Gjakova, Fortesë i miejsca pamięci.
+- **Młode Kosowo** — NEWBORN, pomnik-napis w Prisztinie odsłonięty w dniu ogłoszenia niepodległości w 2008 r.; symbol nowego państwa.
+- **Theth i Valbona** — szybki rozwój turystyki po poprawie dostępu drogowego.
 
 Każdy dzień poniżej ma na dole „Miejsca i historia" — do przypomnienia sobie na postoju, co właściwie oglądamy.
 
@@ -340,7 +340,7 @@ Wspólny mianownik wszystkich wersji to **realny brak wody** — pasmo jest such
 - **National Geographic** wsadził Alpy Albańskie na **1. miejsce „The Cool List 2024"**.
 - Tereny górzyste — **góry i wyżyny zajmują ok. 70–75% powierzchni Albanii**.
 - **Kanun** — tradycyjny albański zbiór norm prawa zwyczajowego regulujący m.in. rodzinę, własność, gościnność i konflikty: honor (**besa** — zobowiązanie oparte na słowie i honorze; jego złamanie było poważnym naruszeniem norm społecznych) i **gjakmarrja** — „branie krwi", czyli zemsta rodowa za zabójstwo członka rodziny. Za komuny formalnie zniesiony, po 1991 lokalnie wrócił.
-- **Burrneshat, „dziewice kanun"** — kobiety, które przyjmowały społeczną rolę mężczyzny (dziedziczenie, obrona domu, prawo głosu w odzie), składając przysięgę dziewictwa. Zjawisko unikalne w Europie, dziś praktycznie wymarłe.
+- **Burrneshat, „dziewice Kanunu"** — kobiety, które przyjmowały społeczną rolę mężczyzny (dziedziczenie, obrona domu, prawo głosu w odzie), składając przysięgę dziewictwa. Zjawisko unikalne w Europie, dziś praktycznie wymarłe.
 - **Jerzy Kastriota Skanderbeg** — XV-wieczny władca i dowódca, który przez ponad 20 lat przewodził oporowi przeciwko Imperium Osmańskiemu. Imię pochodzi od osmańskiego İskender Bey, czyli „Aleksander Bej"; **bej** to osmański tytuł nadawany m.in. urzędnikom, dowódcom i lokalnym możnym.
 - **George W. Bush** — w 2007 r. jako pierwszy urzędujący prezydent USA odwiedził Albanię; w Fushë-Krujë stoi jego pomnik.
 - **Język albański** to **osobna gałąź rodziny indoeuropejskiej** — nie ma bliskiego żywego krewnego. Stąd zupełnie „nieprzezroczyste" słownictwo.
