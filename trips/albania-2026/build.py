@@ -455,20 +455,29 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
  padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line)}
 .navbar>*{background:var(--card);border:1px solid var(--line);border-radius:12px;color:var(--fg);
  font:inherit;padding:12px 8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.nav-a{flex:0 0 3.5rem;font-size:1.15rem;line-height:1}
+/* Arrows need JS to know which section you are in, so they stay hidden until the
+   inline script marks the page — a downloaded file previewed without JS (iOS Quick
+   Look) then shows just the section list, which works on the checkbox alone. */
+.nav-a{display:none;flex:0 0 3.5rem;font-size:1.15rem;line-height:1}
+.js .nav-a{display:block}
 .nav-c{flex:1;min-width:0;font-size:.9rem;font-weight:600;text-align:center;
- overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+ text-decoration:none;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .navbar>*:active{background:var(--acc);color:var(--bg);border-color:var(--acc)}
-/* Sheet opens on a checkbox, so the list still works if the JS ever fails. */
-.sheet-t{position:absolute;width:0;height:0;opacity:0;pointer-events:none}
-.sheet-back{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.45);
- opacity:0;pointer-events:none;transition:opacity .2s}
-.sheet-t:checked~.sheet-back{opacity:1;pointer-events:auto}
-.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;max-height:78vh;overflow-y:auto;
+/* The sheet runs on :target, not on JS — a downloaded file previewed without
+   JavaScript (iOS Quick Look does that) still has to navigate. Picking a section
+   moves the hash off #sekcje, which closes the sheet and jumps in one tap. */
+/* The :target hook is a zero-size marker pinned to the viewport, not the panel
+   itself — jumping to a full-screen element makes the browser nudge the page. */
+.sheet-anchor{position:fixed;top:0;left:0;width:0;height:0}
+.sheet-wrap{position:fixed;inset:0;z-index:20;pointer-events:none}
+#sekcje:target~.sheet-wrap{pointer-events:auto}
+.sheet-back{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .2s}
+#sekcje:target~.sheet-wrap .sheet-back{opacity:1}
+.sheet{position:absolute;left:0;right:0;bottom:0;max-height:78vh;overflow-y:auto;
  -webkit-overflow-scrolling:touch;background:var(--card);border-top:1px solid var(--line);
  border-radius:16px 16px 0 0;transform:translateY(101%);transition:transform .25s ease;
  padding-bottom:env(safe-area-inset-bottom)}
-.sheet-t:checked~.sheet{transform:translateY(0)}
+#sekcje:target~.sheet-wrap .sheet{transform:translateY(0)}
 .sheet-in{padding:0 16px 12px}
 .sheet-hd{position:sticky;top:0;background:var(--card);display:flex;align-items:center;
  justify-content:space-between;padding:14px 0 8px;font-weight:600}
@@ -498,7 +507,10 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
     # Opening this page (not via the "?full=1" link) means "phone version is what I
     # want" — index.html reads the same key and hands over automatically next time.
     # Kept out of the f-string below so the JS braces need no escaping.
-    remember = ("<script>(function(){try{"
+    # The js class gates the arrows (see .nav-a in the CSS). Set in <head> so they
+    # never flash in a preview that will not run the rest of the script.
+    remember = ("<script>document.documentElement.className+=' js';"
+                "(function(){try{"
                 "if(!/[?&]full=1/.test(location.search))"
                 "localStorage.setItem('gp-view','mobile');"
                 "}catch(e){}})();</script>")
@@ -516,17 +528,20 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
         f'<a href="#{i}"><span class="s-n">{n}</span>'
         f'<span class="s-t">{t}</span><span class="s-k">{k}</span></a>'
         for i, n, t, k in nav_items)
+    # "#zamknij" matches no element on purpose: the hash stops matching #sekcje, so
+    # the sheet closes and the page stays exactly where it was.
     navbar = (
-        '<input type="checkbox" id="sheet-t" class="sheet-t"/>'
-        '<label class="sheet-back" for="sheet-t" aria-hidden="true"></label>'
-        '<nav class="sheet" aria-label="Spis sekcji"><div class="sheet-in">'
-        '<div class="sheet-hd">Skocz do sekcji<label class="sheet-x" for="sheet-t">✕</label></div>'
-        f'{sheet_links}</div></nav>'
         '<div class="navbar">'
         '<button type="button" class="nav-a" data-go="-1" aria-label="Poprzednia sekcja">←</button>'
-        '<button type="button" class="nav-c" id="nav-c">Sekcje ▾</button>'
+        '<a class="nav-c" id="nav-c" href="#sekcje">Sekcje ▾</a>'
         '<button type="button" class="nav-a" data-go="1" aria-label="Następna sekcja">→</button>'
-        '</div>')
+        '</div>'
+        '<span class="sheet-anchor" id="sekcje" aria-hidden="true"></span>'
+        '<div class="sheet-wrap">'
+        '<a class="sheet-back" href="#zamknij" aria-label="Zamknij spis"></a>'
+        '<nav class="sheet" aria-label="Spis sekcji"><div class="sheet-in">'
+        '<div class="sheet-hd">Skocz do sekcji<a class="sheet-x" href="#zamknij">✕</a></div>'
+        f'{sheet_links}</div></nav></div>')
 
     # Anchors into a <details> only scroll to it, they don't expand it — open it
     # ourselves so a jump actually reveals the section instead of a closed card.
@@ -535,7 +550,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
     labels = json.dumps([(f"{n} · {t}" if n else t) for _i, n, t, _k in nav_items], ensure_ascii=False)
     jumpnav = ("<script>(function(){"
                f"var IDS={ids},LAB={labels};"
-               "var cap=document.getElementById('nav-c'),tog=document.getElementById('sheet-t');"
+               "var cap=document.getElementById('nav-c');"
                "function el(id){return document.getElementById(id);}"
                "function open_(id){var e=el(id);if(e&&e.tagName==='DETAILS')e.open=true;return e;}"
                "function cur(){"
@@ -551,9 +566,8 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
                "document.addEventListener('click',function(ev){"
                "var b=ev.target.closest('[data-go]');"
                "if(b){go(+b.getAttribute('data-go'));return;}"
-               "if(ev.target.closest('#nav-c')){tog.checked=!tog.checked;return;}"
                "var a=ev.target.closest('.sheet a[href^=\"#\"]');"
-               "if(a){tog.checked=false;open_(a.getAttribute('href').slice(1));}"
+               "if(a)open_(a.getAttribute('href').slice(1));"
                "});"
                "var wait=false;addEventListener('scroll',function(){if(wait)return;wait=true;"
                "requestAnimationFrame(function(){paint();wait=false;});},{passive:true});"
@@ -572,7 +586,6 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 <style>{css}</style>
 </head>
 <body>
-{navbar}
 <nav class="switch"><a href="index.html?full=1">🗺 Wersja pełna z mapą</a></nav>
 <h1 id="top">Góry Przeklęte</h1>
 <p class="sub">Czarnogóra · Kosowo · Albania — 14–23.08.2026</p>
@@ -597,6 +610,7 @@ Mapy online: <a href="{gmaps}">Google</a> · <a href="{mapycom}">mapy.com</a></p
 
 <footer>Longinada 2026 · <a href="index.html?full=1">wersja pełna z interaktywną mapą</a><br>
 Na telefonie strona główna sama przenosi tutaj. Otwarcie wersji pełnej jest pamiętane w tej przeglądarce; wejście na tę stronę wraca do wersji telefonowej.</footer>
+{navbar}
 {jumpnav}
 </body>
 </html>
