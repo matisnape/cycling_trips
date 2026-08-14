@@ -55,7 +55,7 @@ POIS = [
  (5, "Bajram Curri",           42.3639, 20.0773, "Brama do Tropoji, ojczyzna plemienia Krasniqi."),
  (5, "Dragobi",                42.4253, 19.9991, "Wjazd w dolinę Valbony wzdłuż rzeki."),
  (5, "Valbonë",                42.4473, 19.8864, "Park Narodowy Valbona. Nad doliną Maja e Jezercës — 2694 m, najwyższy szczyt Dynarów."),
- (6, "Qafa e Valbonës",        42.4078, 19.8143, "~1795 m. Dawny szlak mulasi Shala–Nikaj. 6–8 h pieszo, rower się PROWADZI."),
+ (6, "Qafa e Valbonës",        42.4078, 19.8143, "~1795 m. Dawny szlak mulasi Shala–Nikaj. 6–8 h, cały odcinek z buta."),
  (6, "Theth",                  42.4007, 19.7678, "Kulla e ngujimit (wieża odosobnienia, 200 lek), kościół z 1892 r., Park Narodowy od 1966."),
  (7, "Wodospad Grunas",        42.3930, 19.7720, "25 m, 30 min płaskim szlakiem wzdłuż rzeki. Przed 9:00 bez tłumów."),
  (7, "Qafa e Thorës",          42.3868, 19.7358, "~1680 m. Asfalt od 2021. Pomniki Ferenca Nopcsy i Edith Durham."),

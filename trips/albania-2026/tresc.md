@@ -1,8 +1,8 @@
 ---
 tags:
   - longinada
-start: 2026-08-15
-end: 2026-08-22
+start: 2026-08-14
+end: 2026-08-23
 ---
 # Meta
 - Opis: Longinada 2026 — pętla rowerowa przez Góry Przeklęte (Czarnogóra, Kosowo, Albania), 481 km, +8346 m
@@ -33,6 +33,8 @@ To pasmo, które przez większość XX wieku było praktycznie zamknięte: grani
 
 Każdy dzień poniżej ma na dole „Miejsca i historia" — do przypomnienia sobie na postoju, co właściwie oglądamy.
 
+**14 i 23.08 to dni dojazdowe** — dotarcie na miejsce i powrót. Plan poniżej obejmuje osiem dni na trasie, **15–22.08**, i tylko one mają swoje strony.
+
 Liczby są policzone ze śladu `albania.gpx` (24 506 punktów) i pociętego na etapy według **naszych faktycznych noclegów**: **481 km, +8346 m**, najwyżej 1846 m na Čakorze, najniżej 10 m w Shkodrze.
 
 ---
@@ -51,9 +53,10 @@ Liczby są policzone ze śladu `albania.gpx` (24 506 punktów) i pociętego na e
 ## Dzień 2: Niedziela, 16.08.2026, Tamarë > Čakor (77km)
 - **+2418 m — najcięższy dzień wyjazdu.** Dwie przełęcze i nocleg na drugiej z nich
 - Najpierw **1348 m** nad Lepushë, zjazd do Vermosh (1049 m), przejście graniczne **Baškim – Grnčar** (czynne 24/7), Gusinje i Plav
-- Potem 930 m podjazdu na **Čakor (1846 m)** — nocleg przy **Spomen česma**, na samej przełęczy
+- Potem 930 m podjazdu na **Čakor (1846 m)** — **biwak pod namiotem** przy **Spomen česma**, na samej przełęczy
 - ⚠️ Wyjazd o świcie — nie z powodu kilometrów, tylko pogody: na przełęcz najlepiej wjechać przed popołudniowymi burzami. Jeśli od zachodu ciągnie, zostajemy w **Plavie (km 83)** i śpimy niżej
-- ⚠️ Nocleg na 1846 m: w sierpniu noce schodzą do kilku stopni, ciepłe rzeczy na wierzch bagażu
+- ⚠️ **Biwak na 1846 m**: w sierpniu noce schodzą tam do kilku stopni, a to gołe siodło przełęczy — żadnego zaplecza, sklepu ani schronienia przed wiatrem. Ciepłe rzeczy na wierzch bagażu, kolację wieziemy ze sobą (ostatnie zakupy w **Plavie**)
+- **Woda:** „česma" to studnia/źródło z kranem, więc przy biwaku powinna być — ale Prokletije są suche, więc bidony napełniamy w Plavie i tak
 
 ### Miejsca i historia
 - **Lepushë i Vermosh.** Najbardziej północne wioski Albanii, w dolinie rzeki Vermosh. Vermosh przez dekady był końcem świata: strefa przygraniczna, do której obcy nie mieli wstępu. Dziś to pierwszy etap oficjalnej trasy **Trans Dinarica** (Gusinje–Tamarë, 38 km, 100 % asfaltu).
@@ -99,7 +102,8 @@ Liczby są policzone ze śladu `albania.gpx` (24 506 punktów) i pociętego na e
 ## Dzień 5: Środa, 19.08.2026, Gjakova > Valbona (76km)
 - +1414 m. Przejście graniczne **Morinë** (Kosowo → Albania), potem Bajram Curri i wjazd w dolinę
 - Wjazd w **Tropoję** — najbardziej odizolowany region północnej Albanii
-- Meta: **Valbona, 995 m** — jutro przełęcz z buta, więc warto dojechać z zapasem sił
+- Meta: **Valbona, 995 m**, drugi **biwak pod namiotem** — jutro przełęcz z buta, więc warto dojechać z zapasem sił
+- Ostatnie porządne zakupy w **Bajram Curri** (km 49) — dalej dolina i pensjonaty, nie sklepy
 
 ### Miejsca i historia
 - **Bajram Curri.** Miasto nazwane od **Bajrama Curriego** (1862–1925), przywódcy albańskiego ruchu narodowego z Tropoji, zabitego w walce z siłami Ahmeta Zogu. Miasteczko jest bramą do doliny Valbony i typowym „końcem drogi": dalej tylko góry.
@@ -110,7 +114,7 @@ Liczby są policzone ze śladu `albania.gpx` (24 506 punktów) i pociętego na e
 ## Dzień 6: Czwartek, 20.08.2026, Valbona > Theth (16km)
 - +952 m i tylko 16 km, ale **cały dzień z buta** — to nie jest etap rowerowy
 - **Qafa e Valbonës (~1795 m) to szlak pieszy** — 6–8 h. Kamieniste zejście męczące dla kolan
-- Start rano, woda z zapasem, na przełęczy nie ma nic
+- Start rano, woda z zapasem, na przełęczy nie ma nic — cały odcinek pokonujemy pieszo
 
 ### Miejsca i historia
 - **Szlak Valbona → Theth.** Dawny **szlak mulasi** łączący plemienne regiony **Shala** (Theth) i **Nikaj** (Valbona) — istniał na długo przed turystyką. Dziś najpopularniejszy trekking Albanii i element sieci **Peaks of the Balkans**. Latem bez trudności technicznych; wiosną i przy śniegu groźny.
@@ -187,6 +191,7 @@ Liczby są policzone ze śladu `albania.gpx` (24 506 punktów) i pociętego na e
 - **Woda.** Prokletije są suche — wapień, woda ucieka pod ziemię. Na podjazdach i przełęczach nie ma gdzie dolać, więc nabieraj w każdej wiosce, którą mijasz, nawet przy półpełnym bidonie.
 - **Sezon.** Čakor i Qafa e Thorës są zimą zamknięte. Sierpień jest OK, ale licz się z burzami po południu — na przełęcze wychodź rano.
 - **Nawierzchnia.** Asfalt: dolina Cem, Vermosh–Gusinje, Rugova–Peja, Theth–Bogë–Koplik. Szuter i zmęczony asfalt: Plav → Čakor. Z buta: Qafa e Valbonës.
+- **Biwaki.** Dwie noce pod namiotem: **Čakor (1846 m)** i **Valbona (995 m)**. Na Čakorze licz się z kilkoma stopniami nad ranem i brakiem jakiegokolwiek zaplecza. Pozostałe noce: Te Cemi, Gjakova (dwie) i Theth pod dachem.
 - **Numer alarmowy:** 112 (Albania, Czarnogóra, Kosowo).
 - **Bunkry i miny.** Bunkry Hoxhy stoją wszędzie i są bezpieczne. Pola minowe to relikt granicy kosowskiej — oznakowane i w zaniku, ale poza szlakami przy granicach nie chodzimy.
 - **Fauna.** ⚠️ **Żmija nosoroga (Vipera ammodytes)** — najbardziej jadowity wąż Europy. Zasięg to prawie cały Półwysep Bałkański, **Albania, Kosowo i Czarnogóra włącznie**, do **2000 m n.p.m.**; siedlisko to suche, skaliste zbocza z rzadką roślinnością, czyli dokładnie nasz teren. Na szlakach wokół Theth ostrzegają wprost. Nie wsadzaj rąk w kamienie, nie łaź po rumoszu w klapkach. Skorpiony i pająki (karakurt, tarantula) — rzadsze.

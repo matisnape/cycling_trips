@@ -4193,7 +4193,7 @@ window.TRIP = {
    "name": "Qafa e Valbonës",
    "lat": 42.4078,
    "lon": 19.8143,
-   "blurb": "~1795 m. Dawny szlak mulasi Shala–Nikaj. 6–8 h pieszo, rower się PROWADZI.",
+   "blurb": "~1795 m. Dawny szlak mulasi Shala–Nikaj. 6–8 h, cały odcinek z buta.",
    "url": "dzien-6.html"
   },
   {

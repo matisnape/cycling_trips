@@ -268,7 +268,7 @@ def build():
 
     home = f'''
 <section class="wrap hero">
-  <p class="eyebrow">Czarnogóra · Kosowo · Albania — 15–22.08.2026</p>
+  <p class="eyebrow">Czarnogóra · Kosowo · Albania — 14–23.08.2026</p>
   <h1>Góry<br>Przeklęte</h1>
   <p class="lede">Osiem dni rowerem wokół Prokletije — przez dolinę Cem, Čakor, kanion Rugova, Valbonę i Theth, z powrotem do Podgoricy.</p>
   <div class="facts">
@@ -613,7 +613,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 <body>
 <nav class="switch"><a href="index.html?full=1">🗺 Wersja pełna z mapą</a></nav>
 <h1 id="top">Góry Przeklęte</h1>
-<p class="sub">Czarnogóra · Kosowo · Albania — 15–22.08.2026</p>
+<p class="sub">Czarnogóra · Kosowo · Albania — 14–23.08.2026</p>
 <ul class="facts">
   <li><b>{len(days)}</b> dni</li><li><b>{total_km}</b> km</li>
   <li><b>+8346</b> m</li><li>Čakor 1846 m</li><li>Qafa e Valbonës 1795 m</li>
