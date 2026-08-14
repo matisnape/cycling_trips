@@ -77,7 +77,7 @@ Liczby są policzone ze śladu `albania.gpx` (24 506 punktów) i pociętego na e
 - **Gjakova (Djakovica).** Za Osmanów ważny węzeł handlowy na trasie Szkodra–Konstantynopol; XVII-wieczni podróżnicy (Evliya Çelebi, Katip Çelebi) opisywali ~2000 domów i 300 sklepów.
     - **Çarshia e Madhe (Wielki Bazar)** — najstarszy i jeden z największych bazarów Kosowa, **ponad 1 km długości**, zbudowany wokół meczetu Hadum (1594). Spalony w 1999 r., odbudowany.
     - Gmina straciła **361 potwierdzonych ofiar walk i ponad 1000 cywilów** w wojnie 1998–99; szczyt strat 7–11 maja 1999.
-    - ⚠️ Dwa punkty z mapy Google się nie potwierdziły: **„Gërvalla Museum"** (dom-muzeum braci Gërvalla powstaje w Burrëmadh/Dubovik w gminie Deçan, nie w Gjakovie — tu najwyżej tablica) i **„Kulla Historike e Familjes Krasniqi"** (nie ma jej w spisie 161 zabytków Gjakovy).
+    - Dwa punkty zaznaczone przez Longina leżą nie w samej Gjakovie, tylko ok. 20 km na północ, w okolicach Deçan — czyli po drodze dnia 3. **„Gërvalla Museum"** (dom-muzeum braci Gërvalla w Burrëmadh/Dubovik) wypada **2,3 km od trasy**, **„Kulla Historike e Familjes Krasniqi"** 7,4 km. Trasa jest orientacyjna, więc kto chce, może tam odbić.
 
 ## Dzień 4: Wtorek, 18.08.2026, Gjakova > Kosowo busem > Gjakova (0km)
 - Dzień bez roweru. Wszystkie punkty tego dnia leżą **14–68 km od śladu rowerowego** — dlatego bus
@@ -125,6 +125,7 @@ Liczby są policzone ze śladu `albania.gpx` (24 506 punktów) i pociętego na e
 - +1054 m, **Qafa e Thorës ~1680 m** — asfalt od 2021, jedna z najładniejszych dróg Albanii (SH20)
 - Po przełęczy długi zjazd przez Bogë i Koplik na nizinę: z 848 m do 10 m n.p.m.
 - ⚠️ Ranek w Theth trzeba sobie odpuścić albo mocno skrócić — przed nami 89 km, a jutro najdłuższy dzień wyjazdu
+- ⚠️ **Nocleg tego dnia nie jest jeszcze ustalony.** Shkodra to podział, przy którym oba ostatnie dni wychodzą wykonalnie (89 km dziś, 109 jutro). Jeśli zatrzymamy się wcześniej — Koplik — jutro robi się 139 km; jeśli dalej, za Shkodrą, jutro spada do ok. 79 km
 
 ### Miejsca i historia
 - **Co warto w Theth przed odjazdem:**
