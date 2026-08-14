@@ -447,6 +447,12 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 .switch span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
 /* Switch link first and left-aligned — same corner as the .viewbar link in the full version. */
 .switch a{font-weight:600;text-decoration:none;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
+.quicknav{position:sticky;top:0;z-index:10;display:flex;gap:6px;overflow-x:auto;
+ -webkit-overflow-scrolling:touch;white-space:nowrap;padding:10px 16px;margin:0 -16px;background:var(--bg);
+ border-bottom:1px solid var(--line)}
+.quicknav a{flex:0 0 auto;background:var(--card);border:1px solid var(--line);border-radius:999px;
+ padding:6px 12px;font-size:.82rem;font-weight:600;text-decoration:none;color:var(--fg)}
+.quicknav a:active{background:var(--acc);color:var(--bg);border-color:var(--acc)}
 """
     blocks = []
     for d in days:
@@ -471,6 +477,23 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
                 "localStorage.setItem('gp-view','mobile');"
                 "}catch(e){}})();</script>")
 
+    # Sticky quick-jump bar so a section is one tap away without scrolling through
+    # everything — data-driven off `extra` the same way the desktop nav is.
+    nav_extra = "".join(f'<a href="#{p["slug"]}">{p["label"]}</a>' for p in extra if p["html"])
+    quicknav = (f'<header class="quicknav"><a href="#top">↑ Góra</a><a href="#mapa">Mapa</a>'
+                f'<a href="#plan">Plan</a>{nav_extra}<a href="#zrodla">Źródła</a></header>')
+    # Anchors into a <details> only scroll to it, they don't expand it — open it
+    # ourselves so the tap actually reveals the section instead of a closed card.
+    jumpnav = ("<script>(function(){"
+               "function openIfDetails(id){var el=document.getElementById(id);"
+               "if(el&&el.tagName==='DETAILS')el.open=true;}"
+               "if(location.hash)openIfDetails(location.hash.slice(1));"
+               "document.addEventListener('click',function(e){"
+               "var a=e.target.closest('.quicknav a[href^=\"#\"]');"
+               "if(!a)return;openIfDetails(a.getAttribute('href').slice(1));"
+               "});"
+               "})();</script>")
+
     html = f'''<!doctype html>
 <html lang="pl">
 <head>
@@ -482,8 +505,9 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 <style>{css}</style>
 </head>
 <body>
+{quicknav}
 <nav class="switch"><a href="index.html?full=1">🗺 Wersja pełna z mapą</a></nav>
-<h1>Góry Przeklęte</h1>
+<h1 id="top">Góry Przeklęte</h1>
 <p class="sub">Czarnogóra · Kosowo · Albania — 14–23.08.2026</p>
 <ul class="facts">
   <li><b>{len(days)}</b> dni</li><li><b>{total_km}</b> km</li>
@@ -494,11 +518,11 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 <p class="hint"><b>iPhone:</b> dotknij przycisku → „Pobierz". Plik ląduje w <b>Plikach → Pobrane</b> i otwiera się w Safari bez internetu.
 Alternatywnie: <b>Udostępnij → Zapisz w Plikach</b>. Cała strona to jeden plik — zero zewnętrznych fontów, skryptów i kafelków mapy, więc offline wygląda tak samo.</p>
 
-<div class="map">{route_svg()}</div>
+<div class="map" id="mapa">{route_svg()}</div>
 <p class="hint">Szkic trasy ze śladu GPS (bez podkładu — działa offline). Kropki to punkty z planu; dzień busowy po Kosowie pominięty.
 Mapy online: <a href="{gmaps}">Google</a> · <a href="{mapycom}">mapy.com</a></p>
 
-<h2>Plan dzień po dniu</h2>
+<h2 id="plan">Plan dzień po dniu</h2>
 {"".join(blocks[:len(days)])}
 
 <h2>Reszta</h2>
@@ -506,6 +530,7 @@ Mapy online: <a href="{gmaps}">Google</a> · <a href="{mapycom}">mapy.com</a></p
 
 <footer>Longinada 2026 · <a href="index.html?full=1">wersja pełna z interaktywną mapą</a><br>
 Na telefonie strona główna sama przenosi tutaj. Otwarcie wersji pełnej jest pamiętane w tej przeglądarce; wejście na tę stronę wraca do wersji telefonowej.</footer>
+{jumpnav}
 </body>
 </html>
 '''
