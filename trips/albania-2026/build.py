@@ -414,7 +414,8 @@ def write_mobile(out, days, extra, total_km, md, linkify_sources, ensure_list_bl
  :root{--bg:#14181a;--fg:#e8ecea;--mut:#9daaa5;--acc:#7fc6cf;--line:#2b3235;--card:#1a1f21}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
- -webkit-text-size-adjust:100%;padding:0 16px 64px;max-width:44rem;margin:0 auto}
+ -webkit-text-size-adjust:100%;max-width:44rem;margin:0 auto;
+ padding:0 16px calc(88px + env(safe-area-inset-bottom))}
 h1{font-size:1.9rem;line-height:1.15;margin:24px 0 4px;letter-spacing:-.02em}
 h2{font-size:1.15rem;margin:32px 0 8px;padding-top:16px;border-top:1px solid var(--line)}
 h3{font-size:1rem;margin:18px 0 6px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
@@ -447,12 +448,37 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 .switch span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
 /* Switch link first and left-aligned — same corner as the .viewbar link in the full version. */
 .switch a{font-weight:600;text-decoration:none;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
-.quicknav{position:sticky;top:0;z-index:10;display:flex;gap:6px;overflow-x:auto;
- -webkit-overflow-scrolling:touch;white-space:nowrap;padding:10px 16px;margin:0 -16px;background:var(--bg);
- border-bottom:1px solid var(--line)}
-.quicknav a{flex:0 0 auto;background:var(--card);border:1px solid var(--line);border-radius:999px;
- padding:6px 12px;font-size:.82rem;font-weight:600;text-decoration:none;color:var(--fg)}
-.quicknav a:active{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+/* Jump bar pinned to the BOTTOM — that is the thumb zone one-handed, and it keeps
+   anchors landing at the true top of the screen (a sticky top bar would cover them).
+   env(safe-area-inset-bottom) keeps it clear of the iPhone home indicator. */
+.navbar{position:fixed;left:0;right:0;bottom:0;z-index:15;display:flex;gap:8px;
+ padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line)}
+.navbar>*{background:var(--card);border:1px solid var(--line);border-radius:12px;color:var(--fg);
+ font:inherit;padding:12px 8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.nav-a{flex:0 0 3.5rem;font-size:1.15rem;line-height:1}
+.nav-c{flex:1;min-width:0;font-size:.9rem;font-weight:600;text-align:center;
+ overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.navbar>*:active{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+/* Sheet opens on a checkbox, so the list still works if the JS ever fails. */
+.sheet-t{position:absolute;width:0;height:0;opacity:0;pointer-events:none}
+.sheet-back{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.45);
+ opacity:0;pointer-events:none;transition:opacity .2s}
+.sheet-t:checked~.sheet-back{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;max-height:78vh;overflow-y:auto;
+ -webkit-overflow-scrolling:touch;background:var(--card);border-top:1px solid var(--line);
+ border-radius:16px 16px 0 0;transform:translateY(101%);transition:transform .25s ease;
+ padding-bottom:env(safe-area-inset-bottom)}
+.sheet-t:checked~.sheet{transform:translateY(0)}
+.sheet-in{padding:0 16px 12px}
+.sheet-hd{position:sticky;top:0;background:var(--card);display:flex;align-items:center;
+ justify-content:space-between;padding:14px 0 8px;font-weight:600}
+.sheet-x{color:var(--mut);font-size:1.25rem;padding:2px 8px;cursor:pointer}
+.sheet a{display:flex;gap:10px;align-items:baseline;padding:13px 2px;text-decoration:none;
+ color:var(--fg);font-size:.95rem;border-bottom:1px solid var(--line)}
+.sheet a:last-child{border-bottom:0}
+.s-n{flex:0 0 1.7rem;color:var(--acc);font-weight:600;font-size:.8rem;font-variant-numeric:tabular-nums}
+.s-t{flex:1;min-width:0}
+.s-k{color:var(--mut);font-size:.8rem;white-space:nowrap}
 """
     blocks = []
     for d in days:
@@ -477,21 +503,62 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
                 "localStorage.setItem('gp-view','mobile');"
                 "}catch(e){}})();</script>")
 
-    # Sticky quick-jump bar so a section is one tap away without scrolling through
-    # everything — data-driven off `extra` the same way the desktop nav is.
-    nav_extra = "".join(f'<a href="#{p["slug"]}">{p["label"]}</a>' for p in extra if p["html"])
-    quicknav = (f'<header class="quicknav"><a href="#top">↑ Góra</a><a href="#mapa">Mapa</a>'
-                f'<a href="#plan">Plan</a>{nav_extra}<a href="#zrodla">Źródła</a></header>')
+    # Bottom jump bar: ← / current section / →. Sections are read in order on the
+    # road (day after day), so arrows carry the common case and the middle button
+    # opens the full list for the random jumps ("what was in Praktyczne again?").
+    # One list drives all three — the sheet links, the arrow order and the label.
+    nav_items = [("mapa", "", "Mapa trasy", "")]
+    nav_items += [(f'dzien-{d["num"]}', f'D{d["num"]}', d["route"], f'{d["km"]} km') for d in days]
+    nav_items += [(p["slug"], "", p["title"], "") for p in extra if p["html"]]
+    nav_items.append(("zrodla", "", "Źródła i linki", ""))
+
+    sheet_links = "".join(
+        f'<a href="#{i}"><span class="s-n">{n}</span>'
+        f'<span class="s-t">{t}</span><span class="s-k">{k}</span></a>'
+        for i, n, t, k in nav_items)
+    navbar = (
+        '<input type="checkbox" id="sheet-t" class="sheet-t"/>'
+        '<label class="sheet-back" for="sheet-t" aria-hidden="true"></label>'
+        '<nav class="sheet" aria-label="Spis sekcji"><div class="sheet-in">'
+        '<div class="sheet-hd">Skocz do sekcji<label class="sheet-x" for="sheet-t">✕</label></div>'
+        f'{sheet_links}</div></nav>'
+        '<div class="navbar">'
+        '<button type="button" class="nav-a" data-go="-1" aria-label="Poprzednia sekcja">←</button>'
+        '<button type="button" class="nav-c" id="nav-c">Sekcje ▾</button>'
+        '<button type="button" class="nav-a" data-go="1" aria-label="Następna sekcja">→</button>'
+        '</div>')
+
     # Anchors into a <details> only scroll to it, they don't expand it — open it
-    # ourselves so the tap actually reveals the section instead of a closed card.
+    # ourselves so a jump actually reveals the section instead of a closed card.
+    # The label doubles as a "you are here" readout, updated on scroll.
+    ids = json.dumps([i for i, _n, _t, _k in nav_items], ensure_ascii=False)
+    labels = json.dumps([(f"{n} · {t}" if n else t) for _i, n, t, _k in nav_items], ensure_ascii=False)
     jumpnav = ("<script>(function(){"
-               "function openIfDetails(id){var el=document.getElementById(id);"
-               "if(el&&el.tagName==='DETAILS')el.open=true;}"
-               "if(location.hash)openIfDetails(location.hash.slice(1));"
-               "document.addEventListener('click',function(e){"
-               "var a=e.target.closest('.quicknav a[href^=\"#\"]');"
-               "if(!a)return;openIfDetails(a.getAttribute('href').slice(1));"
+               f"var IDS={ids},LAB={labels};"
+               "var cap=document.getElementById('nav-c'),tog=document.getElementById('sheet-t');"
+               "function el(id){return document.getElementById(id);}"
+               "function open_(id){var e=el(id);if(e&&e.tagName==='DETAILS')e.open=true;return e;}"
+               "function cur(){"
+               # At the very bottom every remaining section is already on screen,
+               # so the "last one scrolled past" rule would read a stale day.
+               "var d=document.documentElement;"
+               "if(innerHeight+scrollY>=d.scrollHeight-4)return IDS.length-1;"
+               "var i,e,n=-1;for(i=0;i<IDS.length;i++){e=el(IDS[i]);"
+               "if(e&&e.getBoundingClientRect().top<=96)n=i;}return n;}"
+               "function paint(){var i=cur();cap.textContent=(i<0?'Sekcje':LAB[i])+' ▾';}"
+               "function go(d){var i=cur()+d;if(i<0)i=0;if(i>=IDS.length)i=IDS.length-1;"
+               "var e=open_(IDS[i]);if(e)e.scrollIntoView({behavior:'smooth',block:'start'});}"
+               "document.addEventListener('click',function(ev){"
+               "var b=ev.target.closest('[data-go]');"
+               "if(b){go(+b.getAttribute('data-go'));return;}"
+               "if(ev.target.closest('#nav-c')){tog.checked=!tog.checked;return;}"
+               "var a=ev.target.closest('.sheet a[href^=\"#\"]');"
+               "if(a){tog.checked=false;open_(a.getAttribute('href').slice(1));}"
                "});"
+               "var wait=false;addEventListener('scroll',function(){if(wait)return;wait=true;"
+               "requestAnimationFrame(function(){paint();wait=false;});},{passive:true});"
+               "if(location.hash)open_(location.hash.slice(1));"
+               "paint();"
                "})();</script>")
 
     html = f'''<!doctype html>
@@ -505,7 +572,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 <style>{css}</style>
 </head>
 <body>
-{quicknav}
+{navbar}
 <nav class="switch"><a href="index.html?full=1">🗺 Wersja pełna z mapą</a></nav>
 <h1 id="top">Góry Przeklęte</h1>
 <p class="sub">Czarnogóra · Kosowo · Albania — 14–23.08.2026</p>
