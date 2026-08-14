@@ -1,11 +1,11 @@
 ---
 tags:
   - longinada
-start: 2026-08-14
-end: 2026-08-23
+start: 2026-08-15
+end: 2026-08-22
 ---
 # Meta
-- Opis: Longinada 2026 — pętla rowerowa przez Góry Przeklęte (Czarnogóra, Kosowo, Albania), 480 km, +8394 m
+- Opis: Longinada 2026 — pętla rowerowa przez Góry Przeklęte (Czarnogóra, Kosowo, Albania), 481 km, +8346 m
 - Mapa Google: https://www.google.com/maps/d/edit?mid=121RKnyKXHBkZYb9bIOSL3CMI9hqMqCs&usp=sharing
 - Mapa mapy.com: https://mapy.com/s/rezezopaco
 - Szlak: Accursed Mountain Circuit (Trans Dinarica)
@@ -20,7 +20,7 @@ end: 2026-08-23
 - Peja - kosowskie piwo, nazwane od miasta na naszej trasie
 
 # Klucz do wyjazdu — „Góry Przeklęte"
-Trasa to **pętla wokół jednego pasma**: Prokletije, po albańsku **Bjeshkët e Nemuna**, po polsku Góry Przeklęte. Startujemy i kończymy w Podgoricy, a przez dziewięć dni okrążamy masyw z trzech stron — czarnogórskiej, kosowskiej i albańskiej — przekraczając go dwa razy: raz przez **przełęcz Čakor (1840 m)**, raz przez **Qafa e Valbonës (~1795 m)**, którą idziemy z buta.
+Trasa to **pętla wokół jednego pasma**: Prokletije, po albańsku **Bjeshkët e Nemuna**, po polsku Góry Przeklęte. Startujemy i kończymy w Podgoricy, a przez osiem dni okrążamy masyw z trzech stron — czarnogórskiej, kosowskiej i albańskiej — przekraczając go dwa razy: raz przez **przełęcz Čakor (1846 m)**, gdzie nocujemy, raz przez **Qafa e Valbonës (~1795 m)**, którą idziemy z buta.
 
 To pasmo, które przez większość XX wieku było praktycznie zamknięte: granica trzech państw, bunkry Hoxhy, brak dróg. Stąd zwarty zestaw rzeczy, których nie ma nigdzie indziej w Europie — i to jest właściwy klucz do tego wyjazdu:
 
@@ -33,45 +33,43 @@ To pasmo, które przez większość XX wieku było praktycznie zamknięte: grani
 
 Każdy dzień poniżej ma na dole „Miejsca i historia" — do przypomnienia sobie na postoju, co właściwie oglądamy.
 
-Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 m**, najwyżej 1840 m na Čakorze, najniżej 10 m nad jeziorem Szkoderskim.
+Liczby są policzone ze śladu `albania.gpx` (24 506 punktów) i pociętego na etapy według **naszych faktycznych noclegów**: **481 km, +8346 m**, najwyżej 1846 m na Čakorze, najniżej 10 m w Shkodrze.
 
 ---
 
 # Plan wyjazdu
 
-## Dzień 1: Piątek, 14.08.2026, Podgorica > Tamarë (36km)
-- +537 m. Rozjazd doliną Cijevny (alb. Cem), przejście graniczne **Cijevna Zatrijebačka – Grabom** (czynne 24/7)
-- Nocleg / jedzenie: Restorant tradicional „Te Cemi" leży dokładnie na trasie, km 34
+## Dzień 1: Sobota, 15.08.2026, Podgorica > Tamarë (34km)
+- +466 m. Dzień przyjazdu — po nocy w busie ruszamy dopiero po południu, więc etap jest krótki
+- Rozjazd doliną Cijevny (alb. Cem), przejście graniczne **Cijevna Zatrijebačka – Grabom** (czynne 24/7)
+- Nocleg: **Restorant tradicional / Hotel „Te Cemi"**, km 34, 254 m n.p.m. — leży dokładnie na trasie
 
 ### Miejsca i historia
 - **Kanion Cijevny / Cem.** Rzeka spływa z albańskich Prokletije i wcina się w wapienny płaskowyż pod Podgoricą. Dolina Cem to naturalny korytarz między Czarnogórą a albańskim rejonem **Kelmendi** — od wieków szlak pasterski i przemytniczy, dziś asfalt.
 - **Tamarë.** Pierwsza albańska wioska na trasie, ok. 250 m n.p.m. To już historyczne terytorium plemienia **Kelmendi**, najbardziej znanego z antyosmańskich buntów w XVII w. — po jednym z nich Osmanowie przesiedlili część klanu aż na Węgry (Wojwodina).
 
-## Dzień 2: Sobota, 15.08.2026, Tamarë > Gusinje (42km)
-- +1215 m. Najcięższy podjazd pierwszej połowy: przełęcz **1348 m** nad Lepushë
-- Zjazd do Vermosh (1049 m), potem przejście graniczne **Baškim – Grnčar** (czynne 24/7) i Gusinje
+## Dzień 2: Niedziela, 16.08.2026, Tamarë > Čakor (77km)
+- **+2418 m — najcięższy dzień wyjazdu.** Dwie przełęcze i nocleg na drugiej z nich
+- Najpierw **1348 m** nad Lepushë, zjazd do Vermosh (1049 m), przejście graniczne **Baškim – Grnčar** (czynne 24/7), Gusinje i Plav
+- Potem 930 m podjazdu na **Čakor (1846 m)** — nocleg przy **Spomen česma**, na samej przełęczy
+- ⚠️ Wyjazd o świcie — nie z powodu kilometrów, tylko pogody: na przełęcz najlepiej wjechać przed popołudniowymi burzami. Jeśli od zachodu ciągnie, zostajemy w **Plavie (km 83)** i śpimy niżej
+- ⚠️ Nocleg na 1846 m: w sierpniu noce schodzą do kilku stopni, ciepłe rzeczy na wierzch bagażu
 
 ### Miejsca i historia
 - **Lepushë i Vermosh.** Najbardziej północne wioski Albanii, w dolinie rzeki Vermosh. Vermosh przez dekady był końcem świata: strefa przygraniczna, do której obcy nie mieli wstępu. Dziś to pierwszy etap oficjalnej trasy **Trans Dinarica** (Gusinje–Tamarë, 38 km, 100 % asfaltu).
 - **Gusinje.** Miasteczko u wylotu dwóch dolin: **Grbaja** i **Ropojana**. Baza wypadowa w czarnogórskie Prokletije — jeśli wyjdzie wolne pół dnia, stąd wychodzi pętla **Volušnica–Popadija–Talijanka**: 10 km, +1000 m, wstęp do parku 2–3 EUR, biwak dozwolony.
 - **Maja e Jezercës (2694 m).** Najwyższy szczyt całych Gór Dynarskich stoi po albańskiej stronie, ale wchodzi się na niego z czarnogórskiego **Vusanje** doliną Ropojana. Drogowskaz podaje 15 h; realnie ok. 9,5–10 h w jedną stronę. Jedyna woda na szlaku: **Zastan Ropojanski, 1300 m**.
+- **Plav i jezioro Plavskie.** Największe jezioro tej części Czarnogóry, u stóp Prokletije. Miasteczko ma silną tożsamość muzułmańską (Boszniacy, Albańczycy) — meczety i osmański rodowód. Nasz punkt odwrotu, jeśli pogoda się psuje.
+- **Przełęcz Čakor (1849 m wg map, 1846 m na naszym śladzie).** Najwyższy punkt całej trasy i nasz nocleg. Droga została zbudowana ok. 100 lat temu i przez dekady była główną trasą Plav–Peć. Dziś zamknięta dla samochodów i nieobsługiwana jako zwykłe przejście graniczne — jeżdżą tu prawie wyłącznie rowerzyści (zezwolenie mamy). Nawierzchnia od Plavu: szuter i zmęczony asfalt.
 
-## Dzień 3: Niedziela, 16.08.2026, Gusinje > Rugova (42km)
-- +1050 m i najwyższy punkt całej trasy: **przełęcz Čakor, 1840 m**
-- Čakor nie jest zwykłym przejściem granicznym: droga jest zamknięta dla samochodów, jeżdżą tu prawie wyłącznie rowerzyści (zezwolenie mamy)
-- Nawierzchnia: od Plavu szuter i zmęczony asfalt, od granicy w dół (Rugova) asfalt w dobrym stanie
+## Dzień 3: Poniedziałek, 17.08.2026, Čakor > Gjakova (80km)
+- +433 m, ale z 1846 m schodzimy do 365 m — dzień zjazdowy, za to najdłuższy na rowerze
+- Od granicy w dół (Rugova) asfalt w dobrym stanie
+- Dwa monastery UNESCO po drodze. ⚠️ Paszport w kieszeni: przy wejściu do Patriarchatu i Dečanów zostaje u żołnierzy KFOR
+- Meta: Gjakova — zostajemy tu na **dwie noce**, bo jutro wypad busem
 
 ### Miejsca i historia
-- **Plav i jezioro Plavskie.** Największe jezioro tej części Czarnogóry, u stóp Prokletije. Miasteczko ma silną tożsamość muzułmańską (Boszniacy, Albańczycy) — meczety i osmański rodowód.
-- **Przełęcz Čakor (1849 m wg map, 1840 m na naszym śladzie).** Droga została zbudowana ok. 100 lat temu i przez dekady była główną trasą Plav–Peć. Dziś zamknięta dla samochodów i nieobsługiwana jako zwykłe przejście graniczne — jeżdżą tu prawie wyłącznie rowerzyści.
 - **Kanion Rugova.** 22 km wąwozu od granicy do Peji, ściany do ok. 1000 m. Kosowo promuje go jako bałkańską stolicę **via ferrat**; w górnej części wioska **Kuqishtë** i katuny (letnie pasterskie osady).
-
-## Dzień 4: Poniedziałek, 17.08.2026, Rugova > Gjakova (80km)
-- +694 m, najdłuższy dzień na rowerze — dwa monastery UNESCO po drodze
-- ⚠️ Paszport w kieszeni: przy wejściu do Patriarchatu i Dečanów zostaje u żołnierzy KFOR
-- Meta: Gjakova — baza na jutrzejszy wypad busem
-
-### Miejsca i historia
 - **Patriarchat w Peć (Patrijaršija, alb. Patrikana).** Zespół **czterech cerkwi z XIII–XIV w.**, przez wieki **siedziba serbskiego patriarchy** — dla serbskiego prawosławia miejsce rangi katedry koronacyjnej. Wpisany na listę UNESCO w 2006 r. jako część „Średniowiecznych zabytków Kosowa" i od razu na listę **zagrożonych**. Wejście wolne, ochrona KFOR, paszport na wartowni.
 - **Monaster Visoki Dečani.** Fundacja **króla Stefana Urosza III Deczańskiego**, budowany **1327–1335**. Architektonicznie hybryda: **romańska bryła z pasami kolorowego marmuru** (jak w Toskanii) i bizantyjskie wnętrze — bo pracował tu franciszkanin Vitus z Kotoru. W środku **największy zachowany zespół malarstwa ściennego średniowiecznej Serbii**, ok. 1000 przedstawień.
     - Praktyka: **9:00–17:00**, wejście wolne (datek ok. 2 EUR), wpuszczają **grupami po 6–8 osób**, strój zakryty, zdjęcia wg bieżących zasad — pytaj. W święta prawosławne inne godziny.
@@ -81,7 +79,7 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
     - Gmina straciła **361 potwierdzonych ofiar walk i ponad 1000 cywilów** w wojnie 1998–99; szczyt strat 7–11 maja 1999.
     - ⚠️ Dwa punkty z mapy Google się nie potwierdziły: **„Gërvalla Museum"** (dom-muzeum braci Gërvalla powstaje w Burrëmadh/Dubovik w gminie Deçan, nie w Gjakovie — tu najwyżej tablica) i **„Kulla Historike e Familjes Krasniqi"** (nie ma jej w spisie 161 zabytków Gjakovy).
 
-## Dzień 5: Wtorek, 18.08.2026, Gjakova > Kosowo busem > Gjakova (0km)
+## Dzień 4: Wtorek, 18.08.2026, Gjakova > Kosowo busem > Gjakova (0km)
 - Dzień bez roweru. Wszystkie punkty tego dnia leżą **14–68 km od śladu rowerowego** — dlatego bus
 - Trasa busa: Gjakova → Jaskinia Gadime → Prisztina → obiad w trasie → Prizren → Gjakova (osobna warstwa KML, 228 km)
 
@@ -98,22 +96,23 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
     - **Cerkiew Bogurodzicy Ljeviškiej** (1306–1309, za króla Milutina) — freski z ok. 1308–13 w czołówce sztuki bizantyjskiej. Za Osmanów zamieniona na meczet, podpalona w marcu 2004. Część obiektu UNESCO.
 - **20:00–21:00 | powrót do Gjakovy** (~45 min dobrymi drogami).
 
-## Dzień 6: Środa, 19.08.2026, Gjakova > Bajram Curri (46km)
-- +571 m, spokojny dzień. Przejście graniczne **Morinë** (Kosowo → Albania)
+## Dzień 5: Środa, 19.08.2026, Gjakova > Valbona (76km)
+- +1414 m. Przejście graniczne **Morinë** (Kosowo → Albania), potem Bajram Curri i wjazd w dolinę
 - Wjazd w **Tropoję** — najbardziej odizolowany region północnej Albanii
+- Meta: **Valbona, 995 m** — jutro przełęcz z buta, więc warto dojechać z zapasem sił
 
 ### Miejsca i historia
 - **Bajram Curri.** Miasto nazwane od **Bajrama Curriego** (1862–1925), przywódcy albańskiego ruchu narodowego z Tropoji, zabitego w walce z siłami Ahmeta Zogu. Miasteczko jest bramą do doliny Valbony i typowym „końcem drogi": dalej tylko góry.
 - **Plemię Krasniqi.** To ich rdzenne terytorium (fis Krasniqi, okolice Tropoji). Ta sama nazwa wróciła nam w Gjakovie („kulla Krasniqi") — od końca XVII w. rodziny Krasniqi osiedlały się w zachodnim Kosowie, pod prawem **Kanunu Leki Dukagjiniego**.
 - **Kulla — jak to działa.** Kamienna wieża mieszkalno-obronna niziny Dukagjini, budowana od końca XVIII do początku XX w.: parter dla zwierząt, wyższe piętra mieszkalne, najwyższe to **oda e burrave** — izba męska, gdzie przyjmowano gości i podejmowano decyzje plemienne.
+- **Dolina Valbony.** Park Narodowy, dolina długości ok. 80 km, otoczona **Maja e Rosit (2524 m)** i **Maja e Jezercës (2694 m)**. „Normalny" dojazd turystyczny to prom po jeziorze **Koman** (my przyjeżdżamy z drugiej strony, więc bez promu). Noclegi to pensjonaty rodzinne (Gjin Thana, Kol Gjoni) i dzikie biwaki.
 
-## Dzień 7: Czwartek, 20.08.2026, Bajram Curri > Theth (37km)
-- +1788 m — najcięższy dzień wyjazdu, mimo tylko 37 km
-- **Qafa e Valbonës (~1795 m) to szlak pieszy** — 15–18 km, 6–8 h z buta. Kamieniste zejście męczące dla kolan
+## Dzień 6: Czwartek, 20.08.2026, Valbona > Theth (16km)
+- +952 m i tylko 16 km, ale **cały dzień z buta** — to nie jest etap rowerowy
+- **Qafa e Valbonës (~1795 m) to szlak pieszy** — 6–8 h. Kamieniste zejście męczące dla kolan
 - Start rano, woda z zapasem, na przełęczy nie ma nic
 
 ### Miejsca i historia
-- **Dolina Valbony.** Park Narodowy, dolina długości ok. 80 km, otoczona **Maja e Rosit (2524 m)** i **Maja e Jezercës (2694 m)**. „Normalny" dojazd turystyczny to prom po jeziorze **Koman** (my przyjeżdżamy z drugiej strony, więc bez promu). Noclegi to pensjonaty rodzinne (Gjin Thana, Kol Gjoni) i dzikie biwaki.
 - **Szlak Valbona → Theth.** Dawny **szlak mulasi** łączący plemienne regiony **Shala** (Theth) i **Nikaj** (Valbona) — istniał na długo przed turystyką. Dziś najpopularniejszy trekking Albanii i element sieci **Peaks of the Balkans**. Latem bez trudności technicznych; wiosną i przy śniegu groźny.
 - **Theth.** Izolacja była geograficzna: głęboka dolina, dekadami dostępna tylko szutrową drogą z 1936 r., **w pełni zasfaltowaną dopiero ~2021–2022**.
     - **Kulla e ngujimit** (wieża odosobnienia), znana też jako **Kulla e Nikollë Koçekut** albo Wieża Pojednania, z poł. XIX w. — chowali się w niej mężczyźni wplątani w krwawą zemstę (**gjakmarrje**) wg Kanunu, i rozstrzygano tam spory. W środku drewniane schody, meble, fotografie. Bilet: **200 lek** wg jednego źródła, **15 lek** wg drugiego — do sprawdzenia na miejscu.
@@ -122,9 +121,10 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
     - Ludność wg lokalnej tradycji wywodzi się od wspólnego przodka sprzed ~300–350 lat, osiedlonego tu dla zachowania katolicyzmu. Dziś kilkanaście–kilkadziesiąt rodzin całorocznie.
     - **Park Narodowy Theth** od 1966 r.; wieś ma status chronionego ośrodka historycznego.
 
-## Dzień 8: Piątek, 21.08.2026, Theth > Bogë (41km)
-- +835 m, **Qafa e Thorës ~1680 m** — asfalt od 2021, jedna z najładniejszych dróg Albanii (SH20)
-- Rano czas na atrakcje Theth, jeśli zostały siły z wczoraj
+## Dzień 7: Piątek, 21.08.2026, Theth > Shkodra (89km)
+- +1054 m, **Qafa e Thorës ~1680 m** — asfalt od 2021, jedna z najładniejszych dróg Albanii (SH20)
+- Po przełęczy długi zjazd przez Bogë i Koplik na nizinę: z 848 m do 10 m n.p.m.
+- ⚠️ Ranek w Theth trzeba sobie odpuścić albo mocno skrócić — przed nami 89 km, a jutro najdłuższy dzień wyjazdu
 
 ### Miejsca i historia
 - **Co warto w Theth przed odjazdem:**
@@ -137,21 +137,16 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
     - **Ferenc Nopcsa** — węgierski arystokrata i paleontolog, autor pierwszej mapy geologicznej północnej Albanii i etnograficznych opisów plemion.
     - **Edith Durham** — brytyjska antropolożka, autorka „High Albania" (1909), do dziś podstawowego źródła o Kanunie i życiu plemiennym.
 - **Bogë.** Wioska u wylotu doliny, dawniej ostatni punkt dojazdowy dla samochodów (przed asfaltem do Theth). Trans Dinarica liczy etap Bogë–Theth na 27 km i +760 m.
-
-## Dzień 9: Sobota, 22.08.2026, Bogë > Shkodra (48km)
-- +183 m — dzień zjazdowy, z 958 m do 15 m n.p.m.
-- Koplik = zaopatrzenie; potem nizina nad jeziorem Szkoderskim
-
-### Miejsca i historia
 - **Koplik.** Ośrodek regionu **Malësia e Madhe** („Wielkie Góry") — nizinne zaplecze wszystkich górskich plemion, przez które przejeżdżaliśmy. Tu wraca cywilizacja: bankomaty, sklepy, warsztaty.
 - **Shkodra (Skadar).** Jedno z najstarszych miast Europy Południowo-Wschodniej: stolica iliryjskiego królestwa **Ardiajów** za króla Gencjusza (II w. p.n.e.), potem rzymska, wenecka i osmańska.
     - **Twierdza Rozafa** nad miastem — nazwa od legendy o kobiecie zamurowanej w fundamentach, która prosiła o pozostawienie otworu, żeby móc karmić dziecko. Widok na jezioro, Drin i Bunę.
     - Miasto było też głównym ośrodkiem albańskiego katolicyzmu i drukarstwa — stąd trafiały w góry pierwsze albańskie książki.
 
-## Dzień 10: Niedziela, 23.08.2026, Shkodra > Podgorica (55km)
-- Domknięcie pętli. **Wariant krótki** (ten kilometraż): główną drogą przez przejście **Hani i Hotit / Božaj**, ~55 km
-- **Wariant z mapy** (ślad GPX): brzegiem jeziora Szkoderskiego przez Murići, Virpazar i Rijeka Crnojevića — **109 km i +1521 m**, czyli realnie dwa dni
-- Decyzja zależy od tego, ile zostało czasu i nóg
+## Dzień 8: Sobota, 22.08.2026, Shkodra > Podgorica (109km)
+- +1609 m — **najdłuższy dzień wyjazdu i domknięcie pętli**, brzegiem jeziora Szkoderskiego
+- Ruszamy wcześnie: ok. 8 h jazdy wg mapy.cz, czyli z postojami w Podgoricy późnym popołudniem, a wieczorem odjazd do Polski
+- Gdyby coś poszło nie tak — kraksa, burza, nogi — **bus może nas zgarnąć po drodze**, droga wzdłuż jeziora jest przejezdna na całej długości
+- Za Shkodrą grzbiet ~450 m, potem droga nad wodą przez Murići i Virpazar — widokowa, ale cały czas falująca
 
 ### Miejsca i historia
 - **Jezioro Szkoderskie.** Największe jezioro Bałkanów, w dwóch państwach. Po czarnogórskiej stronie park narodowy i jedno z najważniejszych w Europie zimowisk ptaków wodnych (pelikany kędzierzawe).
@@ -162,16 +157,16 @@ Liczby są policzone z pliku `albania.gpx` (24 506 punktów): **480,8 km, +8394 
 ---
 
 > [!note] Skąd te notatki
-> Kilometraż, przewyższenia i przełęcze są **policzone ze śladu** `albania.gpx` (24 506 punktów, haversine + profil wysokości), a nazwy miejscowości pochodzą z reverse-geocodingu tego śladu (OSM/Nominatim) co 12 km. Punkty z pliku KML sprawdziłem pod kątem odległości od trasy — **cała pętla kosowska (Prisztina, Gadime, Prizren, Gazimestan) leży 14–68 km od śladu rowerowego**, dlatego jest dniem busowym, a nie etapem. Kilometraż każdego dnia policzony z tego samego śladu.
-> **Do potwierdzenia przed wyjazdem:** godziny monasterów w święta prawosławne, stan drogi na Čakorze po deszczach.
+> Kilometraż i przewyższenia są **policzone ze śladu** `albania.gpx` (24 506 punktów, haversine + wygładzony profil wysokości), a granice dni wyznaczone przez **współrzędne naszych faktycznych noclegów** naniesione na ten ślad — każdy trafia w trasę z dokładnością do 150 m. Poprzedni podział na 10 dni był orientacyjny i rozjeżdżał się ze śladem nawet o 12 km. Punkty z pliku KML sprawdziłem pod kątem odległości od trasy — **cała pętla kosowska (Prisztina, Gadime, Prizren, Gazimestan) leży 14–68 km od śladu rowerowego**, dlatego jest dniem busowym, a nie etapem.
+> **Do potwierdzenia przed wyjazdem:** godziny monasterów w święta prawosławne, stan drogi na Čakorze po deszczach, warunki noclegu na przełęczy (1846 m).
 
 ---
 
 # Praktyczne informacje
 
 ## Granice
-- **Čakor (dzień 3)** nie jest zwykłym przejściem granicznym — droga zamknięta dla samochodów, przechodzą tam rowerzyści i piesi. Zezwolenie mamy.
-- **Przejścia czynne 24/7 na naszej trasie:** Cijevna Zatrijebačka – Grabom (dzień 1), Baškim – Grnčar (dzień 2), Morinë (dzień 6), Hani i Hotit / Božaj (dzień 10).
+- **Čakor (dzień 2)** nie jest zwykłym przejściem granicznym — droga zamknięta dla samochodów, przechodzą tam rowerzyści i piesi. Zezwolenie mamy. Nocujemy na samej przełęczy, więc granicę przekraczamy dopiero rano dnia 3.
+- **Przejścia czynne 24/7 na naszej trasie:** Cijevna Zatrijebačka – Grabom (dzień 1), Baškim – Grnčar (dzień 2), Morinë (dzień 5), Hani i Hotit / Božaj albo Sukobin – Muriqan (dzień 8, do sprawdzenia).
 - **Do Serbii pokazuj dowód, nie paszport.** Polak wjeżdża do Serbii na sam dowód osobisty (90 dni w ciągu 180). Serbia nie uznaje niepodległości Kosowa, więc kosowski stempel w paszporcie może skończyć się odmową wjazdu — zwłaszcza jeśli jedzie się wprost z Kosowa. Kosowo polski dowód też akceptuje.
 - **Monastery pod ochroną KFOR** (Patriarchat w Peć, Visoki Dečani): paszport zostaje na wartowni, więc miej go przy sobie, nie w torbie na dnie.
 
@@ -306,7 +301,7 @@ Dwie pierwsze mapy Hubera pokrywają dokładnie nasz odcinek górski — te są 
 - **Kaçkavall** — twardy ser owczy, kupowany przy drodze u pasterzy.
 - **Trileçe** — biszkopt nasączony mieszanką trzech rodzajów mleka; w Kosowie wszędzie.
 - **Raki** — destylat owocowy; w Theth z dzikich śliw.
-- **Peja** — kosowskie piwo, nazwane od miasta z naszego dnia 4.
+- **Peja** — kosowskie piwo, nazwane od miasta z naszego dnia 3.
 - **Pilaf** — ryż gotowany w bulionie, klasyczny dodatek do mięsa.
 - **Tasqebap** — gęsty gulasz wołowy z cebulą, podawany z pieczywem.
 - **Paçe** — treściwa zupa z głowizny lub podrobów, tradycyjne śniadanie.

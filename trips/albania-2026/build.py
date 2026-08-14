@@ -268,12 +268,12 @@ def build():
 
     home = f'''
 <section class="wrap hero">
-  <p class="eyebrow">Czarnogóra · Kosowo · Albania — 14–23.08.2026</p>
+  <p class="eyebrow">Czarnogóra · Kosowo · Albania — 15–22.08.2026</p>
   <h1>Góry<br>Przeklęte</h1>
-  <p class="lede">Dziesięć dni rowerem wokół Prokletije — przez dolinę Cem, Čakor, kanion Rugova, Valbonę i Theth, z powrotem do Podgoricy.</p>
+  <p class="lede">Osiem dni rowerem wokół Prokletije — przez dolinę Cem, Čakor, kanion Rugova, Valbonę i Theth, z powrotem do Podgoricy.</p>
   <div class="facts">
     <span><b>{len(DAYS)}</b> dni</span><span><b>{TOTAL_KM}</b> km</span>
-    <span><b>+8394</b> m (pełny ślad 481 km)</span><span>Čakor&nbsp;1840&nbsp;m · Qafa&nbsp;e&nbsp;Valbonës&nbsp;1795&nbsp;m</span>
+    <span><b>+8346</b> m</span><span>Čakor&nbsp;1846&nbsp;m · Qafa&nbsp;e&nbsp;Valbonës&nbsp;1795&nbsp;m</span>
   </div>
   <hr class="river-rule"/>
 </section>
@@ -414,8 +414,9 @@ def write_mobile(out, days, extra, total_km, md, linkify_sources, ensure_list_bl
  :root{--bg:#14181a;--fg:#e8ecea;--mut:#9daaa5;--acc:#7fc6cf;--line:#2b3235;--card:#1a1f21}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
- -webkit-text-size-adjust:100%;max-width:44rem;margin:0 auto;
- padding:0 16px calc(88px + env(safe-area-inset-bottom))}
+ -webkit-text-size-adjust:100%;max-width:44rem;margin:0 auto;padding:0 16px 28px}
+/* Only the JS build gets the fixed bottom bar, so only it needs room underneath. */
+.js body{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
 h1{font-size:1.9rem;line-height:1.15;margin:24px 0 4px;letter-spacing:-.02em}
 h2{font-size:1.15rem;margin:32px 0 8px;padding-top:16px;border-top:1px solid var(--line)}
 h3{font-size:1rem;margin:18px 0 6px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
@@ -448,18 +449,33 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 .switch span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
 /* Switch link first and left-aligned — same corner as the .viewbar link in the full version. */
 .switch a{font-weight:600;text-decoration:none;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
-/* Jump bar pinned to the BOTTOM — that is the thumb zone one-handed, and it keeps
-   anchors landing at the true top of the screen (a sticky top bar would cover them).
-   env(safe-area-inset-bottom) keeps it clear of the iPhone home indicator. */
-.navbar{position:fixed;left:0;right:0;bottom:0;z-index:15;display:flex;gap:8px;
+/* Hamburger for the downloaded file. <details> is a native HTML toggle, so it needs
+   no JS — and it sits in normal flow, because iOS Quick Look (the Files preview)
+   ignores position:fixed. Hidden wherever JS runs: there the bottom bar takes over
+   and the live page stays exactly as it was. */
+.toc{margin:16px 0 4px}
+.js .toc{display:none}
+.toc>summary{font-size:.9rem}
+/* Two groups: the days, then everything else. Day chips carry their route, so they
+   fill the rows and the split reads as grouping rather than as a gap. */
+.toc-r{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px}
+.toc-r:last-child{padding-bottom:14px}
+.toc-r+.toc-r{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.toc a{display:inline-flex;align-items:baseline;gap:6px;background:var(--bg);
+ border:1px solid var(--line);border-radius:999px;padding:6px 11px;
+ font-size:.84rem;font-weight:600;text-decoration:none;color:var(--fg)}
+.toc a i{font-style:normal;color:var(--acc);font-variant-numeric:tabular-nums}
+.toc a:active{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.toc a:active i{color:var(--bg)}
+/* Jump bar pinned to the BOTTOM — thumb zone one-handed. Both it and the sheet rely
+   on position:fixed, so they only appear once the inline script marks the page;
+   in a preview that ignores fixed they would otherwise sit dead at the very end. */
+.navbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:15;gap:8px;
  padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line)}
+.js .navbar{display:flex}
 .navbar>*{background:var(--card);border:1px solid var(--line);border-radius:12px;color:var(--fg);
  font:inherit;padding:12px 8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
-/* Arrows need JS to know which section you are in, so they stay hidden until the
-   inline script marks the page — a downloaded file previewed without JS (iOS Quick
-   Look) then shows just the section list, which works on the checkbox alone. */
-.nav-a{display:none;flex:0 0 3.5rem;font-size:1.15rem;line-height:1}
-.js .nav-a{display:block}
+.nav-a{flex:0 0 3.5rem;font-size:1.15rem;line-height:1}
 .nav-c{flex:1;min-width:0;font-size:.9rem;font-weight:600;text-align:center;
  text-decoration:none;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .navbar>*:active{background:var(--acc);color:var(--bg);border-color:var(--acc)}
@@ -469,7 +485,8 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 /* The :target hook is a zero-size marker pinned to the viewport, not the panel
    itself — jumping to a full-screen element makes the browser nudge the page. */
 .sheet-anchor{position:fixed;top:0;left:0;width:0;height:0}
-.sheet-wrap{position:fixed;inset:0;z-index:20;pointer-events:none}
+.sheet-wrap{display:none;position:fixed;inset:0;z-index:20;pointer-events:none}
+.js .sheet-wrap{display:block}
 #sekcje:target~.sheet-wrap{pointer-events:auto}
 .sheet-back{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .2s}
 #sekcje:target~.sheet-wrap .sheet-back{opacity:1}
@@ -528,6 +545,14 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
         f'<a href="#{i}"><span class="s-n">{n}</span>'
         f'<span class="s-t">{t}</span><span class="s-k">{k}</span></a>'
         for i, n, t, k in nav_items)
+
+    # Same targets as the sheet, but as a <details> hamburger in normal flow: the one
+    # piece of navigation that survives a preview with no JS and no fixed positioning.
+    toc = ('<details class="toc"><summary>☰ Skocz do sekcji</summary><div class="toc-r">'
+           + "".join(f'<a href="#dzien-{d["num"]}"><i>{d["num"]}</i>{d["route"]}</a>' for d in days)
+           + '</div><div class="toc-r"><a href="#mapa">Mapa</a>'
+           + "".join(f'<a href="#{p["slug"]}">{p["label"]}</a>' for p in extra if p["html"])
+           + '<a href="#zrodla">Źródła</a></div></details>')
     # "#zamknij" matches no element on purpose: the hash stops matching #sekcje, so
     # the sheet closes and the page stays exactly where it was.
     navbar = (
@@ -566,7 +591,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
                "document.addEventListener('click',function(ev){"
                "var b=ev.target.closest('[data-go]');"
                "if(b){go(+b.getAttribute('data-go'));return;}"
-               "var a=ev.target.closest('.sheet a[href^=\"#\"]');"
+               "var a=ev.target.closest('.sheet a[href^=\"#\"],.toc a[href^=\"#\"]');"
                "if(a)open_(a.getAttribute('href').slice(1));"
                "});"
                "var wait=false;addEventListener('scroll',function(){if(wait)return;wait=true;"
@@ -588,15 +613,18 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 <body>
 <nav class="switch"><a href="index.html?full=1">🗺 Wersja pełna z mapą</a></nav>
 <h1 id="top">Góry Przeklęte</h1>
-<p class="sub">Czarnogóra · Kosowo · Albania — 14–23.08.2026</p>
+<p class="sub">Czarnogóra · Kosowo · Albania — 15–22.08.2026</p>
 <ul class="facts">
   <li><b>{len(days)}</b> dni</li><li><b>{total_km}</b> km</li>
-  <li><b>+8394</b> m</li><li>Čakor 1840 m</li><li>Qafa e Valbonës 1795 m</li>
+  <li><b>+8346</b> m</li><li>Čakor 1846 m</li><li>Qafa e Valbonës 1795 m</li>
 </ul>
 
+{toc}
+
 <a class="save" href="mobile.html" download="gory-przeklete-offline.html">⬇︎ Zapisz tę stronę offline</a>
-<p class="hint"><b>iPhone:</b> dotknij przycisku → „Pobierz". Plik ląduje w <b>Plikach → Pobrane</b> i otwiera się w Safari bez internetu.
-Alternatywnie: <b>Udostępnij → Zapisz w Plikach</b>. Cała strona to jeden plik — zero zewnętrznych fontów, skryptów i kafelków mapy, więc offline wygląda tak samo.</p>
+<p class="hint"><b>iPhone:</b> dotknij przycisku → „Pobierz". Plik ląduje w <b>Plikach → Pobrane</b>; podgląd w Plikach wystarczy,
+menu „☰ Skocz do sekcji" jest na górze strony. Cała strona to jeden plik — zero zewnętrznych fontów, skryptów
+i kafelków mapy, więc offline wygląda tak samo.</p>
 
 <div class="map" id="mapa">{route_svg()}</div>
 <p class="hint">Szkic trasy ze śladu GPS (bez podkładu — działa offline). Kropki to punkty z planu; dzień busowy po Kosowie pominięty.

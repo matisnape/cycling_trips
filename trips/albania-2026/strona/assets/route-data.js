@@ -4077,20 +4077,20 @@ window.TRIP = {
    "url": "dzien-2.html"
   },
   {
-   "day": 3,
+   "day": 2,
    "name": "Plav",
    "lat": 42.5966,
    "lon": 19.9436,
    "blurb": "Jezioro Plavskie. TU ODBIERASZ ZEZWOLENIE na Čakor (policja graniczna, pon.–pt.).",
-   "url": "dzien-3.html"
+   "url": "dzien-2.html"
   },
   {
-   "day": 3,
+   "day": 2,
    "name": "Przełęcz Čakor",
    "lat": 42.6688,
    "lon": 20.0074,
    "blurb": "1840 m — najwyższy punkt trasy i granica CZG/Kosowo. Nie jest oficjalnym przejściem: rower tylko z zezwoleniem.",
-   "url": "dzien-3.html"
+   "url": "dzien-2.html"
   },
   {
    "day": 3,
@@ -4101,172 +4101,172 @@ window.TRIP = {
    "url": "dzien-3.html"
   },
   {
-   "day": 4,
+   "day": 3,
    "name": "Patriarchat w Peć",
    "lat": 42.6611,
    "lon": 20.2657,
    "blurb": "Cztery cerkwie z XIII–XIV w., siedziba serbskich patriarchów. UNESCO, ochrona KFOR — paszport na wejściu.",
-   "url": "dzien-4.html"
+   "url": "dzien-3.html"
   },
   {
-   "day": 4,
+   "day": 3,
    "name": "Monaster Visoki Dečani",
    "lat": 42.5463,
    "lon": 20.2653,
    "blurb": "1327–1335, największy zespół średniowiecznych fresków Serbii (~1000 przedstawień). UNESCO, 9–17, grupy 6–8 osób.",
-   "url": "dzien-4.html"
+   "url": "dzien-3.html"
   },
   {
-   "day": 4,
+   "day": 3,
    "name": "Gjakova (Djakovica)",
    "lat": 42.3844,
    "lon": 20.4284,
    "blurb": "Baza na dzień kosowski. Çarshia e Madhe — bazar ponad 1 km długości, wokół meczetu Hadum (1594).",
-   "url": "dzien-4.html"
+   "url": "dzien-3.html"
   },
   {
-   "day": 5,
+   "day": 4,
    "name": "Jaskinia Gadime",
    "lat": 42.4781,
    "lon": 21.2075,
    "blurb": "BUS. Jaskinia w marmurze, kryształy aragonitu, 12–15 °C. Tylko z przewodnikiem, 3–5 EUR.",
-   "url": "dzien-5.html"
+   "url": "dzien-4.html"
   },
   {
-   "day": 5,
+   "day": 4,
    "name": "Prisztina",
    "lat": 42.6673,
    "lon": 21.1643,
    "blurb": "BUS. Biblioteka Narodowa, katedra Matki Teresy, NEWBORN, Heroinat.",
-   "url": "dzien-5.html"
+   "url": "dzien-4.html"
   },
   {
-   "day": 5,
+   "day": 4,
    "name": "Gazimestan",
    "lat": 42.6906,
    "lon": 21.1237,
    "blurb": "BUS. Pomnik przy polu Bitwy na Kosowym Polu (1389). Tu Milošević mówił w 1989.",
-   "url": "dzien-5.html"
+   "url": "dzien-4.html"
   },
   {
-   "day": 5,
+   "day": 4,
    "name": "Prizren",
    "lat": 42.2173,
    "lon": 20.7437,
    "blurb": "BUS. Liga Prizreńska 1878, twierdza Kalaja, meczet Sinana Paszy, Shadervan.",
-   "url": "dzien-5.html"
+   "url": "dzien-4.html"
   },
   {
-   "day": 6,
+   "day": 5,
    "name": "Morinë",
    "lat": 42.4096,
    "lon": 20.262,
    "blurb": "Przejście graniczne Kosowo → Albania.",
-   "url": "dzien-6.html"
+   "url": "dzien-5.html"
   },
   {
-   "day": 6,
+   "day": 5,
    "name": "Bajram Curri",
    "lat": 42.3639,
    "lon": 20.0773,
    "blurb": "Brama do Tropoji, ojczyzna plemienia Krasniqi.",
-   "url": "dzien-6.html"
+   "url": "dzien-5.html"
   },
   {
-   "day": 7,
+   "day": 5,
    "name": "Dragobi",
    "lat": 42.4253,
    "lon": 19.9991,
    "blurb": "Wjazd w dolinę Valbony wzdłuż rzeki.",
-   "url": "dzien-7.html"
+   "url": "dzien-5.html"
   },
   {
-   "day": 7,
+   "day": 5,
    "name": "Valbonë",
    "lat": 42.4473,
    "lon": 19.8864,
    "blurb": "Park Narodowy Valbona. Nad doliną Maja e Jezercës — 2694 m, najwyższy szczyt Dynarów.",
-   "url": "dzien-7.html"
+   "url": "dzien-5.html"
   },
   {
-   "day": 7,
+   "day": 6,
    "name": "Qafa e Valbonës",
    "lat": 42.4078,
    "lon": 19.8143,
    "blurb": "~1795 m. Dawny szlak mulasi Shala–Nikaj. 6–8 h pieszo, rower się PROWADZI.",
-   "url": "dzien-7.html"
+   "url": "dzien-6.html"
   },
   {
-   "day": 7,
+   "day": 6,
    "name": "Theth",
    "lat": 42.4007,
    "lon": 19.7678,
    "blurb": "Kulla e ngujimit (wieża odosobnienia, 200 lek), kościół z 1892 r., Park Narodowy od 1966.",
-   "url": "dzien-7.html"
+   "url": "dzien-6.html"
   },
   {
-   "day": 8,
+   "day": 7,
    "name": "Wodospad Grunas",
    "lat": 42.393,
    "lon": 19.772,
    "blurb": "25 m, 30 min płaskim szlakiem wzdłuż rzeki. Przed 9:00 bez tłumów.",
-   "url": "dzien-8.html"
+   "url": "dzien-7.html"
   },
   {
-   "day": 8,
+   "day": 7,
    "name": "Qafa e Thorës",
    "lat": 42.3868,
    "lon": 19.7358,
    "blurb": "~1680 m. Asfalt od 2021. Pomniki Ferenca Nopcsy i Edith Durham.",
-   "url": "dzien-8.html"
+   "url": "dzien-7.html"
   },
   {
-   "day": 8,
+   "day": 7,
    "name": "Bogë",
    "lat": 42.3656,
    "lon": 19.6321,
    "blurb": "Zjazd z przełęczy, wioska u wylotu doliny.",
-   "url": "dzien-8.html"
+   "url": "dzien-7.html"
   },
   {
-   "day": 9,
+   "day": 7,
    "name": "Koplik",
    "lat": 42.205,
    "lon": 19.437,
    "blurb": "Wjazd na nizinę nad jeziorem Szkoderskim. Zaopatrzenie.",
-   "url": "dzien-9.html"
+   "url": "dzien-7.html"
   },
   {
-   "day": 9,
+   "day": 7,
    "name": "Shkodra",
    "lat": 42.0519,
    "lon": 19.4956,
    "blurb": "Najstarsze miasto Albanii, twierdza Rozafa, 15 m n.p.m.",
-   "url": "dzien-9.html"
+   "url": "dzien-7.html"
   },
   {
-   "day": 10,
+   "day": 8,
    "name": "Jezioro Szkoderskie",
    "lat": 42.1649,
    "lon": 19.2041,
    "blurb": "Wariant jeziorem: droga nad wodą przez Murići i Seoca, falująca.",
-   "url": "dzien-10.html"
+   "url": "dzien-8.html"
   },
   {
-   "day": 10,
+   "day": 8,
    "name": "Virpazar",
    "lat": 42.245,
    "lon": 19.093,
    "blurb": "Baza nad jeziorem, most i winnice.",
-   "url": "dzien-10.html"
+   "url": "dzien-8.html"
   },
   {
-   "day": 10,
+   "day": 8,
    "name": "Rijeka Crnojevića",
    "lat": 42.335,
    "lon": 19.048,
    "blurb": "Meander rzeki i stary kamienny most — ostatni punkt przed Podgoricą.",
-   "url": "dzien-10.html"
+   "url": "dzien-8.html"
   }
  ]
 };
