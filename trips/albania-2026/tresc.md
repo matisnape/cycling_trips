@@ -298,15 +298,23 @@ Dwie pierwsze mapy Hubera pokrywają dokładnie nasz odcinek górski — te są 
 # Kulinaria i pamiątki
 
 ## Czego spróbować
-- **Byrek** — ciasto z serem albo szpinakiem, śniadanie rowerzysty za ok. 1 EUR.
-- **Fërgesë** — papryka duszona z serem i pomidorem; w Theth podstawa menu.
-- **Tavë kosi** — jagnięcina zapiekana w jogurcie z jajkiem, narodowe danie Albanii.
+- **Byrek** — cienkie ciasto z nadzieniem, najczęściej serem, szpinakiem albo mięsem; śniadanie rowerzysty za ok. 1 EUR.
+- **Fërgesë** — zapiekana potrawa z papryki, pomidorów i albańskiego twarogu/sera; w Theth podstawa menu.
+- **Tavë kosi** — zapiekanka z jagnięciny i jogurtu (czasem z jajkiem), jedno z najbardziej charakterystycznych dań Albanii.
 - **Flija** — warstwowy placek pasterski, pieczony pod blachą obsypaną żarem. Robi się godzinami, je się rodzinnie.
 - **Qebapa / pleskavica** — grillowane mięso, bałkański standard po stronie kosowskiej.
 - **Kaçkavall** — twardy ser owczy, kupowany przy drodze u pasterzy.
-- **Trilece** — deser trójmleczny, w Kosowie wszędzie.
+- **Trileçe** — biszkopt nasączony mieszanką trzech rodzajów mleka; w Kosowie wszędzie.
 - **Raki** — destylat owocowy; w Theth z dzikich śliw.
 - **Peja** — kosowskie piwo, nazwane od miasta z naszego dnia 4.
+- **Pilaf** — ryż gotowany w bulionie, klasyczny dodatek do mięsa.
+- **Tasqebap** — gęsty gulasz wołowy z cebulą, podawany z pieczywem.
+- **Paçe** — treściwa zupa z głowizny lub podrobów, tradycyjne śniadanie.
+- **Trahana** — suszona, fermentowana mieszanka zbóż i nabiału; namoczona daje szybką kwaśną zupę.
+- **Dhallë** — słony napój z rozcieńczonego jogurtu, albański odpowiednik ayranu.
+- **Turshi** — warzywa kiszone w occie lub solance, do mięsa.
+- **Kukurec** — podroby owinięte jelitami, pieczone na rożnie.
+- **Gliko** — owoce, orzechy lub warzywa w słodkim syropie; tradycyjny poczęstunek dla gości.
 
 ## Pamiątki
 - Wyroby skórzane i drewniane z bazaru w Gjakovie.
@@ -326,15 +334,25 @@ Trzy wersje legendy — alb. **Bjeshkët e Nemuna**, serb. **Prokletije**:
 
 Wspólny mianownik wszystkich wersji to **realny brak wody** — pasmo jest suche mimo bujnej roślinności. Stąd praktyczna zasada: woda z każdej mijanej wioski.
 
-## Reszta
+## Ogólne notatki
 - Pasmo zawiera **14 najwyższych szczytów Gór Dynarskich**, w tym najwyższe punkty Czarnogóry i Kosowa. Najwyższy w ogóle: **Maja e Jezercës, 2694 m** (Albania).
 - **National Geographic** wsadził Alpy Albańskie na **1. miejsce „The Cool List 2024"**.
-- **Kanun Leki Dukagjiniego** — zwyczajowy kodeks górali: gościnność ponad wszystko, honor (**besa** — dane słowo) i krwawa zemsta (**gjakmarrje**). Za komuny formalnie zniesiony, po 1991 lokalnie wrócił.
+- Tereny górzyste — **góry i wyżyny zajmują ok. 70–75% powierzchni Albanii**.
+- **Kanun** — tradycyjny albański zbiór norm prawa zwyczajowego regulujący m.in. rodzinę, własność, gościnność i konflikty: honor (**besa** — zobowiązanie oparte na słowie i honorze; jego złamanie było poważnym naruszeniem norm społecznych) i **gjakmarrja** — „branie krwi", czyli zemsta rodowa za zabójstwo członka rodziny. Za komuny formalnie zniesiony, po 1991 lokalnie wrócił.
 - **Burrneshat, „dziewice kanun"** — kobiety, które przyjmowały społeczną rolę mężczyzny (dziedziczenie, obrona domu, prawo głosu w odzie), składając przysięgę dziewictwa. Zjawisko unikalne w Europie, dziś praktycznie wymarłe.
+- **Jerzy Kastriota Skanderbeg** — XV-wieczny władca i dowódca, który przez ponad 20 lat przewodził oporowi przeciwko Imperium Osmańskiemu. Imię pochodzi od osmańskiego İskender Bey, czyli „Aleksander Bej"; **bej** to osmański tytuł nadawany m.in. urzędnikom, dowódcom i lokalnym możnym.
+- **George W. Bush** — w 2007 r. jako pierwszy urzędujący prezydent USA odwiedził Albanię; w Fushë-Krujë stoi jego pomnik.
 - **Język albański** to **osobna gałąź rodziny indoeuropejskiej** — nie ma bliskiego żywego krewnego. Stąd zupełnie „nieprzezroczyste" słownictwo.
 - **Zadruga** — tradycyjna południowosłowiańska wspólnota rodzinna: wielogeneracyjne gospodarstwo pod jednym zarządem. Słowiański odpowiednik tego, co po albańskiej stronie organizował fis (plemię).
 - Do 1989 r. wytyczaniem i utrzymaniem szlaków turystycznych w tej części Bałkanów zajmowały się **związki zawodowe**.
 - **Bunkry Hoxhy:** Albania zbudowała ich kilkaset tysięcy w latach 1967–86, w przeliczeniu ok. jeden na czterech obywateli. Nigdy nie użyte w walce.
+- **Shqipëria** — albańska nazwa Albanii; wymawiana mniej więcej „szcziperija".
+- **Bektaszyzm** — suficki tarikat wywodzący się z tradycji islamskiej; Albania jest dziś jego światowym centrum.
+- Północ / południe — katolicyzm jest historycznie silniejszy na północy, a prawosławie na południu; muzułmanie żyją w obu częściach kraju.
+- **Św. Antoni** — jego sanktuarium w Laç jest jednym z najważniejszych miejsc pielgrzymkowych Albanii, odwiedzanym także przez muzułmanów.
+- **Syri i keq** — „złe oko", czyli wiara w możliwość sprowadzenia nieszczęścia zawistnym spojrzeniem.
+- **Nazar** — niebieski amulet w kształcie oka mający chronić przed „złym okiem".
+- **Verorja** — czerwono-biała bransoletka zakładana na początku marca; po zobaczeniu pierwszej jaskółki wiesza się ją na drzewie.
 
 ---
 
