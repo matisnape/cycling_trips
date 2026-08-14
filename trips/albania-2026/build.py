@@ -445,10 +445,25 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
 table{width:100%;border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto}
 td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}
 footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--mut);font-size:.85rem}
-.switch{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0 0;font-size:.85rem;color:var(--mut)}
+/* Version link and save pill share one grid cell: link pinned left, pill pinned right.
+   The pill's panel is a full-width block inside that same cell, so unfolding pushes the
+   page down without ever moving the pill itself. */
+.switch{display:grid;align-items:start;padding:18px 0 0;font-size:.85rem;color:var(--mut)}
 .switch span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
 /* Switch link first and left-aligned — same corner as the .viewbar link in the full version. */
 .switch a{font-weight:600;text-decoration:none;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
+.switch>a{grid-area:1/1;justify-self:start;align-self:start;padding:6px 0;max-width:60%}
+.savebox{grid-area:1/1;justify-self:stretch;text-align:right;
+ border:0;background:none;margin:0;border-radius:0;overflow:visible}
+/* Filled pill so the download stands out against the plain version-switch link. */
+.savebox>summary{display:inline-block;list-style:none;padding:5px 13px;font:inherit;
+ font-weight:600;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;
+ background:var(--acc);color:var(--bg);border:1px solid var(--acc);border-radius:999px;
+ cursor:pointer;-webkit-tap-highlight-color:transparent}
+.savebox-in{text-align:left;margin-top:12px;padding:13px 14px;background:var(--card);
+ border:1px solid var(--line);border-radius:12px}
+.savebox-in .hint{margin:0 0 11px}
+.savebox-in .save{margin:0}
 /* Hamburger for the downloaded file. <details> is a native HTML toggle, so it needs
    no JS — and it sits in normal flow, because iOS Quick Look (the Files preview)
    ignores position:fixed. Hidden wherever JS runs: there the bottom bar takes over
@@ -611,7 +626,12 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 <style>{css}</style>
 </head>
 <body>
-<nav class="switch"><a href="index.html?full=1">🗺 Wersja pełna z mapą</a></nav>
+<nav class="switch"><a href="index.html?full=1">🗺 Wersja pełna</a>
+<details class="savebox"><summary>⬇︎ Zapisz</summary><div class="savebox-in">
+<p class="hint"><b>iPhone:</b> dotknij przycisku → „Pobierz". Plik ląduje w <b>Plikach → Pobrane</b>;
+podgląd w Plikach wystarczy, menu „☰ Skocz do sekcji" jest na górze strony.</p>
+<a class="save" href="mobile.html" download="gory-przeklete-offline.html">⬇︎ Pobierz</a>
+</div></details></nav>
 <h1 id="top">Góry Przeklęte</h1>
 <p class="sub">Czarnogóra · Kosowo · Albania — 14–23.08.2026</p>
 <ul class="facts">
@@ -620,11 +640,6 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 </ul>
 
 {toc}
-
-<a class="save" href="mobile.html" download="gory-przeklete-offline.html">⬇︎ Zapisz tę stronę offline</a>
-<p class="hint"><b>iPhone:</b> dotknij przycisku → „Pobierz". Plik ląduje w <b>Plikach → Pobrane</b>; podgląd w Plikach wystarczy,
-menu „☰ Skocz do sekcji" jest na górze strony. Cała strona to jeden plik — zero zewnętrznych fontów, skryptów
-i kafelków mapy, więc offline wygląda tak samo.</p>
 
 <div class="map" id="mapa">{route_svg()}</div>
 <p class="hint">Szkic trasy ze śladu GPS (bez podkładu — działa offline). Kropki to punkty z planu; dzień busowy po Kosowie pominięty.
