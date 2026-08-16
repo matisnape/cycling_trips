@@ -196,7 +196,18 @@ Liczby są policzone ze śladu `albania.gpx` (24 506 punktów) i pociętego na e
 - **Bunkry i miny.** Bunkry Hoxhy stoją wszędzie i są bezpieczne. Pola minowe to relikt granicy kosowskiej — oznakowane i w zaniku, ale poza szlakami przy granicach nie chodzimy.
 - **Fauna.** ⚠️ **Żmija nosoroga (Vipera ammodytes)** — najbardziej jadowity wąż Europy. Zasięg to prawie cały Półwysep Bałkański, **Albania, Kosowo i Czarnogóra włącznie**, do **2000 m n.p.m.**; siedlisko to suche, skaliste zbocza z rzadką roślinnością, czyli dokładnie nasz teren. Na szlakach wokół Theth ostrzegają wprost. Nie wsadzaj rąk w kamienie, nie łaź po rumoszu w klapkach. Skorpiony i pająki (karakurt, tarantula) — rzadsze.
 
-## Słowniczek albański (z wymową)
+## Mapy papierowe (do kupienia)
+- Prokletije / Vermoshi / Theth (Huber): https://mapy.net.pl/mapa-skladana-prokletije-vermoshi-theth-huber/12557
+- Prokletije / Tropoja / B. Curri / Valbona (Huber): https://mapy.net.pl/mapa-skladana-prokletije-tropoja-b-curri-valbona-huber/12556
+- Albania, Kosowo, Czarnogóra (Huber): https://mapy.net.pl/skladana-mapa-albanii-kosowa-czarnogory-huber-kartographie/14284
+- Przewodnik po Albanii (Pascal): https://mapy.net.pl/przewodnik-po-albanii-inspirator-podrozniczy-pascal/6155
+- Przewodnik po Albanii (Rewasz): https://mapy.net.pl/przewodnik-po-albanii-rewasz/3742
+
+Dwie pierwsze mapy Hubera pokrywają dokładnie nasz odcinek górski — te są najważniejsze.
+
+---
+
+# Słowniczek albański
 Wymowa uproszczona pod polskie ucho — nie IPA, tylko żeby dało się to wypowiedzieć na postoju. Kilka liter, które inaczej czyta się niż piszą:
 - **ë** — niewyraźne „y" (prawie nieme na końcu słowa)
 - **j** — polskie j
@@ -284,15 +295,6 @@ Wymowa uproszczona pod polskie ucho — nie IPA, tylko żeby dało się to wypow
 | Tetë | tety | 8 |
 | Nëntë | nynty | 9 |
 | Dhjetë | dzjety | 10 |
-
-## Mapy papierowe (do kupienia)
-- Prokletije / Vermoshi / Theth (Huber): https://mapy.net.pl/mapa-skladana-prokletije-vermoshi-theth-huber/12557
-- Prokletije / Tropoja / B. Curri / Valbona (Huber): https://mapy.net.pl/mapa-skladana-prokletije-tropoja-b-curri-valbona-huber/12556
-- Albania, Kosowo, Czarnogóra (Huber): https://mapy.net.pl/skladana-mapa-albanii-kosowa-czarnogory-huber-kartographie/14284
-- Przewodnik po Albanii (Pascal): https://mapy.net.pl/przewodnik-po-albanii-inspirator-podrozniczy-pascal/6155
-- Przewodnik po Albanii (Rewasz): https://mapy.net.pl/przewodnik-po-albanii-rewasz/3742
-
-Dwie pierwsze mapy Hubera pokrywają dokładnie nasz odcinek górski — te są najważniejsze.
 
 ---
 

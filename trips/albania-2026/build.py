@@ -117,6 +117,7 @@ def build():
     EXTRA_SPEC = [
         # slug,         nav label,     md heading,                page title,                eyebrow
         ("praktyczne",  "Praktyczne",  "# Praktyczne informacje", "Praktyczne informacje",   "W terenie"),
+        ("slowniczek",  "Słowniczek",  "# Słowniczek albański",   "Słowniczek albański",     "Dogadać się po drodze"),
         ("kulinaria",   "Kulinaria",   "# Kulinaria i pamiątki",  "Kulinaria i pamiątki",    "Co zjeść, co przywieźć"),
         ("ciekawostki", "Ciekawostki", "# Ciekawostki",           "Ciekawostki",             "Drobiazgi po drodze"),
     ]
