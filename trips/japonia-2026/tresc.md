@@ -34,8 +34,6 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 - **Takayama → Matsumoto (dni 12–13)** — KML: droga 158 przez Hirayu, ~82 km. Plan: przełęcz Nomugi i dolina Kiso, 2 dni.
 - **Koniec jazdy (dzień 15)** — KML: centrum Tokio, km 808. Plan: Akiruno, ~6 km od śladu przy Hachiōji, km ~774.
 
-Oznaczenia: „km” = pozycja na śladzie; „X km od trasy” = w linii prostej od śladu;
-⚠ daleko = ponad 15 km, raczej osobny wypad niż przystanek.
 
 # Plan wyjazdu
 
@@ -147,9 +145,9 @@ Oznaczenia: „km” = pozycja na śladzie; „X km od trasy” = w linii proste
     - narcyzy *Echizen suisen* kwitną grudzień–marzec, nie teraz
     - *Echizen oroshi soba* — zimne soba z daikonem i dashi, od okresu Sengoku
 - **Fukui** — km ~235–245 nadmorską częścią, centrum ~14 km od trasy.
-    - **Eihei-ji** — ⚠ ~21 km; klasztor zen szkoły Soto, założony 1244
+    - **Eihei-ji** — ⚠ daleko, ~21 km od trasy; klasztor zen szkoły Soto, założony 1244
     - *shojin ryori* przy Eihei-ji — kuchnia buddyjska, *soba*, *gomadofu*
-    - **Fukui Prefectural Dinosaur Museum** — ⚠ ~26 km (Katsuyama)
+    - **Fukui Prefectural Dinosaur Museum** — ⚠ daleko, ~26 km od trasy (Katsuyama)
     - rzemiosło: laka, washi, kute noże
 - **Sakai / Mikuni** — km ~255–262.
     - **Tōjinbō** — ~4 km; kilometr heksagonalnych klifów bazaltowych, 25 m nad morzem
