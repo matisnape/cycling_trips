@@ -845,6 +845,12 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
     src = md(linkify_sources(ensure_list_blanks(re.sub(r"^>.*$", "", N.sources_block, flags=re.MULTILINE))))
     blocks.append(f'<details id="zrodla"><summary><span>Źródła i linki</span></summary><div>{src}</div></details>')
 
+    # mobile.html is one file, so a link written for the full version ("kulinaria.html")
+    # would point at a file that is not there once the page is saved to a phone. Inside
+    # this page the same content is a section, so those links become anchors.
+    for slug in [p["slug"] for p in extra] + ["zrodla"] + [f'dzien-{d["num"]}' for d in days]:
+        blocks = [b.replace(f'href="{slug}.html"', f'href="#{slug}"') for b in blocks]
+
     # Opening this page (not via the "?full=1" link) means "phone version is what I
     # want" — index.html reads the same key and hands over automatically next time.
     # Kept out of the f-string below so the JS braces need no escaping.
@@ -929,6 +935,9 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
                "});"
                "var wait=false;addEventListener('scroll',function(){if(wait)return;wait=true;"
                "requestAnimationFrame(function(){paint();wait=false;});},{passive:true});"
+               # Any in-page link opens its section, not just the ones in the menus:
+               # the day summaries link to "#kulinaria" and the like.
+               "addEventListener('hashchange',function(){open_(location.hash.slice(1));});"
                "if(location.hash)open_(location.hash.slice(1));"
                "paint();"
                "})();</script>")

@@ -59,6 +59,7 @@ Tokio). Plan jest ramowy.
 - Shinkansen, na lekko; zapas czasu na wypadek opóźnienia bagażu
 - wieczorem powrót do Osaki i składanie rowerów w hotelu
 - na talerzu: *momiji manju* na Miyajimie — ciastko w kształcie liścia klonu
+- na pamiątkę: igły krawieckie — Hiroszima słynie z ich produkcji ([więcej](kulinaria.html))
 
 ### Miejsca i historia
 
@@ -77,6 +78,7 @@ Tokio). Plan jest ramowy.
 
 - km 0 → 81, przez Park Nara, nocleg w Kioto
 - na talerzu: *kakinoha-zushi* i pikle *narazuke* w Narze, matcha w Uji
+- na pamiątkę: tusz *sumi* z Nary ([więcej](kulinaria.html))
 
 ### Miejsca i historia
 
@@ -101,6 +103,7 @@ Tokio). Plan jest ramowy.
 
 - bez sakw: Arashiyama i świątynie
 - na talerzu: *yuba*, *kaiseki* i matcha — kuchnia *kyō-ryōri*
+- na pamiątkę: **papiernicze i washi na Teramachi** — Kyūkyōdō, Kamiji Kakimoto, Morita Washi; ceramika Kiyomizu-yaki ([więcej](kulinaria.html))
 
 ### Miejsca i historia
 
@@ -160,6 +163,7 @@ Tokio). Plan jest ramowy.
 - dzień trasy nr 3; km 179 → 333, wybrzeżem
 - od dziś różnica czasu z Polską +8 h
 - na talerzu: *Echizen oroshi soba* na wybrzeżu, lody z płatkiem złota w Kanazawie
+- na pamiątkę: papier *washi* z Echizen i kute noże, ceramika *Kutani-yaki* w Kadze, złoty listek w Kanazawie ([więcej](kulinaria.html))
 
 ### Miejsca i historia
 
@@ -206,6 +210,7 @@ Tokio). Plan jest ramowy.
 - wariant z planu: płaski, szybki odcinek do Toyamy
 - wariant z KML: od razu w góry, na Gokayamę
 - na talerzu: *shiroebi* i *masuzushi* z Zatoki Toyama (wariant z planu)
+- na pamiątkę: *masuzushi* w pudełku ze stacji — klasyczny prezent z Toyamy ([więcej](kulinaria.html))
 
 ### Miejsca i historia
 
@@ -252,6 +257,7 @@ Tokio). Plan jest ramowy.
 
 - dzień trasy nr 6; km 473, górski dojazd, wieczorem onseny
 - na talerzu: *Hida-gyu*, *hoba miso* i *mitarashi dango* w Takayamie
+- na pamiątkę: sake z jednego z siedmiu browarów na Starym Mieście ([więcej](kulinaria.html))
 
 ### Miejsca i historia
 
@@ -293,6 +299,7 @@ Tokio). Plan jest ramowy.
 - wariant z planu: dolina Kiso w stronę Matsumoto
 - wariant z KML: z Hirayu prosto do Matsumoto, km 473 → 555 (~82 km na dni 12–13)
 - na talerzu: *gohei mochi* w dolinie Kiso, *shinshu soba* i *oyaki* w Matsumoto
+- na pamiątkę: żabki na szczęście z ulicy Nawate, *shinshu miso* ([więcej](kulinaria.html))
 
 ### Miejsca i historia
 
@@ -319,6 +326,7 @@ Tokio). Plan jest ramowy.
 
 - dzień trasy nr 9; km 555 → 705, na południe pod Fudżi
 - na talerzu: *hōtō*, wino *Kōshū*, *torimotsu-ni* w Kōfu
+- na pamiątkę: suszony makaron *hōtō* i miso ([więcej](kulinaria.html))
 
 ### Miejsca i historia
 
@@ -381,6 +389,7 @@ Tokio). Plan jest ramowy.
 - ok. 17:30 odbiór plandek ze sprzętem z hotelu
 - pociągiem na lotnisko Narita, wylot 22:20 (EK319)
 - na talerzu: sushi *edomae* i *monjayaki* — smaki Edo
+- na pamiątkę: **papiernicze** — Kakimori w Kuramae (notatnik składany na miejscu), Itoya w Ginzie, Traveler's Factory; noże na Kappabashi ([więcej](kulinaria.html), [dla znajomych](prezenty.html))
 
 ### Miejsca i historia
 
@@ -467,11 +476,6 @@ Tokio). Plan jest ramowy.
 - **Dni 13–14 · Nagano** — shinshu soba, oyaki, gohei mochi.
 - **Dzień 14 · Yamanashi** — hōtō, wino Kōshū, torimotsu-ni.
 - **Dni 16–17 · Tokio** — sushi edomae, monjayaki.
-
-### Zasada zakupów
-
-- Mali producenci i rzeczy tylko-japońskie, nie to, co łatwo kupić w Polsce.
-- Tylko to, czego naprawdę będę używać.
 
 ### Tekstylia
 
