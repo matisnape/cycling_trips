@@ -41,6 +41,9 @@ engine/assets/ (style.css, map.js, site.js) ─► copied into every trip
 | `_site/` | the output, not in the repo | never |
 
 **Addresses:** `anks.pl/cycling_trips/` (the list) → `anks.pl/cycling_trips/<slug>/`.
+**Site-wide settings:** `site.toml` in the root — the list page's title and the
+analytics every trip inherits unless its own `trip.toml` sets something else.
+`mobile.html` never gets analytics: that page makes no network requests at all.
 **Publishing:** push to `main` → GitHub Actions builds everything (~1–2 min).
 
 ---

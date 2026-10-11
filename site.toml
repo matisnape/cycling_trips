@@ -1,0 +1,18 @@
+# Settings for the whole site, not for one trip.
+#
+# A trip whose own [analytics] in trips/<slug>/trip.toml is empty inherits what is
+# here, so a single id covers every page. A trip that sets its own keeps it —
+# rumunia-2026 has had G-VEVEF241PW since before this file existed.
+#
+# Frozen trips are never rebuilt, so changing this does not reach them.
+
+[site]
+title       = "Wyprawy rowerowe"
+description = "Notatki z wypraw rowerowych."
+
+[analytics]
+# GA4 measurement id, e.g. "G-XXXXXXXXXX". Empty = no analytics anywhere by default.
+ga_id        = ""
+# Consent banner, e.g. "//cdn.cookie-script.com/s/<id>.js". With GA4 on, this is not
+# optional in the EU: nothing is sent to Google until the visitor accepts.
+cookiescript = ""

@@ -28,6 +28,7 @@ engine/assets/        style.css, map.js, site.js — shared by every trip
 trips/<slug>/         tresc.md, trip.toml, pois.csv, route.gpx|kml, assets/
 trips/_template/      an empty trip to copy; the build skips it
 build.py              thin launcher in the root -> engine/build.py
+site.toml             settings for the whole site: list-page title, shared analytics
 _site/                BUILD OUTPUT, in .gitignore
 ```
 

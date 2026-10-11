@@ -56,6 +56,48 @@ except ImportError:
     import markdown
 
 
+def analytics_tags(ga_id, cookiescript):
+    """(cookie banner, GA4) script tags, or empty strings. CookieScript: switch on
+    "Google Consent Mode" in its panel so it flips the flags below to 'granted' on
+    accept. GA4 uses Consent Mode v2: everything denied until the user accepts."""
+    cookie = (f'<script type="text/javascript" charset="UTF-8" src="{cookiescript}"></script>'
+              if cookiescript else "")
+    ga = (f'<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>'
+          '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
+          "gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',"
+          "ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});"
+          f"gtag('js',new Date());gtag('config','{ga_id}');</script>"
+          if ga_id else "")
+    return cookie, ga
+
+
+def load_site_config():
+    """Optional site.toml in the repo root: what belongs to the whole site rather than
+    to one trip — the title of the list page, and analytics. A trip whose own
+    [analytics] is empty inherits these, so one id can cover everything, while a trip
+    that sets its own keeps it. Frozen trips are not rebuilt, so they keep whatever
+    they were frozen with."""
+    path = os.path.join(ROOT, "site.toml")
+    data = {}
+    if os.path.isfile(path):
+        try:
+            with open(path, "rb") as f:
+                data = tomllib.load(f)
+        except tomllib.TOMLDecodeError as e:
+            raise SystemExit(f"ERROR: site.toml: TOML syntax error: {e}")
+    tab = lambda k: data.get(k) if isinstance(data.get(k), dict) else {}
+    a, st = tab("analytics"), tab("site")
+    cfg = SimpleNamespace(ga_id=str(a.get("ga_id", "") or ""),
+                          cookiescript=str(a.get("cookiescript", "") or ""),
+                          title=str(st.get("title", "") or "Wyprawy rowerowe"),
+                          description=str(st.get("description", "") or "Notatki z wypraw rowerowych."))
+    if cfg.ga_id and not re.match(r"^[A-Za-z0-9-]+$", cfg.ga_id):
+        raise SystemExit("ERROR: site.toml: [analytics] ga_id contains disallowed characters")
+    if cfg.cookiescript and not re.match(r"^[\w:/.\-?=&%]+$", cfg.cookiescript):
+        raise SystemExit("ERROR: site.toml: [analytics] cookiescript contains disallowed characters")
+    return cfg
+
+
 def need(match, what):
     if not match:
         raise SystemExit(f"ERROR: section not found in the note: {what}.\n"
@@ -205,6 +247,9 @@ def load_config(slug):
         errors.append("[analytics] ga_id contains disallowed characters")
     if c.cookiescript and not re.match(r"^[\w:/.\-?=&%]+$", c.cookiescript):
         errors.append("[analytics] cookiescript contains disallowed characters")
+    site = load_site_config()                      # empty here = take the site-wide one
+    c.ga_id = c.ga_id or site.ga_id
+    c.cookiescript = c.cookiescript or site.cookiescript
 
     if errors:
         raise SystemExit(f"ERROR: {rel}:\n" + "\n".join(f"  - {e}" for e in errors))
@@ -455,16 +500,7 @@ def build_trip(slug):
     LJS = '<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>'
 
     # Analytics are per trip. Empty = nothing is inserted (nothing collected, no consent needed).
-    # CookieScript: enable "Google Consent Mode" in its panel so it flips the flags below to
-    # 'granted' on accept. GA4 uses Consent Mode v2: everything denied until the user accepts.
-    COOKIE = (f'<script type="text/javascript" charset="UTF-8" src="{cfg.cookiescript}"></script>'
-              if cfg.cookiescript else "")
-    GA = (f'<script async src="https://www.googletagmanager.com/gtag/js?id={cfg.ga_id}"></script>'
-          '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}'
-          "gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',"
-          "ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});"
-          f"gtag('js',new Date());gtag('config','{cfg.ga_id}');</script>"
-          if cfg.ga_id else "")
+    COOKIE, GA = analytics_tags(cfg.ga_id, cfg.cookiescript)
 
     # Accent: one value in trip.toml. CSS variables override the shared style.css; map.js
     # gets it via window.TRIP_ACCENT (and the copy-time replacement, see LEGACY_MAP_ACCENT).
@@ -1103,6 +1139,8 @@ def _newest_first(r):
 
 
 def write_site_index(results):
+    site = load_site_config()
+    cookie, ga = analytics_tags(site.ga_id, site.cookiescript)
     items = []
     for r in sorted(results, key=_newest_first, reverse=True):
         c = r["card"]
@@ -1119,8 +1157,9 @@ def write_site_index(results):
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Wyprawy rowerowe</title>
-<meta name="description" content="Notatki z wypraw rowerowych."/>
+<title>{site.title}</title>
+<meta name="description" content="{site.description}"/>
+{cookie}{ga}
 <style>
 :root{{--bg:#fbfcfb;--fg:#1b211e;--mut:#69706b;--line:#e3e7e3;--card:#fff}}
 @media (prefers-color-scheme:dark){{:root{{--bg:#14181a;--fg:#e8ecea;--mut:#9daaa5;--line:#2b3235;--card:#1a1f21}}}}
@@ -1141,7 +1180,7 @@ span{{display:block}}
 </head>
 <body>
 <main>
-<h1>Wyprawy rowerowe</h1>
+<h1>{site.title}</h1>
 <ul>
 {chr(10).join(items)}
 </ul>
