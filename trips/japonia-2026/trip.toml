@@ -39,6 +39,8 @@ label = "Rozmówki"
 heading = "# Rozmówki japońskie"
 title = "Rozmówki japońskie"
 eyebrow = "Dogadać się po drodze"
+# Rows can be pinned to a "Moje" block and counted; see engine/assets/phrasebook.js.
+phrasebook = true
 
 [[pages]]
 slug = "kulinaria"

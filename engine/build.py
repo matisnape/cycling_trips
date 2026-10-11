@@ -28,7 +28,7 @@ ROOT = os.path.dirname(HERE)
 TRIPS = os.path.join(ROOT, "trips")
 SITE = os.path.join(ROOT, "_site")
 ENGINE_ASSETS = os.path.join(HERE, "assets")
-SHARED_ASSETS = ("style.css", "map.js", "site.js")
+SHARED_ASSETS = ("style.css", "map.js", "site.js", "phrasebook.js")
 
 # map.js (shared, not edited here) still carries this accent literal. At copy time it is
 # swapped for [theme] accent. Once map.js reads window.TRIP_ACCENT (set in every map page)
@@ -157,6 +157,7 @@ def load_config(slug):
             if not isinstance(v, str) or not v.strip():
                 errors.append(f"required field [[pages]] #{i} {k} is missing")
             row[k] = v
+        row["phrasebook"] = bool(p.get("phrasebook", False))
         ps = row["slug"]
         if isinstance(ps, str) and ps:
             if not _SLUG.match(ps) or ps in RESERVED_PAGE_SLUGS or re.match(r"^dzien-\d+$", ps):
@@ -271,7 +272,12 @@ def parse_note(raw, cfg):
         slug, label, heading, title, eyebrow = pg["slug"], pg["label"], pg["heading"], pg["title"], pg["eyebrow"]
         m = re.search(rf"\n{re.escape(heading)}\n(.*?)(?=\n# |\Z)", raw, re.DOTALL)
         html = md(linkify_sources(ensure_list_blanks(m.group(1).strip()))) if m and m.group(1).strip() else ""
-        EXTRA.append({"slug": slug, "label": label, "title": title, "eyebrow": eyebrow, "html": html})
+        # phrasebook = true marks a page whose tables can be pinned and counted
+        # (engine/assets/phrasebook.js). The wrapper is all that script needs.
+        if html and pg.get("phrasebook"):
+            html = f'<div class="phrasebook" data-pk="{slug}">{html}</div>'
+        EXTRA.append({"slug": slug, "label": label, "title": title, "eyebrow": eyebrow,
+                      "html": html, "phrasebook": bool(pg.get("phrasebook"))})
 
     src_main, final_note = sources_block, ""
     mfn = re.search(r"\n(>\s?Uwaga:.*)$", sources_block, re.DOTALL)
@@ -449,7 +455,7 @@ def build_trip(slug):
         except OSError:
             return f'assets/{name}'
 
-    def page(title, desc, body, with_map=False, active="", map_day=None, switch=False):
+    def page(title, desc, body, with_map=False, active="", map_day=None, switch=False, extra_js=""):
         head_extra = LCSS if with_map else ""
         extra_links = "".join(
             f'<a href="{p["slug"]}.html"{" aria-current=page" if active==p["slug"] else ""}>{p["label"]}</a>'
@@ -470,6 +476,8 @@ def build_trip(slug):
             f'<a href="{u}" rel="noopener" target="_blank">{lbl}</a>'
             for u, lbl in ((gmaps, "Mapa Google"), (mapycom, "mapy.com")) if u))
         scripts = f'<script src="{asset("site.js")}" defer></script>'
+        if extra_js:
+            scripts = f'<script src="{asset(extra_js)}" defer></script>' + scripts
         if with_map:
             scripts = (LJS + f'<script src="{asset("route-data.js")}"></script>'
                        + f'<script>window.MAP_DAY={map_day if map_day else "null"};window.TRIP_ACCENT={json.dumps(cfg.accent)};</script>'
@@ -617,7 +625,8 @@ def build_trip(slug):
         write(f'{p["slug"]}.html',
               page(f'{p["title"]} — {brand}',
                    f'{p["title"]} — notatki z wyprawy „{brand}”.',
-                   body, with_map=False, active=p["slug"]))
+                   body, with_map=False, active=p["slug"],
+                   extra_js="phrasebook.js" if p["phrasebook"] else ""))
 
     # --- mobile.html: ONE self-contained page, no external requests at all ------
     # Everything (CSS, route sketch) is inline, so the saved file works offline on
@@ -804,6 +813,22 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 .s-n{flex:0 0 1.7rem;color:var(--acc);font-weight:600;font-size:.8rem;font-variant-numeric:tabular-nums}
 .s-t{flex:1;min-width:0}
 .s-k{color:var(--mut);font-size:.8rem;white-space:nowrap}
+/* Phrasebook: controls come from the inlined script, so with JS off nothing shows. */
+.phr-top{border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:10px;
+ background:var(--card);padding:12px 14px 6px;margin:0 0 18px}
+.phr-top h3{font-size:1rem;margin:0 0 8px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.phr-hint{font-size:.78rem;font-weight:400;color:var(--mut)}
+.phr-top table{margin:0;display:table}
+.phr-just{background:rgba(127,127,127,.18)}
+.phr-foot{margin:8px 0 2px}
+.phr-clear{font:500 .78rem inherit;color:var(--mut);background:none;border:0;padding:4px 0;text-decoration:underline}
+.phr-star{background:none;border:0;font-size:1rem;line-height:1;padding:6px 8px 6px 0;margin-left:-4px;color:var(--mut)}
+.phr-star[aria-pressed="true"]{color:var(--acc)}
+.phr-star.big{font-size:1.15rem}
+.phr-use{width:1%;white-space:nowrap;vertical-align:middle}
+.phr-plus{display:inline-flex;align-items:center;gap:4px;min-width:46px;min-height:34px;justify-content:center;
+ font:600 .82rem inherit;color:var(--acc);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.phr-n{font-variant-numeric:tabular-nums;color:var(--mut)}
 """.replace("@ACC_DARK@", cfg.accent_dark).replace("@ACC@", cfg.accent)
     blocks = []
     for d in days:
@@ -874,6 +899,13 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
     # The label doubles as a "you are here" readout, updated on scroll.
     ids = json.dumps([i for i, _n, _t, _k in nav_items], ensure_ascii=False)
     labels = json.dumps([(f"{n} · {t}" if n else t) for _i, n, t, _k in nav_items], ensure_ascii=False)
+    # The phrasebook script is inlined, like everything else here: mobile.html must
+    # not fetch a single file. Only added when a page actually opted in.
+    phrjs = ""
+    if any(p["html"] and p.get("phrasebook") for p in extra):
+        with open(os.path.join(ENGINE_ASSETS, "phrasebook.js"), encoding="utf-8") as f:
+            phrjs = "<script>\n" + f.read() + "</script>"
+
     jumpnav = ("<script>(function(){"
                f"var IDS={ids},LAB={labels};"
                "var cap=document.getElementById('nav-c');"
@@ -951,6 +983,7 @@ podgląd w Plikach wystarczy, menu „☰ Skocz do sekcji" jest na górze strony
 Na telefonie strona główna sama przenosi tutaj. Otwarcie wersji pełnej jest pamiętane w tej przeglądarce; wejście na tę stronę wraca do wersji telefonowej.</footer>
 {navbar}
 {jumpnav}
+{phrjs}
 </body>
 </html>
 '''
