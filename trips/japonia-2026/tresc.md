@@ -392,6 +392,10 @@ Tokio). Plan jest ramowy.
 - Japonia to UTC+9. Różnica z Polską: +7 h do 25.10, +8 h od 25.10 (koniec czasu letniego w Polsce).
 - Gniazdka A/B, 100 V — potrzebna przejściówka.
 
+### Pogoda
+
+- Weather Spark — średnie temperatury, opady i długość dnia miesiąc po miesiącu, dla każdego miasta na trasie: https://weatherspark.com/
+
 ### W terenie
 
 - Nie zostawiaj roweru w miejscu z zakazem — rowery są odholowywane.
