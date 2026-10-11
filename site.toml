@@ -12,7 +12,7 @@ description = "Notatki z wypraw rowerowych."
 
 [analytics]
 # GA4 measurement id, e.g. "G-XXXXXXXXXX". Empty = no analytics anywhere by default.
-ga_id        = ""
+ga_id        = "G-NW78Z4Q4E3"
 # Consent banner, e.g. "//cdn.cookie-script.com/s/<id>.js". With GA4 on, this is not
 # optional in the EU: nothing is sent to Google until the visitor accepts.
-cookiescript = ""
+cookiescript = "//cdn.cookie-script.com/s/7a0d26610c95771b586f4240b7d230a4.js"
