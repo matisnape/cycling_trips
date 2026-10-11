@@ -2,3 +2,6 @@ _site/
 __pycache__/
 *.pyc
 .DS_Store
+# Zamrożone wyprawy MUSZĄ być w repo (PLAYBOOK §2) — nigdy nie ignoruj frozen/.
+!trips/*/frozen/
+!trips/*/frozen/**

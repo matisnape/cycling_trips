@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Góry Przeklęte — wersja offline</title>
+<script>document.documentElement.className+=' js';(function(){try{if(!/[?&]full=1/.test(location.search))localStorage.setItem('gp-view:albania-2026','mobile');}catch(e){}})();</script>
+<meta name="description" content="Cała wyprawa na jednej stronie, bez internetu: plan dzień po dniu, praktyczne informacje, ciekawostki."/>
+<style>
+:root{--bg:#fbfcfb;--fg:#1c211f;--mut:#5d6763;--acc:#2f6e78;--line:#dfe4e1;--card:#fff}
+@media (prefers-color-scheme:dark){
+ :root{--bg:#14181a;--fg:#e8ecea;--mut:#9daaa5;--acc:#7fc6cf;--line:#2b3235;--card:#1a1f21}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+ -webkit-text-size-adjust:100%;max-width:44rem;margin:0 auto;padding:0 16px 28px}
+/* Only the JS build gets the fixed bottom bar, so only it needs room underneath. */
+.js body{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+h1{font-size:1.9rem;line-height:1.15;margin:24px 0 4px;letter-spacing:-.02em}
+h2{font-size:1.15rem;margin:32px 0 8px;padding-top:16px;border-top:1px solid var(--line)}
+h3{font-size:1rem;margin:18px 0 6px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+p,ul,ol{margin:8px 0}
+ul,ol{padding-left:1.2em}
+li{margin:5px 0}
+a{color:var(--acc);text-underline-offset:2px}
+.sub{color:var(--mut);margin:0 0 14px}
+.facts{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px;list-style:none;padding:0}
+.facts li{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:.85rem}
+.save{display:block;background:var(--acc);color:var(--bg);text-align:center;font-weight:600;
+ text-decoration:none;padding:14px;border-radius:12px;margin:18px 0 6px}
+.hint{color:var(--mut);font-size:.85rem;margin:0 0 8px}
+.map{color:var(--acc);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;margin:16px 0}
+.map svg{display:block;width:100%;height:auto}
+.map .poi{fill:currentColor;opacity:.75}
+details{border:1px solid var(--line);border-radius:12px;background:var(--card);margin:8px 0;overflow:hidden}
+summary{cursor:pointer;padding:13px 14px;font-weight:600;display:flex;gap:10px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary .n{color:var(--acc);font-variant-numeric:tabular-nums;font-size:.8rem;white-space:nowrap}
+summary .km{margin-left:auto;color:var(--mut);font-size:.82rem;white-space:nowrap}
+details>div{padding:0 14px 14px}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+blockquote{margin:12px 0;padding:10px 14px;border-left:3px solid var(--acc);background:var(--card);color:var(--mut);font-size:.92rem}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+table{width:100%;border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto}
+td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}
+footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--mut);font-size:.85rem}
+/* Version link and save pill share one grid cell: link pinned left, pill pinned right.
+   The pill's panel is a full-width block inside that same cell, so unfolding pushes the
+   page down without ever moving the pill itself. */
+.switch{display:grid;align-items:start;padding:18px 0 0;font-size:.85rem;color:var(--mut)}
+.switch span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+/* Switch link first and left-aligned — same corner as the .viewbar link in the full version. */
+.switch a{font-weight:600;text-decoration:none;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
+.switch>a{grid-area:1/1;justify-self:start;align-self:start;padding:6px 0;max-width:60%}
+.savebox{grid-area:1/1;justify-self:stretch;text-align:right;
+ border:0;background:none;margin:0;border-radius:0;overflow:visible}
+/* Filled pill so the download stands out against the plain version-switch link. */
+.savebox>summary{display:inline-block;list-style:none;padding:5px 13px;font:inherit;
+ font-weight:600;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;
+ background:var(--acc);color:var(--bg);border:1px solid var(--acc);border-radius:999px;
+ cursor:pointer;-webkit-tap-highlight-color:transparent}
+.savebox-in{text-align:left;margin-top:12px;padding:13px 14px;background:var(--card);
+ border:1px solid var(--line);border-radius:12px}
+.savebox-in .hint{margin:0 0 11px}
+.savebox-in .save{margin:0}
+/* Hamburger for the downloaded file. <details> is a native HTML toggle, so it needs
+   no JS — and it sits in normal flow, because iOS Quick Look (the Files preview)
+   ignores position:fixed. Hidden wherever JS runs: there the bottom bar takes over
+   and the live page stays exactly as it was. */
+.toc{margin:16px 0 4px}
+.js .toc{display:none}
+.toc>summary{font-size:.9rem}
+/* Two groups: the days, then everything else. Day chips carry their route, so they
+   fill the rows and the split reads as grouping rather than as a gap. */
+.toc-r{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px}
+.toc-r:last-child{padding-bottom:14px}
+.toc-r+.toc-r{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.toc a{display:inline-flex;align-items:baseline;gap:6px;background:var(--bg);
+ border:1px solid var(--line);border-radius:999px;padding:6px 11px;
+ font-size:.84rem;font-weight:600;text-decoration:none;color:var(--fg)}
+.toc a i{font-style:normal;color:var(--acc);font-variant-numeric:tabular-nums}
+.toc a:active{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.toc a:active i{color:var(--bg)}
+/* Jump bar pinned to the BOTTOM — thumb zone one-handed. Both it and the sheet rely
+   on position:fixed, so they only appear once the inline script marks the page;
+   in a preview that ignores fixed they would otherwise sit dead at the very end. */
+.navbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:15;gap:8px;
+ padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line)}
+.js .navbar{display:flex}
+.navbar>*{background:var(--card);border:1px solid var(--line);border-radius:12px;color:var(--fg);
+ font:inherit;padding:12px 8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.nav-a{flex:0 0 3.5rem;font-size:1.15rem;line-height:1}
+.nav-c{flex:1;min-width:0;font-size:.9rem;font-weight:600;text-align:center;
+ text-decoration:none;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.navbar>*:active{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+/* The sheet runs on :target, not on JS — a downloaded file previewed without
+   JavaScript (iOS Quick Look does that) still has to navigate. Picking a section
+   moves the hash off #sekcje, which closes the sheet and jumps in one tap. */
+/* The :target hook is a zero-size marker pinned to the viewport, not the panel
+   itself — jumping to a full-screen element makes the browser nudge the page. */
+.sheet-anchor{position:fixed;top:0;left:0;width:0;height:0}
+.sheet-wrap{display:none;position:fixed;inset:0;z-index:20;pointer-events:none}
+.js .sheet-wrap{display:block}
+#sekcje:target~.sheet-wrap{pointer-events:auto}
+.sheet-back{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .2s}
+#sekcje:target~.sheet-wrap .sheet-back{opacity:1}
+.sheet{position:absolute;left:0;right:0;bottom:0;max-height:78vh;overflow-y:auto;
+ -webkit-overflow-scrolling:touch;background:var(--card);border-top:1px solid var(--line);
+ border-radius:16px 16px 0 0;transform:translateY(101%);transition:transform .25s ease;
+ padding-bottom:env(safe-area-inset-bottom)}
+#sekcje:target~.sheet-wrap .sheet{transform:translateY(0)}
+.sheet-in{padding:0 16px 12px}
+.sheet-hd{position:sticky;top:0;background:var(--card);display:flex;align-items:center;
+ justify-content:space-between;padding:14px 0 8px;font-weight:600}
+.sheet-x{color:var(--mut);font-size:1.25rem;padding:2px 8px;cursor:pointer}
+.sheet a{display:flex;gap:10px;align-items:baseline;padding:13px 2px;text-decoration:none;
+ color:var(--fg);font-size:.95rem;border-bottom:1px solid var(--line)}
+.sheet a:last-child{border-bottom:0}
+.s-n{flex:0 0 1.7rem;color:var(--acc);font-weight:600;font-size:.8rem;font-variant-numeric:tabular-nums}
+.s-t{flex:1;min-width:0}
+.s-k{color:var(--mut);font-size:.8rem;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="switch"><a href="index.html?full=1">🗺 Wersja pełna</a>
+<details class="savebox"><summary>⬇︎ Zapisz</summary><div class="savebox-in">
+<p class="hint"><b>iPhone:</b> dotknij przycisku → „Pobierz". Plik ląduje w <b>Plikach → Pobrane</b>;
+podgląd w Plikach wystarczy, menu „☰ Skocz do sekcji" jest na górze strony.</p>
+<a class="save" href="mobile.html" download="gory-przeklete-offline.html">⬇︎ Pobierz</a>
+</div></details></nav>
+<h1 id="top">Góry Przeklęte</h1>
+<p class="sub">Czarnogóra · Kosowo · Albania — 14–23.08.2026</p>
+<ul class="facts">
+  <li><b>8</b> dni</li><li><b>481</b> km</li><li><b>+8346</b> m</li><li>Čakor 1846 m</li><li>Qafa e Valbonës 1795 m</li>
+</ul>
+
+<details class="toc"><summary>☰ Skocz do sekcji</summary><div class="toc-r"><a href="#dzien-1"><i>1</i>Podgorica → Tamarë</a><a href="#dzien-2"><i>2</i>Tamarë → Čakor</a><a href="#dzien-3"><i>3</i>Čakor → Gjakova</a><a href="#dzien-4"><i>4</i>Gjakova → Kosowo busem → Gjakova</a><a href="#dzien-5"><i>5</i>Gjakova → Valbona</a><a href="#dzien-6"><i>6</i>Valbona → Theth</a><a href="#dzien-7"><i>7</i>Theth → Shkodra</a><a href="#dzien-8"><i>8</i>Shkodra → Podgorica</a></div><div class="toc-r"><a href="#mapa">Mapa</a><a href="#praktyczne">Praktyczne</a><a href="#slowniczek">Słowniczek</a><a href="#kulinaria">Kulinaria</a><a href="#ciekawostki">Ciekawostki</a><a href="#zrodla">Źródła</a></div></details>
+
+<div class="map" id="mapa"><svg viewBox="0 0 680 440" role="img" aria-label="Szkic trasy — pętla wokół Gór Przeklętych"><polyline points="130.7,212.6 135.0,207.0 138.5,205.7 139.5,204.3 140.3,205.3 140.9,204.5 141.4,205.1 147.3,207.6 149.6,205.5 152.3,205.0 152.7,204.0 151.6,201.6 154.3,198.7 154.9,197.0 156.2,197.7 159.5,195.7 162.4,196.0 163.0,196.7 163.2,198.6 165.7,198.7 167.3,200.3 170.0,201.5 172.0,204.0 175.3,203.3 180.8,207.5 187.1,208.4 187.9,207.9 188.8,206.2 196.3,203.0 198.1,203.3 202.9,201.4 203.9,200.0 204.4,198.0 207.1,195.5 209.2,191.9 210.8,190.2 212.2,187.4 212.9,187.0 215.0,187.5 216.9,185.1 217.2,182.9 225.5,184.9 225.6,185.4 226.1,184.9 226.4,185.6 230.9,188.1 231.8,188.3 234.7,187.1 236.2,187.6 236.9,189.2 237.0,191.2 237.8,187.9 238.9,187.3 239.0,186.5 240.0,185.6 241.9,184.9 244.0,185.9 245.8,186.1 248.6,184.7 248.7,182.7 250.7,179.5 251.0,176.7 252.7,174.1 256.8,169.8 261.3,168.4 261.2,165.4 261.8,162.3 264.3,160.3 265.5,157.3 268.6,155.9 270.0,153.7 271.2,153.2 271.5,152.0 271.0,151.5 272.2,149.9 272.7,148.2 271.6,146.0 270.5,145.3 269.9,144.1 270.5,142.8 270.9,140.4 273.6,140.6 275.6,139.4 278.3,136.7 278.8,135.1 278.3,134.4 284.4,135.4 285.6,134.7 285.2,136.4 284.5,136.6 285.5,136.4 287.5,133.8 287.6,132.4 290.9,129.6 292.6,126.4 293.6,126.0 294.5,124.7 295.1,125.2 296.7,124.8 298.8,123.4 299.5,122.6 299.9,121.0 302.0,119.7 303.9,119.9 307.5,118.9 312.0,119.3 314.5,117.8 315.9,118.1 318.1,116.7 320.5,117.2 325.5,116.5 324.2,116.0 324.2,115.0 323.9,114.9 324.2,114.6 324.4,115.5 326.4,115.6 326.3,116.2 328.9,117.7 334.4,119.6 335.4,117.5 334.9,115.3 335.6,109.1 337.1,106.5 339.9,103.4 340.6,100.8 344.2,96.6 344.1,94.0 345.6,92.8 346.6,90.7 346.4,90.1 345.3,90.0 346.9,89.6 347.9,87.6 349.5,87.9 352.3,87.2 355.5,87.1 359.5,87.9 362.7,86.6 367.1,88.3 377.5,90.1 380.4,91.6 385.9,92.9 388.7,94.2 388.8,95.3 387.4,98.5 387.7,99.7 386.9,100.2 386.7,99.9 387.5,99.4 387.7,97.2 388.8,95.2 392.0,95.9 399.2,95.7 403.8,94.5 411.3,90.3 417.3,88.4 418.0,87.3 420.6,86.2 423.1,83.9 424.6,80.7 425.6,80.0 427.3,75.8 430.7,71.9 430.4,71.2 430.9,69.6 430.3,67.7 432.1,61.2 433.1,60.4 433.6,59.1 433.3,52.9 432.6,50.8 430.8,48.8 431.2,47.6 431.8,47.9 432.8,46.5 432.8,45.0 431.9,43.6 432.1,43.3 430.1,42.1 429.1,40.2 426.9,38.8 427.4,37.8 427.4,36.3 428.2,37.3 428.0,38.2 428.3,38.2 428.5,39.0 432.2,42.1 437.6,40.6 438.2,40.1 438.4,38.4 439.7,39.0 440.3,38.6 441.7,36.6 442.6,36.4 443.0,35.6 442.7,34.6 444.3,34.3 444.6,33.1 445.8,31.7 445.9,29.4 445.3,26.6 445.8,24.7 445.1,24.0 446.3,23.8 446.4,23.3 445.7,22.2 446.6,22.4 448.5,21.5 447.7,23.0 448.2,24.3 447.9,25.4 448.9,27.2 450.5,28.1 450.1,29.1 450.9,32.4 451.7,32.5 452.3,31.0 455.6,29.0 455.9,30.2 457.2,29.1 459.0,30.6 460.6,28.5 461.3,29.0 461.6,28.1 462.9,28.1 462.8,30.6 464.2,30.8 464.3,33.5 463.5,35.1 461.1,37.6 460.5,39.4 460.7,40.0 460.9,38.8 466.5,34.0 466.9,32.8 466.5,29.5 466.8,27.8 467.0,29.8 467.9,31.5 468.1,34.0 470.1,31.4 470.0,30.6 470.6,30.0 469.7,34.0 470.6,35.0 470.1,33.7 471.7,31.2 471.0,32.4 471.4,33.7 472.1,33.1 473.2,33.6 476.0,33.1 476.5,33.8 476.0,32.8 473.6,32.4 473.9,31.4 478.6,31.9 481.0,31.3 482.9,29.3 483.0,28.4 483.0,29.2 481.1,31.8 481.5,31.8 483.8,29.4 484.1,27.5 484.6,28.8 484.6,27.0 487.2,24.6 489.3,23.9 492.4,24.4 494.4,24.0 495.9,22.1 500.4,20.5 500.9,19.5 500.3,17.8 501.7,19.1 505.3,19.0 506.5,19.8 509.3,18.8 510.9,17.1 512.3,17.0 514.1,15.1 516.2,14.1 519.5,14.0 521.2,14.8 524.2,15.0 526.1,14.1 531.1,14.1 531.4,14.8 536.0,15.7 537.7,17.0 539.1,16.1 544.6,20.8 546.1,21.2 547.2,23.6 548.3,24.2 549.4,25.7 550.5,28.7 552.8,30.8 553.1,32.2 554.7,32.7 555.7,34.2 556.9,34.4 557.3,35.3 560.9,37.7 566.2,37.7 567.7,36.7 566.6,37.8 568.7,36.3 571.0,36.0 572.4,37.7 575.0,38.3 576.5,38.0 577.4,38.7 578.8,38.8 579.9,38.1 581.9,38.8 584.1,37.6 585.7,38.8 587.0,38.4 591.1,39.2 596.1,38.6 596.6,40.4 597.9,41.0 598.5,45.5 597.8,46.6 598.3,47.1 598.8,50.0 597.3,51.2 597.2,53.9 598.2,56.0 599.0,59.9 598.1,62.3 599.2,62.9 597.6,64.6 597.3,65.8 597.7,69.0 599.5,73.3 599.7,75.1 599.3,77.4 600.5,79.4 605.5,80.5 606.2,82.1 610.2,87.0 610.6,88.0 610.3,90.1 609.0,92.2 608.5,94.8 608.7,97.1 607.7,98.1 608.3,100.1 607.3,100.6 606.8,102.2 603.6,105.6 600.4,107.6 599.5,107.6 599.3,108.9 595.6,110.2 589.3,109.0 585.1,109.6 587.5,110.7 588.4,109.9 589.8,110.6 588.4,109.9 587.4,110.4 588.0,111.0 587.4,111.0 587.5,111.5 589.1,112.1 587.4,113.1 587.3,114.8 587.8,116.3 591.5,120.5 594.8,123.2 594.2,123.1 593.5,124.8 595.3,127.1 600.6,130.9 608.2,133.2 612.1,142.6 624.9,159.9 625.8,162.8 632.2,171.3 636.1,178.7 644.3,185.1 649.2,191.9 650.3,194.3 658.2,203.3 661.9,208.4 663.0,212.1 664.0,213.0 664.4,216.1 665.7,219.5 663.7,218.8 663.3,217.8 660.5,218.6 659.7,217.7 656.8,218.0 652.9,217.0 650.7,216.9 649.9,217.5 650.0,218.6 649.1,218.3 648.6,216.6 646.6,213.8 645.0,213.3 642.9,206.0 641.2,204.5 637.9,203.5 636.8,202.6 636.5,201.5 631.1,197.7 630.5,194.7 628.8,192.7 628.0,191.0 626.7,190.2 624.2,190.5 620.7,189.2 618.9,187.0 618.1,184.6 617.0,183.4 616.2,180.7 614.4,178.4 613.1,177.9 610.2,178.9 608.9,178.4 605.8,179.7 601.6,179.0 600.7,177.6 597.2,176.7 599.4,189.4 595.8,191.3 596.2,192.3 595.8,194.5 596.5,197.6 596.1,197.8 593.2,199.0 591.2,198.8 587.1,195.4 585.6,197.2 585.8,197.9 583.5,199.5 580.9,199.3 578.1,200.1 576.6,199.5 575.3,197.0 573.6,198.2 572.1,198.0 571.4,197.3 567.5,197.9 566.2,197.5 566.7,195.9 568.5,194.6 565.1,195.4 563.5,195.1 561.7,197.5 559.4,198.4 558.9,199.9 557.9,200.6 557.4,202.4 553.4,202.1 552.3,202.5 549.2,207.4 544.4,210.9 540.2,210.3 535.2,213.2 531.3,211.9 527.0,213.1 525.1,215.0 525.1,216.0 524.5,217.0 522.2,217.3 520.7,218.6 519.4,221.0 518.6,221.3 517.5,222.8 516.0,226.0 513.5,227.5 509.9,231.5 508.4,232.2 509.6,230.6 509.1,228.8 507.5,229.6 503.7,228.9 503.6,229.6 497.7,229.5 498.3,229.3 498.3,228.3 499.0,228.2 499.2,225.7 500.4,225.7 499.4,220.9 499.6,215.6 498.7,213.5 499.5,212.4 500.8,212.0 498.5,209.8 500.3,209.6 500.3,208.8 499.3,208.8 499.0,207.8 494.3,207.7 491.1,205.3 489.7,205.5 486.8,204.4 483.0,200.9 479.9,199.6 471.0,192.3 469.0,192.1 467.1,190.7 465.9,189.6 464.7,187.0 461.9,184.7 462.0,183.8 460.7,181.5 457.4,179.7 453.4,179.6 446.5,177.3 443.4,175.3 440.5,170.5 437.3,167.6 436.8,166.5 432.6,165.0 429.5,165.2 427.8,164.0 423.0,164.4 418.7,167.7 416.6,167.9 413.6,169.7 413.0,171.4 412.2,172.2 411.9,174.0 410.7,176.4 409.1,177.9 408.7,179.2 409.0,180.0 408.8,180.9 407.6,182.6 405.9,183.6 403.2,189.6 401.1,191.8 397.6,192.7 394.4,194.5 391.2,194.8 390.3,195.3 390.5,195.9 389.6,196.3 387.8,196.4 386.8,195.1 385.1,194.7 383.8,196.2 379.6,195.2 377.2,196.3 378.6,197.4 379.0,199.0 373.2,198.9 372.7,197.9 371.6,197.5 368.2,200.0 367.7,201.4 365.6,202.4 362.5,200.5 361.2,201.1 360.9,200.2 360.5,201.0 360.2,199.9 358.0,201.5 358.5,203.4 360.5,205.8 359.7,205.3 359.4,205.9 359.7,206.2 356.6,203.7 355.9,204.1 356.3,201.9 355.7,202.7 355.9,201.8 354.9,201.1 354.9,200.6 354.3,200.7 353.4,198.4 352.6,198.3 353.2,198.8 352.5,201.9 352.3,200.5 350.6,198.6 351.3,201.3 351.1,200.6 349.6,199.4 350.8,201.4 350.5,203.1 350.0,201.5 348.2,201.6 347.7,200.6 347.6,203.2 349.1,204.9 348.5,205.9 349.3,206.2 348.6,207.0 348.8,206.4 347.8,206.2 348.7,208.7 350.9,210.1 353.7,210.5 350.2,210.6 352.1,211.6 352.6,211.3 351.5,212.1 352.1,212.2 349.0,212.8 347.6,210.8 345.0,209.7 344.5,210.2 342.6,210.3 342.4,210.9 338.3,209.1 334.8,209.8 335.2,208.2 334.4,209.1 334.7,208.5 333.7,208.8 333.4,207.7 332.6,207.2 332.5,207.8 332.1,207.3 331.6,208.6 330.1,208.0 330.7,207.7 330.5,207.3 328.6,208.4 331.6,205.0 329.5,206.1 330.5,205.1 326.9,204.5 327.3,204.9 324.5,203.7 324.9,204.2 322.6,204.8 318.2,204.3 317.5,203.9 317.6,203.4 312.1,202.3 304.5,201.9 301.7,202.8 301.7,203.6 299.6,204.6 298.1,206.3 295.2,213.0 295.0,220.6 294.2,224.2 295.1,228.5 294.3,231.0 294.8,233.6 295.9,235.3 294.8,238.5 293.0,240.6 285.6,243.3 281.9,246.1 280.1,246.1 277.3,248.4 274.9,251.4 270.3,254.4 269.5,254.2 265.4,255.9 262.2,256.5 255.1,256.3 250.7,262.3 248.4,267.6 246.0,270.0 247.0,270.7 247.3,271.6 241.0,275.8 235.9,282.0 232.0,285.5 229.9,295.0 222.1,308.6 219.7,311.9 216.8,313.8 215.4,312.7 213.1,312.5 212.8,313.0 213.1,313.4 212.3,315.0 206.7,319.7 202.6,318.1 201.1,319.7 201.8,318.9 202.9,319.5 207.9,326.6 210.3,329.1 211.1,330.9 208.4,335.0 209.7,336.3 207.6,339.0 208.2,339.7 208.7,339.5 209.9,341.9 211.0,342.1 211.3,343.9 212.3,343.9 212.8,344.5 213.4,344.3 213.7,345.8 213.1,346.6 213.7,347.3 216.2,346.3 216.9,348.1 217.8,347.8 218.6,350.0 225.1,347.4 226.9,350.0 228.6,351.0 230.9,353.7 233.3,352.9 240.0,354.9 240.5,353.6 241.4,353.3 243.6,355.4 243.5,360.6 244.0,360.8 244.9,365.9 244.1,366.2 244.6,366.7 245.2,373.2 244.8,375.9 247.3,376.7 247.1,380.3 251.7,383.1 251.5,392.5 250.5,393.0 249.2,395.3 247.3,399.1 246.7,402.2 244.4,406.0 245.8,407.5 245.8,408.5 239.4,414.6 233.9,417.5 234.5,417.4 234.6,419.2 235.6,421.6 235.4,422.4 231.8,423.3 231.3,424.9 229.6,426.0 228.8,426.0 228.4,425.2 228.6,424.4 230.5,421.4 232.5,419.3 229.9,420.8 229.4,421.7 228.3,421.3 228.7,420.1 227.8,419.3 225.0,419.2 224.0,419.8 219.7,418.3 218.5,418.7 215.8,416.7 208.0,415.4 198.7,410.9 195.0,410.0 193.4,410.5 192.7,410.0 186.2,409.7 183.0,408.0 181.6,406.2 179.3,405.3 176.6,402.2 174.9,401.5 172.8,401.9 171.9,400.8 167.8,400.4 166.4,399.5 163.9,400.1 163.5,400.9 162.5,401.0 160.8,400.3 153.7,401.2 153.0,401.4 151.5,403.3 151.9,403.9 149.9,403.9 149.3,403.6 147.8,400.3 144.9,398.7 141.4,397.9 136.2,397.4 133.3,396.5 131.2,397.5 129.2,397.4 127.9,398.2 125.0,398.5 124.6,397.7 123.2,398.1 122.8,396.7 120.4,396.0 118.9,394.3 117.8,394.2 115.8,393.0 114.8,390.9 112.6,390.5 109.5,385.3 106.4,384.4 104.7,382.3 104.6,381.3 102.8,378.9 102.9,377.4 104.9,375.3 104.5,375.0 104.9,373.5 106.9,371.7 107.4,368.7 105.9,365.2 104.7,364.2 103.0,364.0 103.4,362.3 103.1,360.9 101.2,358.0 98.3,355.8 98.2,352.8 97.3,351.4 94.7,348.9 92.6,348.5 88.9,345.7 87.2,343.6 85.8,342.6 84.2,339.6 81.8,339.2 81.2,336.4 78.8,335.1 78.5,331.8 76.2,329.5 75.6,327.5 74.7,326.5 74.4,324.5 72.1,322.4 72.2,321.5 70.0,320.9 67.4,322.2 62.6,319.3 61.3,318.2 60.8,316.1 58.9,313.9 59.4,312.0 59.9,311.9 59.3,311.9 59.0,312.8 58.2,313.7 59.1,315.6 58.8,316.0 57.0,314.2 55.4,313.9 53.5,314.8 51.7,313.8 51.2,312.5 49.4,311.9 50.1,310.3 49.0,308.6 49.8,308.1 50.3,306.1 46.6,302.8 45.3,300.5 42.9,298.4 43.1,298.0 42.3,295.6 39.5,295.9 42.9,294.8 41.5,295.3 38.7,294.8 41.4,294.8 42.5,294.0 41.5,291.9 42.4,291.8 42.8,291.1 42.4,289.5 41.5,288.0 42.0,286.7 39.9,285.3 39.2,283.8 36.4,281.4 35.2,281.6 35.1,282.8 34.6,282.0 32.8,281.4 32.4,280.3 31.0,279.6 31.0,277.5 31.8,276.2 29.4,275.8 31.1,275.8 29.0,274.5 30.1,271.7 29.9,271.0 29.0,269.0 27.9,267.9 27.2,267.8 26.6,264.6 24.4,263.4 23.6,262.0 24.6,258.9 24.3,256.7 24.8,255.8 24.4,253.8 25.6,254.1 26.7,255.8 27.9,256.3 30.2,255.8 30.3,254.8 31.5,253.7 31.4,252.6 32.7,251.9 32.1,250.5 33.5,249.4 33.7,246.4 32.2,245.1 32.4,243.8 30.7,241.0 27.8,240.8 27.2,239.4 25.2,238.7 22.8,236.4 22.3,234.6 21.9,236.6 22.1,235.5 20.6,233.1 19.2,233.2 17.3,231.6 14.3,231.1 14.3,230.3 15.5,229.6 20.0,231.2 20.4,230.8 19.9,230.1 20.1,229.3 23.2,226.7 25.8,227.1 29.0,225.6 30.9,226.1 32.4,228.7 34.0,229.3 35.3,228.6 35.7,227.1 37.3,224.9 40.3,224.2 43.2,220.1 44.9,219.3 49.1,222.1 49.6,223.7 54.0,227.5 57.4,228.4 57.9,230.8 59.0,231.6 58.4,233.8 59.2,236.1 60.3,237.0 60.2,238.1 61.4,238.2 63.1,239.7 66.1,243.7 65.9,245.4 64.4,246.0 64.6,247.5 63.4,247.5 62.0,248.8 61.9,249.5 63.6,253.0 64.1,256.5 65.9,258.2 64.5,260.2 64.1,261.7 64.8,261.8 67.5,261.7 69.6,260.9 69.6,259.7 70.9,257.9 72.3,257.5 72.3,256.3 74.8,256.2 75.3,255.8 75.0,254.8 75.9,254.3 79.2,254.2 82.8,255.4 85.5,255.1 86.8,256.3 88.3,256.4 89.5,258.5 91.0,259.3 92.6,259.2 94.5,255.9 94.1,253.7 95.0,251.5 94.1,250.0 95.7,249.1 97.2,244.0 98.7,244.9 99.2,244.3 103.6,245.3 103.7,243.3 105.6,240.6 104.6,238.2 106.9,236.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><g class="poi"><circle cx="121.5" cy="183.5" r="3.2"/><circle cx="227.6" cy="185.9" r="3.2"/><circle cx="266.6" cy="156.6" r="3.2"/><circle cx="340.1" cy="102.3" r="3.2"/><circle cx="348.8" cy="86.5" r="3.2"/><circle cx="386.8" cy="100.9" r="3.2"/><circle cx="438.5" cy="79.2" r="3.2"/><circle cx="468.1" cy="34.0" r="3.2"/><circle cx="536.3" cy="15.9" r="3.2"/><circle cx="587.8" cy="38.8" r="3.2"/><circle cx="587.6" cy="110.8" r="3.2"/><circle cx="663.2" cy="212.3" r="3.2"/><circle cx="586.1" cy="196.5" r="3.2"/><circle cx="500.5" cy="225.2" r="3.2"/><circle cx="464.3" cy="186.7" r="3.2"/><circle cx="412.0" cy="172.9" r="3.2"/><circle cx="378.6" cy="197.7" r="3.2"/><circle cx="357.1" cy="202.1" r="3.2"/><circle cx="359.0" cy="206.9" r="3.2"/><circle cx="342.3" cy="210.8" r="3.2"/><circle cx="294.2" cy="224.1" r="3.2"/><circle cx="203.8" cy="324.8" r="3.2"/><circle cx="231.0" cy="420.9" r="3.2"/><circle cx="95.9" cy="350.0" r="3.2"/><circle cx="44.4" cy="299.8" r="3.2"/><circle cx="23.6" cy="243.3" r="3.2"/></g></svg></div>
+<p class="hint">Szkic trasy ze śladu GPS (bez podkładu — działa offline). Kropki to punkty z planu; dzień busowy po Kosowie pominięty.
+Mapy online: <a href="https://www.google.com/maps/d/edit?mid=121RKnyKXHBkZYb9bIOSL3CMI9hqMqCs&usp=sharing">Google</a> · <a href="https://mapy.com/s/rezezopaco">mapy.com</a></p>
+
+<h2 id="plan">Plan dzień po dniu</h2>
+<details id="dzien-1"><summary><span class="n">D1 · 15.08.2026</span><span>Podgorica → Tamarë</span><span class="km">34 km</span></summary><div><ul>
+<li>+466 m. Dzień przyjazdu — po nocy w busie ruszamy dopiero po południu, więc etap jest krótki</li>
+<li>Rozjazd doliną Cijevny (alb. Cem), przejście graniczne <strong>Cijevna Zatrijebačka – Grabom</strong> (czynne 24/7)</li>
+<li>Nocleg: <strong>Restorant tradicional / Hotel „Te Cemi"</strong>, km 34, 254 m n.p.m. — leży dokładnie na trasie</li>
+</ul><ul>
+<li><strong>Kanion Cijevny / Cem.</strong> Rzeka spływa z albańskich Prokletije i wcina się w wapienny płaskowyż pod Podgoricą. Dolina Cem to naturalny korytarz między Czarnogórą a albańskim rejonem <strong>Kelmendi</strong> — od wieków szlak pasterski i przemytniczy, dziś asfalt.</li>
+<li><strong>Tamarë.</strong> Pierwsza albańska wioska na trasie, ok. 250 m n.p.m. To już historyczne terytorium plemienia <strong>Kelmendi</strong>, najbardziej znanego z antyosmańskich buntów w XVII w. — po jednym z nich Osmanowie przesiedlili część klanu aż na Węgry (Wojwodina).</li>
+</ul></div></details><details id="dzien-2"><summary><span class="n">D2 · 16.08.2026</span><span>Tamarë → Čakor</span><span class="km">77 km</span></summary><div><ul>
+<li><strong>+2418 m — najcięższy dzień wyjazdu.</strong> Dwie przełęcze i nocleg na drugiej z nich</li>
+<li>Najpierw <strong>1348 m</strong> nad Lepushë, zjazd do Vermosh (1049 m), przejście graniczne <strong>Baškim – Grnčar</strong> (czynne 24/7), Gusinje i Plav</li>
+<li>Potem 930 m podjazdu na <strong>Čakor (1846 m)</strong> — <strong>biwak pod namiotem</strong> przy <strong>Spomen česma</strong>, na samej przełęczy</li>
+<li>⚠️ Wyjazd o świcie — nie z powodu kilometrów, tylko pogody: na przełęcz najlepiej wjechać przed popołudniowymi burzami. Jeśli od zachodu ciągnie, zostajemy w <strong>Plavie (km 83)</strong> i śpimy niżej</li>
+<li>⚠️ <strong>Biwak na 1846 m</strong>: w sierpniu noce schodzą tam do kilku stopni, a to gołe siodło przełęczy — żadnego zaplecza, sklepu ani schronienia przed wiatrem. Ciepłe rzeczy na wierzch bagażu, kolację wieziemy ze sobą (ostatnie zakupy w <strong>Plavie</strong>)</li>
+<li><strong>Woda:</strong> „česma" to studnia/źródło z kranem, więc przy biwaku powinna być — ale Prokletije są suche, więc bidony napełniamy w Plavie i tak</li>
+</ul><ul>
+<li><strong>Lepushë i Vermosh.</strong> Najbardziej północne wioski Albanii, w dolinie rzeki Vermosh. Vermosh przez dekady był końcem świata: strefa przygraniczna, do której obcy nie mieli wstępu. Dziś to pierwszy etap oficjalnej trasy <strong>Trans Dinarica</strong> (Gusinje–Tamarë, 38 km, 100 % asfaltu).</li>
+<li><strong>Gusinje.</strong> Miasteczko u wylotu dwóch dolin: <strong>Grbaja</strong> i <strong>Ropojana</strong>. Baza wypadowa w czarnogórskie Prokletije — jeśli wyjdzie wolne pół dnia, stąd wychodzi pętla <strong>Volušnica–Popadija–Talijanka</strong>: 10 km, +1000 m, wstęp do parku 2–3 EUR, biwak dozwolony.</li>
+<li><strong>Maja e Jezercës (2694 m).</strong> Najwyższy szczyt całych Gór Dynarskich stoi po albańskiej stronie, ale wchodzi się na niego z czarnogórskiego <strong>Vusanje</strong> doliną Ropojana. Drogowskaz podaje 15 h; realnie ok. 9,5–10 h w jedną stronę. Jedyna woda na szlaku: <strong>Zastan Ropojanski, 1300 m</strong>.</li>
+<li><strong>Plav i jezioro Plavskie.</strong> Największe jezioro tej części Czarnogóry, u stóp Prokletije. Miasteczko ma silną tożsamość muzułmańską (Boszniacy, Albańczycy) — meczety i osmański rodowód. Nasz punkt odwrotu, jeśli pogoda się psuje.</li>
+<li><strong>Przełęcz Čakor (1849 m wg map, 1846 m na naszym śladzie).</strong> Najwyższy punkt całej trasy i nasz nocleg. Droga została zbudowana ok. 100 lat temu i przez dekady była główną trasą Plav–Peć. Dziś zamknięta dla samochodów i nieobsługiwana jako zwykłe przejście graniczne — jeżdżą tu prawie wyłącznie rowerzyści (zezwolenie mamy). Nawierzchnia od Plavu: szuter i zmęczony asfalt.</li>
+</ul></div></details><details id="dzien-3"><summary><span class="n">D3 · 17.08.2026</span><span>Čakor → Gjakova</span><span class="km">80 km</span></summary><div><ul>
+<li>+433 m, ale z 1846 m schodzimy do 365 m — dzień zjazdowy, za to najdłuższy na rowerze</li>
+<li>Od granicy w dół (Rugova) asfalt w dobrym stanie</li>
+<li>Dwa monastery UNESCO po drodze. ⚠️ Paszport w kieszeni: przy wejściu do Patriarchatu i Dečanów zostaje u żołnierzy KFOR</li>
+<li>Meta: Gjakova — zostajemy tu na <strong>dwie noce</strong>, bo jutro wypad busem</li>
+</ul><ul>
+<li><strong>Kanion Rugova.</strong> 22 km wąwozu od granicy do Peji, ściany do ok. 1000 m. Kosowo promuje go jako bałkańską stolicę <strong>via ferrat</strong>; w górnej części wioska <strong>Kuqishtë</strong> i katuny (letnie pasterskie osady).</li>
+<li><strong>Patriarchat w Peć (Patrijaršija, alb. Patrikana).</strong> Zespół <strong>czterech cerkwi z XIII–XIV w.</strong>, przez wieki <strong>siedziba serbskiego patriarchy</strong> — dla serbskiego prawosławia miejsce rangi katedry koronacyjnej. Wpisany na listę UNESCO w 2006 r. jako część „Średniowiecznych zabytków Kosowa" i od razu na listę <strong>zagrożonych</strong>. Wejście wolne, ochrona KFOR, paszport na wartowni.</li>
+<li><strong>Monaster Visoki Dečani.</strong> Fundacja <strong>króla Stefana Urosza III Deczańskiego</strong>, budowany <strong>1327–1335</strong>. Architektonicznie hybryda: <strong>romańska bryła z pasami kolorowego marmuru</strong> (jak w Toskanii) i bizantyjskie wnętrze — bo pracował tu franciszkanin Vitus z Kotoru. W środku <strong>największy zachowany zespół malarstwa ściennego średniowiecznej Serbii</strong>, ok. 1000 przedstawień.<ul>
+<li>Praktyka: <strong>9:00–17:00</strong>, wejście wolne (datek ok. 2 EUR), wpuszczają <strong>grupami po 6–8 osób</strong>, strój zakryty, zdjęcia wg bieżących zasad — pytaj. W święta prawosławne inne godziny.</li>
+<li>Po zamachach z marca 2004 r. (spalono m.in. cerkiew w Prizrenie) teren pilnuje KFOR — to nie folklor, to realny status bezpieczeństwa.</li>
+</ul>
+</li>
+<li><strong>Gjakova (Djakovica).</strong> Za Osmanów ważny węzeł handlowy na trasie Szkodra–Konstantynopol; XVII-wieczni podróżnicy (Evliya Çelebi, Katip Çelebi) opisywali ~2000 domów i 300 sklepów.<ul>
+<li><strong>Çarshia e Madhe (Wielki Bazar)</strong> — najstarszy i jeden z największych bazarów Kosowa, <strong>ponad 1 km długości</strong>, zbudowany wokół meczetu Hadum (1594). Spalony w 1999 r., odbudowany.</li>
+<li>Gmina straciła <strong>361 potwierdzonych ofiar walk i ponad 1000 cywilów</strong> w wojnie 1998–99; szczyt strat 7–11 maja 1999.</li>
+<li>Dwa punkty zaznaczone przez Longina leżą nie w samej Gjakovie, tylko ok. 20 km na północ, w okolicach Deçan — czyli po drodze dnia 3. <strong>„Gërvalla Museum"</strong> (dom-muzeum braci Gërvalla w Burrëmadh/Dubovik) wypada <strong>2,3 km od trasy</strong>, <strong>„Kulla Historike e Familjes Krasniqi"</strong> 7,4 km. Trasa jest orientacyjna, więc kto chce, może tam odbić.</li>
+</ul>
+</li>
+</ul></div></details><details id="dzien-4"><summary><span class="n">D4 · 18.08.2026</span><span>Gjakova → Kosowo busem → Gjakova</span><span class="km">0 km</span></summary><div><ul>
+<li>Dzień bez roweru. Wszystkie punkty tego dnia leżą <strong>14–68 km od śladu rowerowego</strong> — dlatego bus</li>
+<li>Trasa busa: Gjakova → Jaskinia Gadime → Prisztina → obiad w trasie → Prizren → Gjakova (osobna warstwa KML, 228 km)</li>
+</ul><ul>
+<li><strong>08:00 start z Gjakovy.</strong></li>
+<li><strong>09:30–10:45 | Jaskinia Gadime (Marmurowa, Shpella e Gadimes).</strong> Odkryta w <strong>1966</strong> przez miejscowego, Ahmeta Asllaniego, przy pracach w ogrodzie. Unikat w skali Europy: jaskinia wyżłobiona <strong>w marmurze</strong>, z rzadkimi kryształami <strong>aragonitu</strong>. Znana długość <strong>~1260 m</strong>, udostępniona tylko część; podziemne „Jezioro Szczęścia" (~15 m). Nacieki rosną ~1 mm na 30 000 lat. Zwiedzanie tylko z przewodnikiem (3–5 EUR), w środku stale <strong>12–15 °C</strong> — bluzy po wyjściu z busa.</li>
+<li><strong>11:15–14:00 | Prisztina.</strong> <strong>Biblioteka Narodowa</strong> — brutalistyczny budynek w metalowej siatce i 99 białych kopułach. <strong>Katedra Matki Teresy</strong> — winda na wieżę (1–2 EUR) i panorama. <strong>NEWBORN</strong> i <strong>Heroinat</strong> — symbole niepodległości. Bulwar Matki Teresy na macchiato.<ul>
+<li>Historia w skrócie: osmański ośrodek administracyjny, wyzwolony spod Osmanów w 1912 i w tym samym roku zajęty przez Serbię; za socjalistycznej Jugosławii mocno przebudowany (wyburzenia osmańskiej architektury). W 1998–99 samo miasto oszczędzone, ale ludność albańska w dużej części uciekła. Interwencja NATO zakończyła wojnę w czerwcu 1999, potem administracja ONZ.</li>
+</ul>
+</li>
+<li><strong>14:00–15:00 | obiad w trasie do Prizrenu.</strong> <strong>Tavë</strong> (zapiekane w glinianym naczyniu) albo <strong>qebapa / pleskavica</strong> z serem.</li>
+<li><strong>Gazimestan (opcjonalnie po drodze).</strong> Kamienna wieża-pomnik przy polu <strong>Bitwy na Kosowym Polu (1389)</strong>, gdzie Osmanowie Murada I pobili Serbów księcia Lazara. Zbudowana przez Jugosławię w 1953. <strong>28.06.1989</strong> Milošević wygłosił tu „przemówienie gazimestańskie" na 600. rocznicę bitwy, przed tłumem ponad miliona osób — uznawane za punkt zwrotny w rozpalaniu serbskiego nacjonalizmu i rozpadzie Jugosławii.</li>
+<li><strong>15:00–17:00 | twierdza Kalaja w Prizrenie.</strong> Bus zostaje na dole, na mury pieszo. Warstwy od rzymsko-bizantyjskich po osmańskie. Widok na czerwone dachy, meczety i rzekę Bistricę.</li>
+<li><strong>17:00–20:00 | Stare Miasto (Shadervan).</strong> <strong>Kamienny Most (Ura e Gurit)</strong>, <strong>Meczet Sinana Paszy</strong> (malowidła, wstęp darmowy poza modlitwami), wieczorem knajpki nad rzeką: piwo <strong>Peja</strong>, deser <strong>trilece</strong>.<ul>
+<li><strong>Liga Prizreńska, 10.06.1878</strong> — albańscy przedstawiciele zebrali się tu w reakcji na traktaty z San Stefano i Berlina, grożące podziałem ziem albańskich między Serbię, Czarnogórę, Bułgarię i Grecję. Początkowo broniła terytorium osmańskiego, potem żądała autonomii; stłumiona w 1881, ale uznawana za narodziny nowoczesnej świadomości narodowej Albańczyków.</li>
+<li><strong>Cerkiew Bogurodzicy Ljeviškiej</strong> (1306–1309, za króla Milutina) — freski z ok. 1308–13 w czołówce sztuki bizantyjskiej. Za Osmanów zamieniona na meczet, podpalona w marcu 2004. Część obiektu UNESCO.</li>
+</ul>
+</li>
+<li><strong>20:00–21:00 | powrót do Gjakovy</strong> (~45 min dobrymi drogami).</li>
+</ul></div></details><details id="dzien-5"><summary><span class="n">D5 · 19.08.2026</span><span>Gjakova → Valbona</span><span class="km">76 km</span></summary><div><ul>
+<li>+1414 m. Przejście graniczne <strong>Morinë</strong> (Kosowo → Albania), potem Bajram Curri i wjazd w dolinę</li>
+<li>Wjazd w <strong>Tropoję</strong> — najbardziej odizolowany region północnej Albanii</li>
+<li>Meta: <strong>Valbona, 995 m</strong>, drugi <strong>biwak pod namiotem</strong> — jutro przełęcz z buta, więc warto dojechać z zapasem sił</li>
+<li>Ostatnie porządne zakupy w <strong>Bajram Curri</strong> (km 49) — dalej dolina i pensjonaty, nie sklepy</li>
+</ul><ul>
+<li><strong>Bajram Curri.</strong> Miasto nazwane od <strong>Bajrama Curriego</strong> (1862–1925), przywódcy albańskiego ruchu narodowego z Tropoji, zabitego w walce z siłami Ahmeta Zogu. Miasteczko jest bramą do doliny Valbony i typowym „końcem drogi": dalej tylko góry.</li>
+<li><strong>Plemię Krasniqi.</strong> To ich rdzenne terytorium (fis Krasniqi, okolice Tropoji). Ta sama nazwa wróciła nam w Gjakovie („kulla Krasniqi") — od końca XVII w. rodziny Krasniqi osiedlały się w zachodnim Kosowie, pod prawem <strong>Kanunu Leki Dukagjiniego</strong>.</li>
+<li><strong>Kulla — jak to działa.</strong> Kamienna wieża mieszkalno-obronna niziny Dukagjini, budowana od końca XVIII do początku XX w.: parter dla zwierząt, wyższe piętra mieszkalne, najwyższe to <strong>oda e burrave</strong> — izba męska, gdzie przyjmowano gości i podejmowano decyzje plemienne.</li>
+<li><strong>Dolina Valbony.</strong> Park Narodowy, dolina długości ok. 80 km, otoczona <strong>Maja e Rosit (2524 m)</strong> i <strong>Maja e Jezercës (2694 m)</strong>. „Normalny" dojazd turystyczny to prom po jeziorze <strong>Koman</strong> (my przyjeżdżamy z drugiej strony, więc bez promu). Noclegi to pensjonaty rodzinne (Gjin Thana, Kol Gjoni) i dzikie biwaki.</li>
+</ul></div></details><details id="dzien-6"><summary><span class="n">D6 · 20.08.2026</span><span>Valbona → Theth</span><span class="km">16 km</span></summary><div><ul>
+<li>+952 m i tylko 16 km, ale <strong>cały dzień z buta</strong> — to nie jest etap rowerowy</li>
+<li><strong>Qafa e Valbonës (~1795 m) to szlak pieszy</strong> — 6–8 h. Kamieniste zejście męczące dla kolan</li>
+<li>Start rano, woda z zapasem, na przełęczy nie ma nic — cały odcinek pokonujemy pieszo</li>
+</ul><ul>
+<li><strong>Szlak Valbona → Theth.</strong> Dawny <strong>szlak mulasi</strong> łączący plemienne regiony <strong>Shala</strong> (Theth) i <strong>Nikaj</strong> (Valbona) — istniał na długo przed turystyką. Dziś najpopularniejszy trekking Albanii i element sieci <strong>Peaks of the Balkans</strong>. Latem bez trudności technicznych; wiosną i przy śniegu groźny.</li>
+<li><strong>Theth.</strong> Izolacja była geograficzna: głęboka dolina, dekadami dostępna tylko szutrową drogą z 1936 r., <strong>w pełni zasfaltowaną dopiero ~2021–2022</strong>.<ul>
+<li><strong>Kulla e ngujimit</strong> (wieża odosobnienia), znana też jako <strong>Kulla e Nikollë Koçekut</strong> albo Wieża Pojednania, z poł. XIX w. — chowali się w niej mężczyźni wplątani w krwawą zemstę (<strong>gjakmarrje</strong>) wg Kanunu, i rozstrzygano tam spory. W środku drewniane schody, meble, fotografie. Bilet: <strong>200 lek</strong> wg jednego źródła, <strong>15 lek</strong> wg drugiego — do sprawdzenia na miejscu.</li>
+<li><strong>Kościół z 1892 r.</strong> — przetrwał zakaz religii za Envera Hoxhy. Zwykle zamknięty, otwierany na msze; stoi pośrodku doliny, kilka minut od centrum, obok fotogeniczny cmentarz.</li>
+<li>Wioska leży na <strong>~700 m n.p.m.</strong> (nasz ślad: 746 m), otoczona szczytami ponad 2000 m. Darmowy parking, restauracje, dużo noclegów. Droga z Szkodry: <strong>50+ km, 1,5–2 h autem</strong>, bardzo wąska, serpentyny — przed asfaltem z 2021 r. wymagała 4×4.</li>
+<li>Ludność wg lokalnej tradycji wywodzi się od wspólnego przodka sprzed ~300–350 lat, osiedlonego tu dla zachowania katolicyzmu. Dziś kilkanaście–kilkadziesiąt rodzin całorocznie.</li>
+<li><strong>Park Narodowy Theth</strong> od 1966 r.; wieś ma status chronionego ośrodka historycznego.</li>
+</ul>
+</li>
+</ul></div></details><details id="dzien-7"><summary><span class="n">D7 · 21.08.2026</span><span>Theth → Shkodra</span><span class="km">89 km</span></summary><div><ul>
+<li>+1054 m, <strong>Qafa e Thorës ~1680 m</strong> — asfalt od 2021, jedna z najładniejszych dróg Albanii (SH20)</li>
+<li>Po przełęczy długi zjazd przez Bogë i Koplik na nizinę: z 848 m do 10 m n.p.m.</li>
+<li>⚠️ Ranek w Theth trzeba sobie odpuścić albo mocno skrócić — przed nami 89 km, a jutro najdłuższy dzień wyjazdu</li>
+<li>⚠️ <strong>Nocleg tego dnia nie jest jeszcze ustalony.</strong> Shkodra to podział, przy którym oba ostatnie dni wychodzą wykonalnie (89 km dziś, 109 jutro). Jeśli zatrzymamy się wcześniej — Koplik — jutro robi się 139 km; jeśli dalej, za Shkodrą, jutro spada do ok. 79 km</li>
+</ul><ul>
+<li><strong>Co warto w Theth przed odjazdem:</strong><ul>
+<li><strong>Wodospad Grunas</strong> — 25 m, 30 min płaskim szlakiem wzdłuż rzeki. Przed 9:00 pusto.</li>
+<li><strong>Kanion Grunas</strong> — ściany ok. 50 m, najlepszy widok z drewnianego mostu przy drodze Theth–Nderlysaj.</li>
+<li><strong>Blue Eye (Syri i Kaltër)</strong> — <strong>pieszo z Theth ponad 2 h w jedną stronę</strong> (ok. 10 km doliną). Skrót: dojechać do <strong>Nderlysaj</strong>, stamtąd 45 min podejścia. Woda lodowata, można się kąpać. Latem minibus Theth–Nderlysaj bez rozkładu.</li>
+<li>Mniejsze: wodospad <strong>Gjeçaj</strong>, opuszczony młyn wodny (5 min od mostu wjazdowego), centrum informacji parku przy moście (godziny nieregularne).</li>
+<li>Jedzenie: Restaurant Petriti (<strong>fërgesë</strong>), grill-bary przy rzece, <strong>raki z dzikich owoców</strong>.</li>
+</ul>
+</li>
+<li><strong>Qafa e Thorës (Przełęcz Thore).</strong> Ok. 1680 m — źródła podają 1680, 1685, 1691 albo 1775 m; nasz ślad daje 1680 m. Z Theth to 16,1 km i +938 m, średnio 5,8 %. Widoki w obie strony, a przy drodze <strong>pomniki dwóch osób, które opisały te góry światu</strong>:<ul>
+<li><strong>Ferenc Nopcsa</strong> — węgierski arystokrata i paleontolog, autor pierwszej mapy geologicznej północnej Albanii i etnograficznych opisów plemion.</li>
+<li><strong>Edith Durham</strong> — brytyjska antropolożka, autorka „High Albania" (1909), do dziś podstawowego źródła o Kanunie i życiu plemiennym.</li>
+</ul>
+</li>
+<li><strong>Bogë.</strong> Wioska u wylotu doliny, dawniej ostatni punkt dojazdowy dla samochodów (przed asfaltem do Theth). Trans Dinarica liczy etap Bogë–Theth na 27 km i +760 m.</li>
+<li><strong>Koplik.</strong> Ośrodek regionu <strong>Malësia e Madhe</strong> („Wielkie Góry") — nizinne zaplecze wszystkich górskich plemion, przez które przejeżdżaliśmy. Tu wraca cywilizacja: bankomaty, sklepy, warsztaty.</li>
+<li><strong>Shkodra (Skadar).</strong> Jedno z najstarszych miast Europy Południowo-Wschodniej: stolica iliryjskiego królestwa <strong>Ardiajów</strong> za króla Gencjusza (II w. p.n.e.), potem rzymska, wenecka i osmańska.<ul>
+<li><strong>Twierdza Rozafa</strong> nad miastem — nazwa od legendy o kobiecie zamurowanej w fundamentach, która prosiła o pozostawienie otworu, żeby móc karmić dziecko. Widok na jezioro, Drin i Bunę.</li>
+<li>Miasto było też głównym ośrodkiem albańskiego katolicyzmu i drukarstwa — stąd trafiały w góry pierwsze albańskie książki.</li>
+</ul>
+</li>
+</ul></div></details><details id="dzien-8"><summary><span class="n">D8 · 22.08.2026</span><span>Shkodra → Podgorica</span><span class="km">109 km</span></summary><div><ul>
+<li>+1609 m — <strong>najdłuższy dzień wyjazdu i domknięcie pętli</strong>, brzegiem jeziora Szkoderskiego</li>
+<li>Ruszamy wcześnie: ok. 8 h jazdy wg mapy.cz, czyli z postojami w Podgoricy późnym popołudniem, a wieczorem odjazd do Polski</li>
+<li>Gdyby coś poszło nie tak — kraksa, burza, nogi — <strong>bus może nas zgarnąć po drodze</strong>, droga wzdłuż jeziora jest przejezdna na całej długości</li>
+<li>Za Shkodrą grzbiet ~450 m, potem droga nad wodą przez Murići i Virpazar — widokowa, ale cały czas falująca</li>
+</ul><ul>
+<li><strong>Jezioro Szkoderskie.</strong> Największe jezioro Bałkanów, w dwóch państwach. Po czarnogórskiej stronie park narodowy i jedno z najważniejszych w Europie zimowisk ptaków wodnych (pelikany kędzierzawe).</li>
+<li><strong>Murići i Seoca.</strong> Wioski na południowym brzegu, w większości muzułmańskie, z gajami oliwnymi i kasztanowymi — droga nad wodą jest widokowa, ale falująca.</li>
+<li><strong>Virpazar.</strong> Węzeł przy moście i linii kolejowej, dziś baza dla łódek po jeziorze i winnic (<strong>Crmnica</strong> — kolebka szczepu <strong>vranac</strong>).</li>
+<li><strong>Rijeka Crnojevića.</strong> Meander rzeki i stary kamienny most, ostatnia pocztówka przed Podgoricą. Nazwa od rodu <strong>Crnojević</strong>, władców Zety — to oni w 1493 r. uruchomili tu jedną z pierwszych drukarni w Europie Południowo-Wschodniej.</li>
+</ul></div></details>
+
+<h2>Reszta</h2>
+<details id="praktyczne"><summary><span>Praktyczne informacje</span></summary><div><h2>Granice</h2>
+<ul>
+<li><strong>Čakor (dzień 2)</strong> nie jest zwykłym przejściem granicznym — droga zamknięta dla samochodów, przechodzą tam rowerzyści i piesi. Zezwolenie mamy. Nocujemy na samej przełęczy, więc granicę przekraczamy dopiero rano dnia 3.</li>
+<li><strong>Przejścia czynne 24/7 na naszej trasie:</strong> Cijevna Zatrijebačka – Grabom (dzień 1), Baškim – Grnčar (dzień 2), Morinë (dzień 5), Hani i Hotit / Božaj albo Sukobin – Muriqan (dzień 8, do sprawdzenia).</li>
+<li><strong>Do Serbii pokazuj dowód, nie paszport.</strong> Polak wjeżdża do Serbii na sam dowód osobisty (90 dni w ciągu 180). Serbia nie uznaje niepodległości Kosowa, więc kosowski stempel w paszporcie może skończyć się odmową wjazdu — zwłaszcza jeśli jedzie się wprost z Kosowa. Kosowo polski dowód też akceptuje.</li>
+<li><strong>Monastery pod ochroną KFOR</strong> (Patriarchat w Peć, Visoki Dečani): paszport zostaje na wartowni, więc miej go przy sobie, nie w torbie na dnie.</li>
+</ul>
+<h2>Waluta i pieniądze</h2>
+<ul>
+<li>Albania: <strong>ALL (lek)</strong>. Szybki przelicznik na złotówki: odejmij zero i podziel przez dwa.</li>
+<li>Czarnogóra i Kosowo: <strong>EUR</strong> (Kosowo przyjęło euro jednostronnie, nie należąc do UE).</li>
+<li>Kosowo jest jednym z najtańszych krajów Bałkanów: burek 0,6–1 €, kawa 0,5–1 €, obiad w restauracji 2–3 €, bus Prisztina–Prizren 3–4 €.</li>
+<li>Karta działa w miastach, w górach gotówka. Prowizja bankomatowa w Kosowie do 5 € — wypłacaj rzadziej i więcej.</li>
+</ul>
+<h2>Telefon i internet</h2>
+<ul>
+<li><a href="https://telekom.me/privatni-korisnici/tourist-regional">Czarnogóra, pakiet regionalny Telekom MNE</a></li>
+<li>Kosowo: SIM z 3 GB na 30 dni ≈ 8 €. WiFi w knajpach powszechne.</li>
+<li>Gniazdka: 230 V, wtyczki typu F — polskie pasują.</li>
+<li>Zasięg w dolinach (Valbona, Theth, Vermosh) jest dziurawy — mapy offline obowiązkowo.</li>
+</ul>
+<h2>W terenie</h2>
+<ul>
+<li><strong>Woda.</strong> Prokletije są suche — wapień, woda ucieka pod ziemię. Na podjazdach i przełęczach nie ma gdzie dolać, więc nabieraj w każdej wiosce, którą mijasz, nawet przy półpełnym bidonie.</li>
+<li><strong>Sezon.</strong> Čakor i Qafa e Thorës są zimą zamknięte. Sierpień jest OK, ale licz się z burzami po południu — na przełęcze wychodź rano.</li>
+<li><strong>Nawierzchnia.</strong> Asfalt: dolina Cem, Vermosh–Gusinje, Rugova–Peja, Theth–Bogë–Koplik. Szuter i zmęczony asfalt: Plav → Čakor. Z buta: Qafa e Valbonës.</li>
+<li><strong>Biwaki.</strong> Dwie noce pod namiotem: <strong>Čakor (1846 m)</strong> i <strong>Valbona (995 m)</strong>. Na Čakorze licz się z kilkoma stopniami nad ranem i brakiem jakiegokolwiek zaplecza. Pozostałe noce: Te Cemi, Gjakova (dwie) i Theth pod dachem.</li>
+<li><strong>Numer alarmowy:</strong> 112 (Albania, Czarnogóra, Kosowo).</li>
+<li><strong>Bunkry i miny.</strong> Bunkry Hoxhy stoją wszędzie i są bezpieczne. Pola minowe to relikt granicy kosowskiej — oznakowane i w zaniku, ale poza szlakami przy granicach nie chodzimy.</li>
+<li><strong>Fauna.</strong> ⚠️ <strong>Żmija nosoroga (Vipera ammodytes)</strong> — najbardziej jadowity wąż Europy. Zasięg to prawie cały Półwysep Bałkański, <strong>Albania, Kosowo i Czarnogóra włącznie</strong>, do <strong>2000 m n.p.m.</strong>; siedlisko to suche, skaliste zbocza z rzadką roślinnością, czyli dokładnie nasz teren. Na szlakach wokół Theth ostrzegają wprost. Nie wsadzaj rąk w kamienie, nie łaź po rumoszu w klapkach. Skorpiony i pająki (karakurt, tarantula) — rzadsze.</li>
+</ul>
+<h2>Mapy papierowe (do kupienia)</h2>
+<ul>
+<li><a href="https://mapy.net.pl/mapa-skladana-prokletije-vermoshi-theth-huber/12557">Prokletije / Vermoshi / Theth (Huber)</a></li>
+<li><a href="https://mapy.net.pl/mapa-skladana-prokletije-tropoja-b-curri-valbona-huber/12556">Prokletije / Tropoja / B. Curri / Valbona (Huber)</a></li>
+<li><a href="https://mapy.net.pl/skladana-mapa-albanii-kosowa-czarnogory-huber-kartographie/14284">Albania, Kosowo, Czarnogóra (Huber)</a></li>
+<li><a href="https://mapy.net.pl/przewodnik-po-albanii-inspirator-podrozniczy-pascal/6155">Przewodnik po Albanii (Pascal)</a></li>
+<li><a href="https://mapy.net.pl/przewodnik-po-albanii-rewasz/3742">Przewodnik po Albanii (Rewasz)</a></li>
+</ul>
+<p>Dwie pierwsze mapy Hubera pokrywają dokładnie nasz odcinek górski — te są najważniejsze.</p>
+<hr /></div></details><details id="slowniczek"><summary><span>Słowniczek albański</span></summary><div><p>Wymowa uproszczona pod polskie ucho — nie IPA, tylko żeby dało się to wypowiedzieć na postoju. Kilka liter, które inaczej czyta się niż piszą:</p>
+<ul>
+<li><strong>ë</strong> — niewyraźne „y" (prawie nieme na końcu słowa)</li>
+<li><strong>j</strong> — polskie j</li>
+<li><strong>c</strong> — c</li>
+<li><strong>ç</strong> — cz</li>
+<li><strong>q</strong> — miękkie, między ć a ki</li>
+<li><strong>gj</strong> — dź</li>
+<li><strong>x</strong> — dz</li>
+<li><strong>xh</strong> — dż</li>
+<li><strong>ll</strong> — twarde, gardłowe ł</li>
+<li><strong>rr</strong> — mocno rolowane r</li>
+<li><strong>sh</strong> — sz</li>
+<li><strong>zh</strong> — ż</li>
+<li><strong>th</strong> — bezdźwięczne, jak angielskie „think"</li>
+<li><strong>dh</strong> — dźwięczne, jak angielskie „this"</li>
+</ul>
+<p><strong>Podstawy (najbardziej przydatne):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Słowo</th>
+<th>Wymowa</th>
+<th>Tłumaczenie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tung</td>
+<td>tung</td>
+<td>Cześć (nieformalnie)</td>
+</tr>
+<tr>
+<td>Tungjatjeta</td>
+<td>tundziatjeta</td>
+<td>Dzień dobry / Witaj (formalnie)</td>
+</tr>
+<tr>
+<td>Mirëmëngjes</td>
+<td>mirymyndżes</td>
+<td>Dzień dobry (rano)</td>
+</tr>
+<tr>
+<td>Mirëdita</td>
+<td>mirydita</td>
+<td>Dzień dobry (w ciągu dnia)</td>
+</tr>
+<tr>
+<td>Mirëmbrëma</td>
+<td>mirymbryma</td>
+<td>Dobry wieczór</td>
+</tr>
+<tr>
+<td>Mirupafshim</td>
+<td>mirupafszim</td>
+<td>Do widzenia</td>
+</tr>
+<tr>
+<td>Faleminderit</td>
+<td>faleminderit</td>
+<td>Dziękuję</td>
+</tr>
+<tr>
+<td>Shumë faleminderit</td>
+<td>szumy faleminderit</td>
+<td>Dziękuję bardzo</td>
+</tr>
+<tr>
+<td>Ju lutem</td>
+<td>ju lutem</td>
+<td>Proszę</td>
+</tr>
+<tr>
+<td>Më falni</td>
+<td>my falni</td>
+<td>Przepraszam</td>
+</tr>
+<tr>
+<td>Po / Jo</td>
+<td>po / jo</td>
+<td>Tak / Nie</td>
+</tr>
+<tr>
+<td>Nuk kuptoj</td>
+<td>nuk kuptoj</td>
+<td>Nie rozumiem</td>
+</tr>
+<tr>
+<td>Flisni anglisht?</td>
+<td>flisni angliszt</td>
+<td>Czy mówi Pan/Pani po angielsku?</td>
+</tr>
+<tr>
+<td>Poloni</td>
+<td>poloni</td>
+<td>Polska</td>
+</tr>
+<tr>
+<td>Jam nga Polonia</td>
+<td>jam nga polonia</td>
+<td>Jestem z Polski</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Praktyczne pytania i w drodze:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Słowo</th>
+<th>Wymowa</th>
+<th>Tłumaczenie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sa kushton?</td>
+<td>sa kusztonn</td>
+<td>Ile to kosztuje?</td>
+</tr>
+<tr>
+<td>Ku është…?</td>
+<td>ku yszty</td>
+<td>Gdzie jest…?</td>
+</tr>
+<tr>
+<td>Sa larg është…?</td>
+<td>sa larg yszty</td>
+<td>Jak daleko jest…?</td>
+</tr>
+<tr>
+<td>Djathtas</td>
+<td>dziathtas</td>
+<td>W prawo</td>
+</tr>
+<tr>
+<td>Majtas</td>
+<td>majtas</td>
+<td>W lewo</td>
+</tr>
+<tr>
+<td>Drejt</td>
+<td>drejt</td>
+<td>Prosto</td>
+</tr>
+<tr>
+<td>Kujdes!</td>
+<td>kujdes</td>
+<td>Uwaga!</td>
+</tr>
+<tr>
+<td>Ndihmë!</td>
+<td>ndihmy</td>
+<td>Pomocy!</td>
+</tr>
+<tr>
+<td>Urgjencë</td>
+<td>urdżency</td>
+<td>Nagły wypadek</td>
+</tr>
+<tr>
+<td>Spital</td>
+<td>spital</td>
+<td>Szpital</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Jedzenie i picie:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Słowo</th>
+<th>Wymowa</th>
+<th>Tłumaczenie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ujë</td>
+<td>ujy</td>
+<td>Woda</td>
+</tr>
+<tr>
+<td>Kafe</td>
+<td>kafe</td>
+<td>Kawa</td>
+</tr>
+<tr>
+<td>Birrë</td>
+<td>birry</td>
+<td>Piwo</td>
+</tr>
+<tr>
+<td>Bukë</td>
+<td>buky</td>
+<td>Chleb</td>
+</tr>
+<tr>
+<td>Supë</td>
+<td>supy</td>
+<td>Zupa</td>
+</tr>
+<tr>
+<td>Faturën, ju lutem</td>
+<td>faturyn, ju lutem</td>
+<td>Rachunek proszę</td>
+</tr>
+<tr>
+<td>Të bëftë mirë</td>
+<td>ty byfty miry</td>
+<td>Smacznego</td>
+</tr>
+</tbody>
+</table>
+<p><strong>W mieście:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Słowo</th>
+<th>Wymowa</th>
+<th>Tłumaczenie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Farmaci</td>
+<td>farmatsi</td>
+<td>Apteka</td>
+</tr>
+<tr>
+<td>Furrë buke</td>
+<td>furry buke</td>
+<td>Piekarnia</td>
+</tr>
+<tr>
+<td>Ëmbëltore</td>
+<td>ymbyltore</td>
+<td>Cukiernia</td>
+</tr>
+<tr>
+<td>Tualet</td>
+<td>tualet</td>
+<td>Toaleta</td>
+</tr>
+<tr>
+<td>Banjo</td>
+<td>banjo</td>
+<td>Łazienka</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Liczby 1–10:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Słowo</th>
+<th>Wymowa</th>
+<th>Tłumaczenie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Një</td>
+<td>njy</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Dy</td>
+<td>dy</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Tre</td>
+<td>tre</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Katër</td>
+<td>katyr</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Pesë</td>
+<td>pesy</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Gjashtë</td>
+<td>dziaszty</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Shtatë</td>
+<td>sztaty</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Tetë</td>
+<td>tety</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Nëntë</td>
+<td>nynty</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Dhjetë</td>
+<td>dzjety</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<hr /></div></details><details id="kulinaria"><summary><span>Kulinaria i pamiątki</span></summary><div><h2>Czego spróbować</h2>
+<ul>
+<li><strong>Byrek</strong> — cienkie ciasto z nadzieniem, najczęściej serem, szpinakiem albo mięsem; śniadanie rowerzysty za ok. 1 EUR.</li>
+<li><strong>Fërgesë</strong> — zapiekana potrawa z papryki, pomidorów i albańskiego twarogu/sera; w Theth podstawa menu.</li>
+<li><strong>Tavë kosi</strong> — zapiekanka z jagnięciny i jogurtu (czasem z jajkiem), jedno z najbardziej charakterystycznych dań Albanii.</li>
+<li><strong>Flija</strong> — warstwowy placek pasterski, pieczony pod blachą obsypaną żarem. Robi się godzinami, je się rodzinnie.</li>
+<li><strong>Qebapa / pleskavica</strong> — grillowane mięso, bałkański standard po stronie kosowskiej.</li>
+<li><strong>Kaçkavall</strong> — twardy ser owczy, kupowany przy drodze u pasterzy.</li>
+<li><strong>Trileçe</strong> — biszkopt nasączony mieszanką trzech rodzajów mleka; w Kosowie wszędzie.</li>
+<li><strong>Raki</strong> — destylat owocowy; w Theth z dzikich śliw.</li>
+<li><strong>Peja</strong> — kosowskie piwo, nazwane od miasta z naszego dnia 3.</li>
+<li><strong>Pilaf</strong> — ryż gotowany w bulionie, klasyczny dodatek do mięsa.</li>
+<li><strong>Tasqebap</strong> — gęsty gulasz wołowy z cebulą, podawany z pieczywem.</li>
+<li><strong>Paçe</strong> — treściwa zupa z głowizny lub podrobów, tradycyjne śniadanie.</li>
+<li><strong>Trahana</strong> — suszona, fermentowana mieszanka zbóż i nabiału; namoczona daje szybką kwaśną zupę.</li>
+<li><strong>Dhallë</strong> — słony napój z rozcieńczonego jogurtu, albański odpowiednik ayranu.</li>
+<li><strong>Turshi</strong> — warzywa kiszone w occie lub solance, do mięsa.</li>
+<li><strong>Kukurec</strong> — podroby owinięte jelitami, pieczone na rożnie.</li>
+<li><strong>Gliko</strong> — owoce, orzechy lub warzywa w słodkim syropie; tradycyjny poczęstunek dla gości.</li>
+</ul>
+<h2>Pamiątki</h2>
+<ul>
+<li>Wyroby skórzane i drewniane z bazaru w Gjakovie.</li>
+<li>Wełniane nakrycia głowy (<strong>qeleshe</strong> — biała filcowa czapka albańska).</li>
+<li>Dżem figowy i miód z górskich wiosek.</li>
+<li>Raki od lokalnych wytwórców (w plastikowej butelce, bez etykiety — to dobry znak).</li>
+</ul>
+<hr /></div></details><details id="ciekawostki"><summary><span>Ciekawostki</span></summary><div><h2>Skąd nazwa „Góry Przeklęte"</h2>
+<p>Trzy wersje legendy — alb. <strong>Bjeshkët e Nemuna</strong>, serb. <strong>Prokletije</strong>:</p>
+<ul>
+<li><strong>Albańska:</strong> matka uciekająca przed Turkami traci dzieci z braku wody i przeklina góry: „niech nigdy nie płynie w was woda, niech czarne chmury zawsze zakrywają wasze szczyty, niech pioruny kruszą wasze wierzchołki".</li>
+<li><strong>Serbska:</strong> żołnierze wpadają w zasadzkę górskich wojowników — i wojowniczek (<strong>burrneshat</strong>); ocaleni opisują rejon jako przerażający i nieprzyjazny, „Prokletije".</li>
+<li><strong>Czarnogórska (wiły):</strong> wiła przeklina góry, gdy ktoś ją podgląda przy świętym jeziorze. W innej wersji trzech braci ginie w walce o miłość wiły, a ich matka woła „Prokleti-jo!".</li>
+</ul>
+<p>Wspólny mianownik wszystkich wersji to <strong>realny brak wody</strong> — pasmo jest suche mimo bujnej roślinności. Stąd praktyczna zasada: woda z każdej mijanej wioski.</p>
+<h2>Ogólne notatki</h2>
+<ul>
+<li>Pasmo zawiera <strong>14 najwyższych szczytów Gór Dynarskich</strong>, w tym najwyższe punkty Czarnogóry i Kosowa. Najwyższy w ogóle: <strong>Maja e Jezercës, 2694 m</strong> (Albania).</li>
+<li><strong>National Geographic</strong> wsadził Alpy Albańskie na <strong>1. miejsce „The Cool List 2024"</strong>.</li>
+<li>Tereny górzyste — <strong>góry i wyżyny zajmują ok. 70–75% powierzchni Albanii</strong>.</li>
+<li><strong>Kanun</strong> — tradycyjny albański zbiór norm prawa zwyczajowego regulujący m.in. rodzinę, własność, gościnność i konflikty: honor (<strong>besa</strong> — zobowiązanie oparte na słowie i honorze; jego złamanie było poważnym naruszeniem norm społecznych) i <strong>gjakmarrja</strong> — „branie krwi", czyli zemsta rodowa za zabójstwo członka rodziny. Za komuny formalnie zniesiony, po 1991 lokalnie wrócił.</li>
+<li><strong>Burrneshat, „dziewice Kanunu"</strong> — kobiety, które przyjmowały społeczną rolę mężczyzny (dziedziczenie, obrona domu, prawo głosu w odzie), składając przysięgę dziewictwa. Zjawisko unikalne w Europie, dziś praktycznie wymarłe.</li>
+<li><strong>Jerzy Kastriota Skanderbeg</strong> — XV-wieczny władca i dowódca, który przez ponad 20 lat przewodził oporowi przeciwko Imperium Osmańskiemu. Imię pochodzi od osmańskiego İskender Bey, czyli „Aleksander Bej"; <strong>bej</strong> to osmański tytuł nadawany m.in. urzędnikom, dowódcom i lokalnym możnym.</li>
+<li><strong>George W. Bush</strong> — w 2007 r. jako pierwszy urzędujący prezydent USA odwiedził Albanię; w Fushë-Krujë stoi jego pomnik.</li>
+<li><strong>Język albański</strong> to <strong>osobna gałąź rodziny indoeuropejskiej</strong> — nie ma bliskiego żywego krewnego. Stąd zupełnie „nieprzezroczyste" słownictwo.</li>
+<li><strong>Zadruga</strong> — tradycyjna południowosłowiańska wspólnota rodzinna: wielogeneracyjne gospodarstwo pod jednym zarządem. Słowiański odpowiednik tego, co po albańskiej stronie organizował fis (plemię).</li>
+<li>Do 1989 r. wytyczaniem i utrzymaniem szlaków turystycznych w tej części Bałkanów zajmowały się <strong>związki zawodowe</strong>.</li>
+<li><strong>Bunkry Hoxhy:</strong> Albania zbudowała ich kilkaset tysięcy w latach 1967–86, w przeliczeniu ok. jeden na czterech obywateli. Nigdy nie użyte w walce.</li>
+<li><strong>Shqipëria</strong> — albańska nazwa Albanii; wymawiana mniej więcej „szcziperija".</li>
+<li><strong>Bektaszyzm</strong> — suficki tarikat wywodzący się z tradycji islamskiej; Albania jest dziś jego światowym centrum.</li>
+<li>Północ / południe — katolicyzm jest historycznie silniejszy na północy, a prawosławie na południu; muzułmanie żyją w obu częściach kraju.</li>
+<li><strong>Św. Antoni</strong> — jego sanktuarium w Laç jest jednym z najważniejszych miejsc pielgrzymkowych Albanii, odwiedzanym także przez muzułmanów.</li>
+<li><strong>Syri i keq</strong> — „złe oko", czyli wiara w możliwość sprowadzenia nieszczęścia zawistnym spojrzeniem.</li>
+<li><strong>Nazar</strong> — niebieski amulet w kształcie oka mający chronić przed „złym okiem".</li>
+<li><strong>Verorja</strong> — czerwono-biała bransoletka zakładana na początku marca; po zobaczeniu pierwszej jaskółki wiesza się ją na drzewie.</li>
+</ul>
+<hr /></div></details><details id="zrodla"><summary><span>Źródła i linki</span></summary><div><p>Linki, na których oparte są te notatki, pogrupowane wg tematu.</p>
+<h2>Trasa i rower</h2>
+<ul>
+<li><a href="https://www.transdinarica.com/the-accursed-mountain-circuit-montenegro-albania/">Trans Dinarica — Accursed Mountain Circuit (422,6 km, +7062 m, 9 etapów)</a></li>
+<li><a href="https://www.transdinarica.com/country/albania/">Trans Dinarica — etapy w Albanii (km, przewyższenia, nawierzchnia)</a></li>
+<li><a href="https://balkanspeaceparkdotorg.wordpress.com/cycling-or-mountain-bike-touring/">Balkans Peace Park — rower i MTB w regionie (Čakor, zezwolenia)</a></li>
+<li><a href="https://climbfinder.com/en/climbs/qafa-buni-i-thores-thore-pass-theth">Qafa e Thorës — profil podjazdu (16,1 km, +938 m)</a></li>
+<li><a href="https://www.passzwang.net/en/qafathores_cycling.php">Qafa e Thorës — opis rowerowy</a></li>
+<li><a href="https://www.dangerousroads.org/eastern-europe/montenegro/4791-cakor-pass.html">Čakor (1849 m) — dangerousroads</a></li>
+<li><a href="https://www.quaeldich.de/paesse/cakor/">Čakor — quäldich (profil, zdjęcia)</a></li>
+<li><a href="https://www.dangerousroads.org/eastern-europe/kosovo/128-rugova-gorge-road-kosovo.html">Kanion Rugova — droga Peja–Kuqishtë</a></li>
+<li><a href="https://www.youtube.com/watch?v=bxoXC4sNzG0">Wyprawa SOLO tam, gdzie kończy się asfalt (Czarnogóra i Albania)</a></li>
+</ul>
+<h2>Granice</h2>
+<ul>
+<li><a href="https://www.albania-spirit.com/guides/border-crossings-albania/">Przejścia graniczne Albanii 2026</a></li>
+</ul>
+<h2>Kosowo — praktyka</h2>
+<ul>
+<li><a href="https://highaway.pl/inspiracje/kosowo-praktyczny-przewodnik/">Highaway — Kosowo, praktyczny przewodnik</a></li>
+<li><a href="https://bartekwpodrozy.pl/kosowo-co-warto-wiedziec/">Bartek w podróży — Kosowo, co warto wiedzieć</a></li>
+<li><a href="https://odyseusz.gov.pl/XK">MSZ Odyseusz — Kosowo</a></li>
+</ul>
+<h2>Góry Przeklęte — tło</h2>
+<ul>
+<li><a href="https://highaway.pl/inspiracje/nazwa-gory-przeklete/">Highaway — skąd nazwa Góry Przeklęte</a></li>
+<li><a href="https://www.karolnienartowicz.com/gory-przeklete-balkanski-skarb/">Karol Nienartowicz — Maja e Jezercës z Vusanje</a></li>
+<li><a href="https://kakitours.com/gory-przeklete-albania-serce-dzikiej-natury/">Kakitours — Góry Przeklęte, czasy szlaków i sezon</a></li>
+<li><a href="https://kolemsietoczy.pl/czarnogora-gory-przeklete-durmitor-biogradska-trasy-trekking/">Kołem się toczy — czarnogórskie Prokletije, pętla w Grbaji</a></li>
+<li><a href="https://libertas.pl/prokletije_gory_przeklete_albania_przewodnik.html">Libertas — Prokletije (opis z 2009–2014, dziś nieaktualny dojazd)</a></li>
+</ul>
+<h2>Theth i Valbona</h2>
+<ul>
+<li><a href="https://perchancetoroam.com/2025/12/27/13-amazing-things-to-do-in-albanias-beautiful-theth-valley/">Perchance to Roam — 13 rzeczy w dolinie Theth (ceny, czasy)</a></li>
+<li><a href="https://www.thebrokebackpacker.com/valbona-to-theth-trail/">The Broke Backpacker — szlak Valbona–Theth</a></li>
+<li><a href="https://wander-lush.org/valbona-theth-hike-albanian-alps/">Wander-Lush — Valbona–Theth hike</a></li>
+<li><a href="https://www.dangerousroads.org/eastern-europe/albania/2050-shkoder-theth-national-park-road.html">Dangerousroads — droga Shkodra–Theth</a></li>
+<li><a href="https://www.atlasobscura.com/places/defense-tower-of-theth-albania">Atlas Obscura — wieża odosobnienia w Theth</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Albanian_blood_feud">Wikipedia — albańska krwawa zemsta i Kanun</a></li>
+<li><a href="https://antekwpodrozy.pl/36173-theth-i-gory-przeklete-albania-przewodnik-po-atrakcjach">Antek w podróży — Theth (nazwa wieży, żmija nosoroga, dojazd)</a></li>
+</ul>
+<h2>Kosowo — miejsca</h2>
+<ul>
+<li><a href="https://www.takeyourbackpack.com/backpacking-in-kosovo/visit-visoki-decani-monastery/">Visoki Dečani — przewodnik odwiedzającego</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Old_Bazaar,_Gjakova">Wielki Bazar w Gjakovie</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Marble_Cave,_Kosovo">Jaskinia Gadime (Marble Cave)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/League_of_Prizren">Liga Prizreńska</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Our_Lady_of_Ljevi%C5%A1">Cerkiew Bogurodzicy Ljeviškiej</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Gazimestan_speech">Przemówienie gazimestańskie (1989)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Kosovo_War">Wojna w Kosowie 1998–99</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Jusuf_G%C3%ABrvalla">Bracia Gërvalla</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Tower_houses_in_the_Balkans">Kulla — wieże mieszkalne Bałkanów</a></li>
+</ul></div></details>
+
+<footer>Longinada 2026 · <a href="index.html?full=1">wersja pełna z interaktywną mapą</a><br>
+Na telefonie strona główna sama przenosi tutaj. Otwarcie wersji pełnej jest pamiętane w tej przeglądarce; wejście na tę stronę wraca do wersji telefonowej.</footer>
+<div class="navbar"><button type="button" class="nav-a" data-go="-1" aria-label="Poprzednia sekcja">←</button><a class="nav-c" id="nav-c" href="#sekcje">Sekcje ▾</a><button type="button" class="nav-a" data-go="1" aria-label="Następna sekcja">→</button></div><span class="sheet-anchor" id="sekcje" aria-hidden="true"></span><div class="sheet-wrap"><a class="sheet-back" href="#zamknij" aria-label="Zamknij spis"></a><nav class="sheet" aria-label="Spis sekcji"><div class="sheet-in"><div class="sheet-hd">Skocz do sekcji<a class="sheet-x" href="#zamknij">✕</a></div><a href="#mapa"><span class="s-n"></span><span class="s-t">Mapa trasy</span><span class="s-k"></span></a><a href="#dzien-1"><span class="s-n">D1</span><span class="s-t">Podgorica → Tamarë</span><span class="s-k">34 km</span></a><a href="#dzien-2"><span class="s-n">D2</span><span class="s-t">Tamarë → Čakor</span><span class="s-k">77 km</span></a><a href="#dzien-3"><span class="s-n">D3</span><span class="s-t">Čakor → Gjakova</span><span class="s-k">80 km</span></a><a href="#dzien-4"><span class="s-n">D4</span><span class="s-t">Gjakova → Kosowo busem → Gjakova</span><span class="s-k">0 km</span></a><a href="#dzien-5"><span class="s-n">D5</span><span class="s-t">Gjakova → Valbona</span><span class="s-k">76 km</span></a><a href="#dzien-6"><span class="s-n">D6</span><span class="s-t">Valbona → Theth</span><span class="s-k">16 km</span></a><a href="#dzien-7"><span class="s-n">D7</span><span class="s-t">Theth → Shkodra</span><span class="s-k">89 km</span></a><a href="#dzien-8"><span class="s-n">D8</span><span class="s-t">Shkodra → Podgorica</span><span class="s-k">109 km</span></a><a href="#praktyczne"><span class="s-n"></span><span class="s-t">Praktyczne informacje</span><span class="s-k"></span></a><a href="#slowniczek"><span class="s-n"></span><span class="s-t">Słowniczek albański</span><span class="s-k"></span></a><a href="#kulinaria"><span class="s-n"></span><span class="s-t">Kulinaria i pamiątki</span><span class="s-k"></span></a><a href="#ciekawostki"><span class="s-n"></span><span class="s-t">Ciekawostki</span><span class="s-k"></span></a><a href="#zrodla"><span class="s-n"></span><span class="s-t">Źródła i linki</span><span class="s-k"></span></a></div></nav></div>
+<script>(function(){var IDS=["mapa", "dzien-1", "dzien-2", "dzien-3", "dzien-4", "dzien-5", "dzien-6", "dzien-7", "dzien-8", "praktyczne", "slowniczek", "kulinaria", "ciekawostki", "zrodla"],LAB=["Mapa trasy", "D1 · Podgorica → Tamarë", "D2 · Tamarë → Čakor", "D3 · Čakor → Gjakova", "D4 · Gjakova → Kosowo busem → Gjakova", "D5 · Gjakova → Valbona", "D6 · Valbona → Theth", "D7 · Theth → Shkodra", "D8 · Shkodra → Podgorica", "Praktyczne informacje", "Słowniczek albański", "Kulinaria i pamiątki", "Ciekawostki", "Źródła i linki"];var cap=document.getElementById('nav-c');function el(id){return document.getElementById(id);}function open_(id){var e=el(id);if(e&&e.tagName==='DETAILS')e.open=true;return e;}function cur(){var d=document.documentElement;if(innerHeight+scrollY>=d.scrollHeight-4)return IDS.length-1;var i,e,n=-1;for(i=0;i<IDS.length;i++){e=el(IDS[i]);if(e&&e.getBoundingClientRect().top<=96)n=i;}return n;}function paint(){var i=cur();cap.textContent=(i<0?'Sekcje':LAB[i])+' ▾';}function go(d){var i=cur()+d;if(i<0)i=0;if(i>=IDS.length)i=IDS.length-1;var e=open_(IDS[i]);if(e)e.scrollIntoView({behavior:'smooth',block:'start'});}document.addEventListener('click',function(ev){var b=ev.target.closest('[data-go]');if(b){go(+b.getAttribute('data-go'));return;}var a=ev.target.closest('.sheet a[href^="#"],.toc a[href^="#"]');if(a)open_(a.getAttribute('href').slice(1));});var wait=false;addEventListener('scroll',function(){if(wait)return;wait=true;requestAnimationFrame(function(){paint();wait=false;});},{passive:true});if(location.hash)open_(location.hash.slice(1));paint();})();</script>
+</body>
+</html>

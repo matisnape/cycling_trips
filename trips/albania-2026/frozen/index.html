@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Góry Przeklęte — rowerem wokół Prokletije</title>
+<meta name="description" content="Notatki z 8-dniowej wyprawy rowerowej wokół Gór Przeklętych (Czarnogóra, Kosowo, Albania): 481 km, historia i miejsca dzień po dniu, z interaktywną mapą trasy."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Spline+Sans+Mono:wght@400;500&display=swap"/>
+<link rel="stylesheet" href="assets/style.css?v=23ea9f64"/>
+<style>:root{--river:#2f6e78;--river-deep:#1d4a52}</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script>(function(){try{var K='gp-view:albania-2026';if(/[?&]full=1/.test(location.search)){localStorage.setItem(K,'full');return;}if(localStorage.getItem(K)==='full')return;var m=window.matchMedia;var coarse=m&&m('(pointer:coarse)').matches;var narrow=m&&m('(max-width:700px)').matches;if(coarse||(navigator.maxTouchPoints>0&&narrow)){location.replace('mobile.html'+location.hash);}}catch(e){}})();</script>
+
+
+</head>
+<body>
+<a class="skip" href="#main">Przejdź do treści</a>
+<header class="site-head">
+  <div class="wrap-w viewbar"><a href="mobile.html">📱 Wersja na telefon</a></div>
+  <div class="wrap-w bar">
+    <a class="brand" href="index.html"><span class="glyph">△</span>Góry Przeklęte</a>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle"/><label class="burger" for="menu-toggle">☰<span class="skip">Menu</span></label><nav><a href="index.html" aria-current=page>Trasa</a><a href="praktyczne.html">Praktyczne</a><a href="slowniczek.html">Słowniczek</a><a href="kulinaria.html">Kulinaria</a><a href="ciekawostki.html">Ciekawostki</a><a href="zrodla.html">Źródła</a><a class="navphone" href="mobile.html">📱 Telefon</a></nav>
+  </div>
+</header>
+<main id="main">
+
+<section class="wrap hero">
+  <p class="eyebrow">Czarnogóra · Kosowo · Albania — 14–23.08.2026</p>
+  <h1>Góry<br>Przeklęte</h1>
+  <p class="lede">Osiem dni rowerem wokół Prokletije — przez dolinę Cem, Čakor, kanion Rugova, Valbonę i Theth, z powrotem do Podgoricy.</p>
+  <div class="facts">
+    <span><b>8</b> dni</span><span><b>481</b> km</span><span><b>+8346</b> m</span><span>Čakor&nbsp;1846&nbsp;m · Qafa&nbsp;e&nbsp;Valbonës&nbsp;1795&nbsp;m</span>
+  </div>
+  <hr class="river-rule"/>
+</section>
+<section class="wrap prose">
+  <p>Trasa to <strong>pętla wokół jednego pasma</strong>: Prokletije, po albańsku <strong>Bjeshkët e Nemuna</strong>, po polsku Góry Przeklęte. Startujemy i kończymy w Podgoricy, a przez osiem dni okrążamy masyw z trzech stron — czarnogórskiej, kosowskiej i albańskiej — przekraczając go dwa razy: raz przez <strong>przełęcz Čakor (1846 m)</strong>, gdzie nocujemy, raz przez <strong>Qafa e Valbonës (~1795 m)</strong>, którą idziemy z buta.</p>
+<p>Przez większość XX wieku pasmo było trudno dostępne: granica trzech państw, bunkry Hoxhy, brak dróg. Charakterystyczne dla regionu są:</p>
+<ul>
+<li><strong>Kanun</strong> — prawo zwyczajowe: krwawa zemsta, wieże odosobnienia, „dziewice Kanunu".</li>
+<li><strong>Kulla</strong> — obronne wieże mieszkalne niziny Dukagjini.</li>
+<li><strong>Serbskie monastery pod ochroną KFOR</strong> — Patriarchat w Peći, Visoki Dečani.</li>
+<li><strong>Wojna 1998–99</strong> — Gjakova, Fortesë i miejsca pamięci.</li>
+<li><strong>Młode Kosowo</strong> — NEWBORN, pomnik-napis w Prisztinie odsłonięty w dniu ogłoszenia niepodległości w 2008 r.; symbol nowego państwa.</li>
+<li><strong>Theth i Valbona</strong> — szybki rozwój turystyki po poprawie dostępu drogowego.</li>
+</ul>
+<p>Każdy dzień poniżej ma na dole „Miejsca i historia" — do przypomnienia sobie na postoju, co właściwie oglądamy.</p>
+<p><strong>14 i 23.08 to dni dojazdowe</strong> — dotarcie na miejsce i powrót. Plan poniżej obejmuje osiem dni na trasie, <strong>15–22.08</strong>, i tylko one mają swoje strony.</p>
+<p>Liczby są policzone ze śladu <code>albania.gpx</code> (24 506 punktów) i pociętego na etapy według <strong>naszych faktycznych noclegów</strong>: <strong>481 km, +8346 m</strong>, najwyżej 1846 m na Čakorze, najniżej 10 m w Shkodrze.</p>
+<hr />
+</section>
+<section class="wrap-w map-section">
+  <p class="eyebrow">Mapa trasy</p>
+  <div id="map"></div>
+  <p class="map-cap">Linia — zapisana trasa z mapy „Góry Przeklęte”. Punkty — najważniejsze miejsca (kliknij, by przejść do dnia). Pozycje miast są poglądowe.</p>
+</section>
+<section class="wrap">
+  <p class="eyebrow">Plan dzień po dniu</p>
+  <div class="itin">
+<a class="day-row" href="dzien-1.html"><span class="dot" aria-hidden="true"></span><span class="body"><span class="d-where">Dzień 1 · 15.08.2026</span><span class="d-title">Podgorica → Tamarë</span></span><span class="km">34 km</span></a>
+<a class="day-row" href="dzien-2.html"><span class="dot" aria-hidden="true"></span><span class="body"><span class="d-where">Dzień 2 · 16.08.2026</span><span class="d-title">Tamarë → Čakor</span></span><span class="km">77 km</span></a>
+<a class="day-row" href="dzien-3.html"><span class="dot" aria-hidden="true"></span><span class="body"><span class="d-where">Dzień 3 · 17.08.2026</span><span class="d-title">Čakor → Gjakova</span></span><span class="km">80 km</span></a>
+<a class="day-row" href="dzien-4.html"><span class="dot" aria-hidden="true"></span><span class="body"><span class="d-where">Dzień 4 · 18.08.2026</span><span class="d-title">Gjakova → Kosowo busem → Gjakova</span></span><span class="km">0 km</span></a>
+<a class="day-row" href="dzien-5.html"><span class="dot" aria-hidden="true"></span><span class="body"><span class="d-where">Dzień 5 · 19.08.2026</span><span class="d-title">Gjakova → Valbona</span></span><span class="km">76 km</span></a>
+<a class="day-row" href="dzien-6.html"><span class="dot" aria-hidden="true"></span><span class="body"><span class="d-where">Dzień 6 · 20.08.2026</span><span class="d-title">Valbona → Theth</span></span><span class="km">16 km</span></a>
+<a class="day-row" href="dzien-7.html"><span class="dot" aria-hidden="true"></span><span class="body"><span class="d-where">Dzień 7 · 21.08.2026</span><span class="d-title">Theth → Shkodra</span></span><span class="km">89 km</span></a>
+<a class="day-row" href="dzien-8.html"><span class="dot" aria-hidden="true"></span><span class="body"><span class="d-where">Dzień 8 · 22.08.2026</span><span class="d-title">Shkodra → Podgorica</span></span><span class="km">109 km</span></a>
+</div>
+  <section class="taste"><p class="eyebrow">Czego spróbować</p><ul><li><b>Byrek</b> · ciasto z serem albo szpinakiem, śniadanie rowerzysty za 1 EUR</li><li><b>Fërgesë</b> · papryka duszona z serem i pomidorem, specjalność Theth</li><li><b>Tavë kosi</b> · jagnięcina zapiekana w jogurcie, narodowe danie Albanii</li><li><b>Flija</b> · warstwowy placek pasterski, pieczony pod blachą z żarem</li><li><b>Qebapa</b> · grillowane kiełbaski z mielonego mięsa</li><li><b>Kaçkavall</b> · twardy ser owczy, sprzedawany przy drodze</li><li><b>Trilece</b> · deser trójmleczny, wszędzie w Kosowie</li><li><b>Raki</b> · destylat z owoców, w Theth z dzikich śliw</li><li><b>Peja</b> · kosowskie piwo, nazwane od miasta na naszej trasie</li></ul></section>
+</section>
+
+</main>
+<footer class="site-foot">
+  <div class="wrap-w">
+    <p>Notatki z wyprawy rowerowej wokół Prokletije · Longinada 2026</p>
+    <div class="links">
+      <a href="index.html">Trasa</a><a href="praktyczne.html">Praktyczne</a><a href="slowniczek.html">Słowniczek</a><a href="kulinaria.html">Kulinaria</a><a href="ciekawostki.html">Ciekawostki</a><a href="zrodla.html">Źródła</a>
+      <a href="https://www.google.com/maps/d/edit?mid=121RKnyKXHBkZYb9bIOSL3CMI9hqMqCs&usp=sharing" rel="noopener" target="_blank">Mapa Google</a>
+      <a href="https://mapy.com/s/rezezopaco" rel="noopener" target="_blank">mapy.com</a>
+    </div>
+  </div>
+</footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="assets/route-data.js?v=08f66f9d"></script><script>window.MAP_DAY=null;window.TRIP_ACCENT="#2f6e78";</script><script src="assets/map.js?v=7e569dd4" defer></script><script src="assets/site.js?v=f62d98b4" defer></script>
+</body>
+</html>

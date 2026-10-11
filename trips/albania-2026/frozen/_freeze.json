@@ -1,0 +1,19 @@
+{
+  "card": {
+    "accent": "#2f6e78",
+    "days": 8,
+    "eyebrow": "Czarnogóra · Kosowo · Albania — 14–23.08.2026",
+    "km": 481,
+    "lede": "Osiem dni rowerem wokół Prokletije — przez dolinę Cem, Čakor, kanion Rugova, Valbonę i Theth, z powrotem do Podgoricy.",
+    "show_total_km": true,
+    "title_html": "Góry<br>Przeklęte"
+  },
+  "frozen_on": "2026-10-11",
+  "inputs": {
+    "assets/route-data.js": "20b83f6bfe37d7ae8364fda0617cc0d133ab042201aa878360deed21aa7c93c4",
+    "tresc.md": "16da49ec6b26c1dff17a62a23e8cf49847cb0e27dad9f12babf55be5d8fd6df7",
+    "trip.toml": "1e85ddf3542c66be4a2e40ec095b5a8b5a1100c392342aaa778c4e5fc39a7676"
+  },
+  "slug": "albania-2026",
+  "source": "tresc.md"
+}

@@ -1,0 +1,71 @@
+# Konfiguracja wyprawy. Treść: tresc.md obok. Opis pól: patrz engine/build.py (load_config).
+slug = "albania-2026"
+lang = "pl"
+# Linie "- Nazwa" w # Meta zaczynające się od tych prefiksów to linki, nie dania.
+meta_skip_prefixes = ["opis", "mapa", "szlak"]
+
+[site]
+title            = "Góry Przeklęte"
+title_html       = "Góry<br>Przeklęte"
+glyph            = "△"
+eyebrow          = "Czarnogóra · Kosowo · Albania — 14–23.08.2026"
+lede             = "Osiem dni rowerem wokół Prokletije — przez dolinę Cem, Čakor, kanion Rugova, Valbonę i Theth, z powrotem do Podgoricy."
+home_title       = "Góry Przeklęte — rowerem wokół Prokletije"
+# {days} i {km} podstawia build z tresc.md, więc opis się nie zestarzeje.
+home_description = "Notatki z {days}-dniowej wyprawy rowerowej wokół Gór Przeklętych (Czarnogóra, Kosowo, Albania): {km} km, historia i miejsca dzień po dniu, z interaktywną mapą trasy."
+footer           = "Notatki z wyprawy rowerowej wokół Prokletije · Longinada 2026"
+footer_short     = "Longinada 2026"          # stopka mobile.html
+map_caption_name = "Góry Przeklęte"
+offline_filename = "gory-przeklete-offline.html"
+offline_aria     = "Szkic trasy — pętla wokół Gór Przeklętych"
+# dni i km liczone z tresc.md; reszta to fakty ręczne. " · " rozdziela osobne pigułki na telefonie.
+facts         = ["+8346 m", "Čakor 1846 m · Qafa e Valbonës 1795 m"]
+show_total_km = true
+
+[[pages]]
+slug = "praktyczne"
+label = "Praktyczne"
+heading = "# Praktyczne informacje"
+title = "Praktyczne informacje"
+eyebrow = "W terenie"
+
+[[pages]]
+slug = "slowniczek"
+label = "Słowniczek"
+heading = "# Słowniczek albański"
+title = "Słowniczek albański"
+eyebrow = "Dogadać się po drodze"
+
+[[pages]]
+slug = "kulinaria"
+label = "Kulinaria"
+heading = "# Kulinaria i pamiątki"
+title = "Kulinaria i pamiątki"
+eyebrow = "Co zjeść, co przywieźć"
+
+[[pages]]
+slug = "ciekawostki"
+label = "Ciekawostki"
+heading = "# Ciekawostki"
+title = "Ciekawostki"
+eyebrow = "Drobiazgi po drodze"
+
+[map]
+# Dzień 4 to dzień busowy po Kosowie: jego punkty leżą daleko od śladu, więc nie idą do szkicu SVG.
+svg_skip_days  = [4]
+svg_min_points = 40
+svg_skip_note  = "dzień busowy po Kosowie pominięty"
+
+[theme]
+accent      = "#2f6e78"
+accent_deep = "#1d4a52"   # hover / mocniejszy odcień (opcjonalne; domyślnie liczony z accent)
+accent_dark = "#7fc6cf"   # akcent w ciemnym trybie mobile.html (opcjonalne)
+
+[analytics]
+ga_id        = ""
+cookiescript = ""
+
+# Po tej dacie build NIE generuje strony, tylko przepisuje trips/<slug>/frozen/ (zob. PLAYBOOK §2).
+# Pierwszy build w tym dniu lub później zapisuje frozen/ — zacommituj go.
+[freeze]
+date = "2026-08-24"   # wyprawa 15–22.08.2026; od tego dnia strona nie jest regenerowana

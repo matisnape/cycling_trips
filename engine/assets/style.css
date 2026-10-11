@@ -1,7 +1,12 @@
 /* =========================================================================
-   Cienie Austro-Węgier — stylesheet
-   Direction: "field" minimalism. The axis is the river (Mureș): a thin line
-   tying the days together, a water palette, typography like a map notebook.
+   cycling_trips — wspólny arkusz stylów wszystkich wypraw.
+   Kierunek: minimalizm terenowy — cienka linia spinająca dni, stonowana
+   paleta, typografia jak w notatniku z mapą.
+
+   UWAGA: kolor akcentu nadpisuje silnik z [theme] accent w trip.toml.
+   Zmienne nazywają się --river po pierwszej wyprawie (w dół Maruszy).
+   Nazwy zostają, bo te same literały siedzą w map.js i w CSS wersji
+   mobilnej — przemianowanie ma sens wyłącznie w komplecie z nimi.
    ========================================================================= */
 
 :root {

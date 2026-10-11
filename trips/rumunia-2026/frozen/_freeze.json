@@ -1,0 +1,19 @@
+{
+  "card": {
+    "accent": "#2f6e78",
+    "days": 9,
+    "eyebrow": "Rumunia · 27.06 – 05.07.2026",
+    "km": 654,
+    "lede": "Dziewięć dni rowerem w dół biegu Maruszy — przez seklerskie, saskie, ormiańskie i rumuńskie warstwy Transylwanii, aż na Nizinę Panońską.",
+    "show_total_km": true,
+    "title_html": "Cienie<br>Austro-Węgier"
+  },
+  "frozen_on": "2026-10-11",
+  "inputs": {
+    "assets/route-data.js": "5f23f90b90e228c034b024298a29879401f7ddfb4ca2838c7e6065d5af41d1ea",
+    "tresc.md": "f6c52cc59f00e8f3f76ef0647fa08f76925edd133a32ca5870c65c1abb3a13d2",
+    "trip.toml": "48c4f5ce525c3403cb797cba93b8f9fddbcbd3f238c19a9eb3339492b521e46d"
+  },
+  "slug": "rumunia-2026",
+  "source": "tresc.md"
+}

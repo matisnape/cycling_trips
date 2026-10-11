@@ -1,80 +1,213 @@
 # -*- coding: utf-8 -*-
-"""Generuje strona/assets/route-data.js z albania.gpx (linia) + tabeli POI (poniżej).
-Uruchamiaj po zmianie śladu:  python3 gen_route.py
+"""Generuje trips/<slug>/assets/route-data.js ze śladu GPX/KML + tabeli punktów CSV.
+
+Użycie (z korzenia repo):
+    python engine/gen_route.py albania-2026
+
+Wejście, w katalogu trips/<slug>/:
+    route.gpx lub route.kml   ślad trasy (GPX: <trkpt>; KML: <LineString>/<coordinates>)
+    pois.csv                  punkty na mapie, nagłówek w pierwszej linii:
+                              day,name,lat,lon,blurb
+                              Dodatkowe kolumny (np. "type") są tolerowane i trafiają
+                              do punktu pod własną nazwą.
+
+Wyjście: trips/<slug>/assets/route-data.js  (window.TRIP = {route, pois})
 """
-import xml.etree.ElementTree as ET, json, math, os
+import csv, json, math, os, sys
+import xml.etree.ElementTree as ET
 
-GPX = "/Users/anna.nowak/Downloads/Albania/albania.gpx"
-OUT = "/Users/anna.nowak/projects/anks/longinada-albania-2026/strona/assets/route-data.js"
-TOL = 0.0006  # ~60 m — upraszczanie linii
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TRIPS = os.path.join(ROOT, "trips")
+TOL = 0.0006  # ~60 m — upraszczanie linii (Ramer–Douglas–Peucker, w stopniach)
+REQUIRED = ("day", "name", "lat", "lon", "blurb")
 
-def load(gpx):
-    r = ET.parse(gpx).getroot(); ns = r.tag.split('}')[0][1:]
-    return [(float(p.get('lat')), float(p.get('lon'))) for p in r.iter('{%s}trkpt' % ns)]
+
+def die(msg):
+    sys.exit("BŁĄD: " + msg)
+
+
+def local(tag):
+    """Nazwa taga bez przestrzeni nazw ('{ns}trkpt' -> 'trkpt')."""
+    return tag.rsplit("}", 1)[-1] if isinstance(tag, str) else ""
+
+
+# --- ślad: GPX / KML ------------------------------------------------------
+
+def load_gpx(path):
+    root = ET.parse(path).getroot()
+    pts = [(float(e.get("lat")), float(e.get("lon"))) for e in root.iter() if local(e.tag) == "trkpt"]
+    if not pts:  # plik z trasą zamiast śladu
+        pts = [(float(e.get("lat")), float(e.get("lon"))) for e in root.iter() if local(e.tag) == "rtept"]
+    return pts
+
+
+def load_kml(path):
+    """Punkty z <LineString> (współrzędne 'lon,lat[,ele]' rozdzielone białymi znakami)
+    oraz z <gx:Track> (<gx:coord> 'lon lat ele'). Pojedyncze <Point> (znaczniki) pomijamy."""
+    root = ET.parse(path).getroot()
+    pts = []
+    for el in root.iter():
+        name = local(el.tag)
+        if name == "LineString":
+            for c in el.iter():
+                if local(c.tag) == "coordinates" and c.text:
+                    for tok in c.text.split():
+                        parts = tok.split(",")
+                        if len(parts) >= 2:
+                            pts.append((float(parts[1]), float(parts[0])))
+        elif name == "coord" and el.text:  # gx:coord
+            parts = el.text.split()
+            if len(parts) >= 2:
+                pts.append((float(parts[1]), float(parts[0])))
+    return pts
+
+
+def find_route(tdir, slug):
+    for fname, loader in (("route.gpx", load_gpx), ("route.kml", load_kml)):
+        p = os.path.join(tdir, fname)
+        if os.path.exists(p):
+            return p, loader
+    out = os.path.join(tdir, "assets", "route-data.js")
+    if os.path.exists(out):
+        die("w trips/%s/ nie ma route.gpx ani route.kml, ale istnieje już assets/route-data.js.\n"
+            "  To prawdopodobnie JEDYNA kopia trasy tej wyprawy — nie regeneruję jej, żeby jej nie\n"
+            "  nadpisać. Jeśli naprawdę masz ślad, połóż go jako trips/%s/route.gpx (lub .kml)\n"
+            "  i zrób kopię route-data.js przed uruchomieniem." % (slug, slug))
+    die("brak śladu: połóż trips/%s/route.gpx albo trips/%s/route.kml." % (slug, slug))
+
+
+# --- upraszczanie linii ---------------------------------------------------
 
 def rdp(pts, tol):
-    if len(pts) < 3: return pts
+    if len(pts) < 3:
+        return pts
+
     def d(p, a, b):
-        (y0,x0),(y1,x1),(y2,x2) = p, a, b
-        dy, dx = y2-y1, x2-x1
-        if dy == 0 and dx == 0: return math.hypot(y0-y1, x0-x1)
-        t = max(0, min(1, ((y0-y1)*dy + (x0-x1)*dx) / (dy*dy + dx*dx)))
-        return math.hypot(y0-(y1+t*dy), x0-(x1+t*dx))
-    stack, keep = [(0, len(pts)-1)], {0, len(pts)-1}
+        (y0, x0), (y1, x1), (y2, x2) = p, a, b
+        dy, dx = y2 - y1, x2 - x1
+        if dy == 0 and dx == 0:
+            return math.hypot(y0 - y1, x0 - x1)
+        t = max(0, min(1, ((y0 - y1) * dy + (x0 - x1) * dx) / (dy * dy + dx * dx)))
+        return math.hypot(y0 - (y1 + t * dy), x0 - (x1 + t * dx))
+
+    stack, keep = [(0, len(pts) - 1)], {0, len(pts) - 1}
     while stack:
         i, j = stack.pop()
-        if j <= i+1: continue
+        if j <= i + 1:
+            continue
         k, best = None, tol
-        for m in range(i+1, j):
+        for m in range(i + 1, j):
             dd = d(pts[m], pts[i], pts[j])
-            if dd > best: best, k = dd, m
+            if dd > best:
+                best, k = dd, m
         if k:
-            keep.add(k); stack += [(i, k), (k, j)]
+            keep.add(k)
+            stack += [(i, k), (k, j)]
     return [pts[i] for i in sorted(keep)]
 
-# --- POI: dzień, nazwa, lat, lon, opis ------------------------------------
-# Dzień 5 to wypad busem po Kosowie — punkty leżą 14–68 km od śladu rowerowego.
-POIS = [
- (1, "Podgorica",              42.4304, 19.2594, "Start i meta pętli. Stolica Czarnogóry, 45 m n.p.m."),
- (1, "Kanion Cijevny",         42.4265, 19.4884, "Wąwóz rzeki Cijevna (alb. Cem) — pierwszy podjazd dnia."),
- (1, "Tamarë",                 42.4732, 19.5726, "Pierwsza wioska w Albanii, dolina Cem. Sklep, jedzenie."),
- (2, "Lepushë",                42.5599, 19.7311, "Przełęcz 1348 m nad wioską — najwyższy punkt dnia."),
- (2, "Vermosh",                42.5850, 19.7500, "Najbardziej północna wioska Albanii, 1049 m."),
- (2, "Gusinje",                42.5620, 19.8320, "Powrót do Czarnogóry. Baza pod dolinę Grbaja i Prokletije."),
- (2, "Plav",                   42.5966, 19.9436, "Jezioro Plavskie. TU ODBIERASZ ZEZWOLENIE na Čakor (policja graniczna, pon.–pt.)."),
- (2, "Przełęcz Čakor",         42.6688, 20.0074, "1840 m — najwyższy punkt trasy i granica CZG/Kosowo. Nie jest oficjalnym przejściem: rower tylko z zezwoleniem."),
- (3, "Kanion Rugova",          42.6976, 20.1545, "22 km wąwozu do Peji, ściany do ~1000 m. Zjazd asfaltem."),
- (3, "Patriarchat w Peć",      42.6611, 20.2657, "Cztery cerkwie z XIII–XIV w., siedziba serbskich patriarchów. UNESCO, ochrona KFOR — paszport na wejściu."),
- (3, "Monaster Visoki Dečani", 42.5463, 20.2653, "1327–1335, największy zespół średniowiecznych fresków Serbii (~1000 przedstawień). UNESCO, 9–17, grupy 6–8 osób."),
- (3, "Gjakova (Djakovica)",    42.3844, 20.4284, "Baza na dzień kosowski. Çarshia e Madhe — bazar ponad 1 km długości, wokół meczetu Hadum (1594)."),
- (4, "Jaskinia Gadime",        42.4781, 21.2075, "BUS. Jaskinia w marmurze, kryształy aragonitu, 12–15 °C. Tylko z przewodnikiem, 3–5 EUR."),
- (4, "Prisztina",              42.6673, 21.1643, "BUS. Biblioteka Narodowa, katedra Matki Teresy, NEWBORN, Heroinat."),
- (4, "Gazimestan",             42.6906, 21.1237, "BUS. Pomnik przy polu Bitwy na Kosowym Polu (1389). Tu Milošević mówił w 1989."),
- (4, "Prizren",                42.2173, 20.7437, "BUS. Liga Prizreńska 1878, twierdza Kalaja, meczet Sinana Paszy, Shadervan."),
- (5, "Morinë",                 42.4096, 20.2620, "Przejście graniczne Kosowo → Albania."),
- (5, "Bajram Curri",           42.3639, 20.0773, "Brama do Tropoji, ojczyzna plemienia Krasniqi."),
- (5, "Dragobi",                42.4253, 19.9991, "Wjazd w dolinę Valbony wzdłuż rzeki."),
- (5, "Valbonë",                42.4473, 19.8864, "Park Narodowy Valbona. Nad doliną Maja e Jezercës — 2694 m, najwyższy szczyt Dynarów."),
- (6, "Qafa e Valbonës",        42.4078, 19.8143, "~1795 m. Dawny szlak mulasi Shala–Nikaj. 6–8 h, cały odcinek z buta."),
- (6, "Theth",                  42.4007, 19.7678, "Kulla e ngujimit (wieża odosobnienia, 200 lek), kościół z 1892 r., Park Narodowy od 1966."),
- (7, "Wodospad Grunas",        42.3930, 19.7720, "25 m, 30 min płaskim szlakiem wzdłuż rzeki. Przed 9:00 bez tłumów."),
- (7, "Qafa e Thorës",          42.3868, 19.7358, "~1680 m. Asfalt od 2021. Pomniki Ferenca Nopcsy i Edith Durham."),
- (7, "Bogë",                   42.3656, 19.6321, "Zjazd z przełęczy, wioska u wylotu doliny."),
- (7, "Koplik",                 42.2050, 19.4370, "Wjazd na nizinę nad jeziorem Szkoderskim. Zaopatrzenie."),
- (7, "Shkodra",                42.0519, 19.4956, "Najstarsze miasto Albanii, twierdza Rozafa, 15 m n.p.m."),
- (8, "Jezioro Szkoderskie",       42.1649, 19.2041, "Wariant jeziorem: droga nad wodą przez Murići i Seoca, falująca."),
- (8, "Virpazar",                  42.2450, 19.0930, "Baza nad jeziorem, most i winnice."),
- (8, "Rijeka Crnojevića",         42.3350, 19.0480, "Meander rzeki i stary kamienny most — ostatni punkt przed Podgoricą."),
-]
 
-pts = load(GPX)
-line = rdp(pts, TOL)
-pois = [{"day": d, "name": n, "lat": la, "lon": lo, "blurb": b,
-         "url": "dzien-%d.html" % d} for d, n, la, lo, b in POIS]
-js = ("// Trasa i punkty — generowane z albania.gpx skryptem gen_route.py.\n"
-      "// Linia: %d punktów (uproszczone z %d). Punkty: %d.\n" % (len(line), len(pts), len(pois))
-      + "window.TRIP = " + json.dumps({"route": [[round(a,5), round(b,5)] for a,b in line],
-                                       "pois": pois}, ensure_ascii=False, indent=1) + ";\n")
-os.makedirs(os.path.dirname(OUT), exist_ok=True)
-open(OUT, "w", encoding="utf-8").write(js)
-print("zapisane: %s  (linia %d pkt, POI %d, %.0f kB)" % (OUT, len(line), len(pois), len(js)/1024))
+# --- punkty: CSV ----------------------------------------------------------
+
+def num(s, what, line):
+    try:
+        return float(s.strip().replace(",", "."))  # Excel z polskim regionem daje przecinek
+    except ValueError:
+        die("pois.csv, linia %d: %s = %r nie jest liczbą." % (line, what, s))
+
+
+def load_pois(path):
+    with open(path, encoding="utf-8-sig", newline="") as f:
+        text = f.read()
+    lines = text.splitlines()
+    if not lines or not lines[0].strip():
+        die("pois.csv jest pusty — pierwsza linia musi być nagłówkiem: " + ",".join(REQUIRED))
+    head = lines[0]
+    delim = ";" if head.count(";") > head.count(",") else ","  # Excel (PL) zapisuje średniki
+    rdr = csv.DictReader(lines, delimiter=delim)
+    cols = [c.strip().lower() for c in (rdr.fieldnames or [])]
+    rdr.fieldnames = cols
+    missing = [c for c in REQUIRED if c not in cols]
+    if missing:
+        die("pois.csv: brak kolumn %s. Nagłówek ma być: %s (kolumny dodatkowe są dozwolone)."
+            % (", ".join(missing), ",".join(REQUIRED)))
+    extras = [c for c in cols if c and c not in REQUIRED and c != "url"]
+    pois = []
+    for row in rdr:
+        line = rdr.line_num
+        if None in row:
+            die("pois.csv, linia %d: za dużo pól w wierszu (przecinek w opisie? ujmij opis w cudzysłów)." % line)
+        row = {k: (v or "").strip() for k, v in row.items()}
+        if not any(row.values()):
+            continue  # pusta linia
+        if not row["name"]:
+            die("pois.csv, linia %d: pusta nazwa punktu." % line)
+        try:
+            day = int(row["day"])
+        except ValueError:
+            die("pois.csv, linia %d (%s): day = %r — oczekiwany numer dnia (liczba całkowita)."
+                % (line, row["name"], row["day"]))
+        lat, lon = num(row["lat"], "lat", line), num(row["lon"], "lon", line)
+        if not (-90 <= lat <= 90 and -180 <= lon <= 180):
+            die("pois.csv, linia %d (%s): współrzędne poza zakresem (lat=%s, lon=%s) — zamienione kolumny?"
+                % (line, row["name"], lat, lon))
+        p = {"day": day, "name": row["name"], "lat": lat, "lon": lon, "blurb": row["blurb"]}
+        for c in extras:  # nadmiarowe kolumny (np. "type") przepisujemy do POI
+            if row.get(c):
+                p[c] = row[c]
+        p["url"] = row.get("url") or "dzien-%d.html" % day
+        pois.append(p)
+    if not pois:
+        die("pois.csv ma nagłówek, ale żadnego punktu.")
+    return pois
+
+
+# --- main -----------------------------------------------------------------
+
+def main():
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")  # Windows
+    except Exception:
+        pass
+    args = [a for a in sys.argv[1:] if not a.startswith("-")]
+    if len(args) != 1 or any(a in ("-h", "--help") for a in sys.argv[1:]):
+        avail = sorted(d for d in os.listdir(TRIPS)
+                       if not d.startswith("_") and os.path.isdir(os.path.join(TRIPS, d))) if os.path.isdir(TRIPS) else []
+        sys.exit("Użycie: python engine/gen_route.py <slug>\n"
+                 "Dostępne wyprawy: %s" % (", ".join(avail) or "(brak)"))
+    slug = args[0]
+    tdir = os.path.join(TRIPS, slug)
+    if not os.path.isdir(tdir):
+        die("nie ma katalogu trips/%s/." % slug)
+
+    route_path, loader = find_route(tdir, slug)
+    pois_path = os.path.join(tdir, "pois.csv")
+    if not os.path.exists(pois_path):
+        die("brak trips/%s/pois.csv (kolumny: %s). Wzór: trips/_szablon/pois.csv."
+            % (slug, ",".join(REQUIRED)))
+
+    try:
+        pts = loader(route_path)
+    except (ET.ParseError, ValueError, TypeError) as e:
+        die("nie umiem odczytać %s: %s" % (os.path.relpath(route_path, ROOT), e))
+    if len(pts) < 2:
+        die("w %s nie znalazłem śladu (potrzebne co najmniej 2 punkty: GPX <trkpt> albo "
+            "KML <LineString>)." % os.path.relpath(route_path, ROOT))
+
+    line = rdp(pts, TOL)
+    pois = load_pois(pois_path)
+
+    src = os.path.basename(route_path)
+    js = ("// Trasa i punkty — generowane z %s skryptem gen_route.py.\n"
+          "// Linia: %d punktów (uproszczone z %d). Punkty: %d.\n" % (src, len(line), len(pts), len(pois))
+          + "window.TRIP = " + json.dumps({"route": [[round(a, 5), round(b, 5)] for a, b in line],
+                                           "pois": pois}, ensure_ascii=False, indent=1) + ";\n")
+    out = os.path.join(tdir, "assets", "route-data.js")
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    with open(out, "w", encoding="utf-8", newline="\n") as f:
+        f.write(js)
+    print("zapisane: %s  (linia %d pkt, POI %d, %.0f kB)"
+          % (os.path.relpath(out, ROOT), len(line), len(pois), len(js) / 1024))
+
+
+if __name__ == "__main__":
+    main()

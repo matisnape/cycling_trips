@@ -1,0 +1,63 @@
+# Konfiguracja wyprawy. Treść: tresc.md obok. Opis pól: patrz engine/build.py (load_config).
+slug = "rumunia-2026"
+lang = "pl"
+# Linie "- Nazwa" w # Meta zaczynające się od tych prefiksów to linki, nie dania.
+meta_skip_prefixes = ["opis", "mapa", "szlak"]
+
+[site]
+title            = "Cienie Austro-Węgier"
+title_html       = "Cienie<br>Austro-Węgier"
+glyph            = "~"
+eyebrow          = "Rumunia · 27.06 – 05.07.2026"
+lede             = "Dziewięć dni rowerem w dół biegu Maruszy — przez seklerskie, saskie, ormiańskie i rumuńskie warstwy Transylwanii, aż na Nizinę Panońską."
+home_title       = "Cienie Austro-Węgier — rowerem w dół Maruszy"
+# {days} i {km} podstawia build z tresc.md.
+home_description = "Notatki z {days}-dniowej wyprawy rowerowej wzdłuż rumuńskiej Maruszy: historia i miejsca dzień po dniu, z interaktywną mapą trasy."
+footer           = "Notatki z wyprawy rowerowej w dół Maruszy · Longinada 2026"
+footer_short     = "Longinada 2026"          # stopka mobile.html
+map_caption_name = "Cienie Austro-Węgier"
+offline_filename = "cienie-austro-wegier-offline.html"
+offline_aria     = "Szkic trasy — w dół biegu Maruszy"
+facts         = ["~760 km biegu rzeki", "Izvoru Mureșului → Szeged"]
+show_total_km = true
+
+[[pages]]
+slug = "praktyczne"
+label = "Praktyczne"
+heading = "# Praktyczne informacje"
+title = "Praktyczne informacje"
+eyebrow = "W terenie"
+
+[[pages]]
+slug = "kulinaria"
+label = "Kulinaria"
+heading = "# Kulinaria i pamiątki"
+title = "Kulinaria i pamiątki"
+eyebrow = "Co zjeść, co przywieźć"
+
+[[pages]]
+slug = "ciekawostki"
+label = "Ciekawostki"
+heading = "# Ciekawostki"
+title = "Ciekawostki"
+eyebrow = "Drobiazgi po drodze"
+
+[map]
+svg_skip_days  = []
+# Linia trasy ma tu 14 punktów (waypointy z mapy, nie ślad GPS) — szkic wyszedłby łamaną.
+# Poniżej 40 punktów mobile.html nie rysuje szkicu.
+svg_min_points = 40
+
+[theme]
+accent      = "#2f6e78"
+accent_deep = "#1d4a52"
+accent_dark = "#7fc6cf"
+
+[analytics]
+ga_id        = "G-VEVEF241PW"
+cookiescript = "//cdn.cookie-script.com/s/7a0d26610c95771b586f4240b7d230a4.js"
+
+# Po tej dacie build NIE generuje strony, tylko przepisuje trips/<slug>/frozen/ (zob. PLAYBOOK §2).
+# Pierwszy build w tym dniu lub później zapisuje frozen/ — zacommituj go.
+[freeze]
+date = "2026-07-06"   # wyprawa 27.06–05.07.2026; od tego dnia strona nie jest regenerowana

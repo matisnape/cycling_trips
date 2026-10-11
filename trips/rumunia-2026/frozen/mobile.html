@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Cienie Austro-Węgier — wersja offline</title>
+<script>document.documentElement.className+=' js';(function(){try{if(!/[?&]full=1/.test(location.search))localStorage.setItem('gp-view:rumunia-2026','mobile');}catch(e){}})();</script>
+<meta name="description" content="Cała wyprawa na jednej stronie, bez internetu: plan dzień po dniu, praktyczne informacje, ciekawostki."/>
+<style>
+:root{--bg:#fbfcfb;--fg:#1c211f;--mut:#5d6763;--acc:#2f6e78;--line:#dfe4e1;--card:#fff}
+@media (prefers-color-scheme:dark){
+ :root{--bg:#14181a;--fg:#e8ecea;--mut:#9daaa5;--acc:#7fc6cf;--line:#2b3235;--card:#1a1f21}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+ -webkit-text-size-adjust:100%;max-width:44rem;margin:0 auto;padding:0 16px 28px}
+/* Only the JS build gets the fixed bottom bar, so only it needs room underneath. */
+.js body{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+h1{font-size:1.9rem;line-height:1.15;margin:24px 0 4px;letter-spacing:-.02em}
+h2{font-size:1.15rem;margin:32px 0 8px;padding-top:16px;border-top:1px solid var(--line)}
+h3{font-size:1rem;margin:18px 0 6px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+p,ul,ol{margin:8px 0}
+ul,ol{padding-left:1.2em}
+li{margin:5px 0}
+a{color:var(--acc);text-underline-offset:2px}
+.sub{color:var(--mut);margin:0 0 14px}
+.facts{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 4px;list-style:none;padding:0}
+.facts li{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:.85rem}
+.save{display:block;background:var(--acc);color:var(--bg);text-align:center;font-weight:600;
+ text-decoration:none;padding:14px;border-radius:12px;margin:18px 0 6px}
+.hint{color:var(--mut);font-size:.85rem;margin:0 0 8px}
+.map{color:var(--acc);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px;margin:16px 0}
+.map svg{display:block;width:100%;height:auto}
+.map .poi{fill:currentColor;opacity:.75}
+details{border:1px solid var(--line);border-radius:12px;background:var(--card);margin:8px 0;overflow:hidden}
+summary{cursor:pointer;padding:13px 14px;font-weight:600;display:flex;gap:10px;align-items:baseline}
+summary::-webkit-details-marker{display:none}
+summary .n{color:var(--acc);font-variant-numeric:tabular-nums;font-size:.8rem;white-space:nowrap}
+summary .km{margin-left:auto;color:var(--mut);font-size:.82rem;white-space:nowrap}
+details>div{padding:0 14px 14px}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+blockquote{margin:12px 0;padding:10px 14px;border-left:3px solid var(--acc);background:var(--card);color:var(--mut);font-size:.92rem}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}
+table{width:100%;border-collapse:collapse;font-size:.9rem;display:block;overflow-x:auto}
+td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left}
+footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--mut);font-size:.85rem}
+/* Version link and save pill share one grid cell: link pinned left, pill pinned right.
+   The pill's panel is a full-width block inside that same cell, so unfolding pushes the
+   page down without ever moving the pill itself. */
+.switch{display:grid;align-items:start;padding:18px 0 0;font-size:.85rem;color:var(--mut)}
+.switch span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+/* Switch link first and left-aligned — same corner as the .viewbar link in the full version. */
+.switch a{font-weight:600;text-decoration:none;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
+.switch>a{grid-area:1/1;justify-self:start;align-self:start;padding:6px 0;max-width:60%}
+.savebox{grid-area:1/1;justify-self:stretch;text-align:right;
+ border:0;background:none;margin:0;border-radius:0;overflow:visible}
+/* Filled pill so the download stands out against the plain version-switch link. */
+.savebox>summary{display:inline-block;list-style:none;padding:5px 13px;font:inherit;
+ font-weight:600;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;
+ background:var(--acc);color:var(--bg);border:1px solid var(--acc);border-radius:999px;
+ cursor:pointer;-webkit-tap-highlight-color:transparent}
+.savebox-in{text-align:left;margin-top:12px;padding:13px 14px;background:var(--card);
+ border:1px solid var(--line);border-radius:12px}
+.savebox-in .hint{margin:0 0 11px}
+.savebox-in .save{margin:0}
+/* Hamburger for the downloaded file. <details> is a native HTML toggle, so it needs
+   no JS — and it sits in normal flow, because iOS Quick Look (the Files preview)
+   ignores position:fixed. Hidden wherever JS runs: there the bottom bar takes over
+   and the live page stays exactly as it was. */
+.toc{margin:16px 0 4px}
+.js .toc{display:none}
+.toc>summary{font-size:.9rem}
+/* Two groups: the days, then everything else. Day chips carry their route, so they
+   fill the rows and the split reads as grouping rather than as a gap. */
+.toc-r{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px}
+.toc-r:last-child{padding-bottom:14px}
+.toc-r+.toc-r{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.toc a{display:inline-flex;align-items:baseline;gap:6px;background:var(--bg);
+ border:1px solid var(--line);border-radius:999px;padding:6px 11px;
+ font-size:.84rem;font-weight:600;text-decoration:none;color:var(--fg)}
+.toc a i{font-style:normal;color:var(--acc);font-variant-numeric:tabular-nums}
+.toc a:active{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+.toc a:active i{color:var(--bg)}
+/* Jump bar pinned to the BOTTOM — thumb zone one-handed. Both it and the sheet rely
+   on position:fixed, so they only appear once the inline script marks the page;
+   in a preview that ignores fixed they would otherwise sit dead at the very end. */
+.navbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:15;gap:8px;
+ padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--line)}
+.js .navbar{display:flex}
+.navbar>*{background:var(--card);border:1px solid var(--line);border-radius:12px;color:var(--fg);
+ font:inherit;padding:12px 8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.nav-a{flex:0 0 3.5rem;font-size:1.15rem;line-height:1}
+.nav-c{flex:1;min-width:0;font-size:.9rem;font-weight:600;text-align:center;
+ text-decoration:none;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.navbar>*:active{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+/* The sheet runs on :target, not on JS — a downloaded file previewed without
+   JavaScript (iOS Quick Look does that) still has to navigate. Picking a section
+   moves the hash off #sekcje, which closes the sheet and jumps in one tap. */
+/* The :target hook is a zero-size marker pinned to the viewport, not the panel
+   itself — jumping to a full-screen element makes the browser nudge the page. */
+.sheet-anchor{position:fixed;top:0;left:0;width:0;height:0}
+.sheet-wrap{display:none;position:fixed;inset:0;z-index:20;pointer-events:none}
+.js .sheet-wrap{display:block}
+#sekcje:target~.sheet-wrap{pointer-events:auto}
+.sheet-back{position:absolute;inset:0;background:rgba(0,0,0,.45);opacity:0;transition:opacity .2s}
+#sekcje:target~.sheet-wrap .sheet-back{opacity:1}
+.sheet{position:absolute;left:0;right:0;bottom:0;max-height:78vh;overflow-y:auto;
+ -webkit-overflow-scrolling:touch;background:var(--card);border-top:1px solid var(--line);
+ border-radius:16px 16px 0 0;transform:translateY(101%);transition:transform .25s ease;
+ padding-bottom:env(safe-area-inset-bottom)}
+#sekcje:target~.sheet-wrap .sheet{transform:translateY(0)}
+.sheet-in{padding:0 16px 12px}
+.sheet-hd{position:sticky;top:0;background:var(--card);display:flex;align-items:center;
+ justify-content:space-between;padding:14px 0 8px;font-weight:600}
+.sheet-x{color:var(--mut);font-size:1.25rem;padding:2px 8px;cursor:pointer}
+.sheet a{display:flex;gap:10px;align-items:baseline;padding:13px 2px;text-decoration:none;
+ color:var(--fg);font-size:.95rem;border-bottom:1px solid var(--line)}
+.sheet a:last-child{border-bottom:0}
+.s-n{flex:0 0 1.7rem;color:var(--acc);font-weight:600;font-size:.8rem;font-variant-numeric:tabular-nums}
+.s-t{flex:1;min-width:0}
+.s-k{color:var(--mut);font-size:.8rem;white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="switch"><a href="index.html?full=1">🗺 Wersja pełna</a>
+<details class="savebox"><summary>⬇︎ Zapisz</summary><div class="savebox-in">
+<p class="hint"><b>iPhone:</b> dotknij przycisku → „Pobierz". Plik ląduje w <b>Plikach → Pobrane</b>;
+podgląd w Plikach wystarczy, menu „☰ Skocz do sekcji" jest na górze strony.</p>
+<a class="save" href="mobile.html" download="cienie-austro-wegier-offline.html">⬇︎ Pobierz</a>
+</div></details></nav>
+<h1 id="top">Cienie Austro-Węgier</h1>
+<p class="sub">Rumunia · 27.06 – 05.07.2026</p>
+<ul class="facts">
+  <li><b>9</b> dni</li><li><b>654</b> km</li><li><b>~760</b> km biegu rzeki</li><li>Izvoru Mureșului → Szeged</li>
+</ul>
+
+<details class="toc"><summary>☰ Skocz do sekcji</summary><div class="toc-r"><a href="#dzien-1"><i>1</i>Braszów → Lăzărea</a><a href="#dzien-2"><i>2</i>Lăzărea → Odorheiu Secuiesc</a><a href="#dzien-3"><i>3</i>Odorheiu Secuiesc → Dumbrăveni</a><a href="#dzien-4"><i>4</i>Dumbrăveni → Blaj</a><a href="#dzien-5"><i>5</i>Blaj → Orăștie</a><a href="#dzien-6"><i>6</i>Orăștie → Deva</a><a href="#dzien-7"><i>7</i>Deva → Bătuța</a><a href="#dzien-8"><i>8</i>Bătuța → Arad</a><a href="#dzien-9"><i>9</i>Arad → Segedyn</a></div><div class="toc-r"><a href="#praktyczne">Praktyczne</a><a href="#kulinaria">Kulinaria</a><a href="#ciekawostki">Ciekawostki</a><a href="#zrodla">Źródła</a></div></details>
+
+<p class="hint">Mapy online: <a href="https://www.google.com/maps/d/u/0/viewer?mid=17qVhQyHqf7OxKUxSuWRoIMMRE0lW0B8&ll=46.25151555608343%2C22.934486000000007&z=7">Google</a> · <a href="https://mapy.com/s/movenarefu">mapy.com</a></p>
+
+<h2 id="plan">Plan dzień po dniu</h2>
+<details id="dzien-1"><summary><span class="n">D1 · 27.06.2026</span><span>Braszów → Lăzărea</span><span class="km">22 km</span></summary><div><ul>
+<li>Wylot z Warszawy (Chopin) o 12:55, lądowanie w Braszowie (GHV) o 15:35 (Lot W6 1377).</li>
+<li>pociąg Braszów &gt; Izvoru Mureșului (2h 15 min, CFR Călători)</li>
+<li>zjazd w dół do Kotliny Giurgeu</li>
+</ul><ul>
+<li><strong>Izvoru Mureșului — źródło Maruszy.</strong> Tu rzeka, wzdłuż której będziemy jechać przez cały tydzień, dopiero się rodzi. Symboliczny start: stąd Marusza płynie ok. 760 km, by pod Segedynem (nasz ostatni dzień) wpaść do Cisy. Cały wyjazd to w gruncie rzeczy podróż z jej biegiem.</li>
+<li><strong>Gheorgheni / Gyergyószentmiklós (poza mapą — główne miasto Kotliny Giurgeu, mijane po drodze).</strong> Seklerskie miasteczko z <strong>zaskakująco silnym śladem ormiańskim</strong> — czyli „zapowiedź” tematu, który wróci w Dumbrăveni (dzień 3). Ormianie osiedlili się tu w połowie XVII w. (ok. 1637–1672), w 1687 r. przyjęli katolicyzm, zachowując własny obrządek. Po nich zostały: <strong>ormiańskokatolicki kościół Narodzenia NMP</strong> (1730–34) i charakterystyczne <strong>barokowe kamienice ormiańskich kupców</strong>. Obok gotycko-barokowy, otoczony murem <strong>kościół rzymskokatolicki św. Mikołaja</strong> (mury obronne 1784, po niszczycielskim najeździe tatarskim z 1716 r.). Stoi tu też popiersie Gábora Bethlena — patrz niżej.</li>
+<li><strong>Zamek Lázár (Lăzărea, węg. Gyergyószárhegy).</strong> Jeden z najpiękniejszych przykładów transylwańskiego renesansu i serce kraju Seklerów. Wznoszony etapami w latach 1450–1532, a w wielką renesansową rezydencję przebudowany w latach 1631–32. Najsłynniejszy jego element to dekoracyjne <strong>renesansowe blanki (attyka)</strong> — motyw przyniesiony z Włoch, modny w Siedmiogrodzie za rządów księcia Gábora Bethlena; zamek w Lăzărei to jeden z nielicznych zachowanych przykładów.<ul>
+<li><strong>Dlaczego ważny:</strong> to <strong>dom dzieciństwa Gábora Bethlena</strong> — jednego z największych książąt Siedmiogrodu (panował 1613–1629, „złoty wiek” Transylwanii). Jego matka pochodziła z rodu Lázárów; pokój chłopca w wieży bramnej pokazują do dziś.</li>
+<li><strong>Legenda miejsca:</strong> 6 września 1658 r. garstka Seklerów pod wodzą pisarza nazwiskiem Gábor rozbiła tu najazd tatarsko-mołdawski. Poległych pochowano na wzgórzu zwanym odtąd <strong>Tatárdomb</strong> („Wzgórze Tatarów”); pomnik z 1908 r.</li>
+<li>Spalony przez wojska habsburskie w 1707 r. (wojna Rákóczego). Dziś działa tu kolonia artystyczna; zwiedzanie zwykle w niedziele / po umówieniu.</li>
+</ul>
+</li>
+<li><strong>Mini Transilvania Park</strong> — park miniatur transylwańskich zabytków, dobry „przegląd” tego, co czeka nas dalej (przyda się jako rozgrzewka tematyczna).</li>
+</ul></div></details><details id="dzien-2"><summary><span class="n">D2 · 28.06.2026</span><span>Lăzărea → Odorheiu Secuiesc</span><span class="km">68 km</span></summary><div><ul>
+<li>Górski podjazd na przełęcz Șicas (1001 m n.p.m.), zjazd wzdłuż rzeki Târnava Mare (głównego dopływu Maruszy)</li>
+</ul><ul>
+<li><strong>Kraj Seklerów (węg. <em>Székelyföld</em>) — rdzenny region węgierski w sercu Rumunii.</strong> Dominują napisy po węgiersku, <strong>niebiesko-złote flagi seklerskie</strong> i tradycyjne, bogato rzeźbione <strong>bramy seklerskie</strong> przed domami.</li>
+<li><strong>Kim są Szeklerzy:</strong> węgierskojęzyczna grupa etniczna, kulturowo odrębna od Rumunów, w większości <strong>rzymskokatolicka</strong>. Historycznie pełnili rolę królewskiej straży granicznej Karpat Wschodnich — stąd silna tożsamość „wojskowa” i autonomia (seklerskie „stolce”/sedes, np. Gyergyó, Csík, Kászon, którymi rządzili m.in. panowie z Lăzărei).</li>
+<li><strong>Odorheiu Secuiesc / Székelyudvarhely (poza mapą — meta etapu, „kulturalne serce” Seklerszczyzny).</strong> Ponad 95% mieszkańców to Węgrzy; nazwa znaczy „dwór seklerski”. Historycznie <strong>główny „stolec” Seklerów (<em>Capitalis Sedes</em>)</strong> i miejsce ich pierwszego zgromadzenia narodowego (1357).<ul>
+<li><strong>Twierdza Székelytámadt</strong> („zamek, który zaatakował Seklerów”) — ironiczna nazwa nie jest przypadkowa. Po stłumieniu seklerskiego buntu z 1562 r. książę <strong>Jan Zygmunt Zápolya</strong> kazał wznieść tu (1562–65) twierdzę, by <strong>trzymać krnąbrnych Seklerów w ryzach</strong>. W 1599 r. mieszczanie w sojuszu z Michałem Walecznym ją zburzyli; ostatecznie rozebrana w czasach habsbursko-kuruckich (1706). Dziś ruiny w centrum, w trakcie częściowej rekonstrukcji (fundusze UE od 2021).</li>
+<li>Warto rzucić okiem na podkowiasty rynek (plac Mártona Árona) i pamiętać, że to jeden z najstarszych ośrodków szkolnictwa węgierskiego (kolegium jezuickie z 1593 r.).</li>
+</ul>
+</li>
+</ul></div></details><details id="dzien-3"><summary><span class="n">D3 · 29.06.2026</span><span>Odorheiu Secuiesc → Dumbrăveni</span><span class="km">68 km</span></summary><div><ul>
+<li>UNESCO – Saschiz: saska wieża obronna z kolorową dachówką i ruiny chłopskiej fortecy.</li>
+<li>Sighișoara - zamek Drakuli</li>
+</ul><ul>
+<li><strong>Saschiz (UNESCO).</strong> Saski kościół warowny z charakterystyczną wieżą i kolorową dachówką oraz ruiny chłopskiej twierdzy na wzgórzu nad wsią. Pierwszy „przedsmak” Ziemi Saskiej, w którą wjeżdżamy.</li>
+<li><strong>Sighișoara (Schäßburg).</strong> <strong>Jedno z najlepiej zachowanych wciąż zamieszkanych miast średniowiecznych w Europie</strong>, na liście UNESCO od 1999 r. Założone w XII w. przez <strong>Sasów Siedmiogrodzkich</strong> (sprowadzonych przez królów węgierskich do obrony pogranicza) na miejscu wcześniejszej osady dacko-rzymskiej.<ul>
+<li><strong>Wieże cechowe:</strong> z pierwotnych 14 wież obronnych zachowało się 9 — każdą budował i bronił osobny cech rzemieślniczy (krawców, rzeźników, kuśnierzy, powroźników itd.). Najważniejsza to <strong>Wieża Zegarowa</strong> (ok. 64 m) z ruchomymi figurkami w zegarze; dziś mieści muzeum historii, z góry świetny widok na czerwone dachy.</li>
+<li><strong>Zamek Drakuli — uwaga na mit:</strong> to <strong>rzeczywiste miejsce urodzenia Vlada Țepeșa (Palownika)</strong> w 1431 r., a nie zamek Bran reklamowany jako „zamek Drakuli”. Dom <strong>Casa Vlad Dracul</strong> (przy rynku, obok Wieży Zegarowej) oznaczony jest godłem <strong>Zakonu Smoka</strong> — stąd przydomek „Dracul” (= „smoczy/diabelski”). Sama nazwa miasta po raz pierwszy pojawia się w dokumencie wystawionym w 1431 r. przez Vlada Dracula, ojca Palownika.</li>
+<li>Warto wejść <strong>Krytymi Schodami Uczniów</strong> na wzgórze do <strong>Kościoła na Wzgórzu</strong> i saskiego cmentarza.</li>
+<li><strong>Wskazówka terminowa:</strong> słynny <strong>Festiwal Średniowieczny</strong> odbywa się w ostatni weekend lipca — przy naszych datach raczej go nie złapiemy, ale za to unikniemy największych tłumów.</li>
+</ul>
+</li>
+<li><strong>Albești / Fehéregyháza — pole bitwy pod Segesvárem (poza mapą).</strong> Tuż na wschód od Sighișoary, dosłownie przy drodze od strony Odorheiu. <strong>31 lipca 1849 r.</strong> wojska węgierskie gen. Józefa Bema (Polaka!) zostały tu rozbite przez armię rosyjską wspierającą Habsburgów. W tej bitwie zginął/zaginął <strong>Sándor Petőfi — wieszcz narodowy Węgrów</strong>, autor <em>Pieśni Narodowej (Nemzeti dal)</em>, która rozpaliła rewolucję 1848 r.; ciała nigdy nie odnaleziono. W Albești stoi pomnik (1897) i działa <strong>Muzeum Pamięci Petőfiego</strong> — jedno z najważniejszych miejsc węgierskiej pamięci narodowej i mocny akcent tematu „Cieni Austro-Węgier”.</li>
+<li><strong>Dumbrăveni (Ormianie).</strong> Dawne miasto handlowe ufundowane przez społeczność <strong>ormiańską</strong> (stąd niem. nazwa <em>Elisabethstadt</em>). Kluczowy punkt to <strong>gigantyczna katedra ormiańskokatolicka</strong>, która architektonicznie zupełnie odróżnia miasto od rumuńskich sąsiadów — kolejna, mniej oczywista warstwa transylwańskiej mozaiki.</li>
+</ul></div></details><details id="dzien-4"><summary><span class="n">D4 · 30.06.2026</span><span>Dumbrăveni → Blaj</span><span class="km">83 km</span></summary><div><ul>
+<li>UNESCO - Biertan: saski kościół warowny</li>
+<li>ufortyfikowane kościoły w Moșna (z wieżą słoniny) oraz Richiș</li>
+<li>
+<ul>
+<li>ALTERNATYWA: Valea Viilor (UNESCO), kolejny ufortyfikowany kościół</li>
+</ul>
+</li>
+<li>Mediaș' Citadel</li>
+</ul><ul>
+<li><strong>Biertan (UNESCO).</strong> <strong>Największy i najokazalszy z saskich kościołów warownych</strong> Siedmiogrodu, wzniesiony ok. 1490–1524 i otoczony <strong>trzema pierścieniami murów</strong> na wzgórzu pośród winnic. Przez trzy stulecia (<strong>1572–1867</strong>) siedziba saskich biskupów ewangelickich (luterańskich).<ul>
+<li><strong>„Więzienie małżeńskie”:</strong> w jednej z wież zamykano na ~2 tygodnie pary chcące się rozwieść — z jednym łóżkiem, jednym talerzem i jedną łyżką do współdzielenia. Według kronik w ciągu ~300 lat doszło tylko do jednego rozwodu.</li>
+<li><strong>Zamek w drzwiach zakrystii:</strong> <strong>19-ryglowy mechanizm</strong> zamykany jednym kluczem — cudo inżynierii, które zdobyło nagrodę na <strong>Wystawie Światowej w Paryżu w 1900 r.</strong> Wewnątrz największy wielopłytowy ołtarz w Siedmiogrodzie (mistrzowie z Wiednia i Norymbergi, 1483–1513).</li>
+</ul>
+</li>
+<li><strong>Moșna i Richiș</strong> — kolejne saskie kościoły warowne (Moșna ze słynną „wieżą słoniny”/spiżarnią).</li>
+<li><strong>Valea Viilor (UNESCO, alternatywa).</strong> Saski kościół warowny we wsi „Dolina Winnic” — pierwotnie gotycki (ok. XIII w.), ufortyfikowany w XV–XVI w., z grubymi murami obronnymi.</li>
+<li><strong>Mediaș.</strong> Średniowieczne miasto saskie, jedno z „siedmiu grodów” (niem. <em>Siebenbürgen</em> — od nich pochodzi niemiecka nazwa całej Transylwanii). Rzymianie znali to miejsce jako <em>Per Medias</em> („na rozstajach”).<ul>
+<li><strong>Kościół warowny św. Małgorzaty</strong> (XV w., gotyk) z potrójnym murem i wieżami cechowymi. Jego <strong>Wieża Trębaczy (Turnul Trompeților, ~68 m)</strong> to <strong>jedna z najbardziej pochylonych wież w Europie — druga po Pizie</strong> (odchylenie ~2,3 m). Przechył wziął się z próby podwyższenia wieży o ~11 m w 1549/1550 r., czego nie udźwignęły fundamenty. W 1880 r. dodano zegar z fazami księżyca.</li>
+<li><strong>Ślad Drakuli:</strong> ok. 1476 r. <strong>Vlad Țepeș był tu krótko więziony</strong> (w tzw. Wieży Maria), po konflikcie z królem Maciejem Korwinem.</li>
+<li>Okolica (region <strong>Târnave</strong>) słynie z białych win.</li>
+</ul>
+</li>
+<li><strong>Blaj — kontekst (cel etapu).</strong> Religijna i kulturowa stolica <strong>rumuńskich grekokatolików</strong> (Kościoła obrządku bizantyjsko-rumuńskiego). To tu w XVIII–XIX w. rodziła się nowoczesna tożsamość narodowa Rumunów (<strong>Szkoła Siedmiogrodzka / Școala Ardeleană</strong>). <strong>Pole Wolności (<em>Câmpia Libertății</em>)</strong> — miejsce, gdzie w 1848 r. Rumuni z Transylwanii po raz pierwszy głośno zażądali praw narodowych i zniesienia pańszczyzny.</li>
+</ul></div></details><details id="dzien-5"><summary><span class="n">D5 · 01.07.2026</span><span>Blaj → Orăștie</span><span class="km">87 km</span></summary><div><ul>
+<li>cesarska twierdza Alba Carolina w Alba Iulia</li>
+<li>
+<ul>
+<li>ALTERNATYWA: Câlnic (UNESCO) - donżon chłopski</li>
+</ul>
+</li>
+<li>Nocleg:</li>
+</ul><ul>
+<li><strong>Alba Iulia — Cytadela Alba Carolina.</strong> Najważniejsze historycznie miasto dla Rumunów (odpowiednik polskiego Gniezna/Krakowa) i <strong>największa twierdza typu Vauban w Europie Południowo-Wschodniej</strong>.<ul>
+<li><strong>Architektura:</strong> siedmioramienna <strong>twierdza gwiaździsta</strong> zbudowana przez Habsburgów w latach <strong>1715–1738</strong> za cesarza <strong>Karola VI</strong> (stąd „Carolina”, niem. Karlsburg). Projektanci: Włoch Giovanni Morando Visconti oraz Nicolas Doxat de Demoret zwany „austriackim Vaubanem”. Pracowało przy niej ok. 20 000 pańszczyźnianych chłopów, koszt ~3 mln florenów. Najlepiej zachowany w Europie przykład holenderskiego systemu fortyfikacji (Coehoorna). Wzniesiona na warstwach starszych: rzymskiego obozu <strong>Apulum</strong> (Legio XIII Gemina) i średniowiecznej twierdzy Bălgrad.</li>
+<li><strong>Znaczenie narodowe:</strong> <strong>1 grudnia 1918 r.</strong> w Sali Zjednoczenia (Sala Unirii) ogłoszono <strong>Wielkie Zjednoczenie</strong> Transylwanii z Królestwem Rumunii. W 1922 r. w monumentalnym <strong>Soborze Koronacyjnym</strong> koronowano króla Ferdynanda I i królową Marię. Wcześniej, w 1600 r., rezydował tu Michał Waleczny podczas pierwszego, krótkiego zjednoczenia ziem rumuńskich.</li>
+<li>Warto trafić na <strong>zmianę warty</strong> (ceremonia w strojach habsburskich).</li>
+</ul>
+</li>
+<li><strong>Câlnic (UNESCO, alternatywa).</strong> Chłopska twierdza z <strong>donżonem</strong> (wieżą mieszkalno-obronną) — nietypowa, bo powstała z prywatnego dworu obronnego przejętego przez wspólnotę wiejską.</li>
+<li><strong>Vințu de Jos / Alvinc — zamek Martinuzziego (poza mapą).</strong> Ruiny nad samą Maruszą, ~14 km od Alba Iulii, tuż przy trasie. Jeden z <strong>najwcześniejszych zamków włoskiego renesansu w Siedmiogrodzie</strong>, wzniesiony na miejscu klasztoru dominikanów przez kardynała <strong>Jerzego Martinuzziego (Frater György)</strong> — gubernatora Transylwanii i najpotężniejszego człowieka w kraju. W nocy z <strong>16 na 17 grudnia 1551 r. został tu zamordowany</strong> przez najemników gen. Castalda (na rozkaz Ferdynanda I Habsburga) — jedno z głośniejszych zabójstw politycznych epoki. Później należał do księcia Gábora Bethlena. Owiany legendami (rzekomy dacki skarb wyłowiony z Maruszy). Obecnie w odbudowie.</li>
+<li><strong>Sebeș / Mühlbach (poza mapą).</strong> Jedno z <strong>pierwotnych siedmiu miast saskich</strong> (<em>Siebenbürgen</em>), nad Maruszą po drodze do Orăștie. Warto rzucić okiem na luterański <strong>kościół warowny</strong> i klimat starego saskiego miasteczka — dobry, „mniejszy” przystanek między dwiema wielkimi atrakcjami dnia.</li>
+<li><strong>Orăștie — kontekst (cel etapu).</strong> Po regionach węgierskich i niemieckich wkraczamy w historyczne centrum <strong>rumuńskiego prawosławia</strong>. Miasto od ponad stu lat słynie z męskich chórów cerkiewnych i klasycznego śpiewu bizantyjskiego bez instrumentów. (Była tu też pierwsza saska twierdza-stolec w Siedmiogrodzie.)</li>
+</ul></div></details><details id="dzien-6"><summary><span class="n">D6 · 02.07.2026</span><span>Orăștie → Deva</span><span class="km">55 km</span></summary><div><ul>
+<li>Skansen Mircei Zdrenghei</li>
+<li>Termy rzymskie Germisara (Geoagiu-Băi) + Castrum Germisara (Cigmău)</li>
+<li>Zamek Corvinilor w Hunedoarze</li>
+<li>
+<ul>
+<li>ALTERNATYWA - Twierdze Dackie (UNESCO)</li>
+<li>wariant Costești: +44 km.</li>
+<li>wariant Sarmizegetusa Regia (Stolica Daków) +77km</li>
+</ul>
+</li>
+<li>Nocleg: camping</li>
+</ul><ul>
+<li><strong>Germisara — termy rzymskie w Geoagiu-Băi + Castrum Germisara (Cigmău).</strong> Jedno z najstarszych uzdrowisk w tej części Europy. Sama nazwa jest <strong>dacka</strong> (<em>germi</em> = ciepły/gorący, <em>sara</em> = woda/źródło) — Dakowie korzystali z gorących źródeł, zanim Rzymianie rozbudowali tu pełne uzdrowisko (<em>Thermae Germisara</em>).<ul>
+<li><strong>Skarby:</strong> w latach 1986–87 odkryto na dnie dawnego basenu <strong>złote tabliczki wotywne</strong> (podziękowania za uzdrowienia), ok. 600 monet oraz posąg bogini <strong>Diany</strong>. Eksponaty są dziś w Muzeum Cywilizacji Dackiej i Rzymskiej w Deva (Pałac Magna Curia).</li>
+<li><strong>Castrum (Cigmău):</strong> rzymski obóz legionowy (I–III w. n.e.) na wysokiej terasie nad Maruszą; strzegł doliny rzeki i drogi do kopalni złota. Region był bezpośrednim zapleczem antycznej Dacji.</li>
+<li><strong>Ciekawostka:</strong> w Cigmău urodził się <strong>Ion Budai-Deleanu</strong>, poeta Szkoły Siedmiogrodzkiej (autor „Țiganiady”) — domyka się klamra z tematem z Blaj (dzień 4/5).</li>
+<li>Wstęp wolny, źródła ~30°C — dobra okazja, by zmoczyć nogi po etapie.</li>
+</ul>
+</li>
+<li><strong>Cetatea Dacică Singidava.</strong> Mniej znana <strong>twierdza dacka</strong> przy trasie (okolice Cigmău), nad doliną Maruszy — przedsmak świata Daków bez konieczności robienia wielkiego objazdu w góry.</li>
+<li><strong>Skansen Mircei Zdrenghei</strong> — muzeum na wolnym powietrzu z tradycyjną architekturą regionu.</li>
+<li><strong>Zamek Corvinów w Hunedoarze (Castelul Corvinilor).</strong> <strong>Największy średniowieczny zamek Siedmiogrodu</strong> i jeden z najpiękniejszych gotycko-renesansowych zamków Europy; jeden z „7 cudów Rumunii”.<ul>
+<li><strong>Historia:</strong> budowę rozpoczął w latach 40. XV w. <strong>Jan Hunyadi (rum. Iancu de Hunedoara)</strong> — wielki wódz w wojnach z Turkami i regent Królestwa Węgier — na miejscu starszej królewskiej warowni na skale nad potokiem Zlaști. Jego syn <strong>Maciej Korwin</strong> był królem Węgier (1458–1490), za którego nastał renesansowy „złoty wiek”. Nazwa pochodzi od <strong>kruka (łac. corvus)</strong> w herbie rodu.</li>
+<li><strong>Co zobaczyć:</strong> Sala Rycerska, Sala Sejmowa, kaplica, wieża <strong>Neboisa</strong> („nie bój się”) połączona galerią na filarach, wieża Capistrano. Część wież służyła za więzienia.</li>
+<li><strong>Wątek Drakuli:</strong> wg tradycji więziono tu <strong>Vlada Țepeșa</strong>. Zamek bywa wskazywany jako jedna z inspiracji „zamku Drakuli” u Brama Stokera (choć sam Stoker nie znał jego związku z Vladem).</li>
+<li>Dzisiejszy wygląd to w dużej mierze efekt romantycznej XIX-wiecznej restauracji po pożarze z 1854 r. (m.in. Imre Steindl, potem István Möller).</li>
+</ul>
+</li>
+<li><strong>Twierdze Dackie w Górach Orăștie (UNESCO, alternatywa — duże objazdy).</strong> Sześć twierdz (w tym Costești i stolica <strong>Sarmizegetusa Regia</strong>) wpisanych na listę UNESCO w 1999 r. Budowane w technice <strong>murus dacicus</strong> w I w. p.n.e. / I w. n.e. jako system obronny przeciw Rzymowi.<ul>
+<li><strong>Sarmizegetusa Regia</strong> (na wys. ~1200 m): polityczne, religijne i militarne serce państwa Daków za królów Burebisty i <strong>Decebala</strong>. Słynny <strong>okrągły sanktuarium-„kalendarz”</strong> i tarasy świątynne; tu znaleziono wazę z napisem <strong>DECEBALUS PER SCORILO</strong>. Zdobyta i zniszczona przez Trajana w wojnach dackich (101–106 n.e.), po czym Dacja stała się prowincją rzymską. <strong>Uwaga:</strong> ostatnie ~2 km tylko pieszo, podejście strome — przy +77 km do trasy to poważna decyzja.</li>
+</ul>
+</li>
+<li><strong>Deva — twierdza (Cetatea Devei) + Pałac Magna Curia (poza mapą!).</strong> Meta etapu, a na mapie jej nie ma — choć to jeden z najefektowniejszych punktów dnia. Ruiny twierdzy wieńczą <strong>stożek wygasłego wulkanu (~370 m)</strong> górujący nad miastem i doliną Maruszy; sylwetka widoczna z daleka.<ul>
+<li><strong>Historia:</strong> pierwsza wzmianka 1269 r.; w 1444 r. przejęta przez <strong>Jana Hunyadiego</strong> wraz z 56 wsiami i kopalniami złota (więc rodzinnie powiązana z zamkiem w Hunedoarze z tego samego dnia). Książę Gábor Bethlen urządził tu bastion-więzienie. Kres świetności: <strong>13 sierpnia 1849 r.</strong> podczas rewolucji węgierskiej wybuchł skład prochu, grzebiąc część załogi i obracając twierdzę w romantyczną ruinę.</li>
+<li><strong>Dostęp:</strong> na górę prowadzi <strong>kolejka linowo-terenowa (jedyna taka w Rumunii)</strong> albo ścieżka pieszo (~15–20 min). U podnóża <strong>Pałac Magna Curia</strong> mieści Muzeum Cywilizacji Dackiej i Rzymskiej — to tu trafiły <strong>złote tabliczki z Germisary</strong> (klamra z porannym etapem).</li>
+</ul>
+</li>
+</ul></div></details><details id="dzien-7"><summary><span class="n">D7 · 03.07.2026</span><span>Deva → Bătuța</span><span class="km">88 km</span></summary><div><ul>
+<li>pałac królewski w Săvârșin</li>
+<li>Nocleg: dziki biwak</li>
+</ul><ul>
+<li><strong>Pałac królewski w Săvârșin (Castelul Săvârșin).</strong> <strong>Oficjalna wiejska rezydencja rumuńskiej rodziny królewskiej</strong> — i jedyna w pełni prywatna posiadłość Domu Królewskiego.<ul>
+<li><strong>Historia:</strong> dawny dwór szlachecki (barokowy rdzeń z lat 1650–80; arboretum sięga 1514 r., jedno z najstarszych w Europie Środkowej), przebudowany w stylu neoklasycystycznym ok. 1860 r. po zniszczeniach Wiosny Ludów. <strong>Król Michał I</strong> kupił go w <strong>1943 r.</strong> jako prezent dla matki, królowej Heleny (Eleny).</li>
+<li><strong>Po wojnie:</strong> znacjonalizowany przez komunistów (1948), służył kolejno za szpital, sanatorium przeciwgruźlicze, a za Ceaușescu — za dom gościnny dla głów państw. Zwrócony rodzinie w 2001 r.; restaurowany w latach 2007–2015 <strong>według dziennika królowej Eleny</strong>.</li>
+<li><strong>Dla nas najważniejsze:</strong> od 2021 r. <strong>park i kolekcja jeepów króla Michała z czasów II wojny światowej</strong> (Muzeum Motoryzacji) są <strong>udostępniane zwiedzającym latem</strong> — przy naszych datach (początek lipca) jest realna szansa wejść na teren. Rodzina królewska tradycyjnie spędza tu Boże Narodzenie (kolędnicy z okolicznych wsi).</li>
+</ul>
+</li>
+</ul></div></details><details id="dzien-8"><summary><span class="n">D8 · 04.07.2026</span><span>Bătuța → Arad</span><span class="km">76 km</span></summary><div><ul>
+<li>Nizina Panońska</li>
+<li>Nocleg: pensjonat</li>
+</ul><ul>
+<li><strong>Wjazd na Nizinę Panońską.</strong> Tu kończy się górzysta, „twierdzowa” Transylwania — krajobraz robi się płaski i rolniczy. Marusza, której towarzyszyliśmy od źródła, jest już szeroką nizinną rzeką.</li>
+<li><strong>Lipova + Radna + Șoimoș (poza mapą — leżą wprost przy trasie nad Maruszą).</strong> Trójka miejsc tuż za sobą, na styku Transylwanii i Banatu:<ul>
+<li><strong>Lipova (Lippa):</strong> stare miasto portowo-handlowe (sól na Maruszy). Przez ~170 lat <strong>pod panowaniem osmańskim</strong> — pozostał po tym <strong>kryty bazar „Sub dughene”</strong>, jeden z najstarszych w Rumunii (orientalny akcent, jakiego nie ma nigdzie indziej na trasie).</li>
+<li><strong>Bazylika Maria Radna:</strong> <strong>najważniejsze rzymskokatolickie miejsce pielgrzymkowe Banatu</strong>, barokowa, z wieżami ~67 m; od 1992 r. bazylika mniejsza (nadana przez Jana Pawła II). Słynie z cudownej ikony Maryi, która wg podania ocalała z osmańskiego pożaru. Msze do dziś po rumuńsku, węgiersku i niemiecku — mozaika religijna w pigułce.</li>
+<li><strong>Cetatea Șoimoș:</strong> ruiny XIII-wiecznego zamku na skale <strong>nad samą Maruszą</strong>, z rewelacyjnym widokiem na dolinę i bazylikę. Bywał w rękach Hunyadich, Zápolyów (królowa Izabela) i Michała Walecznego. Krótkie, ale strome podejście (~20–30 min) — warto, jeśli zostaną siły.</li>
+</ul>
+</li>
+<li><strong>Arad (nocleg) — „węgierska Golgota” i „mały Wiedeń”.</strong> Duże miasto nad Maruszą tuż przy granicy.<ul>
+<li><strong>13 Męczenników z Aradu:</strong> po klęsce powstania 1848–49 <strong>6 października 1849 r.</strong> stracono tu <strong>13 generałów armii węgierskiej</strong> (rozkaz austriackiego gen. Haynaua). To jedno z najważniejszych miejsc węgierskiej pamięci narodowej — domyka wątek Petőfiego i Bema z dnia 3. Upamiętnia ich <strong>pomnik (Posąg Wolności)</strong> w Parku Pojednania.</li>
+<li><strong>Twierdza Aradu:</strong> najlepiej zachowana <strong>gwiaździsta twierdza Vauban w Rumunii</strong> (sześcioramienna, 1763–83, za Marii Teresy) — ale to <strong>czynna jednostka wojskowa</strong>, z zewnątrz niewiele widać, do środka się nie wchodzi.</li>
+<li><strong>Architektura:</strong> centrum to bujna <strong>secesja i eklektyzm</strong> („transylwańska secesja” / „mały Wiedeń”): Pałac Kultury, ratusz, teatr. Co ciekawe, w 1918 r. działała tu <strong>Centralna Rumuńska Rada Narodowa</strong> — Arad był na chwilę „tymczasową stolicą” dążeń do zjednoczenia z Rumunią. Czyli jedno miasto, a oba wątki naraz: węgierski 1849 i rumuński 1918.</li>
+</ul>
+</li>
+</ul></div></details><details id="dzien-9"><summary><span class="n">D9 · 05.07.2026</span><span>Arad → Segedyn</span><span class="km">107 km</span></summary><div><ul>
+<li>Anna Fürdő (Łaźnie Anny)</li>
+</ul><ul>
+<li><strong>Szeged (Segedyn) — meta wyprawy.</strong> Klasyczne, wielkie miasto węgierskie i serce południowych Węgier; tu Marusza wpada do Cisy.<ul>
+<li><strong>Dlaczego wygląda „jak z jednego odlewu”:</strong> w 1879 r. gigantyczna powódź niemal całkowicie zniszczyła miasto. Odbudowano je od zera, z pomocą państw europejskich — stąd jednolita, <strong>secesyjna i eklektyczna</strong> zabudowa centrum oraz ulice nazwane na cześć miast, które pomogły: <strong>Londyńska, Paryska, Wiedeńska</strong>.</li>
+<li><strong>Anna Fürdő (Łaźnie Anny)</strong> — zabytkowe łaźnie termalne, idealne na rozluźnienie nóg po całym tygodniu w siodełku.</li>
+<li><strong>Most Belvárosi (Belvárosi híd)</strong> — śródmiejski most na Cisie, zaznaczony na naszej mapie punkt orientacyjny w centrum.</li>
+</ul>
+</li>
+</ul></div></details>
+
+<h2>Reszta</h2>
+<details id="praktyczne"><summary><span>Praktyczne informacje</span></summary><div><h2>Słowniczek rumuński</h2>
+<ul>
+<li><a href="https://pl.bab.la/zwroty/podroze/ogolne/polski-rumunski">Babla Zwroty Podrózne</a></li>
+<li><a href="https://mbc.cyfrowemazowsze.pl/Content/88000/00097079_-_Slowniczek-polsko-rumunski_sygn-sygn-Podr-Cim-2234.pdf">Słowniczek z 1938</a></li>
+<li>
+<p><a href="https://skrivanek.pl/wp-content/uploads/2019/03/s%C5%82ownik-polsko-rumu%C5%84ski.pdf">Rozmówki Polsko-Rumuńskie</a></p>
+</li>
+<li>
+<p>Cześć (nieform.): Salut</p>
+</li>
+<li>Dzień dobry: Bună ziua</li>
+<li>Dziękuję: Mulțumesc</li>
+<li>Proszę / nie ma za co: Cu plăcere</li>
+<li>Tak / Nie: Da / Nu</li>
+<li>Ile to kosztuje?: Cât costă?</li>
+<li>Woda: Apă</li>
+<li>Piwo: Bere</li>
+<li>Gdzie jest…?: Unde este…?</li>
+<li>Pomocy!: Ajutor!</li>
+</ul>
+<h2>Przydatne linki</h2>
+<ul>
+<li><a href="https://centrulnationaldecoordonarevelo.ro/?locale=en">Centrul Național de Coordonare Velo (trasy rowerowe)</a></li>
+<li><a href="https://www.cfrcalatori.ro/en/">CFR Călători (pociągi)</a></li>
+<li><a href="https://visittransilvania.ro/travel-guide-romania">Visit Transylvania</a></li>
+<li><a href="http://transilvaniatours.ro/Attractions_Transylvania_tours.asp">Transilvania Tours Attractions</a></li>
+<li><a href="https://web.archive.org/web/20160826230708/http://www.rotravel.com/Practical-Information/The-Country/">RoTravel</a></li>
+<li><a href="https://www.romanianmonasteries.org/">Romanian MOnasteries</a></li>
+<li><a href="https://www.inyourpocket.com/romania">InYourPocket</a></li>
+</ul>
+<h2>Dobrze wiedzieć</h2>
+<ul>
+<li>Waluta: lej rumuński (RON). Na Węgrzech (dzień 9): forint (HUF).</li>
+<li>W sklepach i muzeach karta działa powszechnie; gotówka przydaje się na wsi.</li>
+<li>Nie piją za bardzo herbaty - czarna herbara to ceai negru. Zwykłe ceai to herbata ziołowa/owocowa</li>
+</ul>
+<hr /></div></details><details id="kulinaria"><summary><span>Kulinaria i pamiątki</span></summary><div><h2>Czego spróbować</h2>
+<ul>
+<li>Mămăligă — kukurydziana mamałyga, podawana ze skwarkami, serem owczym i śmietaną.</li>
+<li>Ciorbă — kwaśna zupa (np. ciorbă de burtă — flaczki), zakwaszana borșem.</li>
+<li>Sarmale — gołąbki w liściach kapusty lub winogron.</li>
+<li>Tochitură — duszone mięso z mămăligą i jajkiem sadzonym.</li>
+<li>Balmoș — pasterska potrawa z mąki kukurydzianej i sera.</li>
+<li>Țuică / pălincă — śliwowica, mocny aperitif.</li>
+<li>Mici - kiełbaski z mielonego mięsa</li>
+</ul>
+<h2>Pamiątki</h2>
+<ul>
+<li>Ceramika seklerska z Corund (charakterystyczne wzory).</li>
+<li>Wełniane wyroby i hafty z węgierskich wsi Seklerszczyzny.</li>
+<li>Wino z regionu Târnave (białe) i okolic Aradu.</li>
+<li>Țuică / pălincă od lokalnych wytwórców.</li>
+</ul>
+<hr /></div></details><details id="ciekawostki"><summary><span>Ciekawostki</span></summary><div><ul>
+<li>Dracula naprawdę urodził się w Sighișoarze (dom Casa Vlad Dracul), a nie na zamku Bran.</li>
+<li>„Więzienie małżeńskie” w Biertan: pary przed rozwodem zamykano na ~2 tygodnie z jednym łóżkiem i jedną łyżką — w 300 lat tylko jeden rozwód.</li>
+<li>Wieża Trębaczy w Mediaș to druga najbardziej pochylona wieża w Europie po Pizie.</li>
+<li>Gen. Józef Bem (Polak!) dowodził Węgrami w bitwie pod Segesvárem 1849 — zginął tam wieszcz Sándor Petőfi.</li>
+<li>Segedyn po powodzi 1879 odbudowano od zera; ulice nazwano po miastach, które pomogły: Londyńska, Paryska, Wiedeńska.</li>
+<li>Twierdza w Deva ma jedyną w Rumunii kolejkę linowo-terenową na zamek.</li>
+<li>Do 1989 roku wytyczaniem i utrzymaniem szlaków turystycznych zajmowały się związki zawodowe</li>
+</ul>
+<hr /></div></details><details id="zrodla"><summary><span>Źródła i linki</span></summary><div><p>Linki, na których oparte są powyższe notatki — i gdzie można doczytać więcej. Pogrupowane wg miejsc.</p>
+<h2>Punkty z mapy</h2>
+<p><strong>Zamek Lázár (Lăzărea)</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/L%C4%83zarea">Wikipedia (PL/EN)</a></li>
+<li><a href="https://castleintransylvania.ro/castle/lazar-gyergyoszarhegy-lazarea/">Castle in Transylvania (historia, architektura)</a></li>
+<li><a href="https://www.hungarianottomanwars.com/transylvania/gyergyoszarhegy/">Hungarian Ottoman Wars (bitwa 1658, Tatárdomb)</a></li>
+</ul>
+<p><strong>Sighișoara</strong></p>
+<ul>
+<li><a href="https://romaniatourism.com/sighisoara.html">Romania Tourism (wieże cechowe, Wieża Zegarowa, dom Vlada)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Sighi%C8%99oara">Wikipedia</a></li>
+</ul>
+<p><strong>Biertan (UNESCO)</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Biertan_fortified_church">Wikipedia (więzienie małżeńskie, biskupi, daty)</a></li>
+<li><a href="https://romaniatourism.com/castles-fortresses-romania-biertan-fortified-church.html">Romania Tourism (mury, ołtarz, zamek zakrystii)</a></li>
+</ul>
+<p><strong>Mediaș</strong></p>
+<ul>
+<li><a href="https://romaniatourism.com/medias.html">Romania Tourism (Wieża Trębaczy, więzienie Vlada)</a></li>
+<li><a href="https://www.yourguideintransylvania.com/medias/">Your Guide in Transylvania (przechył wieży, wina Târnave)</a></li>
+</ul>
+<p><strong>Alba Iulia — Alba Carolina</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Alba_Iulia">Wikipedia – miasto (Zjednoczenie 1918, koronacja 1922)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Alba_Iulia_Fortress">Wikipedia – twierdza (Vauban, daty, koszt)</a></li>
+</ul>
+<p><strong>Germisara (Geoagiu-Băi) + Castrum (Cigmău)</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Germisara_(castra)">Wikipedia – castrum</a></li>
+<li><a href="https://www.gohunedoara.com/en/list/viziteaza-in-hunedoara/locuri-frumoase/geoagiu-bai/termele-daco-romane-de-la-geoagiu-bai/">GO Hunedoara (etymologia nazwy, termy)</a></li>
+<li><a href="https://www.greysheet.com/news/story/romania-new-proof-gold-coins-highlight-discovery-of-votive-tablets-of-germisara/0">O złotych tabliczkach wotywnych</a></li>
+</ul>
+<p><strong>Zamek Corvinów (Hunedoara)</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Corvin_Castle">Wikipedia (Hunyadi, Korwin, wieże)</a></li>
+<li><a href="https://romaniatourism.com/castles-fortresses-romania-corvin-castle-hunedoara.html">Romania Tourism</a></li>
+</ul>
+<p><strong>Twierdze dackie / Sarmizegetusa Regia (UNESCO)</strong></p>
+<ul>
+<li><a href="https://whc.unesco.org/en/list/906/">UNESCO – wpis</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Sarmizegetusa_Regia">Wikipedia – Sarmizegetusa Regia (Decebal, sanktuarium, waza)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Dacian_Fortresses_of_the_Or%C4%83%C8%99tie_Mountains">Wikipedia – zespół sześciu twierdz</a></li>
+</ul>
+<p><strong>Pałac królewski Săvârșin</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/S%C4%83v%C3%A2r%C8%99in_Castle">Wikipedia (król Michał I, nacjonalizacja, restauracja)</a></li>
+</ul>
+<p><strong>Szeged</strong> <em>(z oryginalnej notatki + wiedza ogólna; nie weryfikowałem tej tury punkt po punkcie)</em></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Szeged">Wikipedia</a></li>
+</ul>
+<h2>Dodatki poza mapą</h2>
+<p><strong>Gheorgheni / Gyergyószentmiklós — ślad ormiański (dzień 1)</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Gyergyoszentmiklos">Wikipedia – miasto</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Armenian_Church,_Gheorgheni">Wikipedia – kościół ormiańskokatolicki (daty, fundacja)</a></li>
+<li><a href="https://www.explorecarpathia.eu/en/romania/gyergyoszentmiklos-gheorgheni">Explore Carpathia (kamienice ormiańskie, historia)</a></li>
+</ul>
+<p><strong>Odorheiu Secuiesc / Székelyudvarhely — stolica Seklerów + twierdza (dzień 2)</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Odorheiu_Secuiesc">Wikipedia – miasto (zgromadzenie 1357, twierdza, szkolnictwo)</a></li>
+<li><a href="https://visitharghita.com/en/places/szekelytamadt-fortress-odorheiu-secuiesc-vnptbceplt4xna">Visit Harghita – twierdza Székelytámadt (budowa 1562–65, zniszczenia)</a></li>
+</ul>
+<p><strong>Albești / Fehéregyháza — bitwa pod Segesvárem i Petőfi (dzień 3)</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Battle_of_Segesv%C3%A1r">Wikipedia – Battle of Segesvár (przebieg, śmierć Petőfiego)</a></li>
+<li><a href="https://hungarytoday.hu/archaeologists-pinpoint-exact-location-of-1849-battle-of-segesvar/">Hungary Today (lokalizacja pola bitwy, muzeum Petőfiego)</a></li>
+</ul>
+<p><strong>Vințu de Jos — zamek Martinuzziego (dzień 5)</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Martinuzzi_Castle">Wikipedia (zabójstwo 1551, kolejni właściciele)</a></li>
+<li><a href="https://transylvaniainruins.com/en/murder-and-mystery-at-the-palace-martinuzzi-castle-in-vintu-de-jos-from-ruins-to-cultural-hub/">Transylvania in Ruins (szczegóły morderstwa, legendy, odbudowa)</a></li>
+</ul>
+<p><strong>Sebeș / Mühlbach (dzień 5)</strong></p>
+<ul>
+<li><a href="https://romaniatourism.com/saxon-heritage.html">Romania Tourism – dziedzictwo saskie (lista „siedmiu grodów”)</a></li>
+</ul>
+<p><strong>Deva — twierdza + Magna Curia (dzień 6)</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Fortress_of_Deva">Wikipedia – Fortress of Deva</a></li>
+<li><a href="https://www.gohunedoara.com/en/list/viziteaza-in-hunedoara/castele-cetati-hunedoara/deva/cetatea-deva/">GO Hunedoara (historia, Hunyadi, wybuch 1849, dojście)</a></li>
+</ul>
+<p><strong>Lipova / Maria Radna / Șoimoș (dzień 8)</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Lipova,_Arad">Wikipedia – Lipova (osmański bazar, historia)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Maria_Radna_Monastery">Wikipedia – Maria Radna (bazylika, pielgrzymki)</a></li>
+<li><a href="https://www.cniptarad.ro/en/harta-locatie/35-basilica-maria-radna">CNIPT Arad (legendy, wieże, status bazyliki)</a></li>
+</ul>
+<p><strong>Arad — 13 Męczenników + twierdza (dzień 8)</strong></p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Arad,_Romania">Wikipedia – miasto (13 Męczenników, secesja, Rada Narodowa 1918)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Fortress_of_Arad">Wikipedia – twierdza Vauban (budowa, oblężenie, status)</a></li>
+</ul></div></details>
+
+<footer>Longinada 2026 · <a href="index.html?full=1">wersja pełna z interaktywną mapą</a><br>
+Na telefonie strona główna sama przenosi tutaj. Otwarcie wersji pełnej jest pamiętane w tej przeglądarce; wejście na tę stronę wraca do wersji telefonowej.</footer>
+<div class="navbar"><button type="button" class="nav-a" data-go="-1" aria-label="Poprzednia sekcja">←</button><a class="nav-c" id="nav-c" href="#sekcje">Sekcje ▾</a><button type="button" class="nav-a" data-go="1" aria-label="Następna sekcja">→</button></div><span class="sheet-anchor" id="sekcje" aria-hidden="true"></span><div class="sheet-wrap"><a class="sheet-back" href="#zamknij" aria-label="Zamknij spis"></a><nav class="sheet" aria-label="Spis sekcji"><div class="sheet-in"><div class="sheet-hd">Skocz do sekcji<a class="sheet-x" href="#zamknij">✕</a></div><a href="#dzien-1"><span class="s-n">D1</span><span class="s-t">Braszów → Lăzărea</span><span class="s-k">22 km</span></a><a href="#dzien-2"><span class="s-n">D2</span><span class="s-t">Lăzărea → Odorheiu Secuiesc</span><span class="s-k">68 km</span></a><a href="#dzien-3"><span class="s-n">D3</span><span class="s-t">Odorheiu Secuiesc → Dumbrăveni</span><span class="s-k">68 km</span></a><a href="#dzien-4"><span class="s-n">D4</span><span class="s-t">Dumbrăveni → Blaj</span><span class="s-k">83 km</span></a><a href="#dzien-5"><span class="s-n">D5</span><span class="s-t">Blaj → Orăștie</span><span class="s-k">87 km</span></a><a href="#dzien-6"><span class="s-n">D6</span><span class="s-t">Orăștie → Deva</span><span class="s-k">55 km</span></a><a href="#dzien-7"><span class="s-n">D7</span><span class="s-t">Deva → Bătuța</span><span class="s-k">88 km</span></a><a href="#dzien-8"><span class="s-n">D8</span><span class="s-t">Bătuța → Arad</span><span class="s-k">76 km</span></a><a href="#dzien-9"><span class="s-n">D9</span><span class="s-t">Arad → Segedyn</span><span class="s-k">107 km</span></a><a href="#praktyczne"><span class="s-n"></span><span class="s-t">Praktyczne informacje</span><span class="s-k"></span></a><a href="#kulinaria"><span class="s-n"></span><span class="s-t">Kulinaria i pamiątki</span><span class="s-k"></span></a><a href="#ciekawostki"><span class="s-n"></span><span class="s-t">Ciekawostki</span><span class="s-k"></span></a><a href="#zrodla"><span class="s-n"></span><span class="s-t">Źródła i linki</span><span class="s-k"></span></a></div></nav></div>
+<script>(function(){var IDS=["dzien-1", "dzien-2", "dzien-3", "dzien-4", "dzien-5", "dzien-6", "dzien-7", "dzien-8", "dzien-9", "praktyczne", "kulinaria", "ciekawostki", "zrodla"],LAB=["D1 · Braszów → Lăzărea", "D2 · Lăzărea → Odorheiu Secuiesc", "D3 · Odorheiu Secuiesc → Dumbrăveni", "D4 · Dumbrăveni → Blaj", "D5 · Blaj → Orăștie", "D6 · Orăștie → Deva", "D7 · Deva → Bătuța", "D8 · Bătuța → Arad", "D9 · Arad → Segedyn", "Praktyczne informacje", "Kulinaria i pamiątki", "Ciekawostki", "Źródła i linki"];var cap=document.getElementById('nav-c');function el(id){return document.getElementById(id);}function open_(id){var e=el(id);if(e&&e.tagName==='DETAILS')e.open=true;return e;}function cur(){var d=document.documentElement;if(innerHeight+scrollY>=d.scrollHeight-4)return IDS.length-1;var i,e,n=-1;for(i=0;i<IDS.length;i++){e=el(IDS[i]);if(e&&e.getBoundingClientRect().top<=96)n=i;}return n;}function paint(){var i=cur();cap.textContent=(i<0?'Sekcje':LAB[i])+' ▾';}function go(d){var i=cur()+d;if(i<0)i=0;if(i>=IDS.length)i=IDS.length-1;var e=open_(IDS[i]);if(e)e.scrollIntoView({behavior:'smooth',block:'start'});}document.addEventListener('click',function(ev){var b=ev.target.closest('[data-go]');if(b){go(+b.getAttribute('data-go'));return;}var a=ev.target.closest('.sheet a[href^="#"],.toc a[href^="#"]');if(a)open_(a.getAttribute('href').slice(1));});var wait=false;addEventListener('scroll',function(){if(wait)return;wait=true;requestAnimationFrame(function(){paint();wait=false;});},{passive:true});if(location.hash)open_(location.hash.slice(1));paint();})();</script>
+</body>
+</html>
