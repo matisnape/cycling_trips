@@ -622,7 +622,7 @@ def build_trip(slug):
     # --- mobile.html: ONE self-contained page, no external requests at all ------
     # Everything (CSS, route sketch) is inline, so the saved file works offline on
     # a phone. No fonts, no Leaflet, no tiles — the map is an inline SVG sketch.
-    # ponytail: the "download" button is a plain <a download> to this same file.
+    # The "download" button is a plain <a download> to this same file.
     write_mobile(OUT, cfg, N, view_key, route_svg(cfg))
 
     with open(os.path.join(ASSETS, "_buildid.txt"), "w", encoding="utf-8") as f:
@@ -632,9 +632,19 @@ def build_trip(slug):
     # "card" = everything _site/index.html needs about this trip; it is stored in frozen/
     # too, so a frozen trip is listed without parsing tresc.md or running the generator.
     card = {"accent": cfg.accent, "eyebrow": cfg.eyebrow, "title_html": cfg.title_html,
-            "lede": cfg.lede, "show_total_km": cfg.show_total_km, "days": len(DAYS), "km": TOTAL_KM}
+            "lede": cfg.lede, "show_total_km": cfg.show_total_km, "days": len(DAYS), "km": TOTAL_KM,
+            "start": _iso_date(DAYS[0]["date"]) if DAYS else ""}
     return {"slug": slug, "cfg": cfg, "card": card, "days": len(DAYS), "km": TOTAL_KM,
             "cuisine": len([c for c in cuisine if c[0]]), "pages": pages}
+
+
+def _iso_date(dmy):
+    """"DD.MM.YYYY" from a day heading -> "YYYY-MM-DD", for sorting. "" when unparsable."""
+    parts = dmy.split(".")
+    if len(parts) == 3 and all(x.isdigit() for x in parts):
+        d, m, y = parts
+        return f"{y}-{int(m):02d}-{int(d):02d}"
+    return ""
 
 
 def route_svg(cfg, width=680, height=440, pad=14):
@@ -951,9 +961,21 @@ Na telefonie strona główna sama przenosi tutaj. Otwarcie wersji pełnej jest p
 # =========================================================================
 # _site/index.html — list of trips
 # =========================================================================
+def _newest_first(r):
+    """Sort key for the list of trips: the trip's own start date, newest first.
+    Trips frozen before the card carried a start date fall back to their freeze
+    date (the day after coming home, so the order is the same); a trip with
+    neither sorts to the top, where work in progress belongs."""
+    start = r["card"].get("start")
+    if not start:
+        fd = read_freeze_date(r["slug"])
+        start = fd.isoformat() if fd else "9999-12-31"
+    return start
+
+
 def write_site_index(results):
     items = []
-    for r in results:
+    for r in sorted(results, key=_newest_first, reverse=True):
         c = r["card"]
         km = f' · {c["km"]} km' if c["show_total_km"] else ""
         items.append(
