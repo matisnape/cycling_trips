@@ -429,6 +429,13 @@ Tokio). Plan jest ramowy.
 - Mapa trasy w Google My Maps: https://www.google.com/maps/d/viewer?mid=1bus-moihIxImUmlkLEkrKgru7GhjFFg
 - Konwerter GPX na mapy.com — wrzuć ślad, dostaniesz mapę do nawigacji: https://contour-eta.vercel.app/tools/gpx-to-mapy
 
+### Pieniądze
+
+- Reguła kciuka: **utnij dwa zera i pomnóż przez 2,6** — ¥1000 to ok. 26 zł.
+- ¥500 ≈ 13 zł (obiad w konbini) · ¥1000 ≈ 26 zł (miska ramenu) · ¥3000 ≈ 78 zł (porządna kolacja) · ¥10 000 ≈ 260 zł
+- Przelicznik przyjęty tutaj to **100 ¥ ≈ 2,6 zł**; kurs sprawdź przed wyjazdem w tabeli NBP: https://nbp.pl/
+- Gotówka wciąż bywa potrzebna, zwłaszcza w małych miejscach. Karty zagraniczne działają w bankomatach 7-Eleven i na poczcie.
+
 ### Czas i prąd
 
 - Japonia to UTC+9. Różnica z Polską: +7 h do 25.10, +8 h od 25.10 (koniec czasu letniego w Polsce).
@@ -487,6 +494,17 @@ Tokio). Plan jest ramowy.
 - Marki do obejrzenia: Midori/Designphil, Kokuyo, King Jim, Hightide, Penco, Sun-Star, Craft Design Technology.
 - Odpuścić: Pilot, Uni, Zebra, MUJI — dostępne w Polsce.
 
+### Gdzie kupić papiernicze
+
+Godziny i adresy sprawdź przed pójściem, bo się zmieniają.
+
+- **Kakimori** — Kuramae w Tokio, dzień 16. Notatnik składany na miejscu z wybranej okładki, papieru i oprawy, ok. 10 minut. Miesza się też własny atrament, a receptura zostaje u nich przez 3 lata, gdybyś chciała dokupić. Zamknięte w poniedziałki.
+- **Itoya** — Ginza, dzień 16. Instytucja: kilka pięter papieru i piór, od taniego do bardzo drogiego.
+- **Traveler's Factory** — Nakameguro, z mniejszymi punktami na Tokyo Station i Naricie. Traveler's Notebook i akcesoria, stemple do darmowego użycia po zakupie.
+- **Sekaido** (Shinjuku), **Maruzen**, **Pigment Tokyo** — kolejne przystanki, jeśli zostanie czas.
+- **Kyūkyōdō** — Teramachi w Kioto, dzień 5. Działa od 1663: washi, koperty, pędzle, pocztówki w sitodruku.
+- **Kamiji Kakimoto** i **Morita Washi** — też Kioto, washi i papier origami; notes albo kartki wychodzą na ¥300–3000.
+
 ### Rower
 
 - **BLUE LUG** — akcesoria, część własnej produkcji.
@@ -525,6 +543,17 @@ Tokio). Plan jest ramowy.
 - Herbata: sencha, hōjicha, genmaicha, regionalna (np. z Uji, dzień 4).
 - Słodycze pakowane pojedynczo.
 - Furikake i małe przyprawy.
+
+### Pióro wieczne
+
+Budżet do ~¥20 000, czyli ok. 520 zł. Ceny z jesieni 2026, na miejscu sprawdź aktualne.
+
+- **Pilot Custom 74** — najbezpieczniejszy pierwszy wybór ze złotą stalówką; w japońskich sklepach bywa ok. ¥19 600, choć cena katalogowa jest wyższa.
+- **Pilot Capless** — stalówka chowana jak w długopisie, wersja ze stopu ok. ¥17 600. Nietypowe i bardzo japońskie.
+- **Platinum Procyon** — ok. ¥9 900, dobre za swoje pieniądze, ale mały wybór stalówek.
+- **Platinum #3776 Century** — odpada: w październiku 2026 ogłoszono koniec produkcji. Chyba że trafi się resztka stanu.
+- **Sailor** — po tegorocznych podwyżkach wypada z budżetu; Profit Standard poszedł z ¥22 000 na ¥44 000.
+- Grubość stalówki: japońskie piszą cieniej niż europejskie, japońskie F odpowiada mniej więcej europejskiemu EF. Na prezent zwykle **M**.
 
 ### Nóż z Japonii
 
