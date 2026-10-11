@@ -1,5 +1,13 @@
+---
+tags:
+  - longinada
+start: 2026-10-18
+end: 2026-11-03
+---
 # Meta
 
+- Opis: Longinada 2026 — rowerem w poprzek Honsiu z Osaki do Tokio, ~808 km
+- Mapa Google: https://www.google.com/maps/d/viewer?mid=1bus-moihIxImUmlkLEkrKgru7GhjFFg
 - Takoyaki - kulki z ośmiornicą, kolebka w Osace
 - Okonomiyaki - placek z kapustą „co lubisz”, Osaka
 - Kakinoha-zushi - sushi z makrelą w liściu persymony, Nara
@@ -351,6 +359,16 @@ Oznaczenia: „km” = pozycja na śladzie; „X km od trasy” = w linii proste
 - **Powrót:** EK319 Narita 22:20 (pn 2.11) → Dubaj 05:30; EK179 Dubaj 08:05 → Warszawa 11:20 (wt 3.11). Razem ~21 h.
 - Godziny lokalne. Na Naritę: Keisei Skyliner z Nippori/Ueno.
 
+### Przed wylotem
+
+- Visit Japan Web — zgłoszenie wjazdu i deklaracja celna online, QR do okazania na lotnisku: https://www.vjw.digital.go.jp/
+- Odyseusz (MSZ) — rejestracja pobytu za granicą: https://odyseusz.gov.pl/JP
+
+### Mapy
+
+- Mapa trasy w Google My Maps: https://www.google.com/maps/d/viewer?mid=1bus-moihIxImUmlkLEkrKgru7GhjFFg
+- Konwerter GPX na mapy.com — wrzuć ślad, dostaniesz mapę do nawigacji: https://contour-eta.vercel.app/tools/gpx-to-mapy
+
 ### Czas i prąd
 
 - Japonia to UTC+9. Różnica z Polską: +7 h do 25.10, +8 h od 25.10 (koniec czasu letniego w Polsce).
@@ -470,6 +488,128 @@ Oznaczenia: „km” = pozycja na śladzie; „X km od trasy” = w linii proste
 - **Nagano** — „dach Japonii”: ok. 80% terenu to góry i żadnego dostępu do morza. *Soba Shinshu*, jabłka, wasabi z Azumino uprawiane w zimnej górskiej wodzie.
 - **Yamanashi** — ok. 95% upraw winogron Kōshū i ok. 40% krajowej produkcji wina. Czołowy producent winogron i brzoskwiń.
 - **Tokio** — kolebka sushi *edomae*, poprzednika dzisiejszego nigiri. *Soba* jako jeden z trzech smaków Edo, obok sushi i unagi — sprzyjała jej twarda woda.
+
+# Rozmówki japońskie
+
+Wymowa zapisana po polsku — czytaj jak widzisz. Kilka zasad:
+
+- Podwojona samogłoska (**oo**, **uu**) to dłuższy dźwięk, nie dwa osobne.
+- **u** na końcu i między bezdźwięcznymi prawie znika: *desu* → **des**, *tasukete* → **taskete**.
+- **r** to dźwięk między polskim r i l — jedno lekkie uderzenie języka.
+- **ł** w zapisie to japońskie *w*: *wa* → **ła**.
+- Akcent płaski, bez przycisku na sylabę. Ton grzecznościowy daje końcówka **-masu / desu**.
+
+### Grzeczności i podstawy
+
+| Po polsku | Wymowa | Po japońsku |
+|---|---|---|
+| Dzień dobry | konniczi-ła | こんにちは<br>*konnichiwa* |
+| Dzień dobry (do ok. 10:00) | ohajoo gozaimas | おはようございます<br>*ohayō gozaimasu* |
+| Dobry wieczór | kombanła | こんばんは<br>*konbanwa* |
+| Dziękuję | arigatoo gozaimas | ありがとうございます<br>*arigatō gozaimasu* |
+| Dzięki (luźno, przy kasie) | doomo | どうも<br>*dōmo* |
+| Przepraszam / Halo! — zaczepienie, przeprosiny, kelner | sumimasen | すみません<br>*sumimasen* |
+| Przepraszam (za coś) | gomen nasai | ごめんなさい<br>*gomen nasai* |
+| Proszę (prośba) — po nazwie rzeczy: *kōhī, onegai shimasu* | onegai szimas | お願いします<br>*onegai shimasu* |
+| Proszę (podając coś) | doozo | どうぞ<br>*dōzo* |
+| Tak | hai | はい<br>*hai* |
+| Nie | iie | いいえ<br>*iie* |
+| Nie, dziękuję / W porządku — grzeczna odmowa | daidżoobu des | 大丈夫です<br>*daijōbu desu* |
+| Nie rozumiem | łakarimasen | わかりません<br>*wakarimasen* |
+| Mówi Pan/Pani po angielsku? | eego o hanasemas ka | 英語を話せますか<br>*eigo o hanasemasu ka* |
+| Jestem z Polski | poorando kara kimaszta | ポーランドから来ました<br>*Pōrando kara kimashita* |
+| Na razie — *sayōnara* brzmi bardzo oficjalnie | dżaa, mata | じゃあ、また<br>*jā, mata* |
+
+### Jedzenie i zakupy
+
+| Po polsku | Wymowa | Po japońsku |
+|---|---|---|
+| Smacznego — do siebie, przed pierwszym kęsem | itadakimas | いただきます<br>*itadakimasu* |
+| Dziękuję za posiłek — przy wyjściu z restauracji | goczisoosama deszta | ごちそうさまでした<br>*gochisōsama deshita* |
+| Pyszne! | oiszii | おいしい<br>*oishii* |
+| Ile kosztuje? | ikura des ka | いくらですか<br>*ikura desu ka* |
+| To proszę — wskazując w menu | kore o kudasai | これをください<br>*kore o kudasai* |
+| Rachunek proszę | okaikee onegai szimas | お会計お願いします<br>*okaikei onegai shimasu* |
+| Mogę zapłacić kartą? | kaado de haraemas ka | カードで払えますか<br>*kādo de haraemasu ka* |
+| Dwie osoby — przy wejściu do knajpy | futari des | 二人です<br>*futari desu* |
+| Na wynos | moczikaeri de | 持ち帰りで<br>*mochikaeri de* |
+| Bez mięsa | niku naszi de | 肉なしで<br>*niku nashi de* |
+| Torebka niepotrzebna | fukuro ła irimasen | 袋はいりません<br>*fukuro wa irimasen* |
+| Woda | mizu | 水<br>*mizu* |
+| Herbata | ocza | お茶<br>*ocha* |
+| Piwo | biiru | ビール<br>*bīru* |
+
+### Droga i transport
+
+| Po polsku | Wymowa | Po japońsku |
+|---|---|---|
+| Gdzie jest…? — np. *toire wa doko desu ka* | … ła doko des ka | …はどこですか<br>*… wa doko desu ka* |
+| Toaleta | toire | トイレ<br>*toire* |
+| Stacja | eki | 駅<br>*eki* |
+| Sklep całodobowy — woda, jedzenie, bankomat, toaleta | kombini | コンビニ<br>*konbini* |
+| Prosto | massugu | まっすぐ<br>*massugu* |
+| W prawo / w lewo | migi / hidari | 右 / 左<br>*migi / hidari* |
+| Daleko? | tooi des ka | 遠いですか<br>*tōi desu ka* |
+| Tutaj | koko | ここ<br>*koko* |
+
+### Rower
+
+| Po polsku | Wymowa | Po japońsku |
+|---|---|---|
+| Rower | dżitensza | 自転車<br>*jitensha* |
+| Mogę tu zostawić rower? | koko ni dżitensza o oite mo ii des ka | ここに自転車を置いてもいいですか<br>*koko ni jitensha o oite mo ii desu ka* |
+| Parking rowerowy | czuurindżoo | 駐輪場<br>*chūrinjō* |
+| Zakaz parkowania rowerów — do rozpoznania na tabliczkach | czuurin kinszi | 駐輪禁止<br>*chūrin kinshi* |
+| Złapałem gumę | panku szimaszta | パンクしました<br>*panku shimashita* |
+| Serwis rowerowy | dżitensza-ja | 自転車屋<br>*jitensha-ya* |
+| Pompka | kuuki-ire | 空気入れ<br>*kūki-ire* |
+| Torba na rower do pociągu — rower w pociągu musi być w torbie | rinkoo-bukuro | 輪行袋<br>*rinkō-bukuro* |
+| Uwaga! / Niebezpiecznie! | abunai | 危ない<br>*abunai* |
+
+### Nocleg i onsen
+
+| Po polsku | Wymowa | Po japońsku |
+|---|---|---|
+| Mam rezerwację | jojaku szite imas | 予約しています<br>*yoyaku shite imasu* |
+| Hasło do Wi-Fi? | łaifai no pasułaado ła? | Wi-Fiのパスワードは？<br>*waifai no pasuwādo wa?* |
+| Łaźnia termalna | onsen | 温泉<br>*onsen* |
+| Mężczyźni — znak na zasłonie wejścia | otoko | 男<br>*otoko* |
+| Kobiety — znak na zasłonie wejścia | onna | 女<br>*onna* |
+| Czy z tatuażem można? — wiele onsenów nie wpuszcza | tatuu ła daidżoobu des ka | タトゥーは大丈夫ですか<br>*tatū wa daijōbu desu ka* |
+
+### Sytuacje nagłe
+
+| Po polsku | Wymowa | Po japońsku |
+|---|---|---|
+| Pomocy! | taskete | 助けて<br>*tasukete* |
+| Źle się czuję | kibun ga łarui des | 気分が悪いです<br>*kibun ga warui desu* |
+| Szpital | bjooin | 病院<br>*byōin* |
+| Apteka | jakkjoku | 薬局<br>*yakkyoku* |
+| Policja — numer 110 | keesacu | 警察<br>*keisatsu* |
+| Karetka — numer 119 | kjuukjuusza | 救急車<br>*kyūkyūsha* |
+
+### Liczby
+
+| Po polsku | Wymowa | Po japońsku |
+|---|---|---|
+| 1 / 2 / 3 | iczi / ni / san | 一 / 二 / 三<br>*ichi / ni / san* |
+| 4 / 5 / 6 | jon / go / roku | 四 / 五 / 六<br>*yon / go / roku* |
+| 7 / 8 / 9 / 10 | nana / haczi / kjuu / dżuu | 七 / 八 / 九 / 十<br>*nana / hachi / kyū / jū* |
+| 100 / 1000 | hjaku / sen | 百 / 千<br>*hyaku / sen* |
+| 10 000 — ceny: 1万円 = 10 000 jenów | man | 万<br>*man* |
+| Jen | en | 円<br>*en* |
+
+### Znaki do rozpoznania
+
+Tych nie trzeba wymawiać — wystarczy poznać.
+
+| Po polsku | Wymowa | Po japońsku |
+|---|---|---|
+| Wejście | iriguczi | 入口<br>*iriguchi* |
+| Wyjście | deguczi | 出口<br>*deguchi* |
+| Otwarte — tabliczka na drzwiach | eegjoo-czuu | 営業中<br>*eigyō-chū* |
+| Zamknięte, przygotowanie — tabliczka na drzwiach | dżumbi-czuu | 準備中<br>*junbi-chū* |
+| Zakaz | kinszi | 禁止<br>*kinshi* |
 
 # Źródła i dalsza lektura
 

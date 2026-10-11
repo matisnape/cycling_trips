@@ -34,6 +34,13 @@ title = "Praktyczne informacje"
 eyebrow = "Loty, czas, teren"
 
 [[pages]]
+slug = "rozmowki"
+label = "Rozmówki"
+heading = "# Rozmówki japońskie"
+title = "Rozmówki japońskie"
+eyebrow = "Dogadać się po drodze"
+
+[[pages]]
 slug = "kulinaria"
 label = "Kulinaria"
 heading = "# Kulinaria i pamiątki"
