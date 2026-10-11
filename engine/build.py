@@ -59,7 +59,7 @@ except ImportError:
 def need(match, what):
     if not match:
         raise SystemExit(f"ERROR: section not found in the note: {what}.\n"
-                         "Check that the headings were not removed/renamed (see JAK-EDYTOWAC.md).")
+                         "Check that the headings were not removed/renamed (see HOW-TO-EDIT.md).")
     return match
 
 
@@ -89,12 +89,12 @@ def load_config(slug):
     rel = f"trips/{slug}/trip.toml"
     path = os.path.join(TRIPS, slug, "trip.toml")
     if not os.path.isfile(path):
-        raise SystemExit(f"ERROR: brak pliku konfiguracji {rel}.")
+        raise SystemExit(f"ERROR: config file {rel} is missing.")
     try:
         with open(path, "rb") as f:
             data = tomllib.load(f)
     except tomllib.TOMLDecodeError as e:
-        raise SystemExit(f"ERROR: {rel}: błąd składni TOML: {e}")
+        raise SystemExit(f"ERROR: {rel}: TOML syntax error: {e}")
 
     errors = []
 
@@ -104,33 +104,33 @@ def load_config(slug):
         if src is _MISSING:
             src = {}
         if not isinstance(src, dict):
-            errors.append(f"{table} musi być tabelą ([{table}]), a nie wartością")
+            errors.append(f"{table} must be a table ([{table}]), not a value")
             return default if default is not _MISSING else None
         if key not in src:
             if default is _MISSING:
-                errors.append(f"brak wymaganego pola {label}")
+                errors.append(f"required field {label} is missing")
                 return None
             return default
         v = src[key]
         ok = isinstance(v, typ) and not (typ is int and isinstance(v, bool))
         if not ok:
-            errors.append(f"pole {label} ma zły typ (oczekiwano: {typ.__name__})")
+            errors.append(f"field {label} has the wrong type (expected: {typ.__name__})")
             return default if default is not _MISSING else None
         if typ is str and default is _MISSING and not v.strip():
-            errors.append(f"pole {label} jest puste")
+            errors.append(f"field {label} is empty")
         return v
 
     c = SimpleNamespace()
     c.slug = field(None, "slug")
     if c.slug and c.slug != slug:
-        errors.append(f"slug = \"{c.slug}\" nie zgadza się z nazwą katalogu trips/{slug}/")
+        errors.append(f"slug = \"{c.slug}\" does not match the directory name trips/{slug}/")
     if c.slug and not _SLUG.match(c.slug):
-        errors.append("slug może zawierać tylko małe litery, cyfry, '-' i '_'")
+        errors.append("slug may only contain lowercase letters, digits, '-' and '_'")
     c.lang = field(None, "lang", str, "pl")
     c.source = field(None, "source", str, "tresc.md")
     c.skip_prefixes = field(None, "meta_skip_prefixes", list, DEFAULT_SKIP_PREFIXES)
     if not all(isinstance(x, str) for x in c.skip_prefixes):
-        errors.append("meta_skip_prefixes musi być listą napisów")
+        errors.append("meta_skip_prefixes must be a list of strings")
         c.skip_prefixes = DEFAULT_SKIP_PREFIXES
     c.skip_prefixes = tuple(x.lower() for x in c.skip_prefixes)
 
@@ -140,14 +140,14 @@ def load_config(slug):
     c.footer_short = field("site", "footer_short", str, "") or c.title
     c.facts = field("site", "facts", list, [])
     if not all(isinstance(x, str) for x in c.facts):
-        errors.append("[site] facts musi być listą napisów")
+        errors.append("[site] facts must be a list of strings")
         c.facts = []
     c.show_total_km = field("site", "show_total_km", bool, True)
 
     c.pages = []
     pages = data.get("pages", [])
     if not isinstance(pages, list) or not all(isinstance(p, dict) for p in pages):
-        errors.append("pages musi być listą tabel ([[pages]])")
+        errors.append("pages must be a list of tables ([[pages]])")
         pages = []
     seen = set()
     for i, p in enumerate(pages, 1):
@@ -155,20 +155,20 @@ def load_config(slug):
         for k in ("slug", "label", "heading", "title", "eyebrow"):
             v = p.get(k)
             if not isinstance(v, str) or not v.strip():
-                errors.append(f"brak wymaganego pola [[pages]] #{i} {k}")
+                errors.append(f"required field [[pages]] #{i} {k} is missing")
             row[k] = v
         ps = row["slug"]
         if isinstance(ps, str) and ps:
             if not _SLUG.match(ps) or ps in RESERVED_PAGE_SLUGS or re.match(r"^dzien-\d+$", ps):
-                errors.append(f"[[pages]] #{i}: slug \"{ps}\" jest niedozwolony lub zarezerwowany")
+                errors.append(f"[[pages]] #{i}: slug \"{ps}\" is not allowed or is reserved")
             if ps in seen:
-                errors.append(f"[[pages]] #{i}: slug \"{ps}\" występuje dwa razy")
+                errors.append(f"[[pages]] #{i}: slug \"{ps}\" is used twice")
             seen.add(ps)
         c.pages.append(row)
 
     c.svg_skip_days = field("map", "svg_skip_days", list, [])
     if not all(isinstance(x, int) and not isinstance(x, bool) for x in c.svg_skip_days):
-        errors.append("[map] svg_skip_days musi być listą liczb całkowitych")
+        errors.append("[map] svg_skip_days must be a list of integers")
         c.svg_skip_days = []
     c.svg_min_points = field("map", "svg_min_points", int, 40)
     c.svg_skip_note = field("map", "svg_skip_note", str, "")
@@ -179,7 +179,7 @@ def load_config(slug):
     for k in ("accent", "accent_deep", "accent_dark"):
         v = getattr(c, k)
         if v and not _HEX.match(v):
-            errors.append(f"[theme] {k} = \"{v}\" nie wygląda na kolor #rgb / #rrggbb")
+            errors.append(f"[theme] {k} = \"{v}\" does not look like a #rgb / #rrggbb colour")
             setattr(c, k, "")
     if c.accent and not c.accent_deep:
         c.accent_deep = _mix(c.accent, 0, 0.37)       # hover / stronger
@@ -189,9 +189,9 @@ def load_config(slug):
     c.ga_id = field("analytics", "ga_id", str, "")
     c.cookiescript = field("analytics", "cookiescript", str, "")
     if c.ga_id and not re.match(r"^[A-Za-z0-9-]+$", c.ga_id):
-        errors.append("[analytics] ga_id zawiera niedozwolone znaki")
+        errors.append("[analytics] ga_id contains disallowed characters")
     if c.cookiescript and not re.match(r"^[\w:/.\-?=&%]+$", c.cookiescript):
-        errors.append("[analytics] cookiescript zawiera niedozwolone znaki")
+        errors.append("[analytics] cookiescript contains disallowed characters")
 
     if errors:
         raise SystemExit(f"ERROR: {rel}:\n" + "\n".join(f"  - {e}" for e in errors))
@@ -1004,7 +1004,7 @@ def list_trips():
         if name.startswith(("_", ".")) or not os.path.isdir(p):
             continue
         if not os.path.isfile(os.path.join(p, "trip.toml")):
-            print(f"(pomijam trips/{name}: brak trip.toml)")
+            print(f"(skipping trips/{name}: no trip.toml)")
             continue
         out.append(name)
     return out
@@ -1045,7 +1045,7 @@ def read_freeze_date(slug):
         except ValueError:
             v = None
     if not isinstance(v, datetime.date):
-        raise SystemExit(f'ERROR: {rel}: [freeze] wymaga pola date = "RRRR-MM-DD" (poprawna data).')
+        raise SystemExit(f'ERROR: {rel}: [freeze] needs date = "YYYY-MM-DD" (a valid date).')
     return v
 
 
@@ -1094,8 +1094,8 @@ def restore_frozen(slug):
         if not os.path.isfile(os.path.join(fdir, "index.html")):
             raise KeyError("index.html")
     except (OSError, ValueError, KeyError):
-        raise SystemExit(f"ERROR: trips/{slug}/frozen/ jest uszkodzone (brak index.html albo {FREEZE_META}). "
-                         f"Jeśli to świadome: python build.py {slug} --refreeze")
+        raise SystemExit(f"ERROR: trips/{slug}/frozen/ is damaged (no index.html or {FREEZE_META}). "
+                         f"If this is on purpose: python build.py {slug} --refreeze")
     out = os.path.join(SITE, slug)
     shutil.rmtree(out, ignore_errors=True)         # nothing of a previous (normal) build may survive
     shutil.copytree(fdir, out, ignore=shutil.ignore_patterns(FREEZE_META))
@@ -1117,13 +1117,13 @@ def process_trip(slug, refreeze=False):
     fd = read_freeze_date(slug)
     today = datetime.date.today()
     if refreeze and fd is None:
-        raise SystemExit(f"ERROR: {slug}: --refreeze nie ma sensu — wyprawa nie ma [freeze] date w trip.toml.")
+        raise SystemExit(f"ERROR: {slug}: --refreeze makes no sense — the trip has no [freeze] date in trip.toml.")
 
     if fd is None or today < fd:                              # 1. no freeze / 2. not yet
         s = build_trip(slug)
         s["lines"] = [f"✓ Built: _site/{slug}  (days: {s['days']}, km: {s['km']}, dishes: {s['cuisine']})"]
         if refreeze:
-            s["lines"].append(f"(--refreeze: data mrożenia {fd} jeszcze nie minęła — frozen/ nie ruszam)")
+            s["lines"].append(f"(--refreeze: freeze date {fd} has not passed yet — leaving frozen/ alone)")
         return s
 
     fdir = frozen_path(slug)
@@ -1132,24 +1132,24 @@ def process_trip(slug, refreeze=False):
         write_freeze(slug, s)
         s["lines"] = [f"✓ Built: _site/{slug}  (days: {s['days']}, km: {s['km']}, dishes: {s['cuisine']})"]
         if refreeze:
-            s["lines"].append(f"♻ Przebudowano zamrożoną wyprawę {slug} i nadpisano trips/{slug}/frozen/ "
-                              f"— obejrzyj wynik i ZACOMMITUJ frozen/.")
+            s["lines"].append(f"♻ Rebuilt frozen trip {slug} and overwrote trips/{slug}/frozen/ "
+                              f"— review the result and COMMIT frozen/.")
         else:
-            s["after"] = lambda: loud(f"ZAMROZIŁEM WYPRAWĘ {slug} (data mrożenia {fd})", [
-                f"Gotowa strona zapisana w trips/{slug}/frozen/ — to jest teraz jedyne źródło tej wyprawy.",
-                f"ZACOMMITUJ ją:  git add trips/{slug}/frozen && git commit",
-                "Bez tego następny build (np. GitHub Actions) znów wygeneruje stronę od zera i nic nie będzie zamrożone."])
+            s["after"] = lambda: loud(f"FROZE TRIP {slug} (freeze date {fd})", [
+                f"The finished site is stored in trips/{slug}/frozen/ — that is now the only source of this trip.",
+                f"COMMIT it:  git add trips/{slug}/frozen && git commit",
+                "Without that, the next build (e.g. GitHub Actions) regenerates the site from scratch and nothing is frozen."])
         return s
 
     card, frozen_on, changed = restore_frozen(slug)           # 4. frozen: generator is NOT run
     s = {"slug": slug, "card": card, "days": card["days"], "km": card["km"]}
-    s["lines"] = [f"❄ Zamrożone: {slug} ({fd}) — przepisano trips/{slug}/frozen/ "
+    s["lines"] = [f"❄ Frozen: {slug} ({fd}) — copied from trips/{slug}/frozen/ "
                   f"(days: {card['days']}, km: {card['km']})"]
     if changed:                                               # 5. edited after freezing
-        s["after"] = lambda: loud(f"ZMIANA W ZAMROŻONEJ WYPRAWIE {slug} — NIE MA SKUTKU", [
-            f"Po zamrożeniu ({frozen_on}) zmieniono: {', '.join(changed)}.",
-            f"Ta zmiana nie ma żadnego skutku: na stronie jest kopia z trips/{slug}/frozen/.",
-            f"Świadome odmrożenie: python build.py {slug} --refreeze  (potem zacommituj frozen/)."])
+        s["after"] = lambda: loud(f"EDIT TO FROZEN TRIP {slug} — HAS NO EFFECT", [
+            f"Changed after the freeze ({frozen_on}): {', '.join(changed)}.",
+            f"The change has no effect: the published site is the copy from trips/{slug}/frozen/.",
+            f"To unfreeze on purpose: python build.py {slug} --refreeze  (then commit frozen/)."])
     return s
 
 
@@ -1170,9 +1170,9 @@ def build_many(slugs, with_index, refreeze=False):
             print(f"✗ {slug}: {e}")
     if with_index and results:
         write_site_index(results)
-        print(f"✓ Built: _site/index.html  ({len(results)} wypraw)")
+        print(f"✓ Built: _site/index.html  ({len(results)} trips)")
     if errors:
-        raise SystemExit(f"ERROR: {len(errors)} z {len(slugs)} wypraw nie zbudowało się: "
+        raise SystemExit(f"ERROR: {len(errors)} of {len(slugs)} trips failed to build: "
                          + ", ".join(s for s, _ in errors))
     return results
 
@@ -1221,17 +1221,17 @@ def main():
         raise SystemExit("Usage: python engine/build.py [<slug>] [--serve|--watch] | <slug> --refreeze")
     serve, watch, refreeze = "--serve" in flags, "--watch" in flags, "--refreeze" in flags
     if refreeze and not names:
-        raise SystemExit("ERROR: --refreeze wymaga konkretnej wyprawy: python build.py <slug> --refreeze\n"
-                         "Odmawiam bez sluga, żeby nie odmrozić wszystkich wypraw naraz.")
+        raise SystemExit("ERROR: --refreeze needs one trip: python build.py <slug> --refreeze\n"
+                         "Refusing without a slug, so that every trip is not unfrozen at once.")
     if refreeze and (serve or watch):
-        raise SystemExit("ERROR: --refreeze nie łączy się z --serve/--watch (każdy zapis nadpisywałby frozen/).")
+        raise SystemExit("ERROR: --refreeze does not combine with --serve/--watch (every save would overwrite frozen/).")
 
     available = list_trips()
     if names:
         slug = names[0].strip("/")
         if slug not in available:
-            raise SystemExit(f"ERROR: nie ma wyprawy \"{slug}\" (z trip.toml) w trips/. Dostępne: "
-                             + (", ".join(available) or "brak"))
+            raise SystemExit(f"ERROR: no trip \"{slug}\" (with a trip.toml) in trips/. Available: "
+                             + (", ".join(available) or "none"))
         slugs = [slug]
     else:
         slugs = available

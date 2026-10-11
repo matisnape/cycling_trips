@@ -1,12 +1,12 @@
 /* =========================================================================
-   cycling_trips — wspólny arkusz stylów wszystkich wypraw.
-   Kierunek: minimalizm terenowy — cienka linia spinająca dni, stonowana
-   paleta, typografia jak w notatniku z mapą.
+   cycling_trips — the stylesheet shared by every trip.
+   Direction: field minimalism — a thin line tying the days together, a muted
+   palette, typography like a notebook kept next to a map.
 
-   UWAGA: kolor akcentu nadpisuje silnik z [theme] accent w trip.toml.
-   Zmienne nazywają się --river po pierwszej wyprawie (w dół Maruszy).
-   Nazwy zostają, bo te same literały siedzą w map.js i w CSS wersji
-   mobilnej — przemianowanie ma sens wyłącznie w komplecie z nimi.
+   NOTE: the engine overrides the accent colour from [theme] accent in trip.toml.
+   The variables are named --river after the first trip (down the Mures).
+   The names stay, because the same literals sit in map.js and in the mobile
+   CSS — renaming only makes sense as one coordinated change across all three.
    ========================================================================= */
 
 :root {
@@ -14,7 +14,7 @@
   --paper-2:    #f1f4f2;   /* subtle block fill */
   --ink:        #1b211e;   /* near-black with a hint of green */
   --muted:      #69706b;   /* secondary text */
-  --river:      #2f6e78;   /* accent — Mureș water */
+  --river:      #2f6e78;   /* accent — river water */
   --river-deep: #1d4a52;   /* hover / stronger */
   --line:       #e3e7e3;   /* hairline rules */
   --line-2:     #cfd6d0;

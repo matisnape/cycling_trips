@@ -1,8 +1,8 @@
 name: Build and publish site
 
-# Odpala się na każdy push do main (np. po edycji trips/<slug>/tresc.md)
-# i ręcznie z zakładki Actions. Buduje WSZYSTKIE wyprawy naraz.
-# W ustawieniach repo: Settings -> Pages -> Source = "GitHub Actions".
+# Runs on every push to main (e.g. after editing trips/<slug>/tresc.md) and
+# manually from the Actions tab. Builds EVERY trip in one go.
+# In the repo settings: Settings -> Pages -> Source = "GitHub Actions".
 on:
   push:
     branches: [main]
@@ -13,7 +13,7 @@ permissions:
   pages: write
   id-token: write
 
-# Nie rób kilku wdrożeń naraz.
+# Never run two deployments at once.
 concurrency:
   group: pages
   cancel-in-progress: true

@@ -1,49 +1,49 @@
 # -*- coding: utf-8 -*-
-"""Generuje trips/<slug>/assets/route-data.js ze śladu GPX/KML + tabeli punktów CSV.
+"""Generate trips/<slug>/assets/route-data.js from a GPX/KML track + a CSV of points.
 
-Użycie (z korzenia repo):
+Usage (from the repo root):
     python engine/gen_route.py albania-2026
 
-Wejście, w katalogu trips/<slug>/:
-    route.gpx lub route.kml   ślad trasy (GPX: <trkpt>; KML: <LineString>/<coordinates>)
-    pois.csv                  punkty na mapie, nagłówek w pierwszej linii:
+Input, inside trips/<slug>/:
+    route.gpx or route.kml    the track (GPX: <trkpt>; KML: <LineString>/<coordinates>)
+    pois.csv                  map points, header on the first line:
                               day,name,lat,lon,blurb
-                              Dodatkowe kolumny (np. "type") są tolerowane i trafiają
-                              do punktu pod własną nazwą.
+                              Extra columns (e.g. "type") are tolerated and end up
+                              on the point under their own name.
 
-Wyjście: trips/<slug>/assets/route-data.js  (window.TRIP = {route, pois})
+Output: trips/<slug>/assets/route-data.js  (window.TRIP = {route, pois})
 """
 import csv, json, math, os, sys
 import xml.etree.ElementTree as ET
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TRIPS = os.path.join(ROOT, "trips")
-TOL = 0.0006  # ~60 m — upraszczanie linii (Ramer–Douglas–Peucker, w stopniach)
+TOL = 0.0006  # ~60 m — line simplification (Ramer-Douglas-Peucker, in degrees)
 REQUIRED = ("day", "name", "lat", "lon", "blurb")
 
 
 def die(msg):
-    sys.exit("BŁĄD: " + msg)
+    sys.exit("ERROR: " + msg)
 
 
 def local(tag):
-    """Nazwa taga bez przestrzeni nazw ('{ns}trkpt' -> 'trkpt')."""
+    """Tag name without its namespace ('{ns}trkpt' -> 'trkpt')."""
     return tag.rsplit("}", 1)[-1] if isinstance(tag, str) else ""
 
 
-# --- ślad: GPX / KML ------------------------------------------------------
+# --- track: GPX / KML -----------------------------------------------------
 
 def load_gpx(path):
     root = ET.parse(path).getroot()
     pts = [(float(e.get("lat")), float(e.get("lon"))) for e in root.iter() if local(e.tag) == "trkpt"]
-    if not pts:  # plik z trasą zamiast śladu
+    if not pts:  # a route file instead of a track
         pts = [(float(e.get("lat")), float(e.get("lon"))) for e in root.iter() if local(e.tag) == "rtept"]
     return pts
 
 
 def load_kml(path):
-    """Punkty z <LineString> (współrzędne 'lon,lat[,ele]' rozdzielone białymi znakami)
-    oraz z <gx:Track> (<gx:coord> 'lon lat ele'). Pojedyncze <Point> (znaczniki) pomijamy."""
+    """Points from <LineString> ('lon,lat[,ele]' coordinates separated by whitespace)
+    and from <gx:Track> (<gx:coord> 'lon lat ele'). Standalone <Point> markers are skipped."""
     root = ET.parse(path).getroot()
     pts = []
     for el in root.iter():
@@ -69,14 +69,14 @@ def find_route(tdir, slug):
             return p, loader
     out = os.path.join(tdir, "assets", "route-data.js")
     if os.path.exists(out):
-        die("w trips/%s/ nie ma route.gpx ani route.kml, ale istnieje już assets/route-data.js.\n"
-            "  To prawdopodobnie JEDYNA kopia trasy tej wyprawy — nie regeneruję jej, żeby jej nie\n"
-            "  nadpisać. Jeśli naprawdę masz ślad, połóż go jako trips/%s/route.gpx (lub .kml)\n"
-            "  i zrób kopię route-data.js przed uruchomieniem." % (slug, slug))
-    die("brak śladu: połóż trips/%s/route.gpx albo trips/%s/route.kml." % (slug, slug))
+        die("trips/%s/ has neither route.gpx nor route.kml, but assets/route-data.js already exists.\n"
+            "  That is probably the ONLY copy of this trip's route — refusing to regenerate it so it\n"
+            "  is not overwritten. If you really do have the track, put it at trips/%s/route.gpx\n"
+            "  (or .kml) and back up route-data.js before running this." % (slug, slug))
+    die("no track: put trips/%s/route.gpx or trips/%s/route.kml in place." % (slug, slug))
 
 
-# --- upraszczanie linii ---------------------------------------------------
+# --- line simplification --------------------------------------------------
 
 def rdp(pts, tol):
     if len(pts) < 3:
@@ -106,13 +106,13 @@ def rdp(pts, tol):
     return [pts[i] for i in sorted(keep)]
 
 
-# --- punkty: CSV ----------------------------------------------------------
+# --- points: CSV ----------------------------------------------------------
 
 def num(s, what, line):
     try:
-        return float(s.strip().replace(",", "."))  # Excel z polskim regionem daje przecinek
+        return float(s.strip().replace(",", "."))  # Excel in a comma-decimal locale writes commas
     except ValueError:
-        die("pois.csv, linia %d: %s = %r nie jest liczbą." % (line, what, s))
+        die("pois.csv, line %d: %s = %r is not a number." % (line, what, s))
 
 
 def load_pois(path):
@@ -120,44 +120,44 @@ def load_pois(path):
         text = f.read()
     lines = text.splitlines()
     if not lines or not lines[0].strip():
-        die("pois.csv jest pusty — pierwsza linia musi być nagłówkiem: " + ",".join(REQUIRED))
+        die("pois.csv is empty — the first line must be the header: " + ",".join(REQUIRED))
     head = lines[0]
-    delim = ";" if head.count(";") > head.count(",") else ","  # Excel (PL) zapisuje średniki
+    delim = ";" if head.count(";") > head.count(",") else ","  # some locales make Excel write semicolons
     rdr = csv.DictReader(lines, delimiter=delim)
     cols = [c.strip().lower() for c in (rdr.fieldnames or [])]
     rdr.fieldnames = cols
     missing = [c for c in REQUIRED if c not in cols]
     if missing:
-        die("pois.csv: brak kolumn %s. Nagłówek ma być: %s (kolumny dodatkowe są dozwolone)."
+        die("pois.csv: missing columns %s. The header must be: %s (extra columns are allowed)."
             % (", ".join(missing), ",".join(REQUIRED)))
     extras = [c for c in cols if c and c not in REQUIRED and c != "url"]
     pois = []
     for row in rdr:
         line = rdr.line_num
         if None in row:
-            die("pois.csv, linia %d: za dużo pól w wierszu (przecinek w opisie? ujmij opis w cudzysłów)." % line)
+            die("pois.csv, line %d: too many fields in the row (a comma inside the blurb? quote the blurb)." % line)
         row = {k: (v or "").strip() for k, v in row.items()}
         if not any(row.values()):
-            continue  # pusta linia
+            continue  # blank line
         if not row["name"]:
-            die("pois.csv, linia %d: pusta nazwa punktu." % line)
+            die("pois.csv, line %d: the point has no name." % line)
         try:
             day = int(row["day"])
         except ValueError:
-            die("pois.csv, linia %d (%s): day = %r — oczekiwany numer dnia (liczba całkowita)."
+            die("pois.csv, line %d (%s): day = %r — a day number (integer) is expected."
                 % (line, row["name"], row["day"]))
         lat, lon = num(row["lat"], "lat", line), num(row["lon"], "lon", line)
         if not (-90 <= lat <= 90 and -180 <= lon <= 180):
-            die("pois.csv, linia %d (%s): współrzędne poza zakresem (lat=%s, lon=%s) — zamienione kolumny?"
+            die("pois.csv, line %d (%s): coordinates out of range (lat=%s, lon=%s) — columns swapped?"
                 % (line, row["name"], lat, lon))
         p = {"day": day, "name": row["name"], "lat": lat, "lon": lon, "blurb": row["blurb"]}
-        for c in extras:  # nadmiarowe kolumny (np. "type") przepisujemy do POI
+        for c in extras:  # extra columns (e.g. "type") are copied onto the POI
             if row.get(c):
                 p[c] = row[c]
         p["url"] = row.get("url") or "dzien-%d.html" % day
         pois.append(p)
     if not pois:
-        die("pois.csv ma nagłówek, ale żadnego punktu.")
+        die("pois.csv has a header but no points.")
     return pois
 
 
@@ -172,40 +172,40 @@ def main():
     if len(args) != 1 or any(a in ("-h", "--help") for a in sys.argv[1:]):
         avail = sorted(d for d in os.listdir(TRIPS)
                        if not d.startswith("_") and os.path.isdir(os.path.join(TRIPS, d))) if os.path.isdir(TRIPS) else []
-        sys.exit("Użycie: python engine/gen_route.py <slug>\n"
-                 "Dostępne wyprawy: %s" % (", ".join(avail) or "(brak)"))
+        sys.exit("Usage: python engine/gen_route.py <slug>\n"
+                 "Available trips: %s" % (", ".join(avail) or "(none)"))
     slug = args[0]
     tdir = os.path.join(TRIPS, slug)
     if not os.path.isdir(tdir):
-        die("nie ma katalogu trips/%s/." % slug)
+        die("there is no trips/%s/ directory." % slug)
 
     route_path, loader = find_route(tdir, slug)
     pois_path = os.path.join(tdir, "pois.csv")
     if not os.path.exists(pois_path):
-        die("brak trips/%s/pois.csv (kolumny: %s). Wzór: trips/_szablon/pois.csv."
+        die("no trips/%s/pois.csv (columns: %s). Template: trips/_template/pois.csv."
             % (slug, ",".join(REQUIRED)))
 
     try:
         pts = loader(route_path)
     except (ET.ParseError, ValueError, TypeError) as e:
-        die("nie umiem odczytać %s: %s" % (os.path.relpath(route_path, ROOT), e))
+        die("cannot read %s: %s" % (os.path.relpath(route_path, ROOT), e))
     if len(pts) < 2:
-        die("w %s nie znalazłem śladu (potrzebne co najmniej 2 punkty: GPX <trkpt> albo "
+        die("found no track in %s (at least 2 points are needed: GPX <trkpt> or "
             "KML <LineString>)." % os.path.relpath(route_path, ROOT))
 
     line = rdp(pts, TOL)
     pois = load_pois(pois_path)
 
     src = os.path.basename(route_path)
-    js = ("// Trasa i punkty — generowane z %s skryptem gen_route.py.\n"
-          "// Linia: %d punktów (uproszczone z %d). Punkty: %d.\n" % (src, len(line), len(pts), len(pois))
+    js = ("// Route and points — generated from %s by gen_route.py.\n"
+          "// Line: %d points (simplified from %d). Points: %d.\n" % (src, len(line), len(pts), len(pois))
           + "window.TRIP = " + json.dumps({"route": [[round(a, 5), round(b, 5)] for a, b in line],
                                            "pois": pois}, ensure_ascii=False, indent=1) + ";\n")
     out = os.path.join(tdir, "assets", "route-data.js")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w", encoding="utf-8", newline="\n") as f:
         f.write(js)
-    print("zapisane: %s  (linia %d pkt, POI %d, %.0f kB)"
+    print("written: %s  (line %d pts, POIs %d, %.0f kB)"
           % (os.path.relpath(out, ROOT), len(line), len(pois), len(js) / 1024))
 
 

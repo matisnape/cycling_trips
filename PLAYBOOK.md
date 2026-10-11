@@ -1,242 +1,262 @@
-# Playbook: nowa strona wyprawy
+# Playbook: a new trip site
 
-Jak zbudowane są strony i jak dodać kolejną. Dla Ciebie i dla agenta (Claude Code).
+How the sites are built and how to add another one. For you and for the agent
+(Claude Code).
+
+Language rule: everything in this repo is written in English — code, comments, docs,
+commit messages. The only Polish is what readers see on the published pages:
+`tresc.md`, the strings in `trip.toml` and the markdown heading contract.
 
 ---
 
-## 1. Mapa systemu w 30 sekund
+## 1. The system in 30 seconds
 
-**Silnik = ekspres do kawy, wyprawa = kapsułka.** Ekspres jest jeden (`engine/`),
-każda wyprawa to kapsułka w `trips/<slug>/`. Nowa wyprawa = nowa kapsułka,
-ekspresu nie ruszasz.
+**The engine is the coffee machine, a trip is a capsule.** There is one machine
+(`engine/`); every trip is a capsule in `trips/<slug>/`. A new trip means a new
+capsule — you do not touch the machine.
 
 ```
 trips/<slug>/
-  trip.toml    ─┐  tytuł, hero, fakty, podstrony, kolor, analityka, data mrożenia
-  tresc.md     ─┼─►  engine/build.py  ─►  _site/<slug>/index.html     strona główna + mapa
-  pois.csv      │                                      dzien-N.html     dzień po dniu
-  route.gpx/kml ┤                                      <podstrona>.html z [[pages]]
+  trip.toml    ─┐  title, hero, facts, subpages, colour, analytics, freeze date
+  tresc.md     ─┼─►  engine/build.py  ─►  _site/<slug>/index.html     home page + map
+  pois.csv      │                                      dzien-N.html     day by day
+  route.gpx/kml ┤                                      <subpage>.html   from [[pages]]
   assets/       │                                      zrodla.html
-   route-data.js ◄── engine/gen_route.py               mobile.html      1 plik, offline
-  frozen/      ─┘  zamrożona kopia strony (patrz §2)
-engine/assets/ (style.css, map.js, site.js) ─► kopiowane do każdej wyprawy
-                                               _site/index.html        lista wszystkich wypraw
+   route-data.js ◄── engine/gen_route.py               mobile.html      1 file, offline
+  frozen/      ─┘  the frozen copy of the site (see section 2)
+engine/assets/ (style.css, map.js, site.js) ─► copied into every trip
+                                               _site/index.html        list of all trips
 ```
 
-| Plik | Co robi | Kto edytuje |
+| File | What it does | Who edits it |
 |---|---|---|
-| `trips/<slug>/tresc.md` | cała treść, kontrakt nagłówków → `JAK-EDYTOWAC.md` | Ty, codziennie |
-| `trips/<slug>/trip.toml` | tytuł, hero, fakty, podstrony, kolor, GA, **data mrożenia** | raz, przy zakładaniu |
-| `trips/<slug>/pois.csv` | punkty na mapie: `day,name,lat,lon,blurb` | raz + poprawki |
-| `trips/<slug>/route.gpx` / `.kml` | ślad trasy | raz |
-| `trips/<slug>/assets/route-data.js` | **generowany** z dwóch powyższych | nie ręcznie |
-| `trips/<slug>/frozen/` | zamrożona strona, **w repo** | tylko przez `--refreeze` |
-| `engine/build.py` | generator | tylko świadomie (dotyka wszystkich niezamrożonych wypraw) |
-| `engine/assets/*` | wygląd i mapa, wspólne | j.w. |
-| `_site/` | wynik, nie w repo | nigdy |
+| `trips/<slug>/tresc.md` | all the content, heading contract → `HOW-TO-EDIT.md` | you, daily |
+| `trips/<slug>/trip.toml` | title, hero, facts, subpages, colour, GA, **freeze date** | once, at setup |
+| `trips/<slug>/pois.csv` | map points: `day,name,lat,lon,blurb` | once + fixes |
+| `trips/<slug>/route.gpx` / `.kml` | the track | once |
+| `trips/<slug>/assets/route-data.js` | **generated** from the two above | never by hand |
+| `trips/<slug>/frozen/` | the frozen site, **kept in the repo** | only via `--refreeze` |
+| `engine/build.py` | the generator | only deliberately (touches every unfrozen trip) |
+| `engine/assets/*` | shared look and map | same |
+| `_site/` | the output, not in the repo | never |
 
-**Adresy:** `anks.pl/cycling_trips/` (lista) → `anks.pl/cycling_trips/<slug>/`.
-**Publikacja:** push na `main` → GitHub Actions buduje wszystko (~1–2 min).
-
----
-
-## 2. Mrożenie wypraw — przeczytaj przed założeniem nowej
-
-Wyprawa, która się skończyła, **nie powinna już być regenerowana**. Nikt jej nie
-testuje, a każda zmiana w `engine/` mogłaby ją po cichu zepsuć — i nikt by tego
-nie zauważył.
-
-> To nie jest teoria. W Albanii filtr szkicu trasy offline wycinał „dzień busowy".
-> Po przenumerowaniu planu z 10 dni na 8 numer dnia się przesunął i filtr zaczął
-> wycinać dolinę Valbony, zostawiając punkty busowe. Błąd przeżył dwa miesiące,
-> bo nikt tam nie zaglądał.
-
-**Jak to działa:**
-
-1. W `trip.toml` ustawiasz `[freeze] date = "RRRR-MM-DD"` — zwykle dzień po powrocie.
-2. Przed tą datą build generuje stronę normalnie, przy każdym pushu.
-3. **W dniu mrożenia** pierwszy build zapisuje gotową stronę do `trips/<slug>/frozen/`
-   i commituje ją do repo. Build mówi o tym wprost.
-4. **Po tej dacie** build nie uruchamia generatora dla tej wyprawy — tylko przepisuje
-   `frozen/` do `_site/<slug>/`. Zmiany w `engine/` fizycznie nie mają jak jej dotknąć.
-5. Jeśli edytujesz `tresc.md` zamrożonej wyprawy, build to zauważy i **ostrzeże**,
-   że zmiana nie ma skutku.
-6. Świadome odmrożenie: `python build.py <slug> --refreeze` — przebudowuje i nadpisuje
-   `frozen/`. Rób to tylko wtedy, gdy naprawdę chcesz i obejrzysz wynik.
-
-**Zamrożone dziś:** `albania-2026`, `rumunia-2026`.
+**Addresses:** `anks.pl/cycling_trips/` (the list) → `anks.pl/cycling_trips/<slug>/`.
+**Publishing:** push to `main` → GitHub Actions builds everything (~1–2 min).
 
 ---
 
-## 3. Co dostaje każda wyprawa (za darmo, z silnika)
+## 2. Freezing trips — read this before starting a new one
 
-- Strona główna: hero, fakty, intro z `# Klucz do wyjazdu`, interaktywna mapa (Leaflet), plan dni, „Czego spróbować".
-- Strona na każdy dzień: mapa przybliżona na punkty dnia, „W skrócie", „Miejsca i historia", ← →.
-- Podstrony z `[[pages]]` (Praktyczne, Słowniczek, Kulinaria…) + Źródła.
-- `mobile.html`: jedna strona, **zero zapytań do sieci**, szkic trasy w SVG, dolny pasek ← Sekcje →, hamburger działający bez JS, przycisk „Zapisz".
-- Telefon na `index.html` sam przechodzi na `mobile.html` (wybór pamiętany **osobno dla każdej wyprawy**).
-- Wersjonowane CSS/JS (`?v=hash`) — telefon nie trzyma starego wyglądu.
+A trip that is over **should not be regenerated any more**. Nobody tests it, and any
+change in `engine/` could quietly break it — with nobody noticing.
+
+> This is not theory. In Albania the offline route-sketch filter cut out the "bus day".
+> After the plan was renumbered from 10 days to 8 the day number shifted and the filter
+> started cutting out the Valbona valley instead, keeping the bus points. The bug
+> survived two months, because nobody looked.
+
+**How it works:**
+
+1. In `trip.toml` you set `[freeze] date = "YYYY-MM-DD"` — usually the day after you
+   get back.
+2. Before that date the build generates the site normally, on every push.
+3. **On the freeze date** the first build writes the finished site into
+   `trips/<slug>/frozen/` and you commit it. The build says so loudly.
+4. **After that date** the build does not run the generator for that trip — it only
+   copies `frozen/` into `_site/<slug>/`. Changes in `engine/` physically cannot reach it.
+5. If you edit a frozen trip's `tresc.md`, the build notices and **warns** that the
+   change has no effect.
+6. Deliberate unfreezing: `python build.py <slug> --refreeze` — rebuilds and overwrites
+   `frozen/`. Do it only when you really mean to and will look at the result.
+
+**Frozen today:** `albania-2026`, `rumunia-2026`.
+
+Their own files are left exactly as they were, Polish comments in `trip.toml` and
+`route-data.js` included. The freeze hash covers whole files, so even a reworded
+comment would make every later build warn about a change that has no effect. The
+English-only rule therefore applies to everything except a frozen trip's own files.
 
 ---
 
-## 4. Nowa wyprawa — krok po kroku
+## 3. What every trip gets for free, from the engine
 
-### Krok 0. Zbierz wejście (checklista)
+- Home page: hero, facts, the intro from `# Klucz do wyjazdu`, an interactive map
+  (Leaflet), the day plan, "Czego spróbować".
+- A page per day: the map zoomed to that day's points, "W skrócie",
+  "Miejsca i historia", ← →.
+- Subpages from `[[pages]]` (Praktyczne, Słowniczek, Kulinaria…) plus Źródła.
+- `mobile.html`: one page, **zero network requests**, the route as inline SVG, a bottom
+  ← Sections → bar, a hamburger that works without JS, a "Zapisz" button.
+- A phone landing on `index.html` is moved to `mobile.html` by itself (the choice is
+  remembered **separately for each trip**).
+- Versioned CSS/JS (`?v=hash`) — a phone does not keep the old look.
 
-- [ ] notatka z planem dzień po dniu (Obsidian)
-- [ ] ślad: KML z Google My Maps (*⋮ → Eksportuj do KML/KMZ → KML*) albo GPX
-- [ ] link do Mapy Google / mapy.com
-- [ ] daty, kraje, km dzienne (jeśli są)
-- [ ] **data mrożenia** — zwykle dzień po powrocie. Bez niej nie zakładaj wyprawy
+---
 
-> **Agencie: o datę mrożenia pytaj zawsze**, przy każdej nowej wyprawie, nawet
-> jeśli reszta wejścia jest kompletna. To jedyne pole, którego nie da się wywnioskować
-> z materiałów.
+## 4. A new trip, step by step
 
-### Krok 1. Folder
+### Step 0. Collect the input (checklist)
+
+- [ ] the day-by-day plan note (Obsidian)
+- [ ] the track: KML from Google My Maps (*⋮ → Export to KML/KMZ → KML*) or a GPX
+- [ ] a link to the Google / mapy.com map
+- [ ] dates, countries, daily distances (if known)
+- [ ] **the freeze date** — usually the day after you get back. Do not start a trip
+      without it
+
+> **Agent: always ask for the freeze date**, for every new trip, even when the rest of
+> the input is complete. It is the one field that cannot be inferred from the material.
+
+### Step 1. The folder
 
 ```sh
-cp -r trips/_szablon trips/kraj-2027        # slug: <kraj>-<rok>, małe litery, bez polskich znaków
-cp ~/Downloads/trasa.kml trips/kraj-2027/route.kml
+cp -r trips/_template trips/country-2027    # slug: <country>-<year>, lowercase, ASCII only
+cp ~/Downloads/route.kml trips/country-2027/route.kml
 ```
 
-### Krok 2. `trip.toml`
+### Step 2. `trip.toml`
 
-- [ ] `slug` = nazwa folderu
+- [ ] `slug` = the folder name
 - [ ] `title`, `title_html`, `eyebrow`, `lede`, `home_title`, `home_description`, `footer`
-- [ ] `facts` (przewyższenie, najwyższa przełęcz…)
-- [ ] `show_total_km = false`, jeśli jakiś dzień ma `?km`
-- [ ] `[[pages]]` — tylko te sekcje, które będą w `tresc.md`
+- [ ] `facts` (elevation gain, the highest pass…)
+- [ ] `show_total_km = false` if any day has `?km`
+- [ ] `[[pages]]` — only the sections that will exist in `tresc.md`
 - [ ] **`[freeze] date`**
-- [ ] opcjonalnie `[theme] accent`, `[analytics]`
+- [ ] optionally `[theme] accent`, `[analytics]`
 
-### Krok 3. Mapa
+### Step 3. The map
 
-- [ ] `pois.csv`: 2–5 punktów na dzień, `day` = numer dnia z `tresc.md`
-- [ ] `python engine/gen_route.py kraj-2027` → sprawdź, czy km śladu się zgadza
-- [ ] punkty daleko od trasy (bus, wypad) → ich dzień do `[map] svg_skip_days`
+- [ ] `pois.csv`: 2–5 points per day, `day` = the day number from `tresc.md`
+- [ ] `python engine/gen_route.py country-2027` → check the track distance matches
+- [ ] points far from the route (a bus, a side trip) → put their day in
+      `[map] svg_skip_days`
 
-### Krok 4. `tresc.md`
+### Step 4. `tresc.md`
 
-Najszybciej: daj agentowi notatkę + szablon. Ręcznie: wypełnij `trips/_szablon/tresc.md`.
-Zasady kontraktu (pełne w `JAK-EDYTOWAC.md`):
+Fastest: hand the agent the note plus the template. By hand: fill in
+`trips/_template/tresc.md`. The contract in brief (full version in `HOW-TO-EDIT.md`):
 
 - [ ] `# Meta` → `# Klucz do wyjazdu — „…"` → `---` → `# Plan wyjazdu`
-- [ ] dzień: `## Dzień 7: Piątek, 21.08.2026, A > B (37km)`
-- [ ] po dniach: `---`, pusta linia, `> [!note] Skąd te notatki`, pusta linia, `---`
-- [ ] na końcu zawsze `# Źródła i dalsza lektura`, linki jako `- Opis: https://…`
+- [ ] a day: `## Dzień 7: Piątek, 21.08.2026, A > B (37km)`
+- [ ] after the days: `---`, a blank line, `> [!note] Skąd te notatki`, a blank line, `---`
+- [ ] always `# Źródła i dalsza lektura` at the end, links as `- Description: https://…`
 
-### Krok 5. Podgląd
-
-```sh
-python build.py kraj-2027 --watch
-```
-
-Musi wypisać `✓ Built: _site/kraj-2027  (days: N, …)`.
-
-### Krok 6. Kontrola jakości (5 min)
-
-- [ ] liczba dni i km w hero = plan
-- [ ] każdy dzień ma punkty na mapie (strona dnia nie pokazuje całej trasy)
-- [ ] żaden „W skrócie" nie zaczyna się od `7. …` (markdown zrobi z tego listę numerowaną)
-- [ ] `mobile.html` z wyłączonym internetem wygląda tak samo
-- [ ] w treści nic prywatnego (strona jest publiczna): numery rezerwacji, telefony, inicjały ekipy
-- [ ] sprzeczne dane w notatkach (godziny lotów, daty) — rozstrzygnięte
-
-### Krok 7. Publikacja
+### Step 5. Preview
 
 ```sh
-git add trips/kraj-2027 && git commit -m "Nowa wyprawa: …" && git push    # prosto na main
+python build.py country-2027 --watch
 ```
 
-- [ ] Actions zielone
-- [ ] `anks.pl/cycling_trips/` pokazuje nową wyprawę
+It must print `✓ Built: _site/country-2027  (days: N, …)`.
 
-### Krok 8. Po powrocie
+### Step 6. Quality check (5 min)
 
-- [ ] w dniu z `[freeze] date` przepuść build — zapisze `frozen/` i zacommituj go
+- [ ] the number of days and the distance in the hero match the plan
+- [ ] every day has map points (a day page does not show the whole route)
+- [ ] no "W skrócie" bullet starts with `7. …` (markdown turns that into a numbered list)
+- [ ] `mobile.html` looks the same with the internet switched off
+- [ ] nothing private in the content (the site is public): booking numbers, phone
+      numbers, the team's initials
+- [ ] contradictions in the notes (flight times, dates) resolved
+
+### Step 7. Publishing
+
+```sh
+git add trips/country-2027 && git commit -m "New trip: …" && git push    # straight to main
+```
+
+- [ ] Actions green
+- [ ] `anks.pl/cycling_trips/` shows the new trip
+
+### Step 8. After you get back
+
+- [ ] on the day in `[freeze] date`, let a build run — it writes `frozen/`; commit it
 
 ---
 
-## 5. Gotowy prompt dla agenta
+## 5. A ready-made prompt for the agent
 
-> W repo `cycling_trips` dodaj wyprawę `kraj-2027` wg `PLAYBOOK.md`.
-> Wejście: [notatka z planem], [route.kml], [link do mapy], [data mrożenia].
-> Skopiuj `trips/_szablon`, wypełnij `trip.toml`, `pois.csv` (2–5 punktów/dzień), wygeneruj mapę,
-> przepisz notatkę do `tresc.md` zgodnie z `JAK-EDYTOWAC.md`. Nie wymyślaj faktów — czego brak,
-> zostaw jako `?` i wypisz mi listę. Zbuduj, przejdź checklistę z kroku 6, wypchnij na `main`.
+> In the `cycling_trips` repo, add the trip `country-2027` following `PLAYBOOK.md`.
+> Input: [the plan note], [route.kml], [map link], [freeze date].
+> Copy `trips/_template`, fill in `trip.toml`, `pois.csv` (2–5 points per day), generate
+> the map, rewrite the note into `tresc.md` following `HOW-TO-EDIT.md`. Invent no facts —
+> leave anything missing as `?` and give me the list. Build it, go through the step 6
+> checklist, push to `main`.
 
 ---
 
-## 6. Pułapki (każda już raz ugryzła)
+## 6. Traps (every one of these has bitten once)
 
-| Objaw | Przyczyna | Co zrobić |
+| Symptom | Cause | What to do |
 |---|---|---|
-| `ERROR: section not found` | zmieniony/usunięty nagłówek | przywróć nazwę z kontraktu |
-| zmiana w `tresc.md` nic nie daje | wyprawa zamrożona | `--refreeze` albo zostaw |
-| telefon pokazuje stary wygląd | cache | silnik dokleja `?v=hash`; w razie czego Cmd+Shift+R |
-| po pushu strona się nie zmienia | zmiana na gałęzi / w PR | tylko push na `main` publikuje |
-| „W skrócie" jako lista 1., 2. | linia zaczyna się od `7. dzień` | przeformułuj: „Dzień trasy nr 7." |
-| danie nie trafia do „Czego spróbować" | brak ` - ` między nazwą a opisem | `- Hida-gyu - wołowina…` |
-| kropka poza szkicem offline | punkt daleko od śladu | dzień do `svg_skip_days` |
-| brak szkicu offline mimo danych | linia ma mniej punktów niż `svg_min_points` | uzupełnij ślad albo obniż próg |
-| suma km bez sensu | dni z `?km` | `show_total_km = false`, km w `facts` |
-| zewnętrzny font/obrazek w `mobile.html` | — | nigdy: ta strona ma działać bez sieci |
+| `ERROR: section not found` | a heading was renamed or removed | restore the contract name |
+| editing `tresc.md` changes nothing | the trip is frozen | `--refreeze` or leave it |
+| the phone shows the old look | cache | the engine appends `?v=hash`; otherwise Cmd+Shift+R |
+| the site does not change after a push | the change is on a branch / in a PR | only a push to `main` publishes |
+| "W skrócie" renders as a 1., 2. list | the line starts with `7. dzień` | rephrase: „Dzień trasy nr 7." |
+| a dish does not reach "Czego spróbować" | no ` - ` between name and description | `- Hida-gyu - wołowina…` |
+| a dot outside the offline sketch | a point far from the track | add the day to `svg_skip_days` |
+| no offline sketch despite data | the line has fewer points than `svg_min_points` | improve the track or lower the threshold |
+| the total distance makes no sense | days with `?km` | `show_total_km = false`, distance in `facts` |
+| an external font or image in `mobile.html` | — | never: that page must work offline |
 
 ---
 
-## 7. Zmiany w silniku
+## 7. Changing the engine
 
-- Zmiana w `engine/` dotyka **wszystkich niezamrożonych** wypraw → po zmianie
-  `python build.py` (bez slugu) i przejrzyj każdą.
-- Zamrożonych nie dotyka w ogóle — to jest cel.
-- Coś specyficznego dla jednej wyprawy → `trip.toml` (pole z domyślną wartością), nie `if slug == …`.
-- Obrazki jednej wyprawy → `trips/<slug>/assets/`, w treści `![podpis](assets/plik.jpg)`.
+- A change in `engine/` touches **every unfrozen** trip → afterwards run
+  `python build.py` (no slug) and look at each of them.
+- It does not touch the frozen ones at all — that is the point.
+- Something specific to one trip → `trip.toml` (a field with a default), not
+  `if slug == …`.
+- One trip's images → `trips/<slug>/assets/`, referenced as `![caption](assets/file.jpg)`.
 
 ---
 
-## 8. Migracja starego repo
+## 8. Migrating an old repo
 
 ```sh
-git clone https://github.com/matisnape/<stare-repo> tmp && cd tmp
+git clone https://github.com/matisnape/<old-repo> tmp && cd tmp
 git filter-repo --to-subdirectory-filter trips/<slug>          # pip install git-filter-repo
 cd ../cycling_trips && git remote add old ../tmp && git fetch old
-git merge --allow-unrelated-histories old/<main|master>         # historia zachowana
+git merge --allow-unrelated-histories old/<main|master>         # history preserved
 ```
 
-Uwaga: `git clone --depth 1` daje jeden commit — przed `filter-repo` pogłęb klon
-(`git fetch --depth=1000 origin <gałąź>`), inaczej historia przepadnie.
+Careful: `git clone --depth 1` gives you a single commit — deepen the clone before
+`filter-repo` (`git fetch --depth=1000 origin <branch>`), or the history is lost.
 
-Potem: `build.py` i `strona/assets` usunąć (są w `engine/`), `route-data.js` →
-`trips/<slug>/assets/`, napisać `trip.toml` z tego, co było zaszyte w starym `build.py`.
+Then: delete `build.py` and `strona/assets` (they live in `engine/`), move
+`route-data.js` to `trips/<slug>/assets/`, and write `trip.toml` from whatever was
+hardcoded in the old `build.py`.
 
-**Przekierowanie ze starego adresu** — stare repo zostaje jako archiwum historii,
-ale publikuje już tylko przekierowanie. Trzy rzeczy:
+**Redirecting the old address** — the old repo stays as an archive of the history but
+publishes only a redirect. Three things:
 
-1. Katalog `przekierowanie/` z `index.html`, `404.html` (ta sama treść) i pustym
-   `.nojekyll`. GitHub Pages podaje `404.html` na każdą nieistniejącą ścieżkę, więc
-   ten jeden plik łapie wszystkie podstrony.
-2. Workflow starego repo przestaje budować — zamiast kroków z Pythonem wrzuca
-   `path: przekierowanie` do `upload-pages-artifact`.
-3. Baner w `README.md` (i `CLAUDE.md`, jeśli jest), żeby nikt — człowiek ani agent —
-   nie edytował archiwum.
+1. A `redirect/` directory with `index.html`, `404.html` (same content) and an empty
+   `.nojekyll`. GitHub Pages serves `404.html` for every path that does not exist, so
+   that single file catches all the subpages.
+2. The old repo's workflow stops building — instead of the Python steps it passes
+   `path: redirect` to `upload-pages-artifact`.
+3. A banner in `README.md` (and `CLAUDE.md`, if there is one) so that nobody — human or
+   agent — edits the archive.
 
 ```html
 <!doctype html><html lang="pl"><meta charset="utf-8">
 <title>Strona przeniesiona</title><meta name="robots" content="noindex">
 <link rel="canonical" href="https://anks.pl/cycling_trips/<slug>/">
-<!-- bez JS: po 2 s na stronę wyprawy; ze skryptem natychmiast i w konkretną podstronę -->
+<!-- no JS: the trip home page after 2 s; with JS, instantly and to the exact subpage -->
 <meta http-equiv="refresh" content="2;url=https://anks.pl/cycling_trips/<slug>/">
-<body><a id="cel" href="https://anks.pl/cycling_trips/<slug>/">Przejdź do nowej strony</a>
+<body><a id="target" href="https://anks.pl/cycling_trips/<slug>/">Przejdź do nowej strony</a>
 <script>
-var cel="https://anks.pl/cycling_trips/<slug>/";
-var nowy=cel+location.pathname.split("/").slice(2).join("/")+location.search+location.hash;
-document.getElementById("cel").href=nowy;location.replace(nowy);
+var base="https://anks.pl/cycling_trips/<slug>/";
+var url=base+location.pathname.split("/").slice(2).join("/")+location.search+location.hash;
+document.getElementById("target").href=url;location.replace(url);
 </script>
 ```
 
-`slice(2)` obcina pusty człon i nazwę starego repo, zostawiając samą nazwę pliku.
-Zakotwiczenie (`#mapa`) i parametry przechodzą dalej — sprawdzone w przeglądarce,
-z JS i bez.
+`slice(2)` drops the empty segment and the old repo name, leaving just the file name.
+The fragment (`#mapa`) and query string survive — verified in a browser, with and
+without JS.
 
-Nazwy plików (`dzien-3.html`, `mobile.html`) się nie zmieniły, więc stare linki trafiają w to samo miejsce.
+The file names (`dzien-3.html`, `mobile.html`) did not change, so old links land in the
+same place.

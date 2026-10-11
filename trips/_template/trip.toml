@@ -1,0 +1,84 @@
+# Trip configuration. Copy the whole _template/ directory to trips/<slug>/ and fill it in.
+# Fields with no default are REQUIRED — the build reports a readable error when they are missing.
+# The trip's content (days, food, sources) lives in tresc.md; this file only holds what
+# tresc.md does not describe: name, hero, subpages, colour, analytics.
+# The values below are what readers see, so they are written in Polish.
+
+# Required. Identical to the directory name; it becomes part of …/cycling_trips/<slug>/.
+# Lowercase letters, digits and hyphens — no spaces, no accented characters.
+slug = "nazwa-kraju-2026"
+lang = "pl"                        # optional, "pl" by default
+
+[site]
+title       = "Nazwa wyprawy"              # brand in the header and the <title> suffix
+title_html  = "Nazwa<br>wyprawy"           # the same for the hero <h1>, with a manual <br>
+glyph       = "△"                          # the mark next to the brand
+eyebrow     = "Kraj · Kraj — 01–10.08.2026"        # small kicker above the hero title
+lede        = "Jedno–dwa zdania o wyprawie: trasa, czas, charakter."   # paragraph under the title
+home_title       = "Nazwa wyprawy — rowerem przez …"      # <title> of the home page
+home_description = "Notatki z wyprawy rowerowej: N dni, ok. NNN km."  # <meta description>; keep the numbers in step with the plan
+footer      = "Notatki z wyprawy rowerowej · Nazwa 2026"  # footer
+map_caption_name = "Nazwa wyprawy"         # goes into the map caption „z mapy »…«"
+offline_filename = "nazwa-wyprawy-offline.html"   # file name behind „Zapisz stronę offline"
+offline_aria     = "Szkic trasy — opis dla czytników ekranu"
+
+# Hero facts. The number of days and the distance are counted from tresc.md — put here
+# only what is not in there.
+facts = ["+1000 m", "Najwyższy punkt 1000 m"]
+# false when any day has an unknown distance (the total would otherwise be a lie)
+show_total_km = true
+
+# Subpages built from tresc.md sections. The order here is the order in the navigation.
+# `heading` must match the "# …" heading in tresc.md exactly.
+# An empty or missing section means no subpage and no link — not an error.
+# To add one: another [[pages]] block + a section in tresc.md (before "# Źródła i dalsza lektura").
+[[pages]]
+slug = "praktyczne"
+label = "Praktyczne"               # the text in the navigation
+heading = "# Praktyczne informacje"
+title = "Praktyczne informacje"    # the page title
+eyebrow = "W terenie"
+
+[[pages]]
+slug = "kulinaria"
+label = "Kulinaria"
+heading = "# Kulinaria i pamiątki"
+title = "Kulinaria i pamiątki"
+eyebrow = "Co zjeść, co przywieźć"
+
+[[pages]]
+slug = "ciekawostki"
+label = "Ciekawostki"
+heading = "# Ciekawostki"
+title = "Ciekawostki"
+eyebrow = "Drobiazgi po drodze"
+
+[map]
+# The route sketch (SVG) in mobile.html, drawn offline from the track.
+svg_skip_days  = []   # days whose points lie far from the track (a bus day, say) — left out of the sketch
+svg_min_points = 40   # a track with fewer points means the sketch is NOT drawn (a few-point zigzag would mislead)
+
+[theme]
+accent = "#2f6e78"    # accent colour — one place: full CSS, mobile CSS and the map
+
+# Optional. Empty means no analytics and no cookie banner.
+[analytics]
+ga_id = ""            # Google Analytics 4, e.g. "G-XXXXXXXXXX"
+cookiescript = ""     # consent banner, e.g. "//cdn.cookie-script.com/s/<id>.js"; only makes sense with ga_id
+
+# Optional, ["opis", "mapa", "szlak"] by default: lines "- Opis: …", "- Mapa …: …",
+# "- Szlak: …" inside "# Meta" are links rather than dishes in "Czego spróbować".
+# Change it only if you need different prefixes.
+# meta_skip_prefixes = ["opis", "mapa", "szlak"]
+
+# Freezing (PLAYBOOK section 2). Usually the day after you get back. From that date on the
+# build does NOT generate the site; it copies the finished trips/<slug>/frozen/ instead, and
+# the first build on or after that day creates that copy (commit it). This is what keeps
+# engine changes from breaking old trips.
+# The date must be filled in when the trip is created: while "YYYY-MM-DD" stands here the
+# build fails (deliberately — do not start a trip without a date). With no [freeze] section
+# at all the trip is rebuilt every time, as before.
+# Editing content after the freeze has no effect (the build warns); to unfreeze:
+# python build.py <slug> --refreeze
+[freeze]
+date = "YYYY-MM-DD"   # e.g. "2026-08-24"
