@@ -158,6 +158,11 @@ def load_config(slug):
                 errors.append(f"required field [[pages]] #{i} {k} is missing")
             row[k] = v
         row["phrasebook"] = bool(p.get("phrasebook", False))
+        col = p.get("collect", [])
+        if not isinstance(col, list) or not all(isinstance(x, str) and x.strip() for x in col):
+            errors.append(f"[[pages]] #{i}: collect must be a list of label names")
+            col = []
+        row["collect"] = [x.strip() for x in col]
         ps = row["slug"]
         if isinstance(ps, str) and ps:
             if not _SLUG.match(ps) or ps in RESERVED_PAGE_SLUGS or re.match(r"^dzien-\d+$", ps):
@@ -166,6 +171,13 @@ def load_config(slug):
                 errors.append(f"[[pages]] #{i}: slug \"{ps}\" is used twice")
             seen.add(ps)
         c.pages.append(row)
+
+    # Every label any page collects; the day parser strips exactly these lines.
+    c.collect = []
+    for row in c.pages:
+        for lab in row.get("collect", []):
+            if lab not in c.collect:
+                c.collect.append(lab)
 
     c.svg_skip_days = field("map", "svg_skip_days", list, [])
     if not all(isinstance(x, int) and not isinstance(x, bool) for x in c.svg_skip_days):
@@ -277,7 +289,8 @@ def parse_note(raw, cfg):
         if html and pg.get("phrasebook"):
             html = f'<div class="phrasebook" data-pk="{slug}">{html}</div>'
         EXTRA.append({"slug": slug, "label": label, "title": title, "eyebrow": eyebrow,
-                      "html": html, "phrasebook": bool(pg.get("phrasebook"))})
+                      "html": html, "phrasebook": bool(pg.get("phrasebook")),
+                      "collect": pg.get("collect", [])})
 
     src_main, final_note = sources_block, ""
     mfn = re.search(r"\n(>\s?Uwaga:.*)$", sources_block, re.DOTALL)
@@ -300,13 +313,45 @@ def parse_note(raw, cfg):
             summary_md, places_md = rest.split("### Miejsca i historia", 1)
         else:
             summary_md, places_md = rest, ""
+        places_md, picked = collect_labelled(places_md, cfg.collect)
         DAYS.append({"num": num, "weekday": weekday, "date": date, "route": route, "km": km,
                      "summary_html": md(summary_md.strip()) if summary_md.strip() else "",
-                     "places_html": md(places_md.strip()) if places_md.strip() else ""})
+                     "places_html": md(places_md.strip()) if places_md.strip() else "",
+                     "picked": picked})
+    def picked_html(day, labels, h="h3"):
+        """One block per label for a single day: a heading, then the places, each with
+        its own items underneath."""
+        out = []
+        for lab in labels:
+            rows = [(pl, items) for (l, pl, items) in day["picked"] if l == lab]
+            if not rows:
+                continue
+            src = []
+            for pl, items in rows:
+                src.append(f"- **{pl}**" if pl else "- —")
+                src.extend(f"    - {it}" for it in items)
+            out.append(f"<{h}>{lab}</{h}>" + md("\n".join(src)))
+        return "".join(out)
+
+    # A page with collect = [...] in trip.toml is generated from the days: an item is
+    # written once, under its place inside the day, and shows up here grouped by day.
+    # Nothing is copied between sections of the note, so there is one place to edit.
+    for pg in EXTRA:
+        if not pg["collect"]:
+            continue
+        parts = []
+        for d in DAYS:
+            inner = picked_html(d, pg["collect"])
+            if inner:
+                parts.append(f'<h2 class="pick-day"><a href="dzien-{d["num"]}.html">'
+                             f'Dzień {d["num"]} · {d["route"]}</a></h2>{inner}')
+        pg["html"] += "".join(parts)
+
     # ---- END parser ----
 
     return SimpleNamespace(
         md=md, ensure_list_blanks=ensure_list_blanks, linkify_sources=linkify_sources,
+        picked_html=picked_html,
         note_html=note_html, cuisine=cuisine, gmaps=gmaps, mapycom=mapycom,
         intro_html=intro_html, note_block=note_block, sources_block=sources_block,
         src_main=src_main, final_note=final_note, EXTRA=EXTRA, DAYS=DAYS,
@@ -574,7 +619,9 @@ def build_trip(slug):
         next_html = (f'<a class="next" href="dzien-{n["num"]}.html"><span>Dzień {n["num"]} →</span>{n["route"]}</a>'
                      if n else '<span class="next disabled"></span>')
         summary = f'<div class="logi"><p class="eyebrow">W skrócie</p>{d["summary_html"]}</div>' if d["summary_html"] else ""
-        places = f'<div class="prose"><h2>Miejsca i historia</h2>{d["places_html"]}</div>' if d["places_html"] else ""
+        picked = N.picked_html(d, cfg.collect, "h2")
+        places = (f'<div class="prose"><h2>Miejsca i historia</h2>{d["places_html"]}{picked}</div>'
+                  if d["places_html"] or picked else "")
         body = f'''
 <article class="wrap">
   <a class="back-plan" href="index.html">← Plan wyjazdu</a>
@@ -612,7 +659,7 @@ def build_trip(slug):
                sources_body, with_map=False, active="zrodla"))
 
     for p in EXTRA:
-        if not p["html"]:
+        if not p["html"] and not p["collect"]:
             continue
         body = f'''
 <article class="wrap prose">
@@ -645,6 +692,46 @@ def build_trip(slug):
             "start": _iso_date(DAYS[0]["date"]) if DAYS else ""}
     return {"slug": slug, "cfg": cfg, "card": card, "days": len(DAYS), "km": TOTAL_KM,
             "cuisine": len([c for c in cuisine if c[0]]), "pages": pages}
+
+
+_LABEL = re.compile(r"^(\s*)- \*\*([^*:]+):\*\*\s*$")
+_PLACE = re.compile(r"^- \*\*(.+?)\*\*")
+
+
+def collect_labelled(places_md, labels):
+    """Pull the labelled blocks out of a day's places.
+
+        - **Kioto** — km 81.
+            - **Do spróbowania:**
+                - *kaiseki* — wielodaniowa kolacja
+                - matcha z Uji
+
+    Returns (places_md without those blocks, [(label, place, [items])]). The point is
+    that an item is written once, under the place it belongs to, and the generator
+    decides where it is shown: on the day page and, grouped by day, on the thematic
+    page. Nothing is copied between sections of the note."""
+    if not labels:
+        return places_md, []
+    lines = places_md.split("\n")
+    keep, found, place, i = [], [], "", 0
+    while i < len(lines):
+        ln = lines[i]
+        m = _PLACE.match(ln)
+        if m:
+            place = m.group(1).strip()
+        lm = _LABEL.match(ln)
+        if lm and lm.group(1) and lm.group(2).strip() in labels:
+            indent = len(lm.group(1)) + 4
+            items, i = [], i + 1
+            while i < len(lines) and lines[i].startswith(" " * indent + "- "):
+                items.append(lines[i].strip()[2:].strip())
+                i += 1
+            if items:
+                found.append((lm.group(2).strip(), place, items))
+            continue
+        keep.append(ln)
+        i += 1
+    return "\n".join(keep), found
 
 
 def _iso_date(dmy):
@@ -832,7 +919,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 """.replace("@ACC_DARK@", cfg.accent_dark).replace("@ACC@", cfg.accent)
     blocks = []
     for d in days:
-        body = (d["summary_html"] or "") + (d["places_html"] or "")
+        body = (d["summary_html"] or "") + (d["places_html"] or "") + N.picked_html(d, cfg.collect)
         blocks.append(
             f'<details id="dzien-{d["num"]}"><summary>'
             f'<span class="n">D{d["num"]} · {d["date"]}</span>'

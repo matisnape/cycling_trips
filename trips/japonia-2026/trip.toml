@@ -48,6 +48,9 @@ label = "Kulinaria"
 heading = "# Kulinaria i pamiątki"
 title = "Kulinaria i pamiątki"
 eyebrow = "Co zjeść, co przywieźć"
+# Built from the days: every "- **Do spróbowania:** …" and "- **Do kupienia:** …"
+# written under a place in a day shows up here, grouped by day. One source, two views.
+collect = ["Do spróbowania", "Do kupienia"]
 
 [[pages]]
 slug = "prezenty"

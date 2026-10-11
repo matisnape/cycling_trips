@@ -46,13 +46,14 @@ Tokio). Plan jest ramowy.
 - **Prefektura Osaka**
     - „kuchnia narodu” (*Nippon no Daidokoro*) od czasów Edo, gdy szedł tędy handel ryżem
     - kolebka *okonomiyaki* i *takoyaki*
-    - na pamiątkę: gadżety w kształcie takoyaki, miniatury zamku
 - **Osaka** — km 0, start trasy w dniu 4.
     - **Dotonbori** i **Shinsaibashi** — neony, jedzenie uliczne, zakupy
     - **Osaka Castle** — zamek z parkiem
     - **Tsuruhashi** — największe koreatown w mieście
     - stolica kulinarna Kansai: *takoyaki*, *okonomiyaki*
-    - pamiątki: gadżety w kształcie takoyaki, miniatury zamku
+    - **Do kupienia:**
+        - gadżety w kształcie takoyaki
+        - miniatury zamku Osaka
 
 ## Dzień 3: Wtorek, 20.10.2026, Osaka > Hiroszima > Osaka (0km)
 
@@ -64,15 +65,17 @@ Tokio). Plan jest ramowy.
 ### Miejsca i historia
 
 - **Prefektura Hiroszima**
-    - *okonomiyaki* w wersji hiroszimskiej: warstwowe, z makaronem
-    - ostrygi z zatoki, *momiji manju* na Miyajimie
     - igły krawieckie — region słynie z ich produkcji
+    - **Do spróbowania:**
+        - *okonomiyaki* po hiroszimsku — warstwowe, z makaronem
+        - ostrygi z Zatoki Hiroszimskiej
 - **Hiroszima** — ~280 km od trasy.
     - **Hiroshima Peace Memorial Museum**
 - **Miyajima** — JR Sanyō do Miyajimaguchi (~25 min) + prom (10 min).
     - **Itsukushima Shrine** — UNESCO, „pływająca” torii; w wodzie tylko przy przypływie
     - **Momijidani Park** — dolina klonów; szczyt kolorów w połowie listopada, 20.10 liście jeszcze zielone
-    - *momiji manju* — ciastko w kształcie liścia klonu z pastą fasolową
+    - **Do spróbowania:**
+        - *momiji manju* — ciastko w kształcie liścia klonu z pastą fasolową
 
 ## Dzień 4: Środa, 21.10.2026, Osaka > Nara > Kioto (81km)
 
@@ -84,16 +87,21 @@ Tokio). Plan jest ramowy.
 
 - **Prefektura Nara**
     - *somen* z Miwa uchodzi za kolebkę tego makaronu w Japonii, ponad 1200 lat tradycji
-    - persymony *kaki*
-    - na pamiątkę: tusz *sumi*, tradycyjne rzemiosło Nary
+    - **Do spróbowania:**
+        - persymony *kaki*
+    - **Do kupienia:**
+        - tusz *sumi* — pałeczka tuszu do kaligrafii, rzemiosło Nary
 - **Nara** — km 32.
     - **Nara Park** — ~3 km od trasy; ok. 1200 wolnych jeleni, karmienie *shika senbei*
     - **Todaiji** — ~3 km; podobno największa drewniana budowla świata, gigantyczny brązowy Budda
     - **Kasuga Taisha** i **Kofukuji** — w tym samym parku
     - **Nara National Museum** — ~2 km
-    - *kakinoha-zushi* — sushi z makreli w liściu persymony
-    - *narazuke* — pikle fermentowane w wytłokach sake, tradycja ponad 1000 lat
-    - pamiątki: gadżety z jeleniem, słodycz *shika no fun*
+    - **Do spróbowania:**
+        - *kakinoha-zushi* — sushi z makreli zawijane w liść persymony
+        - *narazuke* — warzywa kiszone w wytłokach sake, tradycja ponad 1000 lat
+    - **Do kupienia:**
+        - gadżety z jeleniem
+        - *shika no fun* — słodycz w kształcie jelenich bobków
 - **Uji** — km ~52, ~4 km od trasy.
     - najsłynniejszy region herbaciany Japonii: matcha, sencha, gyokuro
 - **Fushimi Inari Taisha** — km ~76, ~1 km od trasy.
@@ -108,17 +116,23 @@ Tokio). Plan jest ramowy.
 ### Miejsca i historia
 
 - **Prefektura Kioto**
-    - *kyō-yasai* — dziedziczne „arystokratyczne” warzywa, podstawa kuchni *kyō-ryōri*
     - tkaniny *Nishijin-ori* od VIII w., jedwab *chirimen* z półwyspu Tango
-    - na pamiątkę: *yatsuhashi*, ceramika Kiyomizu-yaki, papier washi
+    - **Do spróbowania:**
+        - *kyō-yasai* — dziedziczne „arystokratyczne” warzywa, podstawa kuchni *kyō-ryōri*
 - **Kioto** — km 81.
     - 17 miejsc UNESCO w granicach miasta
     - **Kinkaku-ji** — ~4 km od trasy; Złoty Pawilon, górne piętra pokryte złotem
     - **Arashiyama** — ~8 km; bambusowy gaj, przed 8:00 bez tłumów
     - **Nishiki Market** — targ z lokalnym jedzeniem
     - **Kōzan-ji** (高山寺) — ~9 km od trasy, ~11 km od Arashiyamy; w KML jako „Kōsan-ji”
-    - do spróbowania: *kaiseki*, *yuba*, matcha
-    - do kupienia: *yatsuhashi*, ceramika Kiyomizu-yaki, papier washi
+    - **Do spróbowania:**
+        - *kaiseki* — wielodaniowa kolacja w tradycyjnym stylu
+        - *yuba* — skórka ścięta z gotowanego mleka sojowego
+        - matcha z Uji
+    - **Do kupienia:**
+        - *yatsuhashi* — cienkie ciastka ryżowe z cynamonem, na surowo albo pieczone
+        - ceramika *Kiyomizu-yaki*
+        - papier *washi*
 
 ## Dzień 6: Piątek, 23.10.2026, Kioto > Jezioro Biwa (59km)
 
@@ -128,16 +142,17 @@ Tokio). Plan jest ramowy.
 ### Miejsca i historia
 
 - **Prefektura Shiga**
-    - *funazushi* — sfermentowane sushi z karpia z Jeziora Biwa, jedna z najstarszych form sushi w Japonii
-    - wołowina *Ōmi* — najstarsza marka wagyu w kraju, starsza niż Kobe i Matsusaka
     - stąd kupcy Ōmi i ich sieć handlowa na szlakach Nakasendō i Tōkaidō
+    - **Do spróbowania:**
+        - *funazushi* — sfermentowane sushi z karpia z Jeziora Biwa, jedna z najstarszych form sushi w Japonii
+        - wołowina *Ōmi* — najstarsza marka wagyu w kraju, starsza niż Kobe i Matsusaka
 - **Ōtsu i góra Hiei** — km ~81–91, centrum Ōtsu ~9 km od trasy.
     - **Jezioro Biwa** — największe jezioro Japonii
     - **Enryaku-ji** — ~2 km od trasy; UNESCO, ponad 1200 lat, główna siedziba szkoły Tendai
     - **Miidera** (Onjo-ji) — ~7 km; świątynia z okresu Heian, widok na miasto i jezioro
     - **Karasaki** — ~6 km; sanktuarium ze sosną opisaną przez Basho
-    - *Ōmi beef* — jedna z trzech najlepszych wagyu w Japonii
-    - *Miidera chikara mochi* — słodycz na patyku, tradycja od 1869
+    - **Do spróbowania:**
+        - *Miidera chikara mochi* — kleiste ciastka ryżowe na patyku, tradycja od 1869
 - **Takashima** — km ~120–160, trasa przez miasto.
 
 ## Dzień 7: Sobota, 24.10.2026, Jezioro Biwa > Tsuruga (39km)
@@ -148,15 +163,21 @@ Tokio). Plan jest ramowy.
 ### Miejsca i historia
 
 - **Prefektura Fukui**
-    - *Echizen oroshi soba* — gruby ciemny makaron z tartym daikonem
     - ok. 80% japońskich skamieniałości dinozaurów pochodzi stąd (Katsuyama)
-    - na pamiątkę: papier *washi* z Echizen (1500 lat, UNESCO), kute noże, laka
+    - **Do spróbowania:**
+        - *Echizen oroshi soba* — gruby ciemny makaron gryczany z tartym daikonem
+    - **Do kupienia:**
+        - papier *washi* z Echizen — 1500 lat tradycji, UNESCO
+        - kute noże
+        - laka
 - **Tsuruga** — km 179.
     - port nad Zatoką Tsuruga
     - **Kehi Jingu** — ~1 km od trasy; sanktuarium sprzed 1300 lat
     - **Kehi no Matsubara** — ~4 km; jeden z trzech najsłynniejszych zagajników sosnowych w kraju
     - **Tsuruga Red Brick Warehouse** — magazyn z 1905, zabytek narodowy
-    - krewetki i *fugu*; *sauce katsu-don* — lokalny klasyk
+    - **Do spróbowania:**
+        - krewetki i *fugu* — ryba rozdymka
+        - *sauce katsu-don* — panierowany kotlet w sosie, na ryżu
 
 ## Dzień 8: Niedziela, 25.10.2026, Tsuruga > Kanazawa (154km)
 
@@ -175,12 +196,14 @@ Tokio). Plan jest ramowy.
     - droga 305 do **Tōjinbō**, park quasi-narodowy
     - Echizen — dawna mekka połowów kraba *Echizen-gani*
     - narcyzy *Echizen suisen* kwitną grudzień–marzec, nie teraz
-    - *Echizen oroshi soba* — zimne soba z daikonem i dashi, od okresu Sengoku
+    - **Do spróbowania:**
+        - *Echizen oroshi soba* — zimne soba z daikonem i dashi, od okresu Sengoku
 - **Fukui** — km ~235–245 nadmorską częścią, centrum ~14 km od trasy.
     - **Eihei-ji** — ⚠ daleko, ~21 km od trasy; klasztor zen szkoły Soto, założony 1244
-    - *shojin ryori* przy Eihei-ji — kuchnia buddyjska, *soba*, *gomadofu*
     - **Fukui Prefectural Dinosaur Museum** — ⚠ daleko, ~26 km od trasy (Katsuyama)
     - rzemiosło: laka, washi, kute noże
+    - **Do spróbowania:**
+        - *shojin ryori* przy Eihei-ji — kuchnia buddyjska, *soba* i *gomadofu*
 - **Sakai / Mikuni** — km ~255–262.
     - **Tōjinbō** — ~4 km; kilometr heksagonalnych klifów bazaltowych, 25 m nad morzem
     - **Mikuni-minato** — ~1 km; port szlaku *Kitamaebune* (Osaka–Hokkaido), zabytkowa zabudowa
@@ -192,17 +215,26 @@ Tokio). Plan jest ramowy.
     - cztery miasteczka termalne: Yamashiro, Yamanaka, Katayamazu, Awazu
     - **Katayamazu** ~2 km, **Yamashiro** ~5 km (łaźnia Kosoyu, kafle Kutani), **Yamanaka** ~8 km (1300 lat, chwalone przez Basho)
     - ulica **Yuge Kaido** w Yamanaka — kawiarnie, laka, ceramika
-    - do kupienia: *Kutani-yaki*, laka *Yamanaka*
+    - **Do kupienia:**
+        - ceramika *Kutani-yaki* — kolorowa porcelana z okresu Edo
+        - laka *Yamanaka* — 400 lat tradycji
 - **Komatsu** — km ~295–305.
     - **Nata-dera** — ~10 km; kompleks świątynny
     - **Cerabo Kutani** — warsztaty ceramiki
-    - *Komatsu udon* (ponad 300 lat), *Kaga bocha* — palona herbata z łodyg
+    - **Do spróbowania:**
+        - *Komatsu udon* — cieńszy, sprężysty makaron, ponad 300 lat tradycji
+        - *Kaga bocha* — herbata palona z łodyg, nie z liści
 - **Kanazawa** — km 333, nocleg.
     - **Kenrokuen** — na trasie; jeden z trzech najsłynniejszych ogrodów Japonii, 11,4 ha
     - **Kanazawa Castle** — obok ogrodu
     - **Higashi Chaya** — ~1 km; dzielnica herbaciarni
     - 99% złotego i srebrnego listka w Japonii powstaje tutaj
-    - do spróbowania: lody z płatkiem złota, *kintsuba*, *usukawa manju*
+    - **Do spróbowania:**
+        - lody z płatkiem złota
+        - *kintsuba* — kostka słodkiej pasty z czerwonej fasoli w cienkim cieście
+        - *usukawa manju* — bułeczka z nadzieniem z czerwonej fasoli
+    - **Do kupienia:**
+        - wyroby ze złotego listka — pałeczki, podkładki, kosmetyki
 
 ## Dzień 9: Poniedziałek, 26.10.2026, Kanazawa > Toyama (?km)
 
@@ -217,11 +249,14 @@ Tokio). Plan jest ramowy.
 - **Prefektura Toyama**
     - *shiroebi*, białe krewetki z Zatoki Toyama; sezon kwiecień–listopad, trafiamy w sam jego koniec
     - *masuzushi*, sushi z pstrągiem — klasyczny prezent kupowany na stacji
+    - **Do spróbowania:**
+        - *shiroebi* — białe krewetki z zatoki: jako sushi, w tempurze albo w krakersach
+    - **Do kupienia:**
+        - *masuzushi* — sushi z pstrągiem w okrągłym pudełku, klasyczny prezent ze stacji
 - **Toyama** — wariant z planu, ~36 km od śladu.
     - **Toyama Castle** — ruiny zamku rodu Sasa/Maeda, park z fosą
     - **Toyama Glass Art Museum** — budynek Kengo Kumy (2015), stała ekspozycja Chihuly'ego
     - tramwaj Loop Line — pętla po centrum w 28 min, ok. 240 jenów
-    - *shiroebi* — białe krewetki: sushi, tempura, krakersy
 - **Gokayama (Nanto)** — wariant z KML, km ~355–380.
     - **Ainokura** ~5 km od trasy, **Suganuma** ~2 km; z Ogimachi na liście UNESCO od 1995
     - *gassho-zukuri* — strome strzechy „jak złożone do modlitwy ręce”, odporne na śnieg
@@ -238,9 +273,10 @@ Tokio). Plan jest ramowy.
 ### Miejsca i historia
 
 - **Prefektura Gifu**
-    - wołowina *Hida*
     - *Mino washi* — jeden z trzech reprezentacyjnych rodzajów japońskiego papieru, UNESCO; używany przy konserwacji zbiorów British Museum i Luwru
     - połowy z kormoranami na rzece Nagara — praktyka sprzed 1300 lat
+    - **Do spróbowania:**
+        - wołowina *Hida* — uznana marka wagyu
 - **Dolina Jinzū** — wariant z planu, droga 41 z Toyamy do Hidy.
     - droga 41 to fragment *Buri Kaidō* — szlaku transportu żółtego ogona z Toyamy do Hidy i Matsumoto
     - **Kamioka** — ~18 km od śladu; miasteczko górnicze w klimacie Showa, zamek (rekonstrukcja 1970, oryginał 1564)
@@ -262,15 +298,17 @@ Tokio). Plan jest ramowy.
 ### Miejsca i historia
 
 - **Prefektura Gifu**
-    - wołowina *Hida*, *hoba miso*
     - papier *Mino washi*
 - **Takayama** — km 473, nocleg.
     - **Sanmachi-suji** — zabytkowa dzielnica kupiecka, drewniana architektura Hidy
     - 7 browarów sake na Starym Mieście, rozpoznawalne po *sugidama* — kulach z gałązek cedru
     - dwa poranne targi *asa-ichi*, codziennie
-    - *Hida-gyu* — wołowina z regionu: sushi, szaszłyki
-    - *hoba miso* — miso pieczone na liściu magnolii
-    - *mitarashi dango* — na wynos
+    - **Do spróbowania:**
+        - *Hida-gyu* — wołowina z regionu, w sushi i na szaszłykach
+        - *hoba miso* — miso pieczone na liściu magnolii, z porem i grzybami
+        - *mitarashi dango* — kulki ryżowe w sosie sojowo-cukrowym, na wynos
+    - **Do kupienia:**
+        - sake z jednego z siedmiu browarów na Starym Mieście
 
 ## Dzień 12: Czwartek, 29.10.2026, Takayama > przełęcz Nomugi (?km)
 
@@ -304,23 +342,27 @@ Tokio). Plan jest ramowy.
 ### Miejsca i historia
 
 - **Prefektura Nagano**
-    - *soba Shinshu* — jeden z najbardziej cenionych makaronów gryczanych w kraju
-    - jabłka i *wasabi* z Azumino, uprawiane w zimnej górskiej wodzie
-    - *shinshu miso*
-    - na pamiątkę: żabki na szczęście z ulicy Nawate
+    - **Do spróbowania:**
+        - *soba Shinshu* — jeden z najbardziej cenionych makaronów gryczanych w kraju
+        - jabłka i *wasabi* z Azumino, uprawiane w zimnej górskiej wodzie
 - **Dolina Kiso** — wariant z planu; Narai ~20 km od śladu, Kiso-Fukushima ~32 km.
     - historyczne stacje szlaku *Nakasendō* z Kioto do Edo; Tsumago 42., Magome 43. z 69
     - **Narai** — ponad kilometr zachowanej głównej ulicy, najlepiej zachowana stacja na północy doliny
     - **Kiso-Fukushima** — domy skupione nad rzeką Kiso
     - **Magome** i **Tsumago** — drewniane uliczki na południu doliny
     - koniec października–połowa listopada: szczyt *kōyō*
-    - *gohei mochi* — ryż na patyku z pastą z orzechów, sezamu, sosu sojowego i cukru
+    - **Do spróbowania:**
+        - *gohei mochi* — placki z ryżu na patyku, z pastą z orzechów włoskich, sezamu, sosu sojowego i cukru
 - **Matsumoto** — km ~555, nocleg.
     - **Zamek Matsumoto** („Wrona”) — ~3 km od trasy; jeden z 12 oryginalnych donżonów, Narodowy Skarb, fortyfikacje z 1593
     - **Nawate** i **Nakamachi** — stare kamienice, rzemiosło, sklepiki
-    - żabki na szczęście — pamiątka z ulicy Nawate
-    - *shinshu miso*, *shinshu soba*, *oyaki* — pierożki z gryki z warzywami
     - **Asama Onsen** (浅間温泉) — ~5 km od trasy, ok. 4 km od stacji
+    - **Do spróbowania:**
+        - *shinshu soba* — makaron gryczany z Nagano
+        - *oyaki* — pierożki z ciasta gryczanego, nadziewane warzywami
+    - **Do kupienia:**
+        - żabki na szczęście z ulicy Nawate
+        - *shinshu miso* — słona pasta miso z regionu, sprzedawana wszędzie
 
 ## Dzień 14: Sobota, 31.10.2026, Matsumoto > Fujikawaguchiko (150km)
 
@@ -333,8 +375,8 @@ Tokio). Plan jest ramowy.
 - **Prefektura Yamanashi**
     - ok. 95% upraw winogron *Kōshū* i ok. 40% krajowej produkcji wina
     - czołowy producent winogron i brzoskwiń
-    - *hōtō* — gruby makaron w gęstym miso z dynią
-    - na pamiątkę: suszony makaron hōtō i miso
+    - **Do spróbowania:**
+        - *hōtō* — grube kluski w gęstej zupie miso z dynią
 - **Suwa / Shimosuwa** — km ~580–590.
     - **Suwa Taisha** — jedna z najstarszych świątyń Japonii, festiwal **Onbashira** co 6 lat; Kamisha ~0,5 km od trasy, Shimosha ~5 km
     - **Jezioro Suwa** — 16-kilometrowa pętla rowerowo-biegowa
@@ -344,16 +386,19 @@ Tokio). Plan jest ramowy.
 - **Kōfu** — km ~632–645, centrum ~7 km od trasy; jedziemy zachodnim brzegiem kotliny przez Hokuto i Minami-Alps.
     - kolebka japońskiego winiarstwa, wino Koshu od ok. 150 lat
     - **Shōsenkyō** — ~8 km; wąwóz, jedno z 25 najpiękniejszych miejsc w Japonii, jesienne liście
-    - *torimotsu-ni* — podroby z kurczaka w słodko-słonym sosie
-    - *hōtō* — danie Takedy Shingena, z którym związane jest miasto
+    - **Do spróbowania:**
+        - *torimotsu-ni* — podroby z kurczaka duszone w słodko-słonym sosie
 - **Fujikawaguchiko** — km ~700–714, nocleg.
     - **Chureito Pagoda** — na trasie, km ~714; najbardziej ikoniczny kadr z Fudżi
     - **park Oishi** — ~1 km; widok nad jeziorem Kawaguchiko
     - **ropeway na Mt. Tenjo** — ~1 km; widok z góry na jezioro i Fudżi
     - **Fudżi** — szczyt ~15 km od trasy
     - rejs żaglowcem **Appare** po jeziorze
-    - *hōtō* — must-eat regionu; na pamiątkę suszony makaron i miso
     - onseny z widokiem na Fudżi
+    - **Do spróbowania:**
+        - *hōtō* — danie, po które się tu przyjeżdża, np. w Hoto Kosaku
+    - **Do kupienia:**
+        - suszony makaron *hōtō* i miso
 
 ## Dzień 15: Niedziela, 01.11.2026, Fujikawaguchiko > Akiruno (65km)
 
@@ -394,9 +439,11 @@ Tokio). Plan jest ramowy.
 ### Miejsca i historia
 
 - **Tokio (obszar stołeczny)**
-    - sushi *edomae* — poprzednik dzisiejszego nigiri
-    - *monjayaki* — tokijski odpowiednik okonomiyaki
-    - na pamiątkę: noże i sprzęt kuchenny z Kappabashi
+    - **Do spróbowania:**
+        - sushi *edomae* — poprzednik dzisiejszego nigiri
+        - *monjayaki* — tokijski odpowiednik okonomiyaki, rzadszy niż on
+    - **Do kupienia:**
+        - noże i sprzęt kuchenny z Kappabashi
 - **Tokio** — ślad kończy się w centrum, km 808.
     - **Pomnik Hachikō** — przy wyjściu Hachikō ze stacji Shibuya, obok słynnego skrzyżowania; z Shinjuku 2 przystanki JR Yamanote, ~7 min
     - akita czekał tu na prof. Hidesaburō Uenę codziennie, także przez prawie 10 lat po jego śmierci (1925–1935)
@@ -406,7 +453,6 @@ Tokio). Plan jest ramowy.
     - **Shinjuku** — rozrywka i życie nocne
     - **Meiji Jingu** — sanktuarium w lesie przy stacji Harajuku
     - **Tokyo Skytree** — 634 m, punkty widokowe na 350 i 450 m
-    - *monjayaki* — tokijski odpowiednik okonomiyaki
 
 ## Dzień 17: Wtorek, 03.11.2026, Tokio > Dubaj > Warszawa (0km)
 
@@ -463,20 +509,6 @@ Tokio). Plan jest ramowy.
 
 # Kulinaria i pamiątki
 
-### Czego spróbować, region po regionie
-
-- **Dzień 2 · Osaka** — takoyaki, okonomiyaki. Motto *kuidaore*: „jedz aż zbankrutujesz”.
-- **Dzień 4 · Nara** — kakinoha-zushi, pikle narazuke, persymony kaki.
-- **Dzień 5 · Kioto** — kaiseki, yuba, matcha z Uji.
-- **Dzień 6 · Shiga** — wołowina Ōmi, funazushi (jedna z najstarszych form sushi).
-- **Dni 7–8 · Fukui** — Echizen oroshi soba, sauce katsu-don w Tsurudze.
-- **Dzień 8 · Ishikawa** — lody z płatkiem złota w Kanazawie, Komatsu udon.
-- **Dzień 9 · Toyama** — shiroebi, masuzushi.
-- **Dni 10–12 · Gifu** — Hida-gyu, hoba miso, mitarashi dango.
-- **Dni 13–14 · Nagano** — shinshu soba, oyaki, gohei mochi.
-- **Dzień 14 · Yamanashi** — hōtō, wino Kōshū, torimotsu-ni.
-- **Dni 16–17 · Tokio** — sushi edomae, monjayaki.
-
 ### Tekstylia
 
 - **Tenugui** — ręcznie barwione, regionalne; ręcznik, chusta, przyda się na rowerze.
@@ -526,14 +558,6 @@ Godziny i adresy sprawdź przed pójściem, bo się zmieniają.
 - **Hanko** — własna pieczątka do craftu i notatek.
 - **Saszetka** — na elektronikę, narzędzia, kosmetyki; bonus za lokalną tkaninę.
 - Pałeczki — tylko jeśli będą używane.
-
-### Regionalne, po drodze
-
-- Ceramika **Kutani-yaki** — Kaga i Komatsu, dzień 8.
-- Wyroby ze **złotego listka** — Kanazawa, dzień 8.
-- Papier **washi** — Echizen (dzień 8) i Kioto (dzień 5).
-- **Żabki na szczęście** — ulica Nawate w Matsumoto, dzień 13.
-- Suszony makaron **hōtō** i miso — Fujikawaguchiko, dzień 14.
 
 # Pamiątki dla znajomych
 
