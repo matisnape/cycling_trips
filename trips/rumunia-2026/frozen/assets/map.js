@@ -1,4 +1,4 @@
-/* Route map — Leaflet + CARTO Positron tiles (clean, light).
+/* Route map — Leaflet + standard OSM tiles, muted with a CSS filter.
    Reads window.TRIP (from route-data.js) and optional window.MAP_DAY
    (day number on a subpage; absent = home page). */
 (function () {
@@ -12,10 +12,18 @@
   var map = L.map(el, { scrollWheelZoom: false, zoomControl: true });
   L.control.scale({ imperial: false }).addTo(map);
 
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: "abcd", maxZoom: 19
+  // Standard OSM tiles: no API key, no sign-up. CARTO's Positron basemap was
+  // nicer but started demanding a key, which stamped "API KEY REQUIRED" across
+  // every published map — including the frozen trips nobody rebuilds.
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19
   }).addTo(map);
+
+  // OSM's own style is louder than Positron was; muting it here (rather than in
+  // the stylesheet) keeps the fix inside this one file, so patching a frozen
+  // trip's copy of it is enough.
+  map.getPane("tilePane").style.filter = "grayscale(0.85) contrast(0.95) brightness(1.06)";
 
   // route line
   var line = L.polyline(t.route, {
