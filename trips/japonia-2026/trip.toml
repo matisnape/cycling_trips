@@ -54,13 +54,6 @@ heading = "# Pamiątki dla znajomych"
 title = "Pamiątki dla znajomych"
 eyebrow = "Herbata, słodycze, nóż"
 
-[[pages]]
-slug = "ciekawostki"
-label = "Ciekawostki"
-heading = "# Ciekawostki"
-title = "Ciekawostki"
-eyebrow = "Drobiazgi po drodze"
-
 [map]
 # Day 3 is the Shinkansen trip to Hiroshima — ~280 km off the track, so its points
 # would land far outside the offline sketch.

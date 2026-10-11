@@ -50,6 +50,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Osaka** — „kuchnia narodu” (*Nippon no Daidokoro*) od czasów Edo, gdy szedł tędy handel ryżem. Kolebka *okonomiyaki* i *takoyaki*. Na pamiątkę: gadżety w kształcie takoyaki, miniatury zamku.
 - **Osaka** — km 0, start trasy w dniu 4.
     - **Dotonbori** i **Shinsaibashi** — neony, jedzenie uliczne, zakupy
     - **Osaka Castle** — zamek z parkiem
@@ -65,6 +66,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Hiroszima** — *okonomiyaki* w wersji hiroszimskiej: warstwowe, z makaronem. Ostrygi z zatoki, *momiji manju* na Miyajimie. Region słynie z produkcji igieł krawieckich.
 - **Hiroszima** — ~280 km od trasy.
     - **Hiroshima Peace Memorial Museum**
 - **Miyajima** — JR Sanyō do Miyajimaguchi (~25 min) + prom (10 min).
@@ -79,6 +81,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Nara** — *somen* z Miwa uchodzi za kolebkę tego makaronu w Japonii, ponad 1200 lat tradycji. Persymony *kaki*. Na pamiątkę: tusz *sumi*, tradycyjne rzemiosło Nary.
 - **Nara** — km 32.
     - **Nara Park** — ~3 km od trasy; ok. 1200 wolnych jeleni, karmienie *shika senbei*
     - **Todaiji** — ~3 km; podobno największa drewniana budowla świata, gigantyczny brązowy Budda
@@ -99,6 +102,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Kioto** — *kyō-yasai*, dziedziczne „arystokratyczne” warzywa, podstawa kuchni *kyō-ryōri*. Tkaniny *Nishijin-ori* od VIII w., jedwab *chirimen* z półwyspu Tango. Na pamiątkę: *yatsuhashi*, ceramika Kiyomizu-yaki, papier washi.
 - **Kioto** — km 81.
     - 17 miejsc UNESCO w granicach miasta
     - **Kinkaku-ji** — ~4 km od trasy; Złoty Pawilon, górne piętra pokryte złotem
@@ -115,6 +119,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Shiga** — *funazushi*, sfermentowane sushi z karpia z Jeziora Biwa, jedna z najstarszych form sushi w Japonii. Wołowina *Ōmi* to najstarsza marka wagyu w kraju, starsza niż Kobe i Matsusaka. Stąd kupcy Ōmi i ich sieć na szlakach Nakasendō i Tōkaidō.
 - **Ōtsu i góra Hiei** — km ~81–91, centrum Ōtsu ~9 km od trasy.
     - **Jezioro Biwa** — największe jezioro Japonii
     - **Enryaku-ji** — ~2 km od trasy; UNESCO, ponad 1200 lat, główna siedziba szkoły Tendai
@@ -131,6 +136,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Fukui** — *Echizen oroshi soba*, gruby ciemny makaron z tartym daikonem. Ok. 80% japońskich skamieniałości dinozaurów pochodzi stąd (Katsuyama). Na pamiątkę: papier *washi* z Echizen — 1500 lat tradycji, UNESCO — kute noże i laka.
 - **Tsuruga** — km 179.
     - port nad Zatoką Tsuruga
     - **Kehi Jingu** — ~1 km od trasy; sanktuarium sprzed 1300 lat
@@ -146,6 +152,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Fukui → Ishikawa** — Ishikawa to skarbnica rzemiosła: 36 rzemiosł uznanych przez rząd, barwienie tkanin *Kaga-yuzen* z czasów rodu Maeda, ceramika *Kutani-yaki*. Rejon Kanazawy to niemal jedyne miejsce produkcji złota płatkowego w Japonii.
 - **Wybrzeże Echizen** — km ~195–230.
     - droga 305 do **Tōjinbō**, park quasi-narodowy
     - Echizen — dawna mekka połowów kraba *Echizen-gani*
@@ -188,6 +195,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Toyama** — *shiroebi*, białe krewetki z Zatoki Toyama; sezon kwiecień–listopad, więc trafiamy w sam jego koniec. *Masuzushi*, sushi z pstrągiem, to klasyczny prezent kupowany na stacji.
 - **Toyama** — wariant z planu, ~36 km od śladu.
     - **Toyama Castle** — ruiny zamku rodu Sasa/Maeda, park z fosą
     - **Toyama Glass Art Museum** — budynek Kengo Kumy (2015), stała ekspozycja Chihuly'ego
@@ -208,6 +216,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Gifu** — wołowina *Hida*. *Mino washi* to jeden z trzech reprezentacyjnych rodzajów japońskiego papieru, UNESCO, używany przy konserwacji zbiorów British Museum i Luwru. Połowy z kormoranami na rzece Nagara — praktyka sprzed 1300 lat.
 - **Dolina Jinzū** — wariant z planu, droga 41 z Toyamy do Hidy.
     - droga 41 to fragment *Buri Kaidō* — szlaku transportu żółtego ogona z Toyamy do Hidy i Matsumoto
     - **Kamioka** — ~18 km od śladu; miasteczko górnicze w klimacie Showa, zamek (rekonstrukcja 1970, oryginał 1564)
@@ -227,6 +236,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Gifu** — wołowina *Hida*, *hoba miso*, papier *Mino washi*.
 - **Takayama** — km 473, nocleg.
     - **Sanmachi-suji** — zabytkowa dzielnica kupiecka, drewniana architektura Hidy
     - 7 browarów sake na Starym Mieście, rozpoznawalne po *sugidama* — kulach z gałązek cedru
@@ -243,6 +253,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Gifu → Nagano** — za przełęczą zaczyna się „dach Japonii”: ok. 80% Nagano to góry i ani kawałka morza.
 - **Przełęcz Nomugi** (野麦峠) — wariant z planu, ~11 km od śladu.
     - 1672 m, granica prefektur Gifu i Nagano
     - od ery Meiji do wczesnej Taishō zimą przechodziły tędy młode kobiety z Hidy do fabryk jedwabiu w Okaya i Suwie; wiele zginęło w drodze
@@ -263,6 +274,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Nagano** — *soba Shinshu*, jeden z najbardziej cenionych makaronów gryczanych w kraju. Jabłka i *wasabi* z Azumino, uprawiane w zimnej górskiej wodzie. *Shinshu miso*. Na pamiątkę: żabki na szczęście z ulicy Nawate.
 - **Dolina Kiso** — wariant z planu; Narai ~20 km od śladu, Kiso-Fukushima ~32 km.
     - historyczne stacje szlaku *Nakasendō* z Kioto do Edo; Tsumago 42., Magome 43. z 69
     - **Narai** — ponad kilometr zachowanej głównej ulicy, najlepiej zachowana stacja na północy doliny
@@ -284,6 +296,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Yamanashi** — ok. 95% upraw winogron *Kōshū* i ok. 40% krajowej produkcji wina; czołowy producent winogron i brzoskwiń. *Hōtō* — gruby makaron w gęstym miso z dynią. Na pamiątkę: suszony makaron hōtō i miso.
 - **Suwa / Shimosuwa** — km ~580–590.
     - **Suwa Taisha** — jedna z najstarszych świątyń Japonii, festiwal **Onbashira** co 6 lat; Kamisha ~0,5 km od trasy, Shimosha ~5 km
     - **Jezioro Suwa** — 16-kilometrowa pętla rowerowo-biegowa
@@ -311,6 +324,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Prefektura Yamanashi → Tokio** — wjeżdżamy w obszar stołeczny: kuchnia *edomae*, a *soba* jako jeden z trzech smaków Edo (obok sushi i unagi) — sprzyjała jej twarda woda.
 - **Ōtsuki** — km ~733.
     - **Saruhashi** („Małpi most”) — ~1 km od trasy; Miejsce Szczególnej Piękności, jeden z trzech niezwykłych mostów Japonii (obok Kintai i Shinkyō)
     - legenda: ogrodnik Shirako zbudował most ok. 610 r., zobaczywszy małpy tworzące most z własnych ciał
@@ -338,6 +352,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Miejsca i historia
 
+- **Tokio (obszar stołeczny)** — sushi *edomae*, poprzednik dzisiejszego nigiri. *Monjayaki*, tokijski odpowiednik okonomiyaki. Na pamiątkę: noże i sprzęt kuchenny z Kappabashi.
 - **Tokio** — ślad kończy się w centrum, km 808.
     - **Pomnik Hachikō** — przy wyjściu Hachikō ze stacji Shibuya, obok słynnego skrzyżowania; z Shinjuku 2 przystanki JR Yamanote, ~7 min
     - akita czekał tu na prof. Hidesaburō Uenę codziennie, także przez prawie 10 lat po jego śmierci (1925–1935)
@@ -482,22 +497,6 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 - Regiony nożowe: Sakai, Seki, Tsubame-Sanjo, Tosa, Echizen — Echizen mamy po drodze, dzień 8.
 - **Kappabashi** w Tokio (dzień 16) — ulica sklepów specjalistycznych, noże można porównać w ręce.
 - Hasło dla sprzedawcy: *petty 120–150 mm, made in Japan, small maker, stainless / stainless-clad*.
-
-# Ciekawostki
-
-### Prefektura po prefekturze
-
-- **Osaka** — przydomek „kuchnia narodu” (*Nippon no Daidokoro*) z okresu Edo, gdy była centrum handlu ryżem. Kolebka okonomiyaki i takoyaki.
-- **Nara** — *somen* z Miwa uchodzi za kolebkę tego makaronu w Japonii, ponad 1200 lat tradycji. Persymony *kaki* i tusz *sumi* jako lokalne wyroby.
-- **Kioto** — *kyō-yasai*, dziedziczne „arystokratyczne” warzywa, podstawa kuchni *kyō-ryōri*. Tkaniny *Nishijin-ori* od VIII w. Półwysep Tango od wieków produkuje jedwab *chirimen*.
-- **Shiga** — *funazushi*, sfermentowane sushi z karpia z Jeziora Biwa, jedna z najstarszych form sushi. Kupcy Ōmi i ich sieć na szlakach Nakasendō i Tōkaidō. Wołowina Ōmi to najstarsza marka wagyu w kraju, starsza niż Kobe i Matsusaka.
-- **Fukui** — ok. 80% japońskich skamieniałości dinozaurów pochodzi stąd (Katsuyama). Papier washi z Echizen ma 1500 lat tradycji i wpis UNESCO.
-- **Ishikawa** — 36 rzemiosł uznanych przez rząd. Barwienie *Kaga-yuzen* z czasów rodu Maeda. Rejon Kanazawy to niemal jedyne miejsce produkcji złota płatkowego w Japonii.
-- **Toyama** — *shiroebi* z Zatoki Toyama, sezon kwiecień–listopad. *Masuzushi*, sushi z pstrągiem, klasyczny prezent ze stacji.
-- **Gifu** — wołowina Hida. *Mino washi* to jeden z trzech reprezentacyjnych rodzajów washi, UNESCO, używany przy konserwacji zbiorów British Museum i Luwru. Połowy z kormoranami na rzece Nagara — praktyka sprzed 1300 lat.
-- **Nagano** — „dach Japonii”: ok. 80% terenu to góry i żadnego dostępu do morza. *Soba Shinshu*, jabłka, wasabi z Azumino uprawiane w zimnej górskiej wodzie.
-- **Yamanashi** — ok. 95% upraw winogron Kōshū i ok. 40% krajowej produkcji wina. Czołowy producent winogron i brzoskwiń.
-- **Tokio** — kolebka sushi *edomae*, poprzednika dzisiejszego nigiri. *Soba* jako jeden z trzech smaków Edo, obok sushi i unagi — sprzyjała jej twarda woda.
 
 # Rozmówki japońskie
 
