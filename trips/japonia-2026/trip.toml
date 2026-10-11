@@ -1,0 +1,73 @@
+# Trip configuration. Content: tresc.md next to it. Field reference: engine/build.py (load_config).
+slug = "japonia-2026"
+lang = "pl"
+
+# "- Name" lines in # Meta starting with these prefixes are links, not dishes.
+# meta_skip_prefixes = ["opis", "mapa", "szlak"]
+
+[site]
+title            = "Alpy Japońskie"
+title_html       = "Alpy<br>Japońskie"
+glyph            = "⛩"
+eyebrow          = "Japonia · Osaka → Tokio — 18.10–03.11.2026"
+lede             = "Jedenaście dni rowerem w poprzek Honsiu — przez Narę i Kioto, nad Jezioro Biwa, wybrzeżem Morza Japońskiego do Kanazawy, w Alpy Japońskie i pod Fudżi."
+home_title       = "Alpy Japońskie — rowerem z Osaki do Tokio"
+# The build substitutes {days} and {km} from tresc.md, so the description cannot go stale.
+home_description = "Notatki z wyprawy rowerowej przez Honsiu: {days} dni, ~808 km śladem z Osaki do Tokio."
+footer           = "Notatki z wyprawy rowerowej przez Honsiu · Longinada 2026"
+footer_short     = "Alpy Japońskie"
+map_caption_name = "Rowerem przez Alpy Japońskie"
+offline_filename = "alpy-japonskie-offline.html"
+offline_aria     = "Szkic trasy — Osaka, Kioto, Kanazawa, Takayama, Fudżi, Tokio"
+
+# days and km are counted from tresc.md; the rest are manual facts.
+facts = ["~808 km wg śladu", "11 dni na rowerze", "Przełęcz Nomugi 1672 m"]
+# Days 9-13 carry "?km" (the daily plan and the KML take different roads there),
+# so a total would be a lie.
+show_total_km = false
+
+[[pages]]
+slug = "praktyczne"
+label = "Praktyczne"
+heading = "# Praktyczne informacje"
+title = "Praktyczne informacje"
+eyebrow = "Loty, czas, teren"
+
+[[pages]]
+slug = "kulinaria"
+label = "Kulinaria"
+heading = "# Kulinaria i pamiątki"
+title = "Kulinaria i pamiątki"
+eyebrow = "Co zjeść, co przywieźć"
+
+[[pages]]
+slug = "prezenty"
+label = "Dla znajomych"
+heading = "# Pamiątki dla znajomych"
+title = "Pamiątki dla znajomych"
+eyebrow = "Herbata, słodycze, nóż"
+
+[[pages]]
+slug = "ciekawostki"
+label = "Ciekawostki"
+heading = "# Ciekawostki"
+title = "Ciekawostki"
+eyebrow = "Drobiazgi po drodze"
+
+[map]
+# Day 3 is the Shinkansen trip to Hiroshima — ~280 km off the track, so its points
+# would land far outside the offline sketch.
+svg_skip_days  = [3]
+svg_skip_note  = "wypad do Hiroszimy pominięty"
+svg_min_points = 40
+
+[theme]
+accent = "#33508a"
+
+[analytics]
+ga_id = ""
+cookiescript = ""
+
+# Freezing (PLAYBOOK section 2). After this date the build copies trips/japonia-2026/frozen/.
+[freeze]
+date = "2026-11-04"

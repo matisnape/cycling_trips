@@ -238,14 +238,18 @@ def parse_note(raw, cfg):
         return '<div class="note">\n' + md(body) + "\n</div>"
 
     meta_block = need(re.search(r"# Meta\n(.*?)\n# Klucz do wyjazdu", raw, re.DOTALL), "# Meta / # Klucz do wyjazdu").group(1)
-    # "- Nazwa - opis" → a taste pill. Name may be multi-word ("Tavë kosi"), so it is
-    # everything up to the " - " separator; lines starting with Opis/Mapa/Szlak are links.
-    cuisine = re.findall(r"^- ([^-\n]+?)(?:[ \t]+-[ \t]+(.+?))?[ \t]*$", meta_block, re.MULTILINE)
+    # "- Nazwa - opis" → a taste pill. The name is everything up to the " - " separator,
+    # so it may be multi-word ("Tavë kosi") and may itself contain a hyphen ("Hida-gyu") —
+    # only a hyphen surrounded by spaces splits name from description. Lines starting with
+    # Opis/Mapa/Szlak are links.
+    cuisine = re.findall(r"^- (.+?)(?:[ \t]+-[ \t]+(.+?))?[ \t]*$", meta_block, re.MULTILINE)
     cuisine = [(n, g) for (n, g) in cuisine if not n.lower().startswith(cfg.skip_prefixes)]
     gm = re.search(r"Mapa Google:\s*(\S+)", meta_block)
     mc = re.search(r"Mapa mapy\.com:\s*(\S+)", meta_block)
-    gmaps = gm.group(1) if gm else "#"
-    mapycom = mc.group(1) if mc else "#"
+    # No "Mapa Google:" / "Mapa mapy.com:" line in # Meta -> no link at all. "#" would
+    # render as a dead link in the footer and under the offline sketch.
+    gmaps = gm.group(1) if gm else ""
+    mapycom = mc.group(1) if mc else ""
 
     intro_block = need(re.search(r"# Klucz do wyjazdu — .*?\n(.*?)\n# Plan wyjazdu", raw, re.DOTALL), "# Plan wyjazdu").group(1)
     intro_block = re.sub(r"\s*→\s*$", "", intro_block, flags=re.MULTILINE)
@@ -278,7 +282,9 @@ def parse_note(raw, cfg):
     for ch in day_chunks:
         h = re.match(r"## Dzień (\d+):\s*(.+)", ch)
         num, desc = int(h.group(1)), h.group(2).strip()
-        m = re.match(r"(\w+),\s*([\d.]+),\s*(.+?)\s*\((\d+)\s*km\)", desc)
+        # "(?km)" = the day is ridden but its distance is unknown; it shows as "? km"
+        # and stays out of the total (pair it with show_total_km = false).
+        m = re.match(r"(\w+),\s*([\d.]+),\s*(.+?)\s*\((\d+|\?)\s*km\)", desc)
         weekday = m.group(1) if m else ""
         date = m.group(2) if m else ""
         route = (m.group(3) if m else desc).replace(" > ", " → ").replace(">", "→")
@@ -298,7 +304,7 @@ def parse_note(raw, cfg):
         note_html=note_html, cuisine=cuisine, gmaps=gmaps, mapycom=mapycom,
         intro_html=intro_html, note_block=note_block, sources_block=sources_block,
         src_main=src_main, final_note=final_note, EXTRA=EXTRA, DAYS=DAYS,
-        total_km=sum(int(d["km"]) for d in DAYS if d["km"]))
+        total_km=sum(int(d["km"]) for d in DAYS if d["km"].isdigit()))
 
 
 # =========================================================================
@@ -448,7 +454,7 @@ def build_trip(slug):
         extra_links = "".join(
             f'<a href="{p["slug"]}.html"{" aria-current=page" if active==p["slug"] else ""}>{p["label"]}</a>'
             for p in EXTRA if p["html"])
-        # ponytail: hamburger is a CSS-only checkbox toggle — no JS, works offline too.
+        # The hamburger is a CSS-only checkbox toggle — no JS, so it works offline too.
         # The "📱 Telefon" switch lives in the nav on desktop and in .viewbar (top-left,
         # same spot as in mobile.html) on phones, so it is never hidden behind the menu.
         nav = ('<input type="checkbox" id="menu-toggle" class="menu-toggle"/>'
@@ -459,6 +465,10 @@ def build_trip(slug):
                f'<a href="zrodla.html"{" aria-current=page" if active=="zrodla" else ""}>Źródła</a>'
                '<a class="navphone" href="mobile.html">📱 Telefon</a></nav>')
         foot_extra = "".join(f'<a href="{p["slug"]}.html">{p["label"]}</a>' for p in EXTRA if p["html"])
+        # Only linked when # Meta actually carries the address.
+        map_links = ("".join(
+            f'<a href="{u}" rel="noopener" target="_blank">{lbl}</a>'
+            for u, lbl in ((gmaps, "Mapa Google"), (mapycom, "mapy.com")) if u))
         scripts = f'<script src="{asset("site.js")}" defer></script>'
         if with_map:
             scripts = (LJS + f'<script src="{asset("route-data.js")}"></script>'
@@ -497,9 +507,7 @@ def build_trip(slug):
   <div class="wrap-w">
     <p>{cfg.footer}</p>
     <div class="links">
-      <a href="index.html">Trasa</a>{foot_extra}<a href="zrodla.html">Źródła</a>
-      <a href="{gmaps}" rel="noopener" target="_blank">Mapa Google</a>
-      <a href="{mapycom}" rel="noopener" target="_blank">mapy.com</a>
+      <a href="index.html">Trasa</a>{foot_extra}<a href="zrodla.html">Źródła</a>{map_links}
     </div>
   </div>
 </footer>
@@ -883,7 +891,9 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
                "})();</script>")
 
     # Route sketch (inline SVG) + hint. Without a sketch only the online-map links remain.
-    online = f'Mapy online: <a href="{gmaps}">Google</a> · <a href="{mapycom}">mapy.com</a>'
+    om = ([f'<a href="{gmaps}">Google</a>'] if gmaps else []) + \
+         ([f'<a href="{mapycom}">mapy.com</a>'] if mapycom else [])
+    online = ("Mapy online: " + " · ".join(om)) if om else ""
     if svg:
         note = f"; {cfg.svg_skip_note}" if cfg.svg_skip_note else ""
         mapblock = (f'<div class="map" id="mapa">{svg}</div>\n'
