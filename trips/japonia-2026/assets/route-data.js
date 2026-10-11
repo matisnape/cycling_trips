@@ -4865,7 +4865,7 @@ window.TRIP = {
    "name": "Lotnisko Narita",
    "lat": 35.772,
    "lon": 140.3929,
-   "blurb": "Wylot 2.11, 22:20 (EK319). Keisei Skyliner z Nippori/Ueno.",
+   "blurb": "Wylot 2.11, 22:20 (EK319). Pociągiem z Nippori albo Ueno, ok. 40 min.",
    "url": "dzien-16.html"
   }
  ]

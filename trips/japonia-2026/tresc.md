@@ -27,13 +27,6 @@ W poprzek Honsiu: Osaka → Nara → Kioto → Jezioro Biwa → wybrzeże Morza 
 wjeżdżamy pociągiem. Rower: dni 4 i 6–15. Bez sakw: dni 3, 5 i 16 (Hiroszima, Kioto,
 Tokio). Plan jest ramowy.
 
-Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach stoi
-„wariant z planu” albo „wariant z KML”:
-
-- **Kanazawa → Takayama (dni 9–11)** — KML: Gokayama i Shirakawa-gō, ~140 km. Plan: Toyama i dolina Jinzū, 3 dni.
-- **Takayama → Matsumoto (dni 12–13)** — KML: droga 158 przez Hirayu, ~82 km. Plan: przełęcz Nomugi i dolina Kiso, 2 dni.
-- **Koniec jazdy (dzień 15)** — KML: centrum Tokio, km 808. Plan: Akiruno, ~6 km od śladu przy Hachiōji, km ~774.
-
 
 # Plan wyjazdu
 
@@ -347,7 +340,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 - rowery zostają w hotelu, cały dzień na lekko
 - rano pamiątki, popołudnie i wieczór w Shinjuku
 - ok. 17:30 odbiór plandek ze sprzętem z hotelu
-- Keisei Skyliner na Naritę, wylot 22:20 (EK319)
+- pociągiem na lotnisko Narita, wylot 22:20 (EK319)
 - na talerzu: sushi *edomae* i *monjayaki* — smaki Edo
 
 ### Miejsca i historia
@@ -382,7 +375,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 - **Tam:** EK180 Warszawa 15:10 → Dubaj 22:55 (nd 18.10); EK316 Dubaj 03:00 → Osaka Kansai 17:15 (pn 19.10). Razem ~19 h.
 - **Powrót:** EK319 Narita 22:20 (pn 2.11) → Dubaj 05:30; EK179 Dubaj 08:05 → Warszawa 11:20 (wt 3.11). Razem ~21 h.
-- Godziny lokalne. Na Naritę: Keisei Skyliner z Nippori/Ueno.
+- Godziny lokalne. Na Naritę jedziemy pociągiem z Nippori albo Ueno, ok. 40 min.
 
 ### Przed wylotem
 
