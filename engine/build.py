@@ -508,6 +508,7 @@ def build_trip(slug):
     <p>{cfg.footer}</p>
     <div class="links">
       <a href="index.html">Trasa</a>{foot_extra}<a href="zrodla.html">Źródła</a>{map_links}
+      <a href="../">Wszystkie wyprawy</a>
     </div>
   </div>
 </footer>
@@ -936,7 +937,7 @@ podgląd w Plikach wystarczy, menu „☰ Skocz do sekcji" jest na górze strony
 <h2>Reszta</h2>
 {"".join(blocks[len(days):])}
 
-<footer>{cfg.footer_short} · <a href="index.html?full=1">wersja pełna z interaktywną mapą</a><br>
+<footer>{cfg.footer_short} · <a href="index.html?full=1">wersja pełna z interaktywną mapą</a> · <a href="../">wszystkie wyprawy</a><br>
 Na telefonie strona główna sama przenosi tutaj. Otwarcie wersji pełnej jest pamiętane w tej przeglądarce; wejście na tę stronę wraca do wersji telefonowej.</footer>
 {navbar}
 {jumpnav}
