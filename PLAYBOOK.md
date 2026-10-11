@@ -210,14 +210,33 @@ Uwaga: `git clone --depth 1` daje jeden commit — przed `filter-repo` pogłęb 
 Potem: `build.py` i `strona/assets` usunąć (są w `engine/`), `route-data.js` →
 `trips/<slug>/assets/`, napisać `trip.toml` z tego, co było zaszyte w starym `build.py`.
 
-**Przekierowanie ze starego adresu** — w starym repo zamień zawartość na `index.html`
-i `404.html` (podmień `<slug>`), push:
+**Przekierowanie ze starego adresu** — stare repo zostaje jako archiwum historii,
+ale publikuje już tylko przekierowanie. Trzy rzeczy:
+
+1. Katalog `przekierowanie/` z `index.html`, `404.html` (ta sama treść) i pustym
+   `.nojekyll`. GitHub Pages podaje `404.html` na każdą nieistniejącą ścieżkę, więc
+   ten jeden plik łapie wszystkie podstrony.
+2. Workflow starego repo przestaje budować — zamiast kroków z Pythonem wrzuca
+   `path: przekierowanie` do `upload-pages-artifact`.
+3. Baner w `README.md` (i `CLAUDE.md`, jeśli jest), żeby nikt — człowiek ani agent —
+   nie edytował archiwum.
 
 ```html
-<!doctype html><meta charset="utf-8"><title>Przeniesione</title>
-<script>var p=location.pathname.split('/').slice(2).join('/');
-location.replace('https://anks.pl/cycling_trips/<slug>/'+p+location.search+location.hash);</script>
-<a href="https://anks.pl/cycling_trips/<slug>/">Strona przeniesiona — kliknij tutaj</a>
+<!doctype html><html lang="pl"><meta charset="utf-8">
+<title>Strona przeniesiona</title><meta name="robots" content="noindex">
+<link rel="canonical" href="https://anks.pl/cycling_trips/<slug>/">
+<!-- bez JS: po 2 s na stronę wyprawy; ze skryptem natychmiast i w konkretną podstronę -->
+<meta http-equiv="refresh" content="2;url=https://anks.pl/cycling_trips/<slug>/">
+<body><a id="cel" href="https://anks.pl/cycling_trips/<slug>/">Przejdź do nowej strony</a>
+<script>
+var cel="https://anks.pl/cycling_trips/<slug>/";
+var nowy=cel+location.pathname.split("/").slice(2).join("/")+location.search+location.hash;
+document.getElementById("cel").href=nowy;location.replace(nowy);
+</script>
 ```
+
+`slice(2)` obcina pusty człon i nazwę starego repo, zostawiając samą nazwę pliku.
+Zakotwiczenie (`#mapa`) i parametry przechodzą dalej — sprawdzone w przeglądarce,
+z JS i bez.
 
 Nazwy plików (`dzien-3.html`, `mobile.html`) się nie zmieniły, więc stare linki trafiają w to samo miejsce.
