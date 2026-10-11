@@ -8,15 +8,15 @@ end: 2026-11-03
 
 - Opis: Longinada 2026 — rowerem w poprzek Honsiu z Osaki do Tokio, ~808 km
 - Mapa Google: https://www.google.com/maps/d/viewer?mid=1bus-moihIxImUmlkLEkrKgru7GhjFFg
-- Takoyaki - kulki z ośmiornicą, kolebka w Osace
-- Okonomiyaki - placek z kapustą „co lubisz”, Osaka
-- Kakinoha-zushi - sushi z makrelą w liściu persymony, Nara
-- Oroshi soba - zimne soba z tartym daikonem, Echizen
-- Hida-gyu - wołowina z regionu Hida, Takayama
-- Mitarashi dango - kulki ryżowe w sosie sojowo-cukrowym
-- Gohei mochi - ryż na patyku z pastą orzechową, dolina Kiso
-- Shinshu soba - makaron gryczany z Nagano
-- Hōtō - grube kluski w zupie miso z dynią, Yamanashi
+- Takoyaki - kulki z ośmiornicą, Osaka (dzień 2)
+- Okonomiyaki - placek z kapustą „co lubisz”, Osaka (dzień 2)
+- Kakinoha-zushi - sushi z makrelą w liściu persymony, Nara (dzień 4)
+- Oroshi soba - zimne soba z tartym daikonem, Echizen (dzień 8)
+- Hida-gyu - wołowina z regionu Hida, Takayama (dzień 11)
+- Mitarashi dango - kulki ryżowe w sosie sojowo-cukrowym, Takayama (dzień 11)
+- Gohei mochi - ryż na patyku z pastą orzechową, dolina Kiso (dzień 13)
+- Shinshu soba - makaron gryczany z Nagano, Matsumoto (dzień 13)
+- Hōtō - grube kluski w zupie miso z dynią, Yamanashi (dzień 14)
 
 # Klucz do wyjazdu — „Alpy Japońskie”
 
@@ -46,6 +46,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 - przylot 17:15 (EK316), ~37 km od startu trasy
 - hotel przy Shin-Osaka, wieczorem Dotonbori
+- na talerzu: takoyaki i okonomiyaki — Osaka jest ich kolebką
 
 ### Miejsca i historia
 
@@ -60,6 +61,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 - Shinkansen, na lekko; zapas czasu na wypadek opóźnienia bagażu
 - wieczorem powrót do Osaki i składanie rowerów w hotelu
+- na talerzu: *momiji manju* na Miyajimie — ciastko w kształcie liścia klonu
 
 ### Miejsca i historia
 
@@ -73,6 +75,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 ## Dzień 4: Środa, 21.10.2026, Osaka > Nara > Kioto (81km)
 
 - km 0 → 81, przez Park Nara, nocleg w Kioto
+- na talerzu: *kakinoha-zushi* i pikle *narazuke* w Narze, matcha w Uji
 
 ### Miejsca i historia
 
@@ -92,6 +95,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 ## Dzień 5: Czwartek, 22.10.2026, Kioto (0km)
 
 - bez sakw: Arashiyama i świątynie
+- na talerzu: *yuba*, *kaiseki* i matcha — kuchnia *kyō-ryōri*
 
 ### Miejsca i historia
 
@@ -107,6 +111,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 ## Dzień 6: Piątek, 23.10.2026, Kioto > Jezioro Biwa (59km)
 
 - dzień trasy nr 1; km 81 → ~140, zachodnim brzegiem Jeziora Biwa
+- na talerzu: wołowina *Ōmi* i *chikara mochi* spod Miidery
 
 ### Miejsca i historia
 
@@ -122,6 +127,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 ## Dzień 7: Sobota, 24.10.2026, Jezioro Biwa > Tsuruga (39km)
 
 - dzień trasy nr 2; km ~140 → 179, w stronę Morza Japońskiego
+- na talerzu: *sauce katsu-don* i owoce morza z Zatoki Tsuruga
 
 ### Miejsca i historia
 
@@ -136,6 +142,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 - dzień trasy nr 3; km 179 → 333, wybrzeżem
 - od dziś różnica czasu z Polską +8 h
+- na talerzu: *Echizen oroshi soba* na wybrzeżu, lody z płatkiem złota w Kanazawie
 
 ### Miejsca i historia
 
@@ -177,6 +184,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 - dzień trasy nr 4
 - wariant z planu: płaski, szybki odcinek do Toyamy
 - wariant z KML: od razu w góry, na Gokayamę
+- na talerzu: *shiroebi* i *masuzushi* z Zatoki Toyama (wariant z planu)
 
 ### Miejsca i historia
 
@@ -215,6 +223,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 ## Dzień 11: Środa, 28.10.2026, dolina Jinzū > Takayama (?km)
 
 - dzień trasy nr 6; km 473, górski dojazd, wieczorem onseny
+- na talerzu: *Hida-gyu*, *hoba miso* i *mitarashi dango* w Takayamie
 
 ### Miejsca i historia
 
@@ -250,6 +259,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 - dzień trasy nr 8
 - wariant z planu: dolina Kiso w stronę Matsumoto
 - wariant z KML: z Hirayu prosto do Matsumoto, km 473 → 555 (~82 km na dni 12–13)
+- na talerzu: *gohei mochi* w dolinie Kiso, *shinshu soba* i *oyaki* w Matsumoto
 
 ### Miejsca i historia
 
@@ -270,6 +280,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 ## Dzień 14: Sobota, 31.10.2026, Matsumoto > Fujikawaguchiko (150km)
 
 - dzień trasy nr 9; km 555 → 705, na południe pod Fudżi
+- na talerzu: *hōtō*, wino *Kōshū*, *torimotsu-ni* w Kōfu
 
 ### Miejsca i historia
 
@@ -323,6 +334,7 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 - rano pamiątki, popołudnie i wieczór w Shinjuku
 - ok. 17:30 odbiór plandek ze sprzętem z hotelu
 - Keisei Skyliner na Naritę, wylot 22:20 (EK319)
+- na talerzu: sushi *edomae* i *monjayaki* — smaki Edo
 
 ### Miejsca i historia
 
@@ -383,17 +395,17 @@ Plan dzienny i ślad rozjeżdżają się w trzech miejscach — przy miejscach s
 
 ### Czego spróbować, region po regionie
 
-- **Osaka** — takoyaki, okonomiyaki. Motto *kuidaore*: „jedz aż zbankrutujesz”.
-- **Nara** — kakinoha-zushi, pikle narazuke, persymony kaki.
-- **Kioto** — kaiseki, yuba, matcha z Uji.
-- **Shiga** — wołowina Ōmi, funazushi (jedna z najstarszych form sushi).
-- **Fukui** — Echizen oroshi soba, sauce katsu-don w Tsurudze.
-- **Ishikawa** — lody z płatkiem złota w Kanazawie, Komatsu udon.
-- **Toyama** — shiroebi, masuzushi.
-- **Gifu** — Hida-gyu, hoba miso, mitarashi dango.
-- **Nagano** — shinshu soba, oyaki, gohei mochi.
-- **Yamanashi** — hōtō, wino Kōshū, torimotsu-ni.
-- **Tokio** — sushi edomae, monjayaki.
+- **Dzień 2 · Osaka** — takoyaki, okonomiyaki. Motto *kuidaore*: „jedz aż zbankrutujesz”.
+- **Dzień 4 · Nara** — kakinoha-zushi, pikle narazuke, persymony kaki.
+- **Dzień 5 · Kioto** — kaiseki, yuba, matcha z Uji.
+- **Dzień 6 · Shiga** — wołowina Ōmi, funazushi (jedna z najstarszych form sushi).
+- **Dni 7–8 · Fukui** — Echizen oroshi soba, sauce katsu-don w Tsurudze.
+- **Dzień 8 · Ishikawa** — lody z płatkiem złota w Kanazawie, Komatsu udon.
+- **Dzień 9 · Toyama** — shiroebi, masuzushi.
+- **Dni 10–12 · Gifu** — Hida-gyu, hoba miso, mitarashi dango.
+- **Dni 13–14 · Nagano** — shinshu soba, oyaki, gohei mochi.
+- **Dzień 14 · Yamanashi** — hōtō, wino Kōshū, torimotsu-ni.
+- **Dni 16–17 · Tokio** — sushi edomae, monjayaki.
 
 ### Zasada zakupów
 
