@@ -60,7 +60,7 @@ Tokio). Plan jest ramowy.
 - Shinkansen, na lekko; zapas czasu na wypadek opóźnienia bagażu
 - wieczorem powrót do Osaki i składanie rowerów w hotelu
 - na talerzu: *momiji manju* na Miyajimie — ciastko w kształcie liścia klonu
-- na pamiątkę: igły krawieckie — Hiroszima słynie z ich produkcji ([więcej](kulinaria.html))
+- na pamiątkę: igły krawieckie — Hiroszima słynie z ich produkcji ([więcej](pamiatki.html))
 
 ### Miejsca i historia
 
@@ -81,7 +81,7 @@ Tokio). Plan jest ramowy.
 
 - km 0 → 81, przez Park Nara, nocleg w Kioto
 - na talerzu: *kakinoha-zushi* i pikle *narazuke* w Narze, matcha w Uji
-- na pamiątkę: tusz *sumi* z Nary ([więcej](kulinaria.html))
+- na pamiątkę: tusz *sumi* z Nary ([więcej](pamiatki.html))
 
 ### Miejsca i historia
 
@@ -111,7 +111,7 @@ Tokio). Plan jest ramowy.
 
 - bez sakw: Arashiyama i świątynie
 - na talerzu: *yuba*, *kaiseki* i matcha — kuchnia *kyō-ryōri*
-- na pamiątkę: **papiernicze i washi na Teramachi** — Kyūkyōdō, Kamiji Kakimoto, Morita Washi; ceramika Kiyomizu-yaki ([więcej](kulinaria.html))
+- na pamiątkę: **papiernicze i washi na Teramachi** — Kyūkyōdō, Kamiji Kakimoto, Morita Washi; ceramika Kiyomizu-yaki ([więcej](pamiatki.html))
 
 ### Miejsca i historia
 
@@ -184,7 +184,7 @@ Tokio). Plan jest ramowy.
 - dzień trasy nr 3; km 179 → 333, wybrzeżem
 - od dziś różnica czasu z Polską +8 h
 - na talerzu: *Echizen oroshi soba* na wybrzeżu, lody z płatkiem złota w Kanazawie
-- na pamiątkę: papier *washi* z Echizen i kute noże, ceramika *Kutani-yaki* w Kadze, złoty listek w Kanazawie ([więcej](kulinaria.html))
+- na pamiątkę: papier *washi* z Echizen i kute noże, ceramika *Kutani-yaki* w Kadze, złoty listek w Kanazawie ([więcej](pamiatki.html))
 
 ### Miejsca i historia
 
@@ -242,7 +242,7 @@ Tokio). Plan jest ramowy.
 - wariant z planu: płaski, szybki odcinek do Toyamy
 - wariant z KML: od razu w góry, na Gokayamę
 - na talerzu: *shiroebi* i *masuzushi* z Zatoki Toyama (wariant z planu)
-- na pamiątkę: *masuzushi* w pudełku ze stacji — klasyczny prezent z Toyamy ([więcej](kulinaria.html))
+- na pamiątkę: *masuzushi* w pudełku ze stacji — klasyczny prezent z Toyamy ([więcej](pamiatki.html))
 
 ### Miejsca i historia
 
@@ -293,7 +293,7 @@ Tokio). Plan jest ramowy.
 
 - dzień trasy nr 6; km 473, górski dojazd, wieczorem onseny
 - na talerzu: *Hida-gyu*, *hoba miso* i *mitarashi dango* w Takayamie
-- na pamiątkę: sake z jednego z siedmiu browarów na Starym Mieście ([więcej](kulinaria.html))
+- na pamiątkę: sake z jednego z siedmiu browarów na Starym Mieście ([więcej](pamiatki.html))
 
 ### Miejsca i historia
 
@@ -337,7 +337,7 @@ Tokio). Plan jest ramowy.
 - wariant z planu: dolina Kiso w stronę Matsumoto
 - wariant z KML: z Hirayu prosto do Matsumoto, km 473 → 555 (~82 km na dni 12–13)
 - na talerzu: *gohei mochi* w dolinie Kiso, *shinshu soba* i *oyaki* w Matsumoto
-- na pamiątkę: żabki na szczęście z ulicy Nawate, *shinshu miso* ([więcej](kulinaria.html))
+- na pamiątkę: żabki na szczęście z ulicy Nawate, *shinshu miso* ([więcej](pamiatki.html))
 
 ### Miejsca i historia
 
@@ -368,7 +368,7 @@ Tokio). Plan jest ramowy.
 
 - dzień trasy nr 9; km 555 → 705, na południe pod Fudżi
 - na talerzu: *hōtō*, wino *Kōshū*, *torimotsu-ni* w Kōfu
-- na pamiątkę: suszony makaron *hōtō* i miso ([więcej](kulinaria.html))
+- na pamiątkę: suszony makaron *hōtō* i miso ([więcej](pamiatki.html))
 
 ### Miejsca i historia
 
@@ -434,7 +434,7 @@ Tokio). Plan jest ramowy.
 - ok. 17:30 odbiór plandek ze sprzętem z hotelu
 - pociągiem na lotnisko Narita, wylot 22:20 (EK319)
 - na talerzu: sushi *edomae* i *monjayaki* — smaki Edo
-- na pamiątkę: **papiernicze** — Kakimori w Kuramae (notatnik składany na miejscu), Itoya w Ginzie, Traveler's Factory; noże na Kappabashi ([więcej](kulinaria.html), [dla znajomych](prezenty.html))
+- na pamiątkę: **papiernicze** — Kakimori w Kuramae (notatnik składany na miejscu), Itoya w Ginzie, Traveler's Factory; noże na Kappabashi ([więcej](pamiatki.html))
 
 ### Miejsca i historia
 
@@ -508,7 +508,13 @@ Tokio). Plan jest ramowy.
 - Jesienne kolory: dolina Kiso i Shōgawa — koniec października; Miyajima i Takao — dopiero w listopadzie.
 - Dzień 15: rowery pakujemy w plandeki w Akiruno i jedziemy pociągiem do Tokio.
 
-# Kulinaria i pamiątki
+# Kulinaria
+
+Co jeść, dzień po dniu — zebrane z planu wyprawy.
+
+# Pamiątki
+
+Co przywieźć i gdzie tego szukać. Na dole to samo w rozbiciu na dni.
 
 ### Tekstylia
 
@@ -569,14 +575,11 @@ Tuszowe pieczątki stoją na wielu dworcach, zwykle przy obsadzonej bramce albo 
 - **Saszetka** — na elektronikę, narzędzia, kosmetyki; bonus za lokalną tkaninę.
 - Pałeczki — tylko jeśli będą używane.
 
-# Pamiątki dla znajomych
-
-### Zasada
+### Prezenty dla znajomych
 
 - Rzeczy zużywalne zamiast bibelotów.
 - Kilka małych zestawów zamiast osobnych pamiątek.
 
-### Co kupić
 
 - Herbata: sencha, hōjicha, genmaicha, regionalna (np. z Uji, dzień 4).
 - Słodycze pakowane pojedynczo.
