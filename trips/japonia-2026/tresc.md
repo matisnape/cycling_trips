@@ -444,6 +444,7 @@ Tokio). Plan jest ramowy.
         - *monjayaki* — tokijski odpowiednik okonomiyaki, rzadszy niż on
     - **Do kupienia:**
         - noże i sprzęt kuchenny z Kappabashi
+        - tarka ze skóry rekina (*samegawa oroshi*) — tradycyjne narzędzie do wasabi, ściera drobniej niż metalowa; szukać w Kappabashi, nie każdy sklep ma
 - **Tokio** — ślad kończy się w centrum, km 808.
     - **Pomnik Hachikō** — przy wyjściu Hachikō ze stacji Shibuya, obok słynnego skrzyżowania; z Shinjuku 2 przystanki JR Yamanote, ~7 min
     - akita czekał tu na prof. Hidesaburō Uenę codziennie, także przez prawie 10 lat po jego śmierci (1925–1935)

@@ -37,6 +37,8 @@ _site/                BUILD OUTPUT, in .gitignore
 - **`trips/<slug>/tresc.md`** — the content source. Almost every request ("add a note
   about Theth", "fix the distance on day 4") means editing this file in the right trip.
 - `trips/<slug>/trip.toml` — name, hero, subpages, accent colour, analytics.
+- `trips/<slug>/TODO.md` — open questions for that trip, if it has any. Not
+  published; read it before asking the owner something already settled there.
 - `trips/<slug>/pois.csv` (columns `day,name,lat,lon,blurb`; extra columns are copied
   onto the point) and `route.gpx`/`route.kml` — map points and track. After a change:
   `python engine/gen_route.py <slug>`.
