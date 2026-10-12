@@ -551,7 +551,7 @@ Godziny i adresy sprawdź przed pójściem, bo się zmieniają.
 ### Dom i drobiazgi
 
 - Małe rzeczy do konkretnego problemu: składane haczyki, magnetyczne organizery, organizacja kabli, klipsy, składane przybory kuchenne.
-- **Pojemnik do marynowania jajek do ramenu** (*ajitsuke tamago*) — trzyma jajka pionowo w niecałych 50 ml zalewy, z wewnętrzną przykrywką, która je dociska. W Daiso jako 味付け玉子職人 na dwa jajka (110 ¥) albo 味付けたまごメーカー na cztery, w Serii jako 味玉名人. Godzina w lodówce daje blady kolor, doba — właściwy.
+- **Pojemnik do marynowania jajek do ramenu** (*ajitsuke tamago*) — trzyma jajka pionowo w niecałych 50 ml zalewy, z wewnętrzną przykrywką, która je dociska. W Daiso jako 味付け玉子職人 na dwa jajka (110 ¥) albo 味付けたまごメーカー na cztery, w Serii jako 味玉名人.
 - Gdzie szukać: Hands, Loft, Daiso, Seria, Can Do.
 
 ### Inne
