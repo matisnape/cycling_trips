@@ -129,6 +129,7 @@ Tokio). Plan jest ramowy.
         - *kaiseki* — wielodaniowa kolacja w tradycyjnym stylu
         - *yuba* — skórka ścięta z gotowanego mleka sojowego
         - matcha z Uji
+        - ramen po kiotsku — ciemny wywar wieprzowo-sojowy i grube plastry *chāshū*
     - **Do kupienia:**
         - *yatsuhashi* — cienkie ciastka ryżowe z cynamonem, na surowo albo pieczone
         - ceramika *Kiyomizu-yaki*
@@ -251,6 +252,7 @@ Tokio). Plan jest ramowy.
     - *masuzushi*, sushi z pstrągiem — klasyczny prezent kupowany na stacji
     - **Do spróbowania:**
         - *shiroebi* — białe krewetki z zatoki: jako sushi, w tempurze albo w krakersach
+        - *Toyama Black* (富山ブラック) — ramen na niemal czarnym, mocno słonym sosie sojowym, z grubo mielonym pieprzem. Powstał po wojnie jako dodatek do miski ryżu dla robotników, więc sam w sobie jest przesolony — tak ma być
     - **Do kupienia:**
         - *masuzushi* — sushi z pstrągiem w okrągłym pudełku, klasyczny prezent ze stacji
 - **Toyama** — wariant z planu, ~36 km od śladu.
@@ -307,6 +309,7 @@ Tokio). Plan jest ramowy.
         - *Hida-gyu* — wołowina z regionu, w sushi i na szaszłykach
         - *hoba miso* — miso pieczone na liściu magnolii, z porem i grzybami
         - *mitarashi dango* — kulki ryżowe w sosie sojowo-cukrowym, na wynos
+        - *takayama ramen*, w menu zwykle jako *chūka soba* — cienki karbowany makaron w sojowym wywarze; tutejszy patent to gotowanie sosu razem z wywarem, zamiast łączenia ich w misce. Robią to tu od 1938
     - **Do kupienia:**
         - sake z jednego z siedmiu browarów na Starym Mieście
 

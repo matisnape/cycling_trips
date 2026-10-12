@@ -422,7 +422,16 @@ def parse_note(raw, cfg):
             if inner:
                 parts.append(f'<h2 class="pick-day"><a href="dzien-{d["num"]}.html">'
                              f'Dzień {d["num"]} · {d["route"]}</a></h2>{inner}')
-        pg["html"] += "".join(parts)
+        if not parts:
+            continue
+        # The collected part gets its own heading, and a link to it in the jump bar
+        # when the page has one — otherwise the day blocks are only reachable by
+        # scrolling past everything written by hand.
+        anchor = f'{pg["slug"]}-dni'
+        if 'class="page-toc"' in pg["html"]:
+            pg["html"] = pg["html"].replace(
+                "</nav>", f'<a href="#{anchor}">Dzień po dniu</a></nav>', 1)
+        pg["html"] += f'<h2 class="pick-all" id="{anchor}">Dzień po dniu</h2>' + "".join(parts)
 
     # ---- END parser ----
 
@@ -988,6 +997,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 .page-toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
 .page-toc a{font-size:.82rem;color:var(--mut);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
 h3[id]{scroll-margin-top:12px}
+.pick-all{margin-top:22px;padding-top:14px;border-top:1px solid var(--line)}
 """.replace("@ACC_DARK@", cfg.accent_dark).replace("@ACC@", cfg.accent)
     blocks = []
     for d in days:

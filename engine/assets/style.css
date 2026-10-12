@@ -285,3 +285,5 @@ em { font-style: italic; }
   border: 1px solid var(--line); border-radius: 999px; padding: 0.3rem 0.7rem; }
 .page-toc a:hover, .page-toc a:focus-visible { color: var(--river); border-color: var(--river); }
 .prose h3[id] { scroll-margin-top: 5rem; }
+.pick-all { margin-top: 2.4rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+.pick-day { scroll-margin-top: 5rem; }
