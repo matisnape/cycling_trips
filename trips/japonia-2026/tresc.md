@@ -599,14 +599,13 @@ Tuszowe pieczątki stoją na wielu dworcach, zwykle przy obsadzonej bramce albo 
 
 ### Pióro wieczne
 
-Cel: **Pilot Custom Heritage 912, stalówka FA**. ¥49 500 z podatkiem, ok. 1290 zł.
+Cel: **Pilot Custom Heritage 912, stalówka FA**. Rząd wielkości **¥50 000**, ok. 1300 zł.
 
 - **FA to stalówka, nie model** — pytać o jedno i drugie; samo „912” da zwykłe EF–B.
-- Cennik Pilota w górę od 1.07.2026 (było ¥38 500). Tańsze oferty w sieci są sprzed podwyżki i zwykle oznaczają brak towaru.
-- Osobnej ceny wariantu FA nie potwierdziłem u producenta; Shosaikan podaje ¥49 500.
+- Ceny w sieci bywają sprzed podwyżki z 2026 — w sklepie wyjdzie drożej.
 - Ta sama stalówka #10 w **Custom 742**. Większa #15 z FA w **Custom 743**, drożej.
 - **Custom Heritage 92** odpada — FA w nim nie ma.
-- **Falcon / Elabo** — osobny model, stalówki SF / SM / SB, **SF = Soft-F**. Żywiczny FE-25SR ¥47 300 (cennik X 2025). Metalowy: w japońskim detalu niepotwierdzony, głównie eksport — jak zobaczysz, zdjęcie.
+- **Falcon / Elabo** — osobny model, stalówki SF / SM / SB, **SF = Soft-F**. Żywiczny podobna półka co 912. Metalowy: w japońskim detalu niepotwierdzony, głównie eksport — jak zobaczysz, zdjęcie.
 - FA ≠ SF: FA półgiętka, linia rozszerza się pod naciskiem; SF po prostu miękka.
 - FA **railroaduje** przy mocnym nacisku — dwie cienkie linie zamiast jednej grubej. Egzemplarze się różnią, przetestować przed zakupem.
 - Japońskie stalówki piszą cieniej: japońskie F ≈ europejskie EF.
@@ -623,13 +622,13 @@ Cel: **Pilot Custom Heritage 912, stalówka FA**. ¥49 500 z podatkiem, ok. 1290
 
 ### Pióro — tańsze alternatywy
 
-Okolice ¥20 000 (ok. 520 zł), jeśli 912 FA odpadnie:
+Okolice **¥20 000**, ok. 520 zł, jeśli 912 FA odpadnie:
 
-- **Pilot Custom 74** — złota stalówka, ok. ¥19 600 w japońskich sklepach. FA nie ma.
-- **Pilot Capless** — stalówka chowana jak w długopisie, wersja ze stopu ok. ¥17 600.
-- **Platinum Procyon** — ok. ¥9900, mały wybór stalówek.
-- **Platinum #3776 Century** — koniec produkcji ogłoszony w X 2026, tylko resztki stanu.
-- **Sailor** — poza budżetem po podwyżkach, Profit Standard z ¥22 000 na ¥44 000.
+- **Pilot Custom 74** — złota stalówka, ale FA nie ma.
+- **Pilot Capless** — stalówka chowana jak w długopisie, wersja ze stopu.
+- **Platinum Procyon** — ok. połowa tej kwoty, mały wybór stalówek.
+- **Platinum #3776 Century** — koniec produkcji, tylko resztki stanu.
+- **Sailor** — po podwyżkach poza budżetem.
 
 ### Nóż z Japonii
 
