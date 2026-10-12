@@ -599,47 +599,37 @@ Tuszowe pieczątki stoją na wielu dworcach, zwykle przy obsadzonej bramce albo 
 
 ### Pióro wieczne
 
-Cel: **Pilot Custom Heritage 912 ze stalówką FA**.
+Cel: **Pilot Custom Heritage 912, stalówka FA**. ¥49 500 z podatkiem, ok. 1290 zł.
 
-**FA to typ stalówki**, a nie model pióra — miękka, półgiętka, 14-karatowa, linia rozszerza się pod naciskiem. Dlatego w sklepie pytamy o model **i** stalówkę: samo „Custom Heritage 912” da zwykłe EF–B.
-
-- **Cena**: Pilot podniósł cennik 1.07.2026, 912 kosztuje teraz **¥49 500 z podatkiem**, czyli ok. **1290 zł** (wcześniej ¥38 500). Niższe ceny widoczne w sieci są sprzed podwyżki i zwykle oznaczają brak towaru. Osobnej ceny wariantu FA nie udało mi się potwierdzić w katalogu producenta — jeden sklep (Shosaikan) podaje właśnie ¥49 500.
-- **Jeśli 912 FA nie będzie**: ta sama stalówka #10 siedzi w **Pilot Custom 742**, a większa #15 z FA w **Custom 743** (drożej). To zamiennik wart brania.
-- **Czego nie brać zamiast**: **Custom Heritage 92** — przezroczysty, ładny, ale FA w nim nie ma, tylko zwykłe EF–B.
-
-**Falcon** to osobny model, nie stalówka — i też jest na liście. W Japonii chodzi pod nazwą **Elabo**, ma własne miękkie stalówki **SF / SM / SB**, gdzie **SF to Soft-F**, czyli to, o co chodzi. Jeśli zobaczysz go na półce, zrób zdjęcie i daj znać przed zakupem:
-
-- **Wersja żywiczna (Elabo FE-25SR)** — ¥47 300 wg cennika z X 2025, normalnie dostępna w japońskich sklepach.
-- **Wersja metalowa** — w japońskiej sprzedaży detalicznej jej nie potwierdziłem; chodzi głównie jako model eksportowy. Jeśli gdzieś stoi, to właśnie o takim znalezisku warto napisać.
-- Stalówki do porównania w ręce: SF (Soft-F) najcieńsza z miękkich, SM pośrednia, SB najgrubsza.
-
-Na co uważać przy wyborze egzemplarza:
-
-- FA pod zbyt mocnym naciskiem **„railroaduje”**: zamiast jednej grubej kreski zostawia dwie cienkie linie z pustką w środku. To cecha stalówki, nie wada egzemplarza, ale egzemplarze różnią się między sobą — jeśli sklep pozwala, napisz kilka zdań tym konkretnym piórem przed zakupem.
-- Grubość stalówki: japońskie piszą cieniej niż europejskie, japońskie F odpowiada mniej więcej europejskiemu EF.
-- Hasła dla sprzedawcy: *Pilot Custom Heritage 912, FA nib* — パイロット カスタムヘリテイジ912 FA;
-  *Pilot Elabo, soft fine* — パイロット エラボ SF.
-- Zakup przekracza próg ¥5000, więc warto go zrobić bez podatku — zasady i daty w [Praktycznych](praktyczne.html#praktyczne-zakupy-bez-podatku).
+- **FA to stalówka, nie model** — pytać o jedno i drugie; samo „912” da zwykłe EF–B.
+- Cennik Pilota w górę od 1.07.2026 (było ¥38 500). Tańsze oferty w sieci są sprzed podwyżki i zwykle oznaczają brak towaru.
+- Osobnej ceny wariantu FA nie potwierdziłem u producenta; Shosaikan podaje ¥49 500.
+- Ta sama stalówka #10 w **Custom 742**. Większa #15 z FA w **Custom 743**, drożej.
+- **Custom Heritage 92** odpada — FA w nim nie ma.
+- **Falcon / Elabo** — osobny model, stalówki SF / SM / SB, **SF = Soft-F**. Żywiczny FE-25SR ¥47 300 (cennik X 2025). Metalowy: w japońskim detalu niepotwierdzony, głównie eksport — jak zobaczysz, zdjęcie.
+- FA ≠ SF: FA półgiętka, linia rozszerza się pod naciskiem; SF po prostu miękka.
+- FA **railroaduje** przy mocnym nacisku — dwie cienkie linie zamiast jednej grubej. Egzemplarze się różnią, przetestować przed zakupem.
+- Japońskie stalówki piszą cieniej: japońskie F ≈ europejskie EF.
+- Hasła: パイロット カスタムヘリテイジ912 FA · パイロット エラボ SF
+- Bez podatku: [zasady i daty](praktyczne.html#praktyczne-zakupy-bez-podatku).
 
 ### Pióro — gdzie kupić
 
-Godziny i adresy sprawdź przed pójściem.
-
-- **Itoya** — Ginza, dzień 16. Najpewniejszy adres, osobne piętro piór i Pen Care Room. Uwaga: regulacja stalówki trwa u nich 2–3 tygodnie, więc na dopasowanie na miejscu nie ma co liczyć.
-- **Maruzen** (Nihonbashi, Marunouchi), **Kingdom Note** (Shinjuku), **Shosaikan** (Aoyama) — dalsze przystanki w Tokio, dzień 16.
-- **Maruzen Kioto** — KYOTO BAL, poziom B1, dzień 5. Jest tam stoisko Pilota z piórami do przetestowania. Warto zadzwonić wcześniej (075-253-1599) i zapytać o FA oraz o Elabo.
-- Kanazawa i Matsumoto — loteria, nie planujmy na to.
+- **Itoya**, Ginza — dzień 16, najpewniejsze. Regulacja stalówki trwa 2–3 tygodnie, nie na miejscu.
+- **Maruzen** (Nihonbashi, Marunouchi), **Kingdom Note** (Shinjuku), **Shosaikan** (Aoyama) — Tokio, dzień 16.
+- **Maruzen Kioto**, KYOTO BAL poziom B1 — dzień 5. Stoisko Pilota do testowania; zadzwonić wcześniej (075-253-1599) i zapytać o FA i Elabo.
+- Kanazawa, Matsumoto — loteria.
 - Kappabashi to noże, nie pióra.
 
 ### Pióro — tańsze alternatywy
 
-Jeśli 912 FA okaże się za drogie albo niedostępne, w okolicach ¥20 000 (ok. 520 zł) zostaje:
+Okolice ¥20 000 (ok. 520 zł), jeśli 912 FA odpadnie:
 
-- **Pilot Custom 74** — najbezpieczniejszy pierwszy wybór ze złotą stalówką; w japońskich sklepach bywa ok. ¥19 600, choć cena katalogowa jest wyższa. FA w nim nie ma.
-- **Pilot Capless** — stalówka chowana jak w długopisie, wersja ze stopu ok. ¥17 600. Nietypowe i bardzo japońskie.
-- **Platinum Procyon** — ok. ¥9900, dobre za swoje pieniądze, ale mały wybór stalówek.
-- **Platinum #3776 Century** — odpada: w październiku 2026 ogłoszono koniec produkcji. Chyba że trafi się resztka stanu.
-- **Sailor** — po tegorocznych podwyżkach wypada z budżetu; Profit Standard poszedł z ¥22 000 na ¥44 000.
+- **Pilot Custom 74** — złota stalówka, ok. ¥19 600 w japońskich sklepach. FA nie ma.
+- **Pilot Capless** — stalówka chowana jak w długopisie, wersja ze stopu ok. ¥17 600.
+- **Platinum Procyon** — ok. ¥9900, mały wybór stalówek.
+- **Platinum #3776 Century** — koniec produkcji ogłoszony w X 2026, tylko resztki stanu.
+- **Sailor** — poza budżetem po podwyżkach, Profit Standard z ¥22 000 na ¥44 000.
 
 ### Nóż z Japonii
 
