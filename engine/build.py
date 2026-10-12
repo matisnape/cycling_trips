@@ -1063,6 +1063,9 @@ h3[id]{scroll-margin-top:12px}
     # this page the same content is a section, so those links become anchors.
     for slug in [p["slug"] for p in extra] + ["zrodla"] + [f'dzien-{d["num"]}' for d in days]:
         blocks = [b.replace(f'href="{slug}.html"', f'href="#{slug}"') for b in blocks]
+    # The same for a link into a section ("praktyczne.html#praktyczne-pieniadze"):
+    # the heading ids are carried over to this page, so the file part just goes away.
+    blocks = [re.sub(r'href="[a-z0-9-]+\.html#', 'href="#', b) for b in blocks]
 
     # Opening this page (not via the "?full=1" link) means "phone version is what I
     # want" — index.html reads the same key and hands over automatically next time.
@@ -1129,7 +1132,13 @@ h3[id]{scroll-margin-top:12px}
                f"var IDS={ids},LAB={labels};"
                "var cap=document.getElementById('nav-c');"
                "function el(id){return document.getElementById(id);}"
-               "function open_(id){var e=el(id);if(e&&e.tagName==='DETAILS')e.open=true;return e;}"
+               # A link can point at a heading inside a collapsed section, so every
+               # <details> above the target is opened, and then it is scrolled to:
+               # the browser already tried that while the section was still closed.
+               "function open_(id){var e=el(id),p=e;"
+               "while(p){if(p.tagName==='DETAILS')p.open=true;p=p.parentElement;}"
+               "if(e&&e.tagName!=='DETAILS')e.scrollIntoView({block:'start'});"
+               "return e;}"
                "function cur(){"
                # At the very bottom every remaining section is already on screen,
                # so the "last one scrolled past" rule would read a stale day.

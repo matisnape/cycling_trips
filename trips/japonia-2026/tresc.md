@@ -111,7 +111,7 @@ Tokio). Plan jest ramowy.
 
 - bez sakw: Arashiyama i świątynie
 - na talerzu: *yuba*, *kaiseki* i matcha — kuchnia *kyō-ryōri*
-- na pamiątkę: **papiernicze i washi na Teramachi** — Kyūkyōdō, Kamiji Kakimoto, Morita Washi; ceramika Kiyomizu-yaki ([więcej](pamiatki.html))
+- na pamiątkę: **papiernicze i washi na Teramachi** — Kyūkyōdō, Kamiji Kakimoto, Morita Washi; ceramika Kiyomizu-yaki; pióra Pilota do przymierzenia w Maruzen w KYOTO BAL ([więcej](pamiatki.html))
 
 ### Miejsca i historia
 
@@ -496,6 +496,14 @@ Tokio). Plan jest ramowy.
 - Przelicznik przyjęty tutaj to **100 ¥ ≈ 2,6 zł**; kurs sprawdź przed wyjazdem w tabeli NBP: https://nbp.pl/
 - Gotówka wciąż bywa potrzebna, zwłaszcza w małych miejscach. Karty zagraniczne działają w bankomatach 7-Eleven i na poczcie.
 
+### Zakupy bez podatku
+
+- Próg bez zmian: **¥5000 na sklep na dzień**, paszport przy sobie.
+- **Do 31.10** działa stary system: podatek odliczają przy kasie, płacisz cenę netto.
+- **Od 1.11.2026** Japonia przechodzi na zwrot: płacisz pełną cenę, a zwrot potwierdzasz przy odprawie celnej na lotnisku. Dni 15 i 16 łapią się już na nowe zasady, więc na Naricie doliczmy na to czas.
+- Wniosek praktyczny: coś drogiego kupujmy do dnia 14 — najwygodniej w Kioto (dzień 5) albo Kanazawie (dni 8–9).
+- Zasady zmieniali w trakcie 2026 roku, więc przed wylotem warto sprawdzić aktualny stan.
+
 ### Czas i prąd
 
 - Japonia to UTC+9. Różnica z Polską: +7 h do 25.10, +8 h od 25.10 (koniec czasu letniego w Polsce).
@@ -591,14 +599,47 @@ Tuszowe pieczątki stoją na wielu dworcach, zwykle przy obsadzonej bramce albo 
 
 ### Pióro wieczne
 
-Budżet do ~¥20 000, czyli ok. 520 zł. Ceny z jesieni 2026, na miejscu sprawdź aktualne.
+Cel: **Pilot Custom Heritage 912 ze stalówką FA**.
 
-- **Pilot Custom 74** — najbezpieczniejszy pierwszy wybór ze złotą stalówką; w japońskich sklepach bywa ok. ¥19 600, choć cena katalogowa jest wyższa.
+**FA to typ stalówki**, a nie model pióra — miękka, półgiętka, 14-karatowa, linia rozszerza się pod naciskiem. Dlatego w sklepie pytamy o model **i** stalówkę: samo „Custom Heritage 912” da zwykłe EF–B.
+
+- **Cena**: Pilot podniósł cennik 1.07.2026, 912 kosztuje teraz **¥49 500 z podatkiem**, czyli ok. **1290 zł** (wcześniej ¥38 500). Niższe ceny widoczne w sieci są sprzed podwyżki i zwykle oznaczają brak towaru. Osobnej ceny wariantu FA nie udało mi się potwierdzić w katalogu producenta — jeden sklep (Shosaikan) podaje właśnie ¥49 500.
+- **Jeśli 912 FA nie będzie**: ta sama stalówka #10 siedzi w **Pilot Custom 742**, a większa #15 z FA w **Custom 743** (drożej). To zamiennik wart brania.
+- **Czego nie brać zamiast**: **Custom Heritage 92** — przezroczysty, ładny, ale FA w nim nie ma, tylko zwykłe EF–B.
+
+**Falcon** to osobny model, nie stalówka — i też jest na liście. W Japonii chodzi pod nazwą **Elabo**, ma własne miękkie stalówki **SF / SM / SB**, gdzie **SF to Soft-F**, czyli to, o co chodzi. Jeśli zobaczysz go na półce, zrób zdjęcie i daj znać przed zakupem:
+
+- **Wersja żywiczna (Elabo FE-25SR)** — ¥47 300 wg cennika z X 2025, normalnie dostępna w japońskich sklepach.
+- **Wersja metalowa** — w japońskiej sprzedaży detalicznej jej nie potwierdziłem; chodzi głównie jako model eksportowy. Jeśli gdzieś stoi, to właśnie o takim znalezisku warto napisać.
+- Stalówki do porównania w ręce: SF (Soft-F) najcieńsza z miękkich, SM pośrednia, SB najgrubsza.
+
+Na co uważać przy wyborze egzemplarza:
+
+- FA pod zbyt mocnym naciskiem **„railroaduje”**: zamiast jednej grubej kreski zostawia dwie cienkie linie z pustką w środku. To cecha stalówki, nie wada egzemplarza, ale egzemplarze różnią się między sobą — jeśli sklep pozwala, napisz kilka zdań tym konkretnym piórem przed zakupem.
+- Grubość stalówki: japońskie piszą cieniej niż europejskie, japońskie F odpowiada mniej więcej europejskiemu EF.
+- Hasła dla sprzedawcy: *Pilot Custom Heritage 912, FA nib* — パイロット カスタムヘリテイジ912 FA;
+  *Pilot Elabo, soft fine* — パイロット エラボ SF.
+- Zakup przekracza próg ¥5000, więc warto go zrobić bez podatku — zasady i daty w [Praktycznych](praktyczne.html#praktyczne-zakupy-bez-podatku).
+
+### Pióro — gdzie kupić
+
+Godziny i adresy sprawdź przed pójściem.
+
+- **Itoya** — Ginza, dzień 16. Najpewniejszy adres, osobne piętro piór i Pen Care Room. Uwaga: regulacja stalówki trwa u nich 2–3 tygodnie, więc na dopasowanie na miejscu nie ma co liczyć.
+- **Maruzen** (Nihonbashi, Marunouchi), **Kingdom Note** (Shinjuku), **Shosaikan** (Aoyama) — dalsze przystanki w Tokio, dzień 16.
+- **Maruzen Kioto** — KYOTO BAL, poziom B1, dzień 5. Jest tam stoisko Pilota z piórami do przetestowania. Warto zadzwonić wcześniej (075-253-1599) i zapytać o FA oraz o Elabo.
+- Kanazawa i Matsumoto — loteria, nie planujmy na to.
+- Kappabashi to noże, nie pióra.
+
+### Pióro — tańsze alternatywy
+
+Jeśli 912 FA okaże się za drogie albo niedostępne, w okolicach ¥20 000 (ok. 520 zł) zostaje:
+
+- **Pilot Custom 74** — najbezpieczniejszy pierwszy wybór ze złotą stalówką; w japońskich sklepach bywa ok. ¥19 600, choć cena katalogowa jest wyższa. FA w nim nie ma.
 - **Pilot Capless** — stalówka chowana jak w długopisie, wersja ze stopu ok. ¥17 600. Nietypowe i bardzo japońskie.
-- **Platinum Procyon** — ok. ¥9 900, dobre za swoje pieniądze, ale mały wybór stalówek.
+- **Platinum Procyon** — ok. ¥9900, dobre za swoje pieniądze, ale mały wybór stalówek.
 - **Platinum #3776 Century** — odpada: w październiku 2026 ogłoszono koniec produkcji. Chyba że trafi się resztka stanu.
 - **Sailor** — po tegorocznych podwyżkach wypada z budżetu; Profit Standard poszedł z ¥22 000 na ¥44 000.
-- Grubość stalówki: japońskie piszą cieniej niż europejskie, japońskie F odpowiada mniej więcej europejskiemu EF. Na prezent zwykle **M**.
 
 ### Nóż z Japonii
 
