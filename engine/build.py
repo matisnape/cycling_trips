@@ -56,6 +56,35 @@ except ImportError:
     import markdown
 
 
+_H3 = re.compile(r"<h3>(.*?)</h3>", re.DOTALL)
+_SLUG_CHARS = {"ą": "a", "ć": "c", "ę": "e", "ł": "l", "ń": "n", "ó": "o",
+               "ś": "s", "ż": "z", "ź": "z"}
+
+
+def add_toc(html, prefix):
+    """Give every <h3> an id and put a row of links to them at the top of the page.
+    Long reference pages are read by jumping, not scrolling. Only the hand-written
+    sections get one — this runs before any collected day blocks are appended."""
+    seen, items = set(), []
+
+    def one(m):
+        text = re.sub(r"<[^>]+>", "", m.group(1)).strip()
+        base = "".join(_SLUG_CHARS.get(ch, ch) for ch in text.lower())
+        base = re.sub(r"[^a-z0-9]+", "-", base).strip("-") or "sekcja"
+        hid, n = f"{prefix}-{base}", 2
+        while hid in seen:
+            hid, n = f"{prefix}-{base}-{n}", n + 1
+        seen.add(hid)
+        items.append((hid, text))
+        return f'<h3 id="{hid}">{m.group(1)}</h3>'
+
+    body = _H3.sub(one, html)
+    if len(items) < 3:
+        return html
+    links = "".join(f'<a href="#{hid}">{txt}</a>' for hid, txt in items)
+    return f'<nav class="page-toc" aria-label="Sekcje">{links}</nav>' + body
+
+
 def analytics_tags(ga_id, cookiescript):
     """(cookie banner, GA4) script tags, or empty strings. CookieScript: switch on
     "Google Consent Mode" in its panel so it flips the flags below to 'granted' on
@@ -200,6 +229,7 @@ def load_config(slug):
                 errors.append(f"required field [[pages]] #{i} {k} is missing")
             row[k] = v
         row["phrasebook"] = bool(p.get("phrasebook", False))
+        row["toc"] = bool(p.get("toc", False))
         col = p.get("collect", [])
         if not isinstance(col, list) or not all(isinstance(x, str) and x.strip() for x in col):
             errors.append(f"[[pages]] #{i}: collect must be a list of label names")
@@ -331,6 +361,8 @@ def parse_note(raw, cfg):
         html = md(linkify_sources(ensure_list_blanks(m.group(1).strip()))) if m and m.group(1).strip() else ""
         # phrasebook = true marks a page whose tables can be pinned and counted
         # (engine/assets/phrasebook.js). The wrapper is all that script needs.
+        if html and pg.get("toc"):
+            html = add_toc(html, slug)
         if html and pg.get("phrasebook"):
             html = f'<div class="phrasebook" data-pk="{slug}">{html}</div>'
         EXTRA.append({"slug": slug, "label": label, "title": title, "eyebrow": eyebrow,
@@ -952,6 +984,10 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 .phr-plus{display:inline-flex;align-items:center;gap:4px;min-width:46px;min-height:34px;justify-content:center;
  font:600 .82rem inherit;color:var(--acc);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
 .phr-n{font-variant-numeric:tabular-nums;color:var(--mut)}
+/* Jump links at the top of a long section (toc = true). */
+.page-toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.page-toc a{font-size:.82rem;color:var(--mut);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+h3[id]{scroll-margin-top:12px}
 """.replace("@ACC_DARK@", cfg.accent_dark).replace("@ACC@", cfg.accent)
     blocks = []
     for d in days:

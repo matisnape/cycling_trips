@@ -28,6 +28,7 @@ show_total_km = false
 
 [[pages]]
 slug = "praktyczne"
+toc = true          # a row of jump links to the sections, at the top
 label = "Praktyczne"
 heading = "# Praktyczne informacje"
 title = "Praktyczne informacje"
@@ -44,6 +45,7 @@ phrasebook = true
 
 [[pages]]
 slug = "kulinaria"
+toc = true          # a row of jump links to the sections, at the top
 label = "Kulinaria"
 heading = "# Kulinaria i pamiątki"
 title = "Kulinaria i pamiątki"

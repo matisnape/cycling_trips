@@ -277,3 +277,11 @@ em { font-style: italic; }
   padding: 0.35rem 0.6rem; cursor: pointer; }
 .phr-plus:hover { border-color: var(--river); }
 .phr-n { font-variant-numeric: tabular-nums; color: var(--muted); }
+
+/* --- Jump links at the top of a long reference page (toc = true) ---------- */
+.page-toc { display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem; margin: 0 0 1.8rem;
+  padding-bottom: 1.2rem; border-bottom: 1px solid var(--line); }
+.page-toc a { font: 500 0.82rem var(--display); color: var(--muted); text-decoration: none;
+  border: 1px solid var(--line); border-radius: 999px; padding: 0.3rem 0.7rem; }
+.page-toc a:hover, .page-toc a:focus-visible { color: var(--river); border-color: var(--river); }
+.prose h3[id] { scroll-margin-top: 5rem; }

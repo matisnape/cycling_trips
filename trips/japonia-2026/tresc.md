@@ -501,15 +501,6 @@ Tokio). Plan jest ramowy.
 
 - Weather Spark — średnie temperatury, opady i długość dnia miesiąc po miesiącu, dla każdego miasta na trasie: https://weatherspark.com/
 
-### Pieczątki na stacjach
-
-Tuszowe pieczątki stoją na wielu dworcach, zwykle przy obsadzonej bramce albo w punkcie informacji — wystarczy poprosić. Jednej ogólnokrajowej mapy nie ma, są listy poszczególnych przewoźników:
-
-- JR West — oficjalny spis, ok. 550 stacji; obejmuje dni 2–8, od Osaki po Kanazawę: https://www.jr-odekake.net/navi/stamp_eki/
-- JR East — poradnik i miejsca ustawienia, przydatny od Matsumoto po Tokio: https://media.jreast.co.jp/tags/19116
-- Dla Gifu, Takayamy i doliny Kiso (JR Central) żadnego spisu nie znalazłem — tam trzeba pytać na miejscu.
-- Pieczątki cyfrowe zbiera aplikacja **Ekitag** (エキタグ): przykładasz telefon do tagu NFC na peronie. Po drodze obsługują ją Ōmi Railway (dzień 6), Echizen Tetsudō (dni 7–8) i Ainokaze Toyama (dzień 9): https://ekitag.net/
-
 ### W terenie
 
 - Nie zostawiaj roweru w miejscu z zakazem — rowery są odholowywane.
@@ -550,6 +541,15 @@ Godziny i adresy sprawdź przed pójściem, bo się zmieniają.
 - **Sekaido** (Shinjuku), **Maruzen**, **Pigment Tokyo** — kolejne przystanki, jeśli zostanie czas.
 - **Kyūkyōdō** — Teramachi w Kioto, dzień 5. Działa od 1663: washi, koperty, pędzle, pocztówki w sitodruku.
 - **Kamiji Kakimoto** i **Morita Washi** — też Kioto, washi i papier origami; notes albo kartki wychodzą na ¥300–3000.
+
+### Pieczątki na stacjach
+
+Tuszowe pieczątki stoją na wielu dworcach, zwykle przy obsadzonej bramce albo w punkcie informacji — wystarczy poprosić. Jednej ogólnokrajowej mapy nie ma, są listy poszczególnych przewoźników:
+
+- JR West — oficjalny spis, ok. 550 stacji; obejmuje dni 2–8, od Osaki po Kanazawę: https://www.jr-odekake.net/navi/stamp_eki/
+- JR East — poradnik i miejsca ustawienia, przydatny od Matsumoto po Tokio: https://media.jreast.co.jp/tags/19116
+- Dla Gifu, Takayamy i doliny Kiso (JR Central) żadnego spisu nie znalazłem — tam trzeba pytać na miejscu.
+- Pieczątki cyfrowe zbiera aplikacja **Ekitag** (エキタグ): przykładasz telefon do tagu NFC na peronie. Po drodze obsługują ją Ōmi Railway (dzień 6), Echizen Tetsudō (dni 7–8) i Ainokaze Toyama (dzień 9): https://ekitag.net/
 
 ### Rower
 
