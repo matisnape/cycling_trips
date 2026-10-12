@@ -1,45 +1,45 @@
-day,name,lat,lon,blurb
-2,Lotnisko Kansai,34.4320,135.2366,"Przylot 19.10, 17:15 (EK316). ~37 km od startu trasy."
-2,Osaka,34.6942,135.5023,"Km 0. Dotonbori i Shinsaibashi — neony i jedzenie uliczne. Hotel przy Shin-Osaka."
-3,Hiroszima — Muzeum Pokoju,34.3915,132.4532,"Wypad Shinkansenem bez rowerów, ~280 km od trasy."
-3,Itsukushima (Miyajima),34.2960,132.3198,"UNESCO, „pływająca” torii — w wodzie tylko przy przypływie. Prom z Miyajimaguchi 10 min."
-4,Park Nara,34.6850,135.8430,"Km 32, ~3 km od trasy. Ok. 1200 świętych jeleni, Todaiji z brązowym Buddą."
-4,Uji,34.8893,135.8077,"Km ~52, ~4 km od trasy. Najsłynniejszy region herbaciany Japonii."
-4,Fushimi Inari Taisha,34.9671,135.7727,"Km ~76, ~1 km od trasy. Tysiące czerwonych torii — najlepiej wcześnie rano."
-5,Kioto,35.0121,135.7682,"Km 81. Dzień bez sakw, 17 miejsc UNESCO w mieście."
-5,Kinkaku-ji,35.0394,135.7292,"Złoty Pawilon, ~4 km od trasy."
-5,Arashiyama,35.0170,135.6713,"Bambusowy gaj, ~8 km od trasy. Przed 8:00 bez tłumów."
-5,Kōzan-ji,35.0603,135.6785,"高山寺 w Toganoo, ~11 km od Arashiyamy."
-6,Enryaku-ji (góra Hiei),35.0703,135.8410,"~2 km od trasy. Świątynia UNESCO, siedziba szkoły Tendai, ponad 1200 lat."
-6,Takashima,35.3530,136.0355,"Km ~120–160, zachodni brzeg Jeziora Biwa."
-7,Tsuruga,35.6452,136.0555,"Km 179. Port nad Zatoką Tsuruga, sanktuarium Kehi Jingu."
-8,Wybrzeże Echizen,35.9750,135.9620,"Km ~195–230. Droga 305 wzdłuż Morza Japońskiego."
-8,Tōjinbō,36.2380,136.1250,"~4 km od trasy. Bazaltowe klify 25 m nad morzem."
-8,Mikuni-minato,36.2190,136.1500,"~1 km od trasy. Dawny port szlaku Kitamaebune."
-8,Awara Onsen,36.2170,136.2300,"~1 km od trasy. Największy kurort onsen w Fukui, od 1881."
-8,Kanazawa,36.5608,136.6564,"Km 333. Ogród Kenrokuen, dzielnica Higashi Chaya, złoto płatkowe."
-9,Toyama,36.6953,137.2113,"Wariant z planu — ~36 km od śladu. Zamek, muzeum szkła Kengo Kumy."
-9,Gokayama — Ainokura,36.4247,136.9300,"Wariant z KML, km ~355–380. Wioska gassho-zukuri, UNESCO."
-10,Kamioka,36.3308,137.3036,"Wariant z planu, dolina Jinzū. Górnicze miasteczko w klimacie Showa."
-10,Hida-Furukawa,36.2380,137.1860,"Wariant z planu. Kanał z karpiami i białe magazyny kura."
-10,Shirakawa-gō (Ogimachi),36.2578,136.9063,"Wariant z KML, km ~398 — trasa przez wioskę. UNESCO."
-10,Shōkawa,36.0215,136.9660,"Wariant z KML, km ~431. Roadside Station Sakura no Sato Shokawa."
-11,Takayama,36.1464,137.2521,"Km 473. Sanmachi-suji, poranne targi, 7 browarów sake."
-12,Przełęcz Nomugi,36.0550,137.5500,"Wariant z planu, 1672 m — królewski etap. Pozycja poglądowa."
-12,Hida Great Limestone Cave,36.1838,137.4248,"Wariant z KML, km ~490, ~1 km od trasy."
-12,Tochio Onsen,36.2464,137.5145,"Wariant z KML, km ~507, ~7 km od trasy. Okuhida Onsengo."
-13,Narai,35.9690,137.8160,"Wariant z planu, dolina Kiso. Ponad 1 km zachowanej ulicy stacji Nakasendō."
-13,Matsumoto,36.2386,137.9689,"Km ~555. Zamek „Wrona” — jeden z 12 oryginalnych donżonów."
-13,Asama Onsen,36.2629,137.9887,"~5 km od trasy, ok. 4 km od stacji Matsumoto."
-14,Suwa Taisha (Kamisha),35.9990,138.1190,"Km ~580–590, ~0,5 km od trasy. Jedna z najstarszych świątyń Japonii."
-14,Shōsenkyō,35.7310,138.5690,"~8 km od trasy. Wąwóz słynny z jesiennych liści."
-14,Chureito Pagoda,35.5011,138.8016,"Km ~714, na trasie. Najbardziej ikoniczny kadr z Fudżi."
-14,Fudżi,35.3606,138.7274,"Szczyt ~15 km od trasy, widoczny znad Kawaguchiko."
-15,Saruhashi,35.6150,138.9820,"Km ~733, ~1 km od trasy. „Małpi most”, jeden z trzech niezwykłych mostów Japonii."
-15,Takaosanguchi,35.6322,139.2697,"Km ~768–775, „Punkt 8” z KML. Onsen przy stacji."
-15,Akiruno,35.7300,139.2240,"Koniec jazdy, ~6 km od śladu. Pakowanie rowerów, pociąg do Tokio."
-16,Ueno Park,35.7156,139.7745,"Obok hotelu (Nippori/Ueno). Muzea i zoo."
-16,Senso-ji,35.7148,139.7967,"Asakusa — najstarsza świątynia Tokio."
-16,Shinjuku,35.6900,139.7004,"Popołudnie i wieczór dnia 16."
-16,Pomnik Hachikō (Shibuya),35.6590,139.7006,"Przy wyjściu Hachikō ze stacji Shibuya, obok skrzyżowania. 2 przystanki JR Yamanote od Shinjuku."
-16,Lotnisko Narita,35.7720,140.3929,"Wylot 2.11, 22:20 (EK319). Pociągiem z Nippori albo Ueno, ok. 40 min."
+day,name,lat,lon,blurb,label
+2,Lotnisko Kansai,34.4320,135.2366,"Przylot 19.10, 17:15 (EK316). ~37 km od startu trasy.",
+2,Osaka,34.6942,135.5023,Km 0. Dotonbori i Shinsaibashi — neony i jedzenie uliczne. Hotel przy Shin-Osaka.,Osaka
+3,Hiroszima — Muzeum Pokoju,34.3915,132.4532,"Wypad Shinkansenem bez rowerów, ~280 km od trasy.",
+3,Itsukushima (Miyajima),34.2960,132.3198,"UNESCO, „pływająca” torii — w wodzie tylko przy przypływie. Prom z Miyajimaguchi 10 min.",
+4,Park Nara,34.6850,135.8430,"Km 32, ~3 km od trasy. Ok. 1200 świętych jeleni, Todaiji z brązowym Buddą.",Nara
+4,Uji,34.8893,135.8077,"Km ~52, ~4 km od trasy. Najsłynniejszy region herbaciany Japonii.",
+4,Fushimi Inari Taisha,34.9671,135.7727,"Km ~76, ~1 km od trasy. Tysiące czerwonych torii — najlepiej wcześnie rano.",
+5,Kioto,35.0121,135.7682,"Km 81. Dzień bez sakw, 17 miejsc UNESCO w mieście.",Kioto
+5,Kinkaku-ji,35.0394,135.7292,"Złoty Pawilon, ~4 km od trasy.",
+5,Arashiyama,35.0170,135.6713,"Bambusowy gaj, ~8 km od trasy. Przed 8:00 bez tłumów.",
+5,Kōzan-ji,35.0603,135.6785,"高山寺 w Toganoo, ~11 km od Arashiyamy.",
+6,Enryaku-ji (góra Hiei),35.0703,135.8410,"~2 km od trasy. Świątynia UNESCO, siedziba szkoły Tendai, ponad 1200 lat.",
+6,Takashima,35.3530,136.0355,"Km ~120–160, zachodni brzeg Jeziora Biwa.",
+7,Tsuruga,35.6452,136.0555,"Km 179. Port nad Zatoką Tsuruga, sanktuarium Kehi Jingu.",Tsuruga
+8,Wybrzeże Echizen,35.9750,135.9620,Km ~195–230. Droga 305 wzdłuż Morza Japońskiego.,
+8,Tōjinbō,36.2380,136.1250,~4 km od trasy. Bazaltowe klify 25 m nad morzem.,
+8,Mikuni-minato,36.2190,136.1500,~1 km od trasy. Dawny port szlaku Kitamaebune.,
+8,Awara Onsen,36.2170,136.2300,"~1 km od trasy. Największy kurort onsen w Fukui, od 1881.",
+8,Kanazawa,36.5608,136.6564,"Km 333. Ogród Kenrokuen, dzielnica Higashi Chaya, złoto płatkowe.",Kanazawa
+9,Toyama,36.6953,137.2113,"Wariant z planu — ~36 km od śladu. Zamek, muzeum szkła Kengo Kumy.",Toyama
+9,Gokayama — Ainokura,36.4247,136.9300,"Wariant z KML, km ~355–380. Wioska gassho-zukuri, UNESCO.",
+10,Kamioka,36.3308,137.3036,"Wariant z planu, dolina Jinzū. Górnicze miasteczko w klimacie Showa.",
+10,Hida-Furukawa,36.2380,137.1860,Wariant z planu. Kanał z karpiami i białe magazyny kura.,
+10,Shirakawa-gō (Ogimachi),36.2578,136.9063,"Wariant z KML, km ~398 — trasa przez wioskę. UNESCO.",
+10,Shōkawa,36.0215,136.9660,"Wariant z KML, km ~431. Roadside Station Sakura no Sato Shokawa.",
+11,Takayama,36.1464,137.2521,"Km 473. Sanmachi-suji, poranne targi, 7 browarów sake.",Takayama
+12,Przełęcz Nomugi,36.0550,137.5500,"Wariant z planu, 1672 m — królewski etap. Pozycja poglądowa.",
+12,Hida Great Limestone Cave,36.1838,137.4248,"Wariant z KML, km ~490, ~1 km od trasy.",
+12,Tochio Onsen,36.2464,137.5145,"Wariant z KML, km ~507, ~7 km od trasy. Okuhida Onsengo.",
+13,Narai,35.9690,137.8160,"Wariant z planu, dolina Kiso. Ponad 1 km zachowanej ulicy stacji Nakasendō.",
+13,Matsumoto,36.2386,137.9689,Km ~555. Zamek „Wrona” — jeden z 12 oryginalnych donżonów.,Matsumoto
+13,Asama Onsen,36.2629,137.9887,"~5 km od trasy, ok. 4 km od stacji Matsumoto.",
+14,Suwa Taisha (Kamisha),35.9990,138.1190,"Km ~580–590, ~0,5 km od trasy. Jedna z najstarszych świątyń Japonii.",
+14,Shōsenkyō,35.7310,138.5690,~8 km od trasy. Wąwóz słynny z jesiennych liści.,
+14,Chureito Pagoda,35.5011,138.8016,"Km ~714, na trasie. Najbardziej ikoniczny kadr z Fudżi.",
+14,Fudżi,35.3606,138.7274,"Szczyt ~15 km od trasy, widoczny znad Kawaguchiko.",Fudżi
+15,Saruhashi,35.6150,138.9820,"Km ~733, ~1 km od trasy. „Małpi most”, jeden z trzech niezwykłych mostów Japonii.",
+15,Takaosanguchi,35.6322,139.2697,"Km ~768–775, „Punkt 8” z KML. Onsen przy stacji.",
+15,Akiruno,35.7300,139.2240,"Koniec jazdy, ~6 km od śladu. Pakowanie rowerów, pociąg do Tokio.",
+16,Ueno Park,35.7156,139.7745,Obok hotelu (Nippori/Ueno). Muzea i zoo.,
+16,Senso-ji,35.7148,139.7967,Asakusa — najstarsza świątynia Tokio.,
+16,Shinjuku,35.6900,139.7004,Popołudnie i wieczór dnia 16.,Tokio
+16,Pomnik Hachikō (Shibuya),35.6590,139.7006,"Przy wyjściu Hachikō ze stacji Shibuya, obok skrzyżowania. 2 przystanki JR Yamanote od Shinjuku.",
+16,Lotnisko Narita,35.7720,140.3929,"Wylot 2.11, 22:20 (EK319). Pociągiem z Nippori albo Ueno, ok. 40 min.",

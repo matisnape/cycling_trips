@@ -851,14 +851,51 @@ def route_svg(cfg, width=680, height=440, pad=14):
         return (ox + (lo - lo0) * kx * scale, height - oy - (la - la0) * scale)
 
     line = " ".join("%.1f,%.1f" % xy(la, lo) for la, lo in pts)
+    shown = [p for p in data.get("pois", [])
+             if "lat" in p and "lon" in p and p.get("day") not in cfg.svg_skip_days]
     dots = "".join('<circle cx="%.1f" cy="%.1f" r="3.2"/>' % xy(p["lat"], p["lon"])
-                   for p in data.get("pois", [])
-                   if "lat" in p and "lon" in p and p.get("day") not in cfg.svg_skip_days)
+                   for p in shown)
+
+    # Names on the sketch. Only for points whose pois.csv row carries a "label"
+    # column, and the column holds the text to draw — the full name is often too
+    # long ("Lotnisko Narita") for a map this size. The sketch is drawn 680 wide and
+    # displayed around 360, so everything on it halves: at 19 units the text lands
+    # near 10px on a phone, which is the floor for legibility. Labels that would
+    # collide with one already placed, or fall outside the frame, are dropped —
+    # fewer names beat a pile of overlapping ones.
+    FS, placed, texts = 19, [], []
+    # Earliest day first: when two names fight for the same corner, the one you reach
+    # first on the route keeps its label (Osaka before Nara, which sit almost on top
+    # of each other).
+    for p in sorted(shown, key=lambda q: (int(q.get("day", 0) or 0), str(q.get("label", "")))):
+        txt = str(p.get("label", "")).strip()
+        if not txt:
+            continue
+        cx, cy = xy(p["lat"], p["lon"])
+        tw, th = 0.55 * FS * len(txt), FS
+        for dx, dy, anchor in ((7, 5, "start"), (-7, 5, "end"),
+                               (0, -9, "middle"), (0, 16, "middle"),
+                               (7, -7, "start"), (-7, -7, "end"),
+                               (7, 17, "start"), (-7, 17, "end")):
+            x, y = cx + dx, cy + dy
+            x0 = x if anchor == "start" else (x - tw if anchor == "end" else x - tw / 2)
+            box = (x0 - 2, y - th + 1, x0 + tw + 2, y + 4)
+            if box[0] < 2 or box[2] > width - 2 or box[1] < 2 or box[3] > height - 2:
+                continue
+            if any(box[0] < b[2] and b[0] < box[2] and box[1] < b[3] and b[1] < box[3]
+                   for b in placed):
+                continue
+            placed.append(box)
+            texts.append('<text x="%.1f" y="%.1f" text-anchor="%s">%s</text>'
+                         % (x, y, anchor, htmllib.escape(txt)))
+            break
+
+    names = f'<g class="poi-n" font-size="{FS}">{"".join(texts)}</g>' if texts else ""
     return (f'<svg viewBox="0 0 {width} {height}" role="img" '
             f'aria-label="{htmllib.escape(cfg.offline_aria, quote=True)}">'
             f'<polyline points="{line}" fill="none" stroke="currentColor" '
             'stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'
-            f'<g class="poi">{dots}</g></svg>')
+            f'<g class="poi">{dots}</g>{names}</svg>')
 
 
 def write_mobile(out, cfg, N, view_key, svg):
@@ -1002,6 +1039,9 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 .page-toc a{font-size:.82rem;color:var(--mut);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 10px}
 h3[id]{scroll-margin-top:12px}
 .pick-all{margin-top:22px;padding-top:14px;border-top:1px solid var(--line)}
+/* Names on the offline sketch: a halo so they stay readable over the route line. */
+.poi-n text{fill:var(--fg);stroke:var(--bg);stroke-width:3.5;paint-order:stroke;
+ font-family:inherit;font-weight:600}
 """.replace("@ACC_DARK@", cfg.accent_dark).replace("@ACC@", cfg.accent)
     blocks = []
     for d in days:

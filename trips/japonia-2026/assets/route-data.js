@@ -4530,6 +4530,7 @@ window.TRIP = {
    "lat": 34.6942,
    "lon": 135.5023,
    "blurb": "Km 0. Dotonbori i Shinsaibashi — neony i jedzenie uliczne. Hotel przy Shin-Osaka.",
+   "label": "Osaka",
    "url": "dzien-2.html"
   },
   {
@@ -4554,6 +4555,7 @@ window.TRIP = {
    "lat": 34.685,
    "lon": 135.843,
    "blurb": "Km 32, ~3 km od trasy. Ok. 1200 świętych jeleni, Todaiji z brązowym Buddą.",
+   "label": "Nara",
    "url": "dzien-4.html"
   },
   {
@@ -4578,6 +4580,7 @@ window.TRIP = {
    "lat": 35.0121,
    "lon": 135.7682,
    "blurb": "Km 81. Dzień bez sakw, 17 miejsc UNESCO w mieście.",
+   "label": "Kioto",
    "url": "dzien-5.html"
   },
   {
@@ -4626,6 +4629,7 @@ window.TRIP = {
    "lat": 35.6452,
    "lon": 136.0555,
    "blurb": "Km 179. Port nad Zatoką Tsuruga, sanktuarium Kehi Jingu.",
+   "label": "Tsuruga",
    "url": "dzien-7.html"
   },
   {
@@ -4666,6 +4670,7 @@ window.TRIP = {
    "lat": 36.5608,
    "lon": 136.6564,
    "blurb": "Km 333. Ogród Kenrokuen, dzielnica Higashi Chaya, złoto płatkowe.",
+   "label": "Kanazawa",
    "url": "dzien-8.html"
   },
   {
@@ -4674,6 +4679,7 @@ window.TRIP = {
    "lat": 36.6953,
    "lon": 137.2113,
    "blurb": "Wariant z planu — ~36 km od śladu. Zamek, muzeum szkła Kengo Kumy.",
+   "label": "Toyama",
    "url": "dzien-9.html"
   },
   {
@@ -4722,6 +4728,7 @@ window.TRIP = {
    "lat": 36.1464,
    "lon": 137.2521,
    "blurb": "Km 473. Sanmachi-suji, poranne targi, 7 browarów sake.",
+   "label": "Takayama",
    "url": "dzien-11.html"
   },
   {
@@ -4762,6 +4769,7 @@ window.TRIP = {
    "lat": 36.2386,
    "lon": 137.9689,
    "blurb": "Km ~555. Zamek „Wrona” — jeden z 12 oryginalnych donżonów.",
+   "label": "Matsumoto",
    "url": "dzien-13.html"
   },
   {
@@ -4802,6 +4810,7 @@ window.TRIP = {
    "lat": 35.3606,
    "lon": 138.7274,
    "blurb": "Szczyt ~15 km od trasy, widoczny znad Kawaguchiko.",
+   "label": "Fudżi",
    "url": "dzien-14.html"
   },
   {
@@ -4850,6 +4859,7 @@ window.TRIP = {
    "lat": 35.69,
    "lon": 139.7004,
    "blurb": "Popołudnie i wieczór dnia 16.",
+   "label": "Tokio",
    "url": "dzien-16.html"
   },
   {
