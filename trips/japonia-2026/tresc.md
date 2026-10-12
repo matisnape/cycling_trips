@@ -508,7 +508,6 @@ Tuszowe pieczątki stoją na wielu dworcach, zwykle przy obsadzonej bramce albo 
 - JR West — oficjalny spis, ok. 550 stacji; obejmuje dni 2–8, od Osaki po Kanazawę: https://www.jr-odekake.net/navi/stamp_eki/
 - JR East — poradnik i miejsca ustawienia, przydatny od Matsumoto po Tokio: https://media.jreast.co.jp/tags/19116
 - Dla Gifu, Takayamy i doliny Kiso (JR Central) żadnego spisu nie znalazłem — tam trzeba pytać na miejscu.
-- Weź osobny notes. *Goshuinchō* służy do pieczęci świątynnych stawianych ręcznie i mieszanie go z gumowymi stemplami ze stacji jest nietaktem.
 - Pieczątki cyfrowe zbiera aplikacja **Ekitag** (エキタグ): przykładasz telefon do tagu NFC na peronie. Po drodze obsługują ją Ōmi Railway (dzień 6), Echizen Tetsudō (dni 7–8) i Ainokaze Toyama (dzień 9): https://ekitag.net/
 
 ### W terenie
@@ -566,7 +565,6 @@ Godziny i adresy sprawdź przed pójściem, bo się zmieniają.
 
 ### Inne
 
-- **Goshuinchō** — notes na pieczęcie *goshuin* ze świątyń i chramów.
 - **Hanko** — własna pieczątka do craftu i notatek.
 - **Saszetka** — na elektronikę, narzędzia, kosmetyki; bonus za lokalną tkaninę.
 - Pałeczki — tylko jeśli będą używane.
