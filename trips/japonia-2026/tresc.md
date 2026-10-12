@@ -482,6 +482,7 @@ Tokio). Plan jest ramowy.
 
 - Visit Japan Web — zgłoszenie wjazdu i deklaracja celna online, QR do okazania na lotnisku: https://www.vjw.digital.go.jp/
 - Odyseusz (MSZ) — rejestracja pobytu za granicą: https://odyseusz.gov.pl/JP
+- Japan Travel — oficjalny serwis japońskiej organizacji turystycznej, po angielsku: https://www.japan.travel/en/uk/
 
 ### Mapy
 

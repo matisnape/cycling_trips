@@ -910,8 +910,12 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 /* Switch link first and left-aligned — same corner as the .viewbar link in the full version. */
 .switch a{font-weight:600;text-decoration:none;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}
 .switch>a{grid-area:1/1;justify-self:start;align-self:start;padding:6px 0;max-width:60%}
-.savebox{grid-area:1/1;justify-self:stretch;text-align:right;
+/* Stretched across the row so the open panel is full width — but that box also
+   covered the version-switch link underneath it and swallowed every tap on it.
+   Clicks pass through the empty part; the pill and the panel still take them. */
+.savebox{grid-area:1/1;justify-self:stretch;text-align:right;pointer-events:none;
  border:0;background:none;margin:0;border-radius:0;overflow:visible}
+.savebox>summary,.savebox-in{pointer-events:auto}
 /* Filled pill so the download stands out against the plain version-switch link. */
 .savebox>summary{display:inline-block;list-style:none;padding:5px 13px;font:inherit;
  font-weight:600;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;
